@@ -28,7 +28,9 @@ identifiers, or secret values.
   reviewed npm lock and CLI hashes, exact destination/tree matching, residual
   allowlists, and unchanged observed global skill targets. The renewed run uses
   a copied verified npm cache with `npm ci --offline` while retaining lock and
-  package-integrity checks.
+  package-integrity checks. An empty OpenCode config-directory fixture inside
+  the isolated `XDG_CONFIG_HOME` makes the shared universal `.agents` removal
+  probe deterministic without starting an OpenCode session.
 - [`2026-09-18-skill-package-install-lifecycle.json`](2026-09-18-skill-package-install-lifecycle.json):
   skill-only archive summary for project-scoped lifecycle across Codex, Cursor,
   and Claude Code layouts. It records archive SHA-256

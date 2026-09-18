@@ -570,6 +570,25 @@ def list_contains_skill(step: Mapping[str, Any]) -> bool:
     )
 
 
+def prepare_universal_agent_detection_fixture(
+    qualification_root: Path,
+) -> dict[str, Any]:
+    """Create an isolated second consumer of the universal `.agents` target."""
+
+    fixture = qualification_root / "xdg-config" / "opencode"
+    if fixture.exists() or fixture.is_symlink():
+        raise ValueError("universal agent detection fixture already exists")
+    fixture.mkdir(parents=True)
+    return {
+        "agent": "opencode",
+        "path": "$QUALIFICATION_ROOT/xdg-config/opencode",
+        "kind": "empty-config-directory",
+        "scope": "disposable-qualification-root",
+        "purpose": "exercise shared universal .agents removal semantics",
+        "model_session_started": False,
+    }
+
+
 def run_agent_case(
     agent: str,
     *,
@@ -818,6 +837,9 @@ def main() -> int:
     global_before = global_snapshot()
 
     try:
+        environment_policy["universal_agent_detection_fixture"] = (
+            prepare_universal_agent_detection_fixture(qualification_root)
+        )
         cli_prefix, cli_metadata, acquisition_steps = acquire_cli(
             args, qualification_root, env, replacements
         )
@@ -941,7 +963,7 @@ def main() -> int:
                 "A symlink at any observed global skill target blocks qualification rather than following an arbitrary target.",
                 "Global installation syntax was not executed against the user profile.",
                 "Cursor can discover universal, Cursor, Claude, and Codex skill directories; duplicate-name runtime behavior remains a native Cursor gate.",
-                "With skills@1.7.0, agent-filtered removal leaves universal .agents copies for Codex and Cursor; the qualified single-skill removal omits -a.",
+                "A disposable OpenCode config-directory fixture under the isolated XDG_CONFIG_HOME provides a second universal .agents consumer, so skills@1.7.0 agent-filtered removal must preserve the intact source-matched shared copy and active lock entry; no OpenCode session is started.",
                 "The local-checkout update path is remove plus reinstall; skills update is not qualified for this source type.",
                 "This test proves package lifecycle only, not host-native discovery or agent behavior.",
             ],

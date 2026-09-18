@@ -1,7 +1,7 @@
 {
   "schema_version": "1.1",
   "kind": "oci-founder-skill-package-install-lifecycle",
-  "observed_at_utc": "2026-09-18T13:43:03.354310+00:00",
+  "observed_at_utc": "2026-09-18T14:12:05.470411+00:00",
   "status": "pass_with_reservations",
   "package": {
     "archive_file": "oci-founder-skill-0.1.0-evaluation.tar.gz",
@@ -25,16 +25,16 @@
   },
   "lifecycle": {
     "raw_receipt_path": "tests/results/2026-09-18-skill-package-install-lifecycle.raw.json",
-    "raw_receipt_sha256": "568239e351c35c554e8d84fd4b8069c5113fdcadff4d7d538c21cafe5088f336",
+    "raw_receipt_sha256": "6c9ebdd90c77107a95cc34cff01a21160364fb03caeae6f47e59a61f81041df9",
     "raw_receipt_retention": "committed",
-    "runner_sha256": "bb32883ee447cc2643fd1891323ee4707f1600884e5f08addd734e954cad8dcb",
+    "runner_sha256": "5a93fc494d8a1609e6b3ca0b07706fd3f9eebbc782c27a5c67f5ca6753b073ff",
     "scope": "three-isolated-projects",
     "skills_cli_version": "1.7.0",
     "skills_cli_version_exact_match": true,
     "dependency_lock_verified": true,
     "package_integrity_verified_before_execution": true,
     "acquisition_mode": "verified-offline-cache",
-    "offline_cache_tree_sha256": "6d0b09044b196a97d197771d5e7e2c4aba09b4c6fed69e7ca2db033fb8ff0bde",
+    "offline_cache_tree_sha256": "58f2bf9f4faa0e6a605b6d49f9bf2cf70abecb522da0280ff23db18b5ff8c10f",
     "cases": [
       {
         "agent": "codex",
@@ -85,6 +85,7 @@
   "reservations": [
     "The archive is a locally built evaluation artifact, not a public distribution.",
     "This proves project-scoped package lifecycle, not native Cursor or Claude Code discovery.",
+    "An empty disposable OpenCode config-directory fixture under isolated XDG_CONFIG_HOME exercises shared .agents removal semantics without starting a model session.",
     "Global-profile lifecycle and public-coordinate installation remain open.",
     "The exact redacted lifecycle receipt is committed and bound by SHA-256."
   ]

@@ -152,6 +152,20 @@ class QualifySkillInstallTests(unittest.TestCase):
         self.assertFalse(result["clean"])
         self.assertFalse(result["skills_lock_empty_or_absent"])
 
+    def test_universal_agent_detection_fixture_is_isolated_and_empty(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            result = qualify_skill_install.prepare_universal_agent_detection_fixture(
+                root
+            )
+            fixture = root / "xdg-config" / "opencode"
+            self.assertTrue(fixture.is_dir())
+            self.assertFalse(fixture.is_symlink())
+            self.assertEqual([], list(fixture.iterdir()))
+            self.assertEqual("opencode", result["agent"])
+            self.assertEqual("disposable-qualification-root", result["scope"])
+            self.assertFalse(result["model_session_started"])
+
     def test_sanitized_environment_drops_cloud_and_token_variables(self) -> None:
         source = {
             "PATH": "/usr/bin",
