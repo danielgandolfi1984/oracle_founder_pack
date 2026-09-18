@@ -29,19 +29,29 @@ npx --yes skills@1.7.0 list -a codex --json
 
 Use `cursor` or `claude-code` instead of `codex` for exactly one selected
 agent. The selected coding agent must already be installed and authenticated;
-the installer only copies the skill. Then ask:
+the installer only copies the skill. Then use the exact invocation for that
+host:
 
-```text
-Use the oci-founder skill. Inspect this backend read-only. I know AWS, not OCI.
-Recommend the smallest safe OCI path and one next step. Do not provision or
-change anything.
-```
+| Host | First request |
+|---|---|
+| Codex | `Use $oci-founder. Inspect this backend read-only. I know AWS, not OCI. Recommend the smallest safe OCI path and one next step. Do not provision or change anything.` |
+| Cursor | `/oci-founder Inspect this backend read-only. I know AWS, not OCI. Recommend the smallest safe OCI path and one next step. Do not provision or change anything.` |
+| Claude Code | `/oci-founder Inspect this backend read-only. I know AWS, not OCI. Recommend the smallest safe OCI path and one next step. Do not provision or change anything.` |
 
 The skill should lead with one recommendation, distinguish repository evidence
 from assumptions, explain important cloud non-equivalences, and keep every OCI
 mutation behind a separate preview and approval. Follow the
 **[guided quickstart](docs/QUICKSTART.md)** for Cursor and Claude Code commands,
 expected output, use-case prompts, updating, removal, and troubleshooting.
+
+## Help and security status
+
+- **[Get help](SUPPORT.md):** review the current support boundary before relying
+  on the toolkit. This evaluation has no approved public support channel or SLA.
+- **[Report a vulnerability](SECURITY.md):** follow the current security policy.
+  Do not disclose vulnerability details, credentials, private OCIDs, Terraform
+  state, or exploit evidence in a public GitHub issue; no public confidential
+  intake has been approved yet.
 
 ## Status
 
@@ -50,11 +60,16 @@ public release. The portable skill remains at `0.1.0`; the separately versioned
 [`0.2.0-preview.3` Container API blueprint](blueprints/container-api/README.md)
 is sandbox-only and has not been applied in an OCI tenancy.
 
-The public `main` source passed the full GitHub Actions workflow at commit
+The public `main` source first passed the complete GitHub Actions workflow at
 [`bf5ebb3`](https://github.com/danielgandolfi1984/oracle_founder_pack/commit/bf5ebb3bef3d53ff03601a05221f7825ecd849f2)
 in [run 35355021483](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35355021483).
-That closes the remote source-CI gap, but not native Cursor/Claude qualification,
-cross-host behavioral replay, licensing, support, or live OCI field validation.
+The subsequent founder-onboarding baseline
+[`deb13d8`](https://github.com/danielgandolfi1984/oracle_founder_pack/commit/deb13d83e037704e3aa3894304673ba7a58da68d)
+also passed in
+[run 35359228279](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35359228279).
+Those runs close the remote source-CI gap for their exact revisions, but not
+native Cursor/Claude qualification, cross-host behavioral replay, licensing,
+support, or live OCI field validation.
 See the [validation record](docs/VALIDATION.md) for hashes, receipts, Q0–Q4
 status, and remaining gates.
 
@@ -83,6 +98,7 @@ commands. No public authorization-request channel has been approved yet.
 | Decode tenancy, compartments, VCNs, OCIDs, identities, budgets, quotas, and other OCI terms | [OCI glossary](docs/GLOSSARY.md) |
 | Establish the minimum identity, network, cost, observability, delivery, and teardown guardrails | [Founder Baseline](docs/FOUNDER-BASELINE.md) |
 | Check exact evidence, open gates, or release status | [Validation record](docs/VALIDATION.md) and [compatibility matrix](docs/COMPATIBILITY.md) |
+| Understand why public installation is still blocked and prepare the Oracle decision | [Proposed license and publisher ADR](docs/decisions/0003-public-license-and-publisher.md) |
 
 ## Why this exists
 

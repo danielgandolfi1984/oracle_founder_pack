@@ -30,7 +30,7 @@ Each surface needs its own version and evidence. Do not summarize all of them as
 
 | Level | Evidence | Automation status |
 |---|---|---|
-| Q0 — source | Repository checks, manifest and skill fingerprints, unit tests | Implemented locally; the complete public CI baseline passed at commit `bf5ebb3` in [run 35355021483](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35355021483). Each later revision still requires its own passing run |
+| Q0 — source | Repository checks, manifest and skill fingerprints, unit tests | Implemented locally; complete public CI baselines passed at `bf5ebb3` in [run 35355021483](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35355021483) and at `deb13d8` in [run 35359228279](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35359228279). Each later revision still requires its own passing run |
 | Q1 — native validation | Host-supported strict validator or a documented development validator | Partial; see the dated matrix below |
 | Q2 — install and discovery | Isolated install, exact installed-skill hash, visibility, clean removal | Checkout plus the current skill-only and full-toolkit archives pass project lifecycle on all three layouts; the historical Codex receipt normalizes to `PASS_WITH_RESERVATIONS`, a fresh hardened renewal is `BLOCKED` pending an authorized model session, and formal Q2 remains `BLOCKED` |
 | Q3 — behavior | All fixtures in fresh sessions, effect log, independent semantic evaluation | The historical Codex receipt normalizes to `PARTIAL`; the fresh renewal started no model session, and formal Q3 remains `BLOCKED` pending the native suite, independent grading, and Cursor/Claude Code replay |
@@ -143,9 +143,9 @@ The evidence is in
 
 The same lifecycle passed from both extracted, verified archives. The
 skill-only SHA-256 is
-`876fe40dbac703b092110f106f6797fa7eaa753c6bb9b711e61e67f61c2fd315`;
+`1e41859b5ac86522356aa922f177189c3f95a1deaba8dae77d6a95e1cd64ab23`;
 the full-toolkit SHA-256 is
-`62501591cdc53b2e366dd7fbe39c7c87a47a838ff034ff7ad734040d1f96eaa8`,
+`aa332c7555ad88e17f86f99dbd1e33e0f211f48e6e40b980eedb8992c1333790`,
 and that versioned archive extracts under `oci-founder-toolkit/`. Both renewed
 package receipts verify the current skill tree fingerprint
 `b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e`.
@@ -265,11 +265,12 @@ empty `skills-lock.json`; native global-profile behavior remains open.
 Do not claim cross-host support until every named surface passes Q0 through Q4
 without skipped gates. A manual GUI result may be retained as supporting
 evidence, but it must not be presented as deterministic CLI qualification.
-The public `main` source preview is cloneable and the remote source-CI baseline
-passed at `bf5ebb3`, but this is not qualified public-install evidence: there is
-no immutable tag, GitHub release, marketplace entry, registry coordinate, or
-package coordinate. Remote-source installation, native cross-host discovery,
-and native behavioral lifecycle remain unqualified.
+The public `main` source preview is cloneable and remote source-CI baselines
+passed at `bf5ebb3` and `deb13d8`, but this is not qualified public-install
+evidence: there is no immutable tag, GitHub release, marketplace entry,
+registry coordinate, or package coordinate. Remote-source installation,
+native cross-host discovery, and native behavioral lifecycle remain
+unqualified.
 
 ## Official host references
 

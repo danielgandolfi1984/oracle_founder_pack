@@ -47,9 +47,9 @@ The archive runs use a copied verified npm cache with `npm ci --offline`, retain
 lock and package-integrity checks, and bind committed exact raw receipts from
 their summaries. Two evaluation archives build deterministically with content
 manifests: skill-only SHA-256
-`876fe40dbac703b092110f106f6797fa7eaa753c6bb9b711e61e67f61c2fd315`
+`1e41859b5ac86522356aa922f177189c3f95a1deaba8dae77d6a95e1cd64ab23`
 and full-toolkit SHA-256
-`62501591cdc53b2e366dd7fbe39c7c87a47a838ff034ff7ad734040d1f96eaa8`,
+`aa332c7555ad88e17f86f99dbd1e33e0f211f48e6e40b980eedb8992c1333790`,
 whose internal root is `oci-founder-toolkit/`. The high-confidence secret scan
 passes over both release
 allowlists and the repository source tree. An offline, read-only Oracle Skills
@@ -74,12 +74,14 @@ under the restrictive evaluation license, without an immutable tag, GitHub
 release, marketplace entry, registry coordinate, or package coordinate. It
 does not close legal, OSS, publisher, support, naming/trademark, or Oracle
 repository-ownership gates.
-The full public CI baseline passed at `bf5ebb3` in
-[run 35355021483](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35355021483);
-this closes the former remote source-CI item but not native-host, field, or
-distribution gates. The workflow source now also pins the official Node.js 24
-action lines by full SHA and uses `ubuntu-24.04`, resolving the warnings emitted
-by that baseline run subject to the normal per-revision CI requirement.
+The first full public CI baseline passed at `bf5ebb3` in
+[run 35355021483](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35355021483).
+After pinning the official Node.js 24 action lines by full SHA and moving to
+`ubuntu-24.04`, the founder-onboarding baseline at `deb13d8` passed in
+[run 35359228279](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35359228279).
+These exact-revision results close the former remote source-CI item but not
+native-host, field, or distribution gates; every later revision still requires
+its own passing run.
 See [`VALIDATION.md`](VALIDATION.md).
 
 ## 0.2 — Container API field path (preview in progress)

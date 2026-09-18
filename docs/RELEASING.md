@@ -14,6 +14,12 @@ or package coordinate exists. Public source access is not an open-source
 license or a supported-release approval and does not close legal, OSS,
 publisher, support, or Oracle repository-ownership gates.
 
+The proposed
+[public-license and publisher decision](decisions/0003-public-license-and-publisher.md)
+defines the approval packet, compares UPL-1.0 with Apache-2.0, and separates
+public source, installable public preview, and Oracle-supported release. It is
+decision preparation only; it does not change the current license.
+
 ## Candidate types
 
 | Candidate | Contents | Intended use |
@@ -150,9 +156,9 @@ into a clean parent directory so files from an older candidate cannot remain in
 that stable root.
 
 The current skill-only archive SHA-256 is
-`876fe40dbac703b092110f106f6797fa7eaa753c6bb9b711e61e67f61c2fd315`.
+`1e41859b5ac86522356aa922f177189c3f95a1deaba8dae77d6a95e1cd64ab23`.
 The current full-toolkit archive SHA-256 is
-`62501591cdc53b2e366dd7fbe39c7c87a47a838ff034ff7ad734040d1f96eaa8`.
+`aa332c7555ad88e17f86f99dbd1e33e0f211f48e6e40b980eedb8992c1333790`.
 The renewed
 [skill-only summary](../tests/results/2026-09-18-skill-package-install-lifecycle.json),
 [skill-only raw receipt](../tests/results/2026-09-18-skill-package-install-lifecycle.raw.json),

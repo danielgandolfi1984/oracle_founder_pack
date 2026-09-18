@@ -1,15 +1,15 @@
 {
   "schema_version": "1.1",
   "kind": "oci-founder-full-package-install-lifecycle",
-  "observed_at_utc": "2026-09-18T14:12:05.466777+00:00",
+  "observed_at_utc": "2026-09-18T16:03:18.582944+00:00",
   "status": "pass_with_reservations",
   "package": {
     "archive_file": "oci-founder-toolkit-0.1.0-evaluation.tar.gz",
     "archive_root": "oci-founder-toolkit",
-    "archive_sha256": "62501591cdc53b2e366dd7fbe39c7c87a47a838ff034ff7ad734040d1f96eaa8",
-    "archive_size": 80489,
-    "manifest_sha256": "4b39427b2d12f9767e1f5ee9913dae3b5aaf9f667985c30c0ceeb646c6fb8ff6",
-    "content_sha256": "50461072d0e45148ef622bc47e2d99a095162481fa1dec502bfa6eac0b90e0ae",
+    "archive_sha256": "aa332c7555ad88e17f86f99dbd1e33e0f211f48e6e40b980eedb8992c1333790",
+    "archive_size": 81571,
+    "manifest_sha256": "ba266bc6dea0a964807fb9623fbf3e0782297a4465f85e98f358770ee21af384",
+    "content_sha256": "806605b6f2503cae634ce8987dfe77c0a1f411371f5ef6679607a6e79f40a295",
     "file_count": 43,
     "format": "tar+gzip",
     "normalized_mtime": 0,
@@ -25,7 +25,7 @@
   },
   "lifecycle": {
     "raw_receipt_path": "tests/results/2026-09-18-full-package-install-lifecycle.raw.json",
-    "raw_receipt_sha256": "af2e8cf8cf19b6ab7fdce245bbed639e9a53dfb474c1562b386f6684d3dd5e95",
+    "raw_receipt_sha256": "7b82237d7fec38a8c9343fb2c165e556c1756229da60ddac10e947912f7b5df9",
     "raw_receipt_retention": "committed",
     "runner_sha256": "5a93fc494d8a1609e6b3ca0b07706fd3f9eebbc782c27a5c67f5ca6753b073ff",
     "scope": "three-isolated-projects",
@@ -34,7 +34,7 @@
     "dependency_lock_verified": true,
     "package_integrity_verified_before_execution": true,
     "acquisition_mode": "verified-offline-cache",
-    "offline_cache_tree_sha256": "58f2bf9f4faa0e6a605b6d49f9bf2cf70abecb522da0280ff23db18b5ff8c10f",
+    "offline_cache_tree_sha256": "6d0b09044b196a97d197771d5e7e2c4aba09b4c6fed69e7ca2db033fb8ff0bde",
     "cases": [
       {
         "agent": "codex",

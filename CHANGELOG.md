@@ -37,9 +37,9 @@ supported public release.
   dependency-free validator.
 - Deterministic, allowlisted skill-only and full-toolkit evaluation archives,
   each with a SHA-256 checksum and per-file content manifest. Current archive
-  SHA-256 values are `876fe40dbac703b092110f106f6797fa7eaa753c6bb9b711e61e67f61c2fd315`
+  SHA-256 values are `1e41859b5ac86522356aa922f177189c3f95a1deaba8dae77d6a95e1cd64ab23`
   for skill-only and
-  `62501591cdc53b2e366dd7fbe39c7c87a47a838ff034ff7ad734040d1f96eaa8`
+  `aa332c7555ad88e17f86f99dbd1e33e0f211f48e6e40b980eedb8992c1333790`
   for full-toolkit. The versioned full archive extracts under the stable
   `oci-founder-toolkit/` root, and both package lifecycle receipts were renewed
   for these artifacts.

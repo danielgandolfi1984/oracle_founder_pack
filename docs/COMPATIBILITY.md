@@ -27,9 +27,9 @@ project-scoped install/list/remove/reinstall in separate Codex, Cursor, and
 Claude Code layouts. These are filesystem-layout and package-lifecycle results,
 not native Cursor Agent or Claude Code runtime qualification. The current
 skill-only SHA-256 is
-`876fe40dbac703b092110f106f6797fa7eaa753c6bb9b711e61e67f61c2fd315`;
+`1e41859b5ac86522356aa922f177189c3f95a1deaba8dae77d6a95e1cd64ab23`;
 the current full-toolkit SHA-256 is
-`62501591cdc53b2e366dd7fbe39c7c87a47a838ff034ff7ad734040d1f96eaa8`,
+`aa332c7555ad88e17f86f99dbd1e33e0f211f48e6e40b980eedb8992c1333790`,
 with internal root `oci-founder-toolkit/`. Their renewed exact raw receipts are
 committed and SHA-256-bound by the current summaries linked from
 [`VALIDATION.md`](VALIDATION.md).
@@ -139,9 +139,11 @@ claude plugin validate . --strict
 ```
 
 The root manifest is validated locally against the reviewed Agent Plugins
-`1.0.0` schema snapshot, and the same check passed in the complete public CI
+`1.0.0` schema snapshot. The same check passed in the first complete public CI
 baseline at `bf5ebb3` in
-[run 35355021483](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35355021483).
+[run 35355021483](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35355021483)
+and in the updated founder-onboarding baseline at `deb13d8` in
+[run 35359228279](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35359228279).
 The Codex compatibility manifest and skill
 also pass their installed development validators when the reviewed PyYAML
 runtime is provided; the exact dependency procedure is in

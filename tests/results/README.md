@@ -34,7 +34,7 @@ identifiers, or secret values.
 - [`2026-09-18-skill-package-install-lifecycle.json`](2026-09-18-skill-package-install-lifecycle.json):
   skill-only archive summary for project-scoped lifecycle across Codex, Cursor,
   and Claude Code layouts. It records archive SHA-256
-  `876fe40dbac703b092110f106f6797fa7eaa753c6bb9b711e61e67f61c2fd315`,
+  `1e41859b5ac86522356aa922f177189c3f95a1deaba8dae77d6a95e1cd64ab23`,
   verifies skill tree
   `b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e`,
   and binds the committed exact raw receipt by SHA-256.
@@ -43,7 +43,7 @@ identifiers, or secret values.
 - [`2026-09-18-full-package-install-lifecycle.json`](2026-09-18-full-package-install-lifecycle.json):
   verified full-toolkit archive summary for project-scoped lifecycle across all
   three layouts. It records archive SHA-256
-  `62501591cdc53b2e366dd7fbe39c7c87a47a838ff034ff7ad734040d1f96eaa8`,
+  `aa332c7555ad88e17f86f99dbd1e33e0f211f48e6e40b980eedb8992c1333790`,
   internal root `oci-founder-toolkit/`, and the same current skill tree, and
   binds the committed exact raw receipt by SHA-256.
 - [`2026-09-18-full-package-install-lifecycle.raw.json`](2026-09-18-full-package-install-lifecycle.raw.json):

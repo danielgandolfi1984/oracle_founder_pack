@@ -1,15 +1,15 @@
 {
   "schema_version": "1.1",
   "kind": "oci-founder-skill-package-install-lifecycle",
-  "observed_at_utc": "2026-09-18T14:12:05.470411+00:00",
+  "observed_at_utc": "2026-09-18T16:03:18.586263+00:00",
   "status": "pass_with_reservations",
   "package": {
     "archive_file": "oci-founder-skill-0.1.0-evaluation.tar.gz",
     "archive_root": "oci-founder-skill-0.1.0-evaluation",
-    "archive_sha256": "876fe40dbac703b092110f106f6797fa7eaa753c6bb9b711e61e67f61c2fd315",
-    "archive_size": 25025,
-    "manifest_sha256": "899c2ac83bff394df8ff6b5af8743610a6571fdf76e2e630e31bce752959e54d",
-    "content_sha256": "dce76af8b88b3653a27b4014834e55e14f7b1b4798abe3582fa97a6e1b267c18",
+    "archive_sha256": "1e41859b5ac86522356aa922f177189c3f95a1deaba8dae77d6a95e1cd64ab23",
+    "archive_size": 25851,
+    "manifest_sha256": "7bae045a05739f83eff8feae37c765982f021b647b6c971621e33b1bad34918d",
+    "content_sha256": "eeaa6a293a484217b606356f36db9272d121397cfdfc1a3d91b810bf6a6fd566",
     "file_count": 12,
     "format": "tar+gzip",
     "normalized_mtime": 0,
@@ -25,7 +25,7 @@
   },
   "lifecycle": {
     "raw_receipt_path": "tests/results/2026-09-18-skill-package-install-lifecycle.raw.json",
-    "raw_receipt_sha256": "6c9ebdd90c77107a95cc34cff01a21160364fb03caeae6f47e59a61f81041df9",
+    "raw_receipt_sha256": "c6fff10ae8e17c81d2c453ed2783a48ff1caa3fc4ddb2f6cf10a267bf7067eb6",
     "raw_receipt_retention": "committed",
     "runner_sha256": "5a93fc494d8a1609e6b3ca0b07706fd3f9eebbc782c27a5c67f5ca6753b073ff",
     "scope": "three-isolated-projects",
@@ -34,7 +34,7 @@
     "dependency_lock_verified": true,
     "package_integrity_verified_before_execution": true,
     "acquisition_mode": "verified-offline-cache",
-    "offline_cache_tree_sha256": "58f2bf9f4faa0e6a605b6d49f9bf2cf70abecb522da0280ff23db18b5ff8c10f",
+    "offline_cache_tree_sha256": "6d0b09044b196a97d197771d5e7e2c4aba09b4c6fed69e7ca2db033fb8ff0bde",
     "cases": [
       {
         "agent": "codex",
