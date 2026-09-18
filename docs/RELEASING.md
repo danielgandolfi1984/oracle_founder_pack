@@ -14,19 +14,22 @@ Technical claims remain bounded by the evidence in this procedure.
 
 The source is published from `main` at
 [`danielgandolfi1984/oracle_founder_pack`](https://github.com/danielgandolfi1984/oracle_founder_pack).
-The published [`v0.1.0` GitHub prerelease](https://github.com/danielgandolfi1984/oracle_founder_pack/releases/tag/v0.1.0)
-is fixed at commit `6cf08bf30febc434cefed228f53c43a1f8802ec2`. That revision
-passed [CI run 35375372149](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35375372149),
-and its public tag passed project-scoped Codex install/list/remove with skill
-tree `c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37`.
-All release assets were downloaded again and verified. This is an immutable
+The published [`v0.1.1` GitHub prerelease](https://github.com/danielgandolfi1984/oracle_founder_pack/releases/tag/v0.1.1)
+is fixed at commit `8765266e3ef77110b30827d5c89da7cf1b15ee08`. That revision
+passed [CI run 35385557348](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35385557348),
+and its public tag passed project-scoped Codex install/list/remove/reinstall
+and final cleanup with the released skill hash. All six release assets were
+downloaded again and verified, including both archives against their manifests
+and checksums. The [publication receipt](../tests/results/2026-09-18-v0.1.1-publication.json)
+and [tag lifecycle receipt](../tests/results/2026-09-18-v0.1.1-public-tag-lifecycle.json)
+retain the evidence. This is an immutable
 public-preview coordinate; it does not claim marketplace, registry, stable, or
 cross-host qualification.
 
-Public preview `0.1.1` has source and archive checks recorded
-before publication. Complete its exact-revision CI, public-tag installation,
-and published-asset verification separately. Do not move `v0.1.0` or replace
-its assets; `v0.1.1` has its own release coordinate.
+The prepublication `0.1.1` assessments remain candidate-at-capture records.
+The earlier `v0.1.0` tag remains at `6cf08bf30febc434cefed228f53c43a1f8802ec2`;
+neither its tag nor its assets were replaced. Later source changes require
+their own CI and, for packaged changes, a new release coordinate.
 
 The
 [license and publisher decision](decisions/0003-public-license-and-publisher.md)
@@ -227,7 +230,7 @@ the explicit cycle-breaking mode and passes the available development
 validators at the current skill fingerprint. It records
 `release_qualified: false`. Archive lifecycle and preflight evidence do not
 replace native-host or OCI field gates. The public-coordinate check for
-`v0.1.0` passed separately as recorded above.
+`v0.1.1` passed separately as recorded above.
 
 ## Public-preview and qualification gates
 

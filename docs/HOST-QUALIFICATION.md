@@ -14,8 +14,10 @@ Public preview `0.1.1` uses
 skill tree `dba58d1984513e44aa77a5729a20b16e23186dac00e0de17ef1db01ddd0bda49`
 and has separate [prepublication evidence](../tests/results/2026-09-18-v0.1.1-assessment.json).
 Its source and both local packages passed lifecycle checks across all three
-installer layouts. Exact-revision CI, public-tag installation, and published
-asset verification are recorded separately; `0.1.0` native receipts remain
+installer layouts. Exact-revision CI, public-tag installation/reinstall, and
+verification of all six redownloaded assets passed in the separate
+[publication record](../tests/results/2026-09-18-v0.1.1-publication.json);
+`0.1.0` native receipts remain
 bound to the earlier released skill.
 The [native `0.1.1` comparison](../tests/results/2026-09-18-v0.1.1-codex-native.json)
 passed with reservations using the same prompt, schema, and fixture: 185 words

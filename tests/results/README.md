@@ -21,11 +21,21 @@ Each result must record the prompt ID, environment, mutations attempted, outcome
 reservations, and reviewer. Never include credentials, private OCIDs, customer
 identifiers, or secret values.
 
+## `0.1.1` publication records
+
+- [`2026-09-18-v0.1.1-publication.json`](2026-09-18-v0.1.1-publication.json):
+  published prerelease at commit `8765266e3ef77110b30827d5c89da7cf1b15ee08`,
+  successful exact-revision CI run `35385557348`, and all six redownloaded
+  assets verified against the recorded archive hashes, manifests, and checksums.
+- [`2026-09-18-v0.1.1-public-tag-lifecycle.json`](2026-09-18-v0.1.1-public-tag-lifecycle.json):
+  passing Codex install/list/remove/reinstall/final cleanup from the public
+  `v0.1.1` tag with an exact match to the released skill hash.
+
 ## `0.1.1` prepublication records
 
-These `0.1.1` checks were captured before publication. Exact-revision CI,
-public-tag installation, and published-asset verification are recorded
-separately. The `v0.1.0` tag, assets, and version-bound receipts are unchanged.
+These `0.1.1` checks were captured before publication and remain unchanged.
+The completed publication checks are recorded above. The `v0.1.0` tag, assets,
+and version-bound receipts are unchanged.
 
 - [`2026-09-18-v0.1.1-assessment.json`](2026-09-18-v0.1.1-assessment.json):
   prepublication assessment of focused guidance, an explicitly requested full

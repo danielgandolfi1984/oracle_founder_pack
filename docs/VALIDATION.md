@@ -1,7 +1,7 @@
 # Validation record
 
-This document distinguishes evidence for the published `0.1.0` preview,
-the `0.1.1` public-preview candidate, and the separately versioned `0.2.0-preview.3` Container API candidate from
+This document distinguishes evidence for the published `0.1.0` and `0.1.1`
+previews, and the separately versioned `0.2.0-preview.3` Container API candidate from
 capabilities that remain unverified. It is not a stable-release certification,
 an Oracle review, or an Oracle support statement.
 
@@ -10,11 +10,11 @@ an Oracle review, or an Oracle support statement.
 - Date: 2026-09-18
 - Toolkit state: independent public preview licensed under UPL-1.0 and maintained
   by Daniel Gandolfi with best-effort support and no SLA. The published
-  [`v0.1.0` release](https://github.com/danielgandolfi1984/oracle_founder_pack/releases/tag/v0.1.0)
-  is fixed at commit `6cf08bf30febc434cefed228f53c43a1f8802ec2`, which passed
-  [GitHub Actions run 35375372149](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35375372149).
-  Version `0.1.1` has separate prepublication evidence below. Its publication
-  verification is recorded separately; the `v0.1.0` tag and assets are unchanged.
+  [`v0.1.1` release](https://github.com/danielgandolfi1984/oracle_founder_pack/releases/tag/v0.1.1)
+  is fixed at commit `8765266e3ef77110b30827d5c89da7cf1b15ee08`, which passed
+  [GitHub Actions run 35385557348](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35385557348).
+  Publication verification passed as recorded below; the `v0.1.0` tag and
+  assets remain unchanged at commit `6cf08bf30febc434cefed228f53c43a1f8802ec2`.
   The first historical complete remote workflow baseline passed at commit
   [`bf5ebb3`](https://github.com/danielgandolfi1984/oracle_founder_pack/commit/bf5ebb3bef3d53ff03601a05221f7825ecd849f2)
   in [GitHub Actions run 35355021483](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35355021483); the later founder-onboarding baseline
@@ -39,14 +39,27 @@ an Oracle review, or an Oracle support statement.
   `Confidential: Internal`
 - Public source preview repository:
   [`danielgandolfi1984/oracle_founder_pack`](https://github.com/danielgandolfi1984/oracle_founder_pack);
-  source on `main` under UPL-1.0, with `v0.1.0` as the immutable GitHub
+  source on `main` under UPL-1.0, with `v0.1.1` as the current immutable GitHub
   public-preview tag and prerelease; no marketplace or registry coordinate
+
+## `0.1.1` publication verification
+
+The [GitHub prerelease](https://github.com/danielgandolfi1984/oracle_founder_pack/releases/tag/v0.1.1)
+was published on 2026-09-18 at 19:25:13 UTC with six assets. The
+[publication receipt](../tests/results/2026-09-18-v0.1.1-publication.json)
+binds the release commit, successful exact-revision CI, and redownloaded assets.
+The public tag passed Codex install/list/remove/reinstall/final cleanup with
+the exact released skill hash in the
+[tag lifecycle receipt](../tests/results/2026-09-18-v0.1.1-public-tag-lifecycle.json).
+Both downloaded archives passed `build_release.py verify` with the same
+skill-only and full-toolkit hashes recorded below.
+These checks qualify the publication coordinate, not the remaining native
+cross-host or live OCI gates. Later `main` commits need their own CI result.
 
 ## `0.1.1` prepublication evidence
 
-These checks were captured before publication. Exact-revision remote CI,
-public-tag installation, and published-asset verification are recorded
-separately. Existing `0.1.0` receipts retain their original hashes and results;
+These checks were captured before publication and remain unchanged. The
+completed publication checks are recorded above. Existing `0.1.0` receipts retain their original hashes and results;
 they do not qualify this revision. See the
 [prepublication assessment](../tests/results/2026-09-18-v0.1.1-assessment.json).
 

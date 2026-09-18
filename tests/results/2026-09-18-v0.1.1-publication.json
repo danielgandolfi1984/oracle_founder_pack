@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.0",
+  "kind": "oci-founder-publication-verification",
+  "observed_at_utc": "2026-09-18T19:29:07Z",
+  "status": "pass_with_reservations",
+  "release": {
+    "tag": "v0.1.1",
+    "commit": "8765266e3ef77110b30827d5c89da7cf1b15ee08",
+    "tag_object": "23e8f10384fb119673dc9f716a52da49d016b55f",
+    "url": "https://github.com/danielgandolfi1984/oracle_founder_pack/releases/tag/v0.1.1",
+    "published_at": "2026-09-18T19:25:13Z",
+    "is_draft": false,
+    "is_prerelease": true
+  },
+  "source_ci": {
+    "run_id": 35385557348,
+    "head_sha": "8765266e3ef77110b30827d5c89da7cf1b15ee08",
+    "conclusion": "success",
+    "url": "https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35385557348"
+  },
+  "public_tag_lifecycle": {
+    "path": "tests/results/2026-09-18-v0.1.1-public-tag-lifecycle.json",
+    "sha256": "98b1ea71cab4487479fe9eb4bd12878edff377cce1f3a51da6f29b795e5b4bd9",
+    "status": "pass_with_reservations",
+    "agent": "codex",
+    "skill_tree_sha256": "dba58d1984513e44aa77a5729a20b16e23186dac00e0de17ef1db01ddd0bda49"
+  },
+  "asset_verification": {
+    "downloaded_from_published_release": true,
+    "all_six_assets_present": true,
+    "github_digests_match_downloads": true,
+    "package_verifier": "scripts/build_release.py verify",
+    "package_verifier_exit_code": 0,
+    "inventory_and_manifest_checks_passed": true,
+    "assets": [
+      {
+        "name": "oci-founder-skill-0.1.1-preview.tar.gz",
+        "sha256": "6167f1ca7da9a06204e8e0d028622c490b727581532c15ec1d5d78629b2aa8ff",
+        "size": 29259
+      },
+      {
+        "name": "oci-founder-skill-0.1.1-preview.tar.gz.manifest.json",
+        "sha256": "276522da7ddf02a1da0a9a1f8b935288817688a6abd3864896c242b0ac57e614",
+        "size": 5280
+      },
+      {
+        "name": "oci-founder-skill-0.1.1-preview.tar.gz.sha256",
+        "sha256": "d5685124271852d3c053d9717a2ad20e786343b16532095c428a9c803e97f34e",
+        "size": 105
+      },
+      {
+        "name": "oci-founder-toolkit-0.1.1-preview.tar.gz",
+        "sha256": "7296477c39da42f830edd4e5dee6713288cdef695da0957145f79057cd17218b",
+        "size": 85304
+      },
+      {
+        "name": "oci-founder-toolkit-0.1.1-preview.tar.gz.manifest.json",
+        "sha256": "a892a84a64e27df356c875a23d2dff25b3a976bf779710685dcdcc3b3747ebf7",
+        "size": 14110
+      },
+      {
+        "name": "oci-founder-toolkit-0.1.1-preview.tar.gz.sha256",
+        "sha256": "b2952faa166ea173b90b160bbe15739171f97651d49b9db31d0c079b02053596",
+        "size": 107
+      }
+    ]
+  },
+  "previous_release": {
+    "tag": "v0.1.0",
+    "tag_object": "ca3cb10da0f8f2008bd4223b68d2983edf58f8b1",
+    "commit": "6cf08bf30febc434cefed228f53c43a1f8802ec2",
+    "tag_unchanged": true,
+    "assets_replaced": false
+  },
+  "effects": {
+    "global_skill_installation": false,
+    "oci_command_executed": false,
+    "cloud_mutation_attempted": false
+  },
+  "release_qualified": false,
+  "formal_q2": "BLOCKED",
+  "formal_q3": "BLOCKED",
+  "reservations": [
+    "This is a published installable public preview, not a stable, production-qualified, cross-host-native-qualified, or Oracle-supported product.",
+    "Public tag lifecycle used one Codex project layout; full native behavioral replay and other host runtimes remain open.",
+    "Only named global skill targets were checked by the lifecycle helper; full disposable-profile qualification remains open.",
+    "Prepublication assessment remains unchanged as evidence of its capture stage; this receipt records the later publication."
+  ]
+}

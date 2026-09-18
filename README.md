@@ -4,9 +4,11 @@
 
 > Plan your backend's path to OCI with the coding agent you already use.
 
-Founder Toolkit for OCI is an agent-native, backend-first path for technical
-founders and developers who know AWS, Google Cloud, or Azure but are new to
-Oracle Cloud Infrastructure (OCI).
+Founder Toolkit for OCI helps technical founders and backend developers who
+know AWS, Google Cloud, or Azure plan their first steps on Oracle Cloud
+Infrastructure (OCI). Use the `oci-founder` skill to assess an existing backend,
+understand important differences between clouds, and choose a small OCI
+architecture with one practical next step.
 
 This is an independent personal project created and maintained by
 [Daniel Gandolfi](https://github.com/danielgandolfi1984), who works at Oracle
@@ -14,7 +16,10 @@ and publishes here in his personal capacity. The views expressed here are his
 own and do not represent Oracle. This is not an Oracle product and is not
 sponsored, endorsed, maintained, or supported by Oracle.
 
-The toolkit is not another OCI service encyclopedia. It composes official Oracle knowledge into opinionated founder journeys: understand an existing repository, translate familiar cloud concepts, choose a small architecture, establish guardrails, ship, verify, operate, and eventually tear down or graduate.
+Start by installing the skill in one backend repository for Codex, Cursor, or
+Claude Code using the quickstart below. Your first request is a read-only
+backend assessment; no OCI tenancy or credentials are needed. Native behavior
+across all three agents remains under validation.
 
 ## Start here: first OCI recommendation in about 10 minutes
 
@@ -62,9 +67,13 @@ expected output, use-case prompts, updating, removal, and troubleshooting.
 This repository publishes an independent **public preview**, not an
 Oracle-supported or production-qualified product. Skill `0.1.1` provides
 shorter focused answers and full founder plans when requested, under UPL-1.0.
-Its source and archives passed pre-tag installation and behavior checks;
-publication verification is recorded separately in the
-[validation record](docs/VALIDATION.md). The separately versioned
+The published `v0.1.1` tag is fixed at commit
+`8765266e3ef77110b30827d5c89da7cf1b15ee08`, which passed
+[CI run 35385557348](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35385557348).
+Public-tag Codex installation, removal, and reinstall passed, and all six
+release assets were downloaded again and verified. See the
+[publication record](tests/results/2026-09-18-v0.1.1-publication.json).
+The separately versioned
 [`0.2.0-preview.3` Container API blueprint](blueprints/container-api/README.md)
 is sandbox-only and has not been applied in an OCI tenancy.
 

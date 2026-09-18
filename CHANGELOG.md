@@ -22,9 +22,12 @@ release or claimed cross-host or production qualification.
   `dba58d1984513e44aa77a5729a20b16e23186dac00e0de17ef1db01ddd0bda49`.
 - Bound native version assertions to validated `metadata.version` from the
   source skill and recorded that expected version in each new receipt.
-- Kept `v0.1.0` and its published assets unchanged. These checks are
-  prepublication evidence for `0.1.1`; exact-revision CI, public-tag installation,
-  and published-asset verification are recorded separately.
+- Published `v0.1.1` at `8765266e3ef77110b30827d5c89da7cf1b15ee08` after
+  successful [CI run 35385557348](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35385557348).
+  Public-tag Codex installation/removal/reinstall and redownload verification
+  of all six assets passed. The [publication receipt](tests/results/2026-09-18-v0.1.1-publication.json)
+  is separate from the unchanged prepublication assessments. `v0.1.0` and its
+  assets remain intact.
 
 ### Post-release `0.1.0` documentation and evidence
 

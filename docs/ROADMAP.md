@@ -24,8 +24,12 @@ an independent agent produces a safe plan from a realistic backend prompt.
 
 Status on 2026-09-18: **partially met**. Preview `0.1.1` adds focused answers,
 minimal reference loading, and complete founder plans retained for explicit
-requests. Its source and archive tests passed before publication; publication
-verification is recorded separately. Dependency-free repository validation passed against the
+requests. Its source and archive tests passed before publication, and the
+[`v0.1.1` publication](../tests/results/2026-09-18-v0.1.1-publication.json)
+is verified: commit `8765266e3ef77110b30827d5c89da7cf1b15ee08` passed
+[CI run 35385557348](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35385557348),
+public-tag installation/reinstall passed, and all six assets were downloaded
+again and verified. Dependency-free repository validation passed against the
 released public-preview source. The Agent Plugins
 `1.0.0` schema, Skill Creator and Plugin Creator validators, static safety and
 secret checks, fail-closed standalone adapter, and relative-link/local-JSON

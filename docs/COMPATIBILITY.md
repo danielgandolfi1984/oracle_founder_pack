@@ -12,8 +12,10 @@ The native `0.1.1` comparison passed with reservations: the same prompt produced
 a 185-word recommendation versus 1,489 for `0.1.0`, with two reference reads instead of four,
 no observed mutation, and clean removal. It is one probe, not the full suite.
 See the [`0.1.1` assessment](../tests/results/2026-09-18-v0.1.1-assessment.json).
-These are prepublication checks; exact-revision CI, public-tag installation,
-and asset verification are recorded separately. The matrix below separates
+These prepublication checks remain version-bound. The separate
+[publication receipt](../tests/results/2026-09-18-v0.1.1-publication.json)
+records successful exact-revision CI, public-tag installation/reinstall, and
+verification of all six redownloaded assets. The matrix below separates
 local layout tests from native host evidence.
 
 ## Packaging matrix

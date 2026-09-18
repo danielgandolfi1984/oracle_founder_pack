@@ -1,0 +1,407 @@
+{
+  "case": {
+    "agent": "codex",
+    "agent_filtered_remove_probe": {
+      "active_lock_entry_remained": true,
+      "command_reported_success": true,
+      "confirmed": true,
+      "performed": true,
+      "remaining_install": {
+        "all_copies_match_source": true,
+        "copy_count": 1,
+        "copy_errors": {},
+        "exact_location_set": true,
+        "expected_locations": [
+          ".agents/skills/oci-founder"
+        ],
+        "locations": [
+          ".agents/skills/oci-founder"
+        ],
+        "regular_copy": true,
+        "source_tree_sha256": "dba58d1984513e44aa77a5729a20b16e23186dac00e0de17ef1db01ddd0bda49",
+        "tree_sha256": {
+          ".agents/skills/oci-founder": "dba58d1984513e44aa77a5729a20b16e23186dac00e0de17ef1db01ddd0bda49"
+        }
+      },
+      "required": true
+    },
+    "final_remove_residuals": {
+      "allowed_residual_directories": [
+        ".agents",
+        ".agents/skills"
+      ],
+      "allowed_residual_files": [
+        "skills-lock.json"
+      ],
+      "clean": true,
+      "empty_directories": [
+        ".agents/skills"
+      ],
+      "remaining_skill_copies": [],
+      "skills_lock": {
+        "skills": {},
+        "version": 1
+      },
+      "skills_lock_empty_or_absent": true,
+      "symlinks": [],
+      "unexpected_directories": [],
+      "unexpected_files": []
+    },
+    "first_install": {
+      "all_copies_match_source": true,
+      "copy_count": 1,
+      "copy_errors": {},
+      "exact_location_set": true,
+      "expected_locations": [
+        ".agents/skills/oci-founder"
+      ],
+      "locations": [
+        ".agents/skills/oci-founder"
+      ],
+      "regular_copy": true,
+      "source_tree_sha256": "dba58d1984513e44aa77a5729a20b16e23186dac00e0de17ef1db01ddd0bda49",
+      "tree_sha256": {
+        ".agents/skills/oci-founder": "dba58d1984513e44aa77a5729a20b16e23186dac00e0de17ef1db01ddd0bda49"
+      }
+    },
+    "first_list_contains_skill": true,
+    "first_remove_residuals": {
+      "allowed_residual_directories": [
+        ".agents",
+        ".agents/skills"
+      ],
+      "allowed_residual_files": [
+        "skills-lock.json"
+      ],
+      "clean": true,
+      "empty_directories": [
+        ".agents/skills"
+      ],
+      "remaining_skill_copies": [],
+      "skills_lock": {
+        "skills": {},
+        "version": 1
+      },
+      "skills_lock_empty_or_absent": true,
+      "symlinks": [],
+      "unexpected_directories": [],
+      "unexpected_files": []
+    },
+    "mode": "copy",
+    "passed": true,
+    "remove_agent_filter_omitted": true,
+    "second_install": {
+      "all_copies_match_source": true,
+      "copy_count": 1,
+      "copy_errors": {},
+      "exact_location_set": true,
+      "expected_locations": [
+        ".agents/skills/oci-founder"
+      ],
+      "locations": [
+        ".agents/skills/oci-founder"
+      ],
+      "regular_copy": true,
+      "source_tree_sha256": "dba58d1984513e44aa77a5729a20b16e23186dac00e0de17ef1db01ddd0bda49",
+      "tree_sha256": {
+        ".agents/skills/oci-founder": "dba58d1984513e44aa77a5729a20b16e23186dac00e0de17ef1db01ddd0bda49"
+      }
+    },
+    "second_list_contains_skill": true,
+    "steps": {
+      "agent_filtered_remove_probe": {
+        "argv": [
+          "/opt/homebrew/bin/node",
+          "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+          "remove",
+          "oci-founder",
+          "-a",
+          "codex",
+          "-y"
+        ],
+        "duration_ms": 123,
+        "exit_code": 0,
+        "stderr_excerpt": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_excerpt": "\u001b[?25l\u2502\n\u25c7  Found 1 unique installed skill(s)\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Removal process complete\n\u001b[?25h\u2502\n\u25c6  \u001b[32mSuccessfully removed 1 skill(s)\u001b[39m\n\n\u2502\n\u2514  \u001b[32mDone!\u001b[39m\n\n",
+        "stdout_sha256": "747f5a3580ac2bdf9f13bbc2eb485de255b4a0901b28a53f7d4264c3cc0a4bf3",
+        "timed_out": false
+      },
+      "final_remove": {
+        "argv": [
+          "/opt/homebrew/bin/node",
+          "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+          "remove",
+          "oci-founder",
+          "-y"
+        ],
+        "duration_ms": 118,
+        "exit_code": 0,
+        "stderr_excerpt": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_excerpt": "\u001b[?25l\u2502\n\u25c7  Found 1 unique installed skill(s)\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Removal process complete\n\u001b[?25h\u2502\n\u25c6  \u001b[32mSuccessfully removed 1 skill(s)\u001b[39m\n\n\u2502\n\u2514  \u001b[32mDone!\u001b[39m\n\n",
+        "stdout_sha256": "747f5a3580ac2bdf9f13bbc2eb485de255b4a0901b28a53f7d4264c3cc0a4bf3",
+        "timed_out": false
+      },
+      "git_init": {
+        "argv": [
+          "/usr/bin/git",
+          "init",
+          "-q"
+        ],
+        "duration_ms": 41,
+        "exit_code": 0,
+        "stderr_excerpt": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_excerpt": "",
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "timed_out": false
+      },
+      "install": {
+        "argv": [
+          "/opt/homebrew/bin/node",
+          "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+          "add",
+          "https://github.com/danielgandolfi1984/oracle_founder_pack#v0.1.1",
+          "--skill",
+          "oci-founder",
+          "-a",
+          "codex",
+          "--copy",
+          "-y",
+          "--json"
+        ],
+        "duration_ms": 1158,
+        "exit_code": 0,
+        "stderr_excerpt": "\n\u250c  \u001b[46m\u001b[30m skills \u001b[39m\u001b[49m\n\u2502\n\u2502  \u001b[2mTip: use the --yes (-y) and --global (-g) flags to install without prompts.\u001b[22m\n\u2502\n\u25cf  Selected 1 skill: \u001b[36moci-founder\u001b[39m\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                                \u2502\n\u2502  \u001b[36m./.agents/skills/oci-founder\u001b[39m  \u2502\n\u2502    \u001b[2mcopy \u2192\u001b[22m Codex                \u2502\n\u2502                                \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n",
+        "stderr_sha256": "2d08c78d3ea967a2bd82e96db39efea8d0f8ed9d0ec1837e97dda08905a76c3b",
+        "stdout_excerpt": "[\n  {\n    \"name\": \"oci-founder\",\n    \"status\": \"installed\",\n    \"source\": \"danielgandolfi1984/oracle_founder_pack\",\n    \"ref\": \"v0.1.1\",\n    \"hash\": \"0746369a5ef4e9285a456118eb8bb737ecd1aa18e59bfa4600067aaeee795b36\",\n    \"path\": \"$QUALIFICATION_ROOT/backend-codex/.agents/skills/oci-founder\",\n    \"scope\": \"project\",\n    \"agents\": [\n      \"Codex\"\n    ],\n    \"mode\": \"copy\",\n    \"security\": null\n  }\n]\n",
+        "stdout_sha256": "d7641027e5d0538d683f607a5e458487b1621c26abf0cb271486534d2af7961f",
+        "timed_out": false
+      },
+      "list": {
+        "argv": [
+          "/opt/homebrew/bin/node",
+          "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+          "list",
+          "-a",
+          "codex",
+          "--json"
+        ],
+        "duration_ms": 111,
+        "exit_code": 0,
+        "stderr_excerpt": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_excerpt": "[\n  {\n    \"name\": \"oci-founder\",\n    \"path\": \"$QUALIFICATION_ROOT/backend-codex/.agents/skills/oci-founder\",\n    \"scope\": \"project\",\n    \"agents\": [\n      \"Codex\"\n    ],\n    \"source\": \"danielgandolfi1984/oracle_founder_pack\",\n    \"sourceUrl\": null,\n    \"sourceType\": \"github\"\n  }\n]\n",
+        "stdout_sha256": "31a2631dc7d084888ab1bec971155449d3022f5c869382c3e6ea09a6b3f3b1a7",
+        "timed_out": false
+      },
+      "reinstall": {
+        "argv": [
+          "/opt/homebrew/bin/node",
+          "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+          "add",
+          "https://github.com/danielgandolfi1984/oracle_founder_pack#v0.1.1",
+          "--skill",
+          "oci-founder",
+          "-a",
+          "codex",
+          "--copy",
+          "-y",
+          "--json"
+        ],
+        "duration_ms": 1077,
+        "exit_code": 0,
+        "stderr_excerpt": "\n\u250c  \u001b[46m\u001b[30m skills \u001b[39m\u001b[49m\n\u2502\n\u2502  \u001b[2mTip: use the --yes (-y) and --global (-g) flags to install without prompts.\u001b[22m\n\u2502\n\u25cf  Selected 1 skill: \u001b[36moci-founder\u001b[39m\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                                \u2502\n\u2502  \u001b[36m./.agents/skills/oci-founder\u001b[39m  \u2502\n\u2502    \u001b[2mcopy \u2192\u001b[22m Codex                \u2502\n\u2502                                \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n",
+        "stderr_sha256": "2d08c78d3ea967a2bd82e96db39efea8d0f8ed9d0ec1837e97dda08905a76c3b",
+        "stdout_excerpt": "[\n  {\n    \"name\": \"oci-founder\",\n    \"status\": \"installed\",\n    \"source\": \"danielgandolfi1984/oracle_founder_pack\",\n    \"ref\": \"v0.1.1\",\n    \"hash\": \"0746369a5ef4e9285a456118eb8bb737ecd1aa18e59bfa4600067aaeee795b36\",\n    \"path\": \"$QUALIFICATION_ROOT/backend-codex/.agents/skills/oci-founder\",\n    \"scope\": \"project\",\n    \"agents\": [\n      \"Codex\"\n    ],\n    \"mode\": \"copy\",\n    \"security\": null\n  }\n]\n",
+        "stdout_sha256": "d7641027e5d0538d683f607a5e458487b1621c26abf0cb271486534d2af7961f",
+        "timed_out": false
+      },
+      "relist": {
+        "argv": [
+          "/opt/homebrew/bin/node",
+          "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+          "list",
+          "-a",
+          "codex",
+          "--json"
+        ],
+        "duration_ms": 147,
+        "exit_code": 0,
+        "stderr_excerpt": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_excerpt": "[\n  {\n    \"name\": \"oci-founder\",\n    \"path\": \"$QUALIFICATION_ROOT/backend-codex/.agents/skills/oci-founder\",\n    \"scope\": \"project\",\n    \"agents\": [\n      \"Codex\"\n    ],\n    \"source\": \"danielgandolfi1984/oracle_founder_pack\",\n    \"sourceUrl\": null,\n    \"sourceType\": \"github\"\n  }\n]\n",
+        "stdout_sha256": "31a2631dc7d084888ab1bec971155449d3022f5c869382c3e6ea09a6b3f3b1a7",
+        "timed_out": false
+      },
+      "remove": {
+        "argv": [
+          "/opt/homebrew/bin/node",
+          "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+          "remove",
+          "oci-founder",
+          "-y"
+        ],
+        "duration_ms": 122,
+        "exit_code": 0,
+        "stderr_excerpt": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_excerpt": "\u001b[?25l\u2502\n\u25c7  Found 1 unique installed skill(s)\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Removal process complete\n\u001b[?25h\u2502\n\u25c6  \u001b[32mSuccessfully removed 1 skill(s)\u001b[39m\n\n\u2502\n\u2514  \u001b[32mDone!\u001b[39m\n\n",
+        "stdout_sha256": "747f5a3580ac2bdf9f13bbc2eb485de255b4a0901b28a53f7d4264c3cc0a4bf3",
+        "timed_out": false
+      }
+    }
+  },
+  "effects": {
+    "cloud_mutation_attempted": false,
+    "model_session_started": false,
+    "oci_command_executed": false,
+    "source_skill_changed": false
+  },
+  "environment_policy": {
+    "cloud_token_or_password_named_variables_inherited": false,
+    "home_redirected": false,
+    "inherited_keys": [
+      "HOME",
+      "LANG",
+      "LC_ALL",
+      "LC_CTYPE",
+      "LOGNAME",
+      "PATH",
+      "SHELL",
+      "TERM",
+      "TMPDIR",
+      "USER"
+    ],
+    "proxy_variables_inherited": false,
+    "source_environment_copied": false,
+    "strategy": "allowlist",
+    "universal_agent_detection_fixture": {
+      "agent": "opencode",
+      "kind": "empty-config-directory",
+      "model_session_started": false,
+      "path": "$QUALIFICATION_ROOT/xdg-config/opencode",
+      "purpose": "exercise shared universal .agents removal semantics",
+      "scope": "disposable-qualification-root"
+    },
+    "user_npm_config_disabled": true
+  },
+  "kind": "oci-founder-public-tag-install-lifecycle",
+  "observed_at_utc": "2026-09-18T19:24:35.550247+00:00",
+  "profile_safety": {
+    "global_install_attempted": false,
+    "observed_global_skill_targets_unchanged": true
+  },
+  "release_qualified": false,
+  "reservations": [
+    "Public-coordinate installation lifecycle only, not native discovery or production qualification.",
+    "Only the named global skill targets were compared; not a disposable OS profile."
+  ],
+  "runner": {
+    "adaptation": "Exact public tag coordinate supplied to the existing source argument; Codex case only.",
+    "orchestration_sha256": "ca181d04b781de5724073efe36e9cbd682670f47e0d40689ef2845a6e63c93c3",
+    "reused_script": "scripts/qualify_skill_install.py",
+    "reused_script_sha256": "5a93fc494d8a1609e6b3ca0b07706fd3f9eebbc782c27a5c67f5ca6753b073ff"
+  },
+  "schema_version": "1.0",
+  "skills_cli": {
+    "dependency_lock": {
+      "dependency_integrities_complete": true,
+      "expected_lock_sha256": "2fbf496c854780bbf7be13d08c7806b0479c60483381d657d08755b563630701",
+      "expected_package_json_sha256": "3a35717c49e02a025fdad96301cf2438c014ee941ee35008eb038ab376e5a09a",
+      "expected_skills_dist_integrity": "sha512-OfePnDft+Xt9/tCoHdCUe5fkM8i+Q3QOSQO53hm7mKtsXyvc+CKOAAliVWZ484HS3cWx+6r+ob0AArixs3jYXw==",
+      "hashes_match": true,
+      "observed_lock_sha256": "2fbf496c854780bbf7be13d08c7806b0479c60483381d657d08755b563630701",
+      "observed_package_json_sha256": "3a35717c49e02a025fdad96301cf2438c014ee941ee35008eb038ab376e5a09a",
+      "observed_skills_dist_integrity": "sha512-OfePnDft+Xt9/tCoHdCUe5fkM8i+Q3QOSQO53hm7mKtsXyvc+CKOAAliVWZ484HS3cWx+6r+ob0AArixs3jYXw==",
+      "parse_error": null,
+      "runtime_lock_matches_reviewed": true,
+      "runtime_lock_sha256": "2fbf496c854780bbf7be13d08c7806b0479c60483381d657d08755b563630701",
+      "semantic_match": true,
+      "verified": true
+    },
+    "expected_version": "1.7.0",
+    "integrity": {
+      "expected_file_sha256": {
+        "bin/cli.mjs": "cda9a4dd5cd209c6f1dc551feacbaef503cefb5d8986d3c4cab9a95e1bbc47e6",
+        "dist/cli.mjs": "fde68534019765fb69510a0038ca7df2810a6ffed4c26fef9beabdcf6cc6701c",
+        "package.json": "d912e2f2fa141ba3d65b80e7374827d92ac4c6b81fdd63dcb80fdd641809f5d2"
+      },
+      "hashes_match": true,
+      "manifest_error": null,
+      "manifest_valid": true,
+      "observed_file_sha256": {
+        "bin/cli.mjs": "cda9a4dd5cd209c6f1dc551feacbaef503cefb5d8986d3c4cab9a95e1bbc47e6",
+        "dist/cli.mjs": "fde68534019765fb69510a0038ca7df2810a6ffed4c26fef9beabdcf6cc6701c",
+        "package.json": "d912e2f2fa141ba3d65b80e7374827d92ac4c6b81fdd63dcb80fdd641809f5d2"
+      },
+      "verified_before_execution": true
+    },
+    "offline_cache": {
+      "copied_before_npm_execution": true,
+      "copied_tree_sha256": "8a4cf203c00b3328e690eb4b8bc490c9ae779625c6beaa5b340b19ea3ca680e9",
+      "provided": true,
+      "source_path_recorded": false,
+      "source_tree_sha256": "8a4cf203c00b3328e690eb4b8bc490c9ae779625c6beaa5b340b19ea3ca680e9"
+    },
+    "package": "skills",
+    "source": "npm-pinned-reviewed-files-offline-cache"
+  },
+  "source": {
+    "commit": "8765266e3ef77110b30827d5c89da7cf1b15ee08",
+    "coordinate": "https://github.com/danielgandolfi1984/oracle_founder_pack#v0.1.1",
+    "skill_tree_sha256": "dba58d1984513e44aa77a5729a20b16e23186dac00e0de17ef1db01ddd0bda49",
+    "source_unchanged": true,
+    "tag": "v0.1.1"
+  },
+  "status": "pass_with_reservations",
+  "steps": {
+    "npm_ci_ignore_scripts": {
+      "argv": [
+        "/opt/homebrew/bin/npm",
+        "ci",
+        "--ignore-scripts",
+        "--no-audit",
+        "--no-fund",
+        "--offline"
+      ],
+      "duration_ms": 508,
+      "exit_code": 0,
+      "stderr_excerpt": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_excerpt": "\nadded 8 packages in 308ms\n",
+      "stdout_sha256": "2bf99edbe9068772b8f0db73e1f9da69751d476684637588a1f3093e96fbd585",
+      "timed_out": false
+    },
+    "public_tag": {
+      "argv": [
+        "git",
+        "ls-remote",
+        "https://github.com/danielgandolfi1984/oracle_founder_pack.git",
+        "refs/tags/v0.1.1^{}"
+      ],
+      "duration_ms": 517,
+      "exit_code": 0,
+      "stderr_excerpt": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_excerpt": "8765266e3ef77110b30827d5c89da7cf1b15ee08\trefs/tags/v0.1.1^{}\n",
+      "stdout_sha256": "1dd060a329d7013e8165b8b7154e0e54933dce928d892325f4ac056c4c2bdf14",
+      "timed_out": false
+    },
+    "version": {
+      "argv": [
+        "/opt/homebrew/bin/node",
+        "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+        "--version"
+      ],
+      "duration_ms": 98,
+      "exit_code": 0,
+      "stderr_excerpt": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_excerpt": "1.7.0\n",
+      "stdout_sha256": "bb7320d831e7a151aa901c35e7326c752fa2ef5024f30768c42319b8bed171ed",
+      "timed_out": false
+    }
+  }
+}
