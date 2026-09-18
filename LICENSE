@@ -1,0 +1,22 @@
+LicenseRef-OCI-Founder-Toolkit-Evaluation
+
+OCI Founder Toolkit — Source Evaluation Notice
+
+No open-source or general redistribution license has been selected. When the
+project owner makes this source publicly visible on GitHub, GitHub and its users
+receive only the limited rights required by the GitHub Terms of Service for a
+public repository, including viewing and forking within the service:
+https://docs.github.com/en/site-policy/github-terms/github-terms-of-service#5-license-grant-to-other-users
+
+No additional license is granted to copy, modify, redistribute, publish, run,
+or use this repository outside an evaluation context expressly authorized in
+writing by the project owner or Oracle. Public visibility alone is not that
+authorization.
+
+Before any tagged release, package or marketplace publication, or broader
+grant of use, the project owner and the appropriate Oracle legal and
+open-source review teams must approve a license and update this file, the plugin
+manifests, and the third-party notices.
+
+Third-party materials and dependencies remain subject to their own licenses.
+See THIRD_PARTY_NOTICES.md.

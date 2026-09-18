@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.2",
+  "artifact": "smoke-result",
+  "generated_at": "2026-09-17T12:00:00Z",
+  "status": "verified",
+  "request_id": "00000000-0000-4000-8000-000000000000",
+  "url_sha256": "replace-at-test-time",
+  "attempts": 1,
+  "http_status": 200,
+  "body_length": 15,
+  "body_sha256": "a29ee2b15c494311c52521766e44af56a3ad2248e7a8ab465e5206463c13d288",
+  "assertions": {
+    "application_json": true,
+    "https": true,
+    "redirects_refused": true,
+    "status_200": true,
+    "exact_health_shape": true,
+    "bounded_body": true
+  },
+  "failure_code": null
+}

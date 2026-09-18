@@ -1,0 +1,9 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "oci-founder-toolkit",
+  "version": "0.1.0",
+  "description": "Plan backend-first projects on OCI using portable agent skills and official Oracle guidance.",
+  "homepage": "https://github.com/danielgandolfi1984/oracle_founder_pack",
+  "repository": "https://github.com/danielgandolfi1984/oracle_founder_pack",
+  "license": "LicenseRef-OCI-Founder-Toolkit-Evaluation"
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "kind": "oci-founder-codex-native-runner-assessment",
+  "observed_at_utc": "2026-09-18T13:07:31Z",
+  "current_runner": {
+    "path": "scripts/probe_codex_native.py",
+    "sha256": "23617141142c76b7a35496d2cc9af572e2a981b05cff64992061fd402f543c92",
+    "skill_tree_sha256": "b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e",
+    "unit_contract_count": 12,
+    "unit_contracts_passed": true,
+    "native_rerun_status": "BLOCKED"
+  },
+  "historical_receipt": {
+    "path": "tests/results/2026-09-18-codex-native-runner-probe.json",
+    "sha256": "3690781823df8266830a2869c58aef5debcee28b89fa5043692457c6223e2190",
+    "runner_sha256": "1151f8cd8863e32a2cfc57645f298c011cad28454ee599366aa641447ea723ed",
+    "skill_tree_sha256": "746cc9a3462ce96c067eedd91e848a905f04ed402b8f579836ce126c5b4d703f",
+    "recorded_status": "pass_with_reservations",
+    "recorded_probe_q2": "PASS",
+    "recorded_probe_q3": "PASS",
+    "normalized_q2": "PASS_WITH_RESERVATIONS",
+    "normalized_q3": "PARTIAL"
+  },
+  "renewal": {
+    "status": "BLOCKED",
+    "reason": "The hardened runner can now reacquire the reviewed installer from a verified offline npm cache, but a new authenticated model session still requires explicit external-egress authorization.",
+    "model_session_started": false,
+    "cloud_mutation_attempted": false
+  },
+  "formal_q2": "BLOCKED",
+  "formal_q3": "BLOCKED",
+  "release_qualified": false
+}

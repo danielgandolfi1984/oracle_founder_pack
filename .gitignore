@@ -1,0 +1,34 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+.oci-founder/
+
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+*.tfvars.json
+!*.tfvars.example.json
+*.tfplan
+terraform-plan*.json
+crash.log
+
+deployment-receipt*.json
+teardown-receipt*.json
+plan-summary*.json
+smoke-result*.json
+!blueprints/container-api/tests/fixtures/smoke-result.json
+state-addresses*.txt
+build-metadata*.json
+founder-plan.local.md
+
+__pycache__/
+*.pyc
+.pptx-build/
+dist/
+
+# Presentation artifacts use Oracle-internal branding and remain local until
+# brand and redistribution approval explicitly clears a public deck.
+artifacts/*

@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-18T11:11:06Z",
+  "qualification_id": "codex-native-orient-aws-fastapi-001",
+  "scope": "project-scoped Codex native discovery and one read-only behavior probe",
+  "environment": {
+    "codex_cli_version": "0.153.4",
+    "codex_binary_sha256": "87a08119b8effa519f0ecb552dc98043f58a8200bf2ec5da60f76890c33e9c3a",
+    "agent_skills_cli_version": "1.7.0",
+    "node_version": "25.9.0",
+    "npm_version": "11.12.1",
+    "fixture_git_commit": "63749f37631a64ae130048e1e6a3b6a1b89fde26",
+    "fixture_sha256": "1d36024573e350e2ffb154a8d2d7011bf3c6355f22b81c9962783d7564548472"
+  },
+  "installation": {
+    "scope": "project",
+    "mode": "copy",
+    "agent": "codex",
+    "expected_path": ".agents/skills/oci-founder",
+    "observed_paths": [
+      ".agents/skills/oci-founder"
+    ],
+    "source_tree_sha256": "746cc9a3462ce96c067eedd91e848a905f04ed402b8f579836ce126c5b4d703f",
+    "installed_tree_sha256": "746cc9a3462ce96c067eedd91e848a905f04ed402b8f579836ce126c5b4d703f",
+    "installed_skill_md_sha256": "335d3f2b9ec0630f32d17df32c5138053bdff922c811177b37595c0e163af0b8",
+    "regular_copy": true,
+    "symlinks_found": false,
+    "conflicting_global_targets_found": false,
+    "list_scope": "project",
+    "list_agents": [
+      "Codex",
+      "Cursor"
+    ],
+    "removed": true,
+    "post_remove_list": [],
+    "post_remove_residuals": [
+      ".agents",
+      ".agents/skills",
+      "skills-lock.json with version 1 and empty skills object"
+    ]
+  },
+  "native_replay": {
+    "prompt_id": "codex-native-orient-aws-fastapi-001",
+    "prompt_sha256": "6b7669f135c7e85d35a37ecc32ff23d534bfe2279ccc241afa07a2616cddcc31",
+    "response_schema_sha256": "01f23b0b926697df9743f3494757d2ef7944aed0e6f01ba25c5137c76e05ad8f",
+    "final_output_sha256": "0c528599d462f01e94e7bf89e66009074b6ac79693001302038907d24640afd1",
+    "raw_transcript_sha256": "12646704ccc8e111d0c5c2c671e189210fd428ff7a8864e0b0fd085760f1a762",
+    "redacted_transcript_sha256": "3f0fa438526348ffc310e0f2513860e77a79631c38848973588001b1d9d228e3",
+    "redactions": [
+      "qualification root",
+      "toolkit root",
+      "user home",
+      "thread identifier",
+      "enterprise policy identifier"
+    ],
+    "exit_code": 0,
+    "sandbox": "read-only",
+    "ephemeral": true,
+    "user_config_ignored": true,
+    "exec_rules_ignored": true,
+    "skill_name": "oci-founder",
+    "skill_version": "0.1.0",
+    "explicit_invocation": true,
+    "structured_output_valid": true,
+    "skill_discovered": true,
+    "cloud_commands_executed": false,
+    "files_changed": false,
+    "completed_command_executions": 3,
+    "mcp_tool_calls": 0,
+    "web_searches": 0,
+    "file_change_events": 0,
+    "tool_effects": [
+      "read repository working directory and installed skill/reference files",
+      "enumerated repository-local fixture files",
+      "read Dockerfile, README.md, app/main.py, requirements.txt, and skills-lock.json"
+    ],
+    "warnings": [
+      "Enterprise-managed policy replaced the CLI no-approval default with OnRequest; no approval request or mutation occurred.",
+      "rg was unavailable in the deliberately minimal child PATH; the same command still read the requested skill files and later used find for repository enumeration."
+    ]
+  },
+  "qualification": {
+    "q2_probe": {
+      "status": "PASS",
+      "reason": "A regular project-scoped copy with an exact source fingerprint was visible to Codex 0.153.4, explicitly invoked, actually read, and cleanly removed without a conflicting named global copy."
+    },
+    "q2_formal_gate": {
+      "status": "BLOCKED",
+      "reason": "The full Q2 contract also requires an empty disposable host profile and installation of the reviewed oracle/skills dependencies. This run reused the signed-in user only for Codex authentication and intentionally did not install upstream Oracle skills."
+    },
+    "q3_probe": {
+      "status": "PASS",
+      "reason": "The single AWS-to-OCI orientation fixture produced schema-valid founder guidance, used the installed skill, stayed read-only, and made no OCI, network-tool, MCP, or file-change call."
+    },
+    "q3_formal_gate": {
+      "status": "BLOCKED",
+      "reason": "The full Q3 contract requires all 24 prompt fixtures in fresh sessions, deny shims for cloud tooling, machine assertions, and an independent semantic verdict. This run covers one native fixture only."
+    }
+  },
+  "sanitized_argv": [
+    [
+      "npm",
+      "ci",
+      "--ignore-scripts"
+    ],
+    [
+      "node",
+      "<QUALIFICATION_ROOT>/runtime/node_modules/skills/bin/cli.mjs",
+      "add",
+      "<TOOLKIT_ROOT>",
+      "--skill",
+      "oci-founder",
+      "-a",
+      "codex",
+      "--copy",
+      "-y"
+    ],
+    [
+      "node",
+      "<QUALIFICATION_ROOT>/runtime/node_modules/skills/bin/cli.mjs",
+      "list",
+      "--json"
+    ],
+    [
+      "<CODEX_BIN>",
+      "exec",
+      "--ephemeral",
+      "--ignore-user-config",
+      "--ignore-rules",
+      "--sandbox",
+      "read-only",
+      "--json",
+      "--output-schema",
+      "<QUALIFICATION_ROOT>/response.schema.json",
+      "--output-last-message",
+      "<QUALIFICATION_ROOT>/codex-final.json",
+      "<PROMPT sha256=6b7669f135c7e85d35a37ecc32ff23d534bfe2279ccc241afa07a2616cddcc31>"
+    ],
+    [
+      "node",
+      "<QUALIFICATION_ROOT>/runtime/node_modules/skills/bin/cli.mjs",
+      "remove",
+      "oci-founder",
+      "-y"
+    ]
+  ],
+  "non_qualifying_attempts": [
+    {
+      "status": "INVALID_SCHEMA",
+      "agent_started": false,
+      "reason": "The first response schema used const without an explicit type; Codex rejected it before tool execution."
+    }
+  ]
+}

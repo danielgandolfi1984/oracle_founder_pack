@@ -1,0 +1,25 @@
+{
+  "name": "oci-founder-toolkit",
+  "version": "0.1.0",
+    "description": "A safe-by-default, backend-first path from an existing codebase to a secure and cost-aware OCI journey.",
+  "license": "LicenseRef-OCI-Founder-Toolkit-Evaluation",
+  "author": {
+    "name": "OCI Founder Toolkit contributors"
+  },
+  "homepage": "https://github.com/danielgandolfi1984/oracle_founder_pack",
+  "repository": "https://github.com/danielgandolfi1984/oracle_founder_pack",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "OCI Founder Toolkit",
+    "shortDescription": "Plan backend projects for OCI with coding agents.",
+        "longDescription": "Translate cloud concepts, propose an OCI golden path, apply founder-grade guardrails, and route to official Oracle skills. Any OCI mutation requires a separate preview, exact target, and explicit approval.",
+    "developerName": "OCI Founder Toolkit contributors",
+    "category": "Developer Tools",
+    "capabilities": ["Guidance", "Planning"],
+    "defaultPrompt": [
+      "Plan the safest OCI path for this backend.",
+      "Translate this AWS architecture to OCI.",
+      "Review this project for OCI readiness."
+    ]
+  }
+}

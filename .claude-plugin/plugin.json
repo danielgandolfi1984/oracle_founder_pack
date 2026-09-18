@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "oci-founder-toolkit",
+  "version": "0.1.0",
+    "description": "Guide backend-first OCI journeys with portable agent skills, official Oracle guidance, and explicit mutation gates.",
+  "license": "LicenseRef-OCI-Founder-Toolkit-Evaluation"
+}

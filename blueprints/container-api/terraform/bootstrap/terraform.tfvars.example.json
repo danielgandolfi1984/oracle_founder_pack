@@ -1,0 +1,16 @@
+{
+  "tenancy_ocid": "ocid1.tenancy.oc1..replace_me",
+  "compartment_id": "ocid1.compartment.oc1..replace_me",
+  "home_region": "replace-with-home-region",
+  "target_region": "replace-with-target-region",
+  "oci_profile": "DEFAULT",
+  "project_slug": "founder-api",
+  "owner": "team-or-alias",
+  "expires_at": "2026-10-01T00:00:00Z",
+  "repository_name": "founder-api/api",
+  "ocir_registry_endpoint": "replace-with-region-key.ocir.io",
+  "monthly_budget_amount": 100,
+  "budget_alert_percentage": 80,
+  "budget_target_verified_without_existing_budget": false,
+  "budget_recipients": "founder@example.com"
+}

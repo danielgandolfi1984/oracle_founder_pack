@@ -1,0 +1,7 @@
+interface:
+  display_name: "OCI Founder"
+  short_description: "Plan a backend-first path onto OCI"
+  brand_color: "#C74634"
+  default_prompt: "Use $oci-founder to assess this backend, recommend the smallest safe OCI path, and state the next approval gate without provisioning resources."
+policy:
+  allow_implicit_invocation: true

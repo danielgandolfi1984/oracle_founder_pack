@@ -1,0 +1,6 @@
+# PyYAML 6.0.2 wheels reviewed for the current macOS/Python 3.9 development
+# host and the Ubuntu x86_64/Python 3.12 CI target. Installation must use
+# --require-hashes --only-binary=:all: --no-deps.
+PyYAML==6.0.2 \
+    --hash=sha256:a8786accb172bd8afb8be14490a16625cbc387036876ab6ba70912730faf8e1f \
+    --hash=sha256:80bab7bfc629882493af4aa31a4cfa43a4c57c83813253626916b8c7ada83476

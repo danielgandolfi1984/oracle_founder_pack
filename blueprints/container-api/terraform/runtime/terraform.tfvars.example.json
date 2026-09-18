@@ -1,0 +1,23 @@
+{
+  "tenancy_ocid": "ocid1.tenancy.oc1..replace_me",
+  "compartment_id": "ocid1.compartment.oc1..replace_me",
+  "region": "replace-with-target-region",
+  "oci_profile": "DEFAULT",
+  "environment_class": "sandbox",
+  "project_slug": "founder-api",
+  "release_id": "replace-with-source-revision",
+  "owner": "team-or-alias",
+  "expires_at": "2026-10-01T00:00:00Z",
+  "approved_repository_path": "replace-with-region-key.ocir.io/namespace/founder-api/api",
+  "container_image_url": "replace-with-region-key.ocir.io/namespace/founder-api/api@sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "availability_domain": "replace-with-explicit-availability-domain",
+  "container_shape": "CI.Standard.E4.Flex",
+  "ocpus": 1,
+  "memory_in_gbs": 2,
+  "container_port": 8080,
+  "gateway_endpoint_type": "PUBLIC",
+  "allowed_ingress_cidrs": [
+    "replace-with-your-public-ip/32"
+  ],
+  "notification_email": "founder@example.com"
+}

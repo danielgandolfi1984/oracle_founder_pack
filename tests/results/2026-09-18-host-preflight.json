@@ -1,0 +1,215 @@
+{
+  "development_validator_runtime": {
+    "path": "/private/tmp/oci-founder-validator-deps",
+    "pyyaml_version": "6.0.2",
+    "requirements_sha256": "99a6069bcb9b36183c65b6101fea149ecbc8532a8fa20f311231e677770510b4",
+    "status": "passed",
+    "tree_sha256": "425b18dc4053235e479a191015f1dfb0952c676ece5618dcd6c533282e2d2b01"
+  },
+  "environment": {
+    "machine": "arm64",
+    "python": "3.9.6",
+    "python_executable": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/bin/python3.9",
+    "release": "25.6.0",
+    "subprocess_policy": {
+      "cloud_token_or_password_named_variables_inherited": false,
+      "inherited_names": [
+        "LANG",
+        "LC_ALL",
+        "LC_CTYPE",
+        "PATH",
+        "TERM",
+        "TMPDIR"
+      ],
+      "raw_environment_recorded": false,
+      "strategy": "allowlist"
+    },
+    "system": "Darwin"
+  },
+  "hosts": {
+    "claude": {
+      "available": false,
+      "desktop_app": {
+        "build": "1.569.0",
+        "bundle_id": "com.anthropic.claudefordesktop",
+        "installed": true,
+        "metadata_status": "read",
+        "path": "/Applications/Claude.app",
+        "version": "1.569.0"
+      },
+      "executable": null,
+      "native_manifest_validator": "blocked_cli_missing",
+      "surface": "claude-code",
+      "validation": {
+        "status": "not_run"
+      },
+      "version": null
+    },
+    "codex": {
+      "app": {
+        "build": "8576",
+        "bundle_id": "com.openai.codex",
+        "installed": true,
+        "metadata_status": "read",
+        "path": "/Applications/ChatGPT.app",
+        "version": "26.903.71938"
+      },
+      "available": true,
+      "development_validators": {
+        "codex_plugin_creator": {
+          "available": true,
+          "probe": {
+            "argv": [
+              "/Library/Developer/CommandLineTools/usr/bin/python3",
+              "$HOME/.codex/skills/.system/plugin-creator/scripts/validate_plugin.py",
+              "$TOOLKIT_ROOT"
+            ],
+            "duration_ms": 161,
+            "exit_code": 0,
+            "stderr_excerpt": "",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stdout_excerpt": "Plugin validation passed: $TOOLKIT_ROOT\n",
+            "stdout_sha256": "b79e7d5af33a7f44a55747434db0fdf7094b415eb2ef0b8488103ba0fc71bf18",
+            "timed_out": false
+          },
+          "status": "passed",
+          "validator": "$HOME/.codex/skills/.system/plugin-creator/scripts/validate_plugin.py"
+        },
+        "portable_skill": {
+          "available": true,
+          "probe": {
+            "argv": [
+              "/Library/Developer/CommandLineTools/usr/bin/python3",
+              "$HOME/.codex/skills/.system/skill-creator/scripts/quick_validate.py",
+              "$TOOLKIT_ROOT/skills/oci-founder"
+            ],
+            "duration_ms": 121,
+            "exit_code": 0,
+            "stderr_excerpt": "",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stdout_excerpt": "Skill is valid!\n",
+            "stdout_sha256": "db349825903d66adffea3ecf1bd8e1803043e8a71cf1a051235dabc5371f5bb0",
+            "timed_out": false
+          },
+          "status": "passed",
+          "validator": "$HOME/.codex/skills/.system/skill-creator/scripts/quick_validate.py"
+        }
+      },
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/codex",
+      "native_manifest_validator": "not_exposed_by_cli",
+      "plugin_cli": "available",
+      "plugin_help_probe": {
+        "argv": [
+          "/Applications/ChatGPT.app/Contents/Resources/codex",
+          "plugin",
+          "--help"
+        ],
+        "duration_ms": 14,
+        "exit_code": 0,
+        "stderr_excerpt": "WARNING: proceeding, even though we could not create PATH aliases: Operation not permitted (os error 1)\n",
+        "stderr_sha256": "3087f13b0d34323fbc05177ef68ae53dc523d9acaf6c0c63852825479db5af2a",
+        "stdout_excerpt": "Manage Codex plugins\n\nUsage: codex plugin [OPTIONS] <COMMAND>\n\nCommands:\n  add          Install a plugin from a configured or remote marketplace\n  list         List plugins available from configured and remote marketplaces\n  marketplace  Add, list, upgrade, or remove configured plugin marketplaces\n  remove       Uninstall a plugin and remove its local cache\n  help         Print this message or the help of the given subcommand(s)\n\nOptions:\n  -c, --config <key=value>\n          Override a configuration value that would otherwise be loaded from `~/.codex/config.toml`.\n          Use a dotted path (`foo.bar.baz`) to override nested values. The `value` portion is parsed\n          as TOML. If it fails to parse as TOML, the raw string is used as a literal.\n          \n          Examples: - `-c model=\"o3\"` - `-c 'sandbox_permissions=[\"disk-full-read-access\"]'` - `-c\n          shell_environment_policy.inherit=all`\n\n      --enable <FEATURE>\n          Enable a feature (repeatable). Equivalent to `-c features.<name>=true`\n\n      --disable <FEATURE>\n          Disable a feature (repeatable). Equivalent to `-c features.<name>=false`\n\n  -h, --help\n          Print help (see a summary with '-h')\n",
+        "stdout_sha256": "a517a3a2d1801d812751d98c8bc4d27de6bb5367aafc67495e0cde3a99680124",
+        "timed_out": false
+      },
+      "surface": "codex-cli",
+      "version": "codex-cli 0.153.4",
+      "version_probe": {
+        "argv": [
+          "/Applications/ChatGPT.app/Contents/Resources/codex",
+          "--version"
+        ],
+        "duration_ms": 27,
+        "exit_code": 0,
+        "stderr_excerpt": "WARNING: proceeding, even though we could not create PATH aliases: Operation not permitted (os error 1)\n",
+        "stderr_sha256": "3087f13b0d34323fbc05177ef68ae53dc523d9acaf6c0c63852825479db5af2a",
+        "stdout_excerpt": "codex-cli 0.153.4\n",
+        "stdout_sha256": "616dba4e87de2b1f07e61fe30ff4a5b3b075986c986c466ac5d244597eac0f36",
+        "timed_out": false
+      }
+    },
+    "cursor": {
+      "agent_cli": null,
+      "agent_cli_available": false,
+      "app": {
+        "build": "3.0.12",
+        "bundle_id": "com.todesktop.230313mzl4w4u92",
+        "installed": true,
+        "metadata_status": "read",
+        "path": "/Applications/Cursor.app",
+        "version": "3.0.12"
+      },
+      "editor_cli": "/Applications/Cursor.app/Contents/Resources/app/bin/cursor",
+      "editor_cli_available": true,
+      "editor_version": "3.0.12",
+      "editor_version_probe": {
+        "argv": [
+          "/Applications/Cursor.app/Contents/Resources/app/bin/cursor",
+          "--version"
+        ],
+        "duration_ms": 381,
+        "exit_code": 0,
+        "stderr_excerpt": "[0918/104606.982895:ERROR:electron/shell/common/mac/codesign_util.cc:111] SecCodeCheckValidity: Error Domain=NSOSStatusErrorDomain Code=-2147409622 \"(null)\" (-2147409622)\n",
+        "stderr_sha256": "6c195d652ded39a0289d6f32419b52b2c5de740f02f07d47479bba042fb46bc8",
+        "stdout_excerpt": "3.0.12\na80ff7dfcaa45d7750f6e30be457261379c29b00\narm64\n",
+        "stdout_sha256": "a94d4c4501dcbe7fda41874346d115cc14d6e7b3b3395483dc91edbe7b9d534a",
+        "timed_out": false
+      },
+      "native_manifest_validator": "not_exposed_by_editor_cli",
+      "safety_note": "The preflight never invokes `cursor agent`; this app wrapper may install cursor-agent.",
+      "surface": "cursor"
+    }
+  },
+  "kind": "oci-founder-host-preflight",
+  "observed_at_utc": "2026-09-18T13:46:07.232771+00:00",
+  "repo_validation": {
+    "mode": "source-without-host-preflight-evidence",
+    "probe": {
+      "argv": [
+        "/Library/Developer/CommandLineTools/usr/bin/python3",
+        "$TOOLKIT_ROOT/scripts/validate.py",
+        "--skip-host-preflight-evidence"
+      ],
+      "duration_ms": 280,
+      "exit_code": 0,
+      "stderr_excerpt": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_excerpt": "OCI Founder Toolkit validation passed (1325 checks).\n",
+      "stdout_sha256": "ccc0c8b0832040d43afeee48d83f9f27e414f06460c8fc52bcc1071347097bf5",
+      "timed_out": false
+    },
+    "status": "passed"
+  },
+  "run_validators_requested": true,
+  "schema_version": "1.0",
+  "scope": "read_only",
+  "summary": {
+    "blockers": [
+      "Codex CLI exposes plugin management but no native manifest validator.",
+      "Cursor Agent CLI is missing; native behavioral replay is blocked.",
+      "Cursor editor CLI exposes no native plugin validator in this environment.",
+      "Claude Desktop is not Claude Code; the Claude Code CLI is missing."
+    ],
+    "cloud_mutation_attempted": false,
+    "host_configuration_changed": false,
+    "installation_attempted": false,
+    "model_session_started": false,
+    "oci_command_executed": false,
+    "release_qualified": false
+  },
+  "toolkit": {
+    "container_api_blueprint_sha256": "1b3f9d011699eb130b78a90ad61d51026bf9a6e1053b88d36e607c41526c9f24",
+    "manifest_sha256": {
+      ".claude-plugin/plugin.json": "c9a2063f937d6a30729876b4ff0a3fe56674ce88a7e9724f56c173aa5660b7ac",
+      ".codex-plugin/plugin.json": "ec4d6051cd399fc8fe34e31e46b4a6e108d2574f9f6c9db42bcbb14c52fcb1f7",
+      "plugin.json": "e8bfee22b780d4ebd23b3af903eb8267e4786ca091b3b99e92cbf9987630cbe0"
+    },
+    "root": "$TOOLKIT_ROOT",
+    "skill_tree_sha256": "b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e",
+    "source_fingerprint": "18506487b2e350dd41bed393c654363985372255e05d2ee5326734dbe6369004",
+    "validation_tool_sha256": {
+      "scripts/qualify_hosts.py": "95acb70429cf9d2b8d2c114dbd542793811bbf2f01d3b7a102188d2e59f1199d",
+      "scripts/validate.py": "9cfb3147bce54558db67d709d9ae0bf16380dec93d066db40ef4961ba98badb6"
+    }
+  }
+}

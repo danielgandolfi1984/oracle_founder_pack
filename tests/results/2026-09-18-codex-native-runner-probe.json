@@ -1,0 +1,291 @@
+{
+  "codex": {
+    "argv": [
+      "$CODEX_BIN",
+      "exec",
+      "--ephemeral",
+      "--ignore-user-config",
+      "--ignore-rules",
+      "--sandbox",
+      "read-only",
+      "--json",
+      "--output-schema",
+      "$QUALIFICATION_ROOT/response.schema.json",
+      "--output-last-message",
+      "$QUALIFICATION_ROOT/codex-final.json",
+      "$PROMPT"
+    ],
+    "binary": "$CODEX_BIN",
+    "binary_sha256": "87a08119b8effa519f0ecb552dc98043f58a8200bf2ec5da60f76890c33e9c3a",
+    "duration_ms": 73894,
+    "event_summary": {
+      "command_executions": [
+        {
+          "command_sha256": "78de253ab4c1a013b91e20d5cd635ac74bb0321734ad7d68ddb50f4fa87e990b",
+          "exit_code": 0,
+          "forbidden_executables": [],
+          "status": "completed"
+        },
+        {
+          "command_sha256": "9607c508f076fcb0abe3ce16788d48c9ad4703ccf7617b8ce4a6e4a9fb3d23c0",
+          "exit_code": 0,
+          "forbidden_executables": [],
+          "status": "completed"
+        },
+        {
+          "command_sha256": "a59d1dc4891256522cf910ea68e08f593e7c448d529e4d5d98c8e23ced7a1cfb",
+          "exit_code": 0,
+          "forbidden_executables": [],
+          "status": "completed"
+        },
+        {
+          "command_sha256": "8bd0be498701d49a5040548b01d90dfa62120f85117dd5dc15c56af5da6d99f7",
+          "exit_code": 0,
+          "forbidden_executables": [],
+          "status": "completed"
+        },
+        {
+          "command_sha256": "fe367268d55e9feb3f96ec9b6a0e044f87ad2a37ceecbab9278df86b61c92ed9",
+          "exit_code": 0,
+          "forbidden_executables": [],
+          "status": "completed"
+        }
+      ],
+      "completed_command_executions": 5,
+      "deny_shims_triggered": [],
+      "file_change_events": 0,
+      "forbidden_executables_observed": [],
+      "invalid_json_lines": 0,
+      "mcp_tool_calls": 0,
+      "web_searches": 0
+    },
+    "exit_code": 0,
+    "prompt_sha256": "f280383cc5f98bccf72f3762870f317b3813553aad272dce416a7fc2562e64bc",
+    "raw_transcript_retention": "ephemeral-hash-only",
+    "raw_transcript_sha256": "bd1f93c824524211e539b0f03294687a898ca3a4d92a66958dc9daee63e10a7a",
+    "redacted_transcript_sha256": "2a819ffbcf1e767690e551c1c45bcff56e160954741654ae41c8632d338138cb",
+    "response_schema_sha256": "9e045e64a64af9ad9440f18c2920de1b8454b8c2e622b7a1c14701c6e117eb80",
+    "stderr_excerpt": "Reading additional input from stdin...\n",
+    "stderr_sha256": "1aa26269eb1cc57f86b235a03cda53c004edb5b1e9fc99d4da4f00843293d721",
+    "structured_output_errors": [],
+    "structured_output_sha256": "44e7ac9ad9fdfd7150d6baec0286337db47043842c287c1046dfc11a7160a816",
+    "structured_output_valid": true,
+    "timed_out": false,
+    "version_probe": {
+      "argv": [
+        "$CODEX_BIN",
+        "--version"
+      ],
+      "duration_ms": 27,
+      "exit_code": 0,
+      "stderr_excerpt": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_excerpt": "codex-cli 0.153.4\n",
+      "stdout_sha256": "616dba4e87de2b1f07e61fe30ff4a5b3b075986c986c466ac5d244597eac0f36",
+      "timed_out": false
+    }
+  },
+  "effects": {
+    "cloud_mutation_attempted": false,
+    "observed_global_skill_targets_changed": false,
+    "oci_command_executed": false,
+    "project_tree_changed_during_model_session": false,
+    "source_skill_changed": false
+  },
+  "environment_policy": {
+    "cloud_token_or_password_named_variables_inherited": false,
+    "home_redirected": false,
+    "inherited_keys": [
+      "HOME",
+      "LANG",
+      "LC_ALL",
+      "LC_CTYPE",
+      "LOGNAME",
+      "PATH",
+      "SHELL",
+      "TERM",
+      "TMPDIR",
+      "USER"
+    ],
+    "proxy_variables_inherited": false,
+    "source_environment_copied": false,
+    "strategy": "allowlist",
+    "user_npm_config_disabled": true
+  },
+  "formal_q2": "BLOCKED",
+  "formal_q3": "BLOCKED",
+  "installation": {
+    "all_copies_match_source": true,
+    "copy_count": 1,
+    "copy_errors": {},
+    "exact_location_set": true,
+    "expected_locations": [
+      ".agents/skills/oci-founder"
+    ],
+    "locations": [
+      ".agents/skills/oci-founder"
+    ],
+    "regular_copy": true,
+    "source_tree_sha256": "746cc9a3462ce96c067eedd91e848a905f04ed402b8f579836ce126c5b4d703f",
+    "tree_sha256": {
+      ".agents/skills/oci-founder": "746cc9a3462ce96c067eedd91e848a905f04ed402b8f579836ce126c5b4d703f"
+    }
+  },
+  "kind": "oci-founder-codex-native-probe",
+  "observed_at_utc": "2026-09-18T11:44:57.227427+00:00",
+  "probe_q2": "PASS",
+  "probe_q3": "PASS",
+  "release_qualified": false,
+  "removal": {
+    "clean": true,
+    "fixture_unchanged": true,
+    "observed_agent_directories": [
+      ".agents",
+      ".agents/skills"
+    ],
+    "remaining_skill_copies": [],
+    "skills_lock": {
+      "skills": {},
+      "version": 1
+    },
+    "skills_lock_empty_or_absent": true,
+    "symlinks": [],
+    "unexpected_agent_directories": []
+  },
+  "reservations": [
+    "The signed-in user profile is reused only for Codex authentication; this is not a disposable OS-profile Q2 run.",
+    "Reviewed oracle/skills dependencies are not installed by this probe.",
+    "This covers one explicit prompt, not the 24-case Q3 matrix or implicit selection.",
+    "Deny shims are defense-in-depth; the event trace and read-only sandbox remain required evidence.",
+    "No independent semantic grader runs inside this probe."
+  ],
+  "runner": {
+    "python_version": "3.9.6",
+    "script_sha256": "1151f8cd8863e32a2cfc57645f298c011cad28454ee599366aa641447ea723ed"
+  },
+  "schema_version": "1.0",
+  "skills_cli": {
+    "dependency_lock": {
+      "dependency_integrities_complete": true,
+      "expected_lock_sha256": "2fbf496c854780bbf7be13d08c7806b0479c60483381d657d08755b563630701",
+      "expected_package_json_sha256": "3a35717c49e02a025fdad96301cf2438c014ee941ee35008eb038ab376e5a09a",
+      "expected_skills_dist_integrity": "sha512-OfePnDft+Xt9/tCoHdCUe5fkM8i+Q3QOSQO53hm7mKtsXyvc+CKOAAliVWZ484HS3cWx+6r+ob0AArixs3jYXw==",
+      "hashes_match": true,
+      "observed_lock_sha256": "2fbf496c854780bbf7be13d08c7806b0479c60483381d657d08755b563630701",
+      "observed_package_json_sha256": "3a35717c49e02a025fdad96301cf2438c014ee941ee35008eb038ab376e5a09a",
+      "observed_skills_dist_integrity": "sha512-OfePnDft+Xt9/tCoHdCUe5fkM8i+Q3QOSQO53hm7mKtsXyvc+CKOAAliVWZ484HS3cWx+6r+ob0AArixs3jYXw==",
+      "parse_error": null,
+      "runtime_lock_matches_reviewed": true,
+      "runtime_lock_sha256": "2fbf496c854780bbf7be13d08c7806b0479c60483381d657d08755b563630701",
+      "semantic_match": true,
+      "verified": true
+    },
+    "expected_version": "1.7.0",
+    "integrity": {
+      "expected_file_sha256": {
+        "bin/cli.mjs": "cda9a4dd5cd209c6f1dc551feacbaef503cefb5d8986d3c4cab9a95e1bbc47e6",
+        "dist/cli.mjs": "fde68534019765fb69510a0038ca7df2810a6ffed4c26fef9beabdcf6cc6701c",
+        "package.json": "d912e2f2fa141ba3d65b80e7374827d92ac4c6b81fdd63dcb80fdd641809f5d2"
+      },
+      "hashes_match": true,
+      "manifest_error": null,
+      "manifest_valid": true,
+      "observed_file_sha256": {
+        "bin/cli.mjs": "cda9a4dd5cd209c6f1dc551feacbaef503cefb5d8986d3c4cab9a95e1bbc47e6",
+        "dist/cli.mjs": "fde68534019765fb69510a0038ca7df2810a6ffed4c26fef9beabdcf6cc6701c",
+        "package.json": "d912e2f2fa141ba3d65b80e7374827d92ac4c6b81fdd63dcb80fdd641809f5d2"
+      },
+      "verified_before_execution": true
+    },
+    "package": "skills",
+    "source": "npm-pinned-reviewed-files"
+  },
+  "status": "pass_with_reservations",
+  "steps": {
+    "git_init": {
+      "argv": [
+        "/usr/bin/git",
+        "init",
+        "-q"
+      ],
+      "duration_ms": 58,
+      "exit_code": 0,
+      "stderr_excerpt": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_excerpt": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timed_out": false
+    },
+    "install": {
+      "argv": [
+        "/opt/homebrew/bin/node",
+        "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+        "add",
+        "$TOOLKIT_ROOT",
+        "--skill",
+        "oci-founder",
+        "-a",
+        "codex",
+        "--copy",
+        "-y",
+        "--json"
+      ],
+      "duration_ms": 505,
+      "exit_code": 0,
+      "stderr_excerpt": "\n\u250c  \u001b[46m\u001b[30m skills \u001b[39m\u001b[49m\n\u2502\n\u2502  \u001b[2mTip: use the --yes (-y) and --global (-g) flags to install without prompts.\u001b[22m\n\u2502\n\u25cf  Selected 1 skill: \u001b[36moci-founder\u001b[39m\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                                \u2502\n\u2502  \u001b[36m./.agents/skills/oci-founder\u001b[39m  \u2502\n\u2502    \u001b[2mcopy \u2192\u001b[22m Codex                \u2502\n\u2502                                \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n",
+      "stderr_sha256": "2d08c78d3ea967a2bd82e96db39efea8d0f8ed9d0ec1837e97dda08905a76c3b",
+      "stdout_excerpt": "[\n  {\n    \"name\": \"oci-founder\",\n    \"status\": \"installed\",\n    \"source\": \"$TOOLKIT_ROOT\",\n    \"ref\": null,\n    \"hash\": \"6247853ccdeb09bb21526b713e426b358543a0fe996d12e5e9778a802c21c9cc\",\n    \"path\": \"$QUALIFICATION_ROOT/project/.agents/skills/oci-founder\",\n    \"scope\": \"project\",\n    \"agents\": [\n      \"Codex\"\n    ],\n    \"mode\": \"copy\",\n    \"security\": null\n  }\n]\n",
+      "stdout_sha256": "3a11c7293e19ca6a59cfdf868c842b056a0421fc45e2686fe7ad6dacd8900f69",
+      "timed_out": false
+    },
+    "list": {
+      "argv": [
+        "/opt/homebrew/bin/node",
+        "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+        "list",
+        "-a",
+        "codex",
+        "--json"
+      ],
+      "duration_ms": 508,
+      "exit_code": 0,
+      "stderr_excerpt": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_excerpt": "[\n  {\n    \"name\": \"oci-founder\",\n    \"path\": \"$QUALIFICATION_ROOT/project/.agents/skills/oci-founder\",\n    \"scope\": \"project\",\n    \"agents\": [\n      \"Codex\"\n    ],\n    \"source\": \"$TOOLKIT_ROOT\",\n    \"sourceUrl\": null,\n    \"sourceType\": \"local\"\n  }\n]\n",
+      "stdout_sha256": "915019800cd6aa1b12e26425aa1d6602a283a5c65beab97738a2b959bea03fbf",
+      "timed_out": false
+    },
+    "npm_ci_ignore_scripts": {
+      "argv": [
+        "/opt/homebrew/bin/npm",
+        "ci",
+        "--ignore-scripts",
+        "--no-audit",
+        "--no-fund"
+      ],
+      "duration_ms": 757,
+      "exit_code": 0,
+      "stderr_excerpt": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_excerpt": "\nadded 8 packages in 559ms\n",
+      "stdout_sha256": "1f7a0f52db883b07dedd6779cd2229b0fc2d6971729e0a3559e45a5049819c72",
+      "timed_out": false
+    },
+    "remove": {
+      "argv": [
+        "/opt/homebrew/bin/node",
+        "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+        "remove",
+        "oci-founder",
+        "-y"
+      ],
+      "duration_ms": 168,
+      "exit_code": 0,
+      "stderr_excerpt": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_excerpt": "\u001b[?25l\u2502\n\u25c7  Found 1 unique installed skill(s)\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Removal process complete\n\u001b[?25h\u2502\n\u25c6  \u001b[32mSuccessfully removed 1 skill(s)\u001b[39m\n\n\u2502\n\u2514  \u001b[32mDone!\u001b[39m\n\n",
+      "stdout_sha256": "747f5a3580ac2bdf9f13bbc2eb485de255b4a0901b28a53f7d4264c3cc0a4bf3",
+      "timed_out": false
+    }
+  }
+}

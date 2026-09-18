@@ -1,0 +1,76 @@
+name: Validate toolkit
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "22.20.0"
+      - uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd # v3
+        with:
+          terraform_version: "1.16.3"
+          terraform_wrapper: false
+      - name: Resolve package names from plugin version
+        id: packages
+        shell: python
+        run: |
+          import json
+          import os
+          import re
+          from pathlib import Path
+
+          version = json.loads(Path("plugin.json").read_text(encoding="utf-8")).get("version")
+          if not isinstance(version, str) or re.fullmatch(r"\d+\.\d+\.\d+", version) is None:
+              raise SystemExit("plugin.json version must be strict semver")
+          values = {
+              "skill_root": f"oci-founder-skill-{version}-evaluation",
+              "skill_archive": f"oci-founder-skill-{version}-evaluation.tar.gz",
+              "toolkit_root": "oci-founder-toolkit",
+              "toolkit_archive": f"oci-founder-toolkit-{version}-evaluation.tar.gz",
+          }
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
+              for key, value in values.items():
+                  print(f"{key}={value}", file=output)
+      - run: python3 scripts/validate_agent_plugin_schema.py
+      - run: python3 scripts/scan_release_sources.py
+      - run: python3 scripts/validate.py
+      - run: python3 -m unittest discover -s tests -p 'test_*.py' -v
+      - run: python3 -m unittest discover -s blueprints/container-api/tests -v
+      - run: python3 scripts/build_release.py check
+      - run: python3 scripts/build_release.py build --output-dir dist
+      - run: python3 scripts/build_release.py verify --output-dir dist
+      - run: mkdir "${{ runner.temp }}/oci-founder-packages"
+      - run: >-
+          tar -xzf "dist/${{ steps.packages.outputs.skill_archive }}"
+          -C "${{ runner.temp }}/oci-founder-packages"
+      - run: >-
+          python3 scripts/qualify_skill_install.py --allow-download
+          --source "${{ runner.temp }}/oci-founder-packages/${{ steps.packages.outputs.skill_root }}"
+      - run: >-
+          tar -xzf "dist/${{ steps.packages.outputs.toolkit_archive }}"
+          -C "${{ runner.temp }}/oci-founder-packages"
+      - run: >-
+          python3 scripts/qualify_skill_install.py --allow-download
+          --source "${{ runner.temp }}/oci-founder-packages/${{ steps.packages.outputs.toolkit_root }}"
+      - run: terraform fmt -check -recursive blueprints/container-api/terraform
+      - run: terraform -chdir=blueprints/container-api/terraform/bootstrap init -backend=false -input=false -lockfile=readonly
+      - run: terraform -chdir=blueprints/container-api/terraform/bootstrap validate -no-color
+      - run: terraform -chdir=blueprints/container-api/terraform/runtime init -backend=false -input=false -lockfile=readonly
+      - run: terraform -chdir=blueprints/container-api/terraform/runtime validate -no-color
