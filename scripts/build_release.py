@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build and verify deterministic OCI Founder Toolkit evaluation archives."""
+"""Build and verify deterministic Founder Toolkit for OCI preview archives."""
 
 from __future__ import annotations
 
@@ -18,16 +18,20 @@ from typing import Any, Iterable, Sequence
 
 
 ROOT = Path(__file__).resolve().parents[1]
-MANIFEST_SCHEMA_VERSION = "1.0"
+MANIFEST_SCHEMA_VERSION = "1.1"
 PACKAGE_NAME = "oci-founder-toolkit"
-PACKAGE_STATUS = "unlicensed-evaluation"
-PACKAGE_LICENSE = "LicenseRef-OCI-Founder-Toolkit-Evaluation"
+PACKAGE_STATUS = "public-preview"
+PACKAGE_LICENSE = "UPL-1.0"
 PRIVATE_KEY_MARKERS = (
     b"-----BEGIN " + b"PRIVATE KEY-----",
     b"-----BEGIN RSA PRIVATE KEY-----",
     b"-----BEGIN EC PRIVATE KEY-----",
     b"-----BEGIN " + b"OPENSSH PRIVATE KEY-----",
 )
+PACKAGE_PUBLISHER = {
+    "name": "Daniel Gandolfi",
+    "url": "https://github.com/danielgandolfi1984",
+}
 FORBIDDEN_PARTS = {
     ".git",
     ".oci-founder",
@@ -53,6 +57,7 @@ FORBIDDEN_GENERATED_PREFIXES = (
     "build-metadata",
 )
 SKILL_PACKAGE_PATHS = (
+    "skills/oci-founder/LICENSE",
     "skills/oci-founder/SKILL.md",
     "skills/oci-founder/agents/openai.yaml",
     "skills/oci-founder/references/container-api-preview.md",
@@ -124,7 +129,7 @@ def load_version() -> str:
     manifest = json.loads((ROOT / "plugin.json").read_text(encoding="utf-8"))
     version = manifest.get("version")
     if not isinstance(version, str) or re.fullmatch(r"\d+\.\d+\.\d+", version) is None:
-        raise ValueError("plugin.json must contain the reviewed strict-semver evaluation version")
+        raise ValueError("plugin.json must contain the reviewed strict-semver package version")
     return version
 
 
@@ -132,19 +137,23 @@ def package_specs(version: str) -> tuple[PackageSpec, ...]:
     common = (
         ROOT / "LICENSE",
         ROOT / "THIRD_PARTY_NOTICES.md",
+        ROOT / "SECURITY.md",
+        ROOT / "SUPPORT.md",
+        ROOT / "CONTRIBUTING.md",
+        ROOT / "GOVERNANCE.md",
     )
     return (
         PackageSpec(
             kind="skill-only",
-            archive_file=f"oci-founder-skill-{version}-evaluation.tar.gz",
-            archive_root=f"oci-founder-skill-{version}-evaluation",
+            archive_file=f"oci-founder-skill-{version}-preview.tar.gz",
+            archive_root=f"oci-founder-skill-{version}-preview",
             readme_source=ROOT / "packaging/README.skill.md",
             exact_sources=(*common, *(ROOT / path for path in SKILL_PACKAGE_PATHS)),
             tree_sources=(),
         ),
         PackageSpec(
             kind="full-toolkit",
-            archive_file=f"oci-founder-toolkit-{version}-evaluation.tar.gz",
+            archive_file=f"oci-founder-toolkit-{version}-preview.tar.gz",
             archive_root=PACKAGE_NAME,
             readme_source=ROOT / "packaging/README.full.md",
             exact_sources=(
@@ -340,12 +349,13 @@ def build_package(spec: PackageSpec, output_dir: Path, *, overwrite: bool) -> di
     archive_name, manifest_name, checksum_name = expected_output_names(spec)
     manifest = {
         "schema_version": MANIFEST_SCHEMA_VERSION,
-        "kind": "oci-founder-evaluation-package",
+        "kind": "oci-founder-package",
         "package_kind": spec.kind,
         "name": PACKAGE_NAME,
         "version": load_version(),
         "status": PACKAGE_STATUS,
         "license": PACKAGE_LICENSE,
+        "publisher": PACKAGE_PUBLISHER,
         "archive_root": spec.archive_root,
         "archive": {
             "file": archive_name,
@@ -412,6 +422,7 @@ def verify_package(spec: PackageSpec, output_dir: Path) -> dict[str, Any]:
         "version",
         "status",
         "license",
+        "publisher",
         "archive_root",
         "archive",
         "content_sha256",
@@ -421,12 +432,13 @@ def verify_package(spec: PackageSpec, output_dir: Path) -> dict[str, Any]:
         raise ValueError(f"unexpected package manifest fields: {manifest_path}")
     expected_identity = {
         "schema_version": MANIFEST_SCHEMA_VERSION,
-        "kind": "oci-founder-evaluation-package",
+        "kind": "oci-founder-package",
         "package_kind": spec.kind,
         "name": PACKAGE_NAME,
         "version": load_version(),
         "status": PACKAGE_STATUS,
         "license": PACKAGE_LICENSE,
+        "publisher": PACKAGE_PUBLISHER,
         "archive_root": spec.archive_root,
     }
     if any(manifest.get(key) != value for key, value in expected_identity.items()):
@@ -528,7 +540,7 @@ def deterministic_check() -> list[dict[str, Any]]:
 
 
 def render_summary(action: str, manifests: Iterable[dict[str, Any]]) -> str:
-    rows = [f"OCI Founder Toolkit package {action} passed"]
+    rows = [f"Founder Toolkit for OCI package {action} passed"]
     for manifest in manifests:
         rows.append(
             f"- {manifest['package_kind']}: {manifest['archive']['file']} "
@@ -540,10 +552,10 @@ def render_summary(action: str, manifests: Iterable[dict[str, Any]]) -> str:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     subparsers = parser.add_subparsers(dest="command", required=True)
-    build_parser = subparsers.add_parser("build", help="build both evaluation packages")
+    build_parser = subparsers.add_parser("build", help="build both preview packages")
     build_parser.add_argument("--output-dir", type=Path, default=ROOT / "dist")
     build_parser.add_argument("--overwrite", action="store_true")
-    verify_parser = subparsers.add_parser("verify", help="verify both evaluation packages")
+    verify_parser = subparsers.add_parser("verify", help="verify both preview packages")
     verify_parser.add_argument("--output-dir", type=Path, default=ROOT / "dist")
     subparsers.add_parser("check", help="prove two clean builds are byte-for-byte identical")
     return parser.parse_args()

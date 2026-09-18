@@ -1,19 +1,20 @@
 {
   "name": "oci-founder-toolkit",
   "version": "0.1.0",
-    "description": "A safe-by-default, backend-first path from an existing codebase to a secure and cost-aware OCI journey.",
-  "license": "LicenseRef-OCI-Founder-Toolkit-Evaluation",
+  "description": "An independent, safe-by-default path from an existing codebase to a secure and cost-aware OCI journey.",
+  "license": "UPL-1.0",
   "author": {
-    "name": "OCI Founder Toolkit contributors"
+    "name": "Daniel Gandolfi",
+    "url": "https://github.com/danielgandolfi1984"
   },
   "homepage": "https://github.com/danielgandolfi1984/oracle_founder_pack",
   "repository": "https://github.com/danielgandolfi1984/oracle_founder_pack",
   "skills": "./skills/",
   "interface": {
-    "displayName": "OCI Founder Toolkit",
-    "shortDescription": "Plan backend projects for OCI with coding agents.",
-        "longDescription": "Translate cloud concepts, propose an OCI golden path, apply founder-grade guardrails, and route to official Oracle skills. Any OCI mutation requires a separate preview, exact target, and explicit approval.",
-    "developerName": "OCI Founder Toolkit contributors",
+    "displayName": "Founder Toolkit for OCI",
+    "shortDescription": "Independent OCI planning for technical founders.",
+    "longDescription": "Translate cloud concepts, propose an OCI golden path, apply founder-grade guardrails, and route to official Oracle skills. This personal project is not an Oracle product. Any OCI mutation requires a separate preview, exact target, and explicit approval.",
+    "developerName": "Daniel Gandolfi",
     "category": "Developer Tools",
     "capabilities": ["Guidance", "Planning"],
     "defaultPrompt": [

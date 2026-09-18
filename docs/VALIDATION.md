@@ -1,14 +1,16 @@
 # Validation record
 
-This document distinguishes evidence collected for the `0.1.0` evaluation draft
+This document distinguishes evidence collected for the `0.1.0` public preview
 and the separately versioned `0.2.0-preview.3` Container API candidate from
-capabilities that remain unverified. It is not a release certification.
+capabilities that remain unverified. It is not a stable-release certification,
+an Oracle review, or an Oracle support statement.
 
 ## Environment
 
 - Date: 2026-09-18
-- Toolkit state: locally validated source evaluation on public `main`; the first
-  complete remote workflow baseline passed at commit
+- Toolkit state: independent public source preview on `main`, licensed under
+  UPL-1.0 and maintained by Daniel Gandolfi with best-effort support and no SLA.
+  The first historical complete remote workflow baseline passed at commit
   [`bf5ebb3`](https://github.com/danielgandolfi1984/oracle_founder_pack/commit/bf5ebb3bef3d53ff03601a05221f7825ecd849f2)
   in [GitHub Actions run 35355021483](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35355021483); the later founder-onboarding baseline
   [`deb13d8`](https://github.com/danielgandolfi1984/oracle_founder_pack/commit/deb13d83e037704e3aa3894304673ba7a58da68d)
@@ -19,42 +21,44 @@ capabilities that remain unverified. It is not a release certification.
 - Terraform version: `1.16.3`
 - Oracle OCI provider version: `9.2.0`
 - Codex CLI version: `0.153.4`
-- Current skill tree SHA-256:
-  `b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e`
+- Current public-preview skill tree SHA-256:
+  `c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37`.
+  The earlier `b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e`
+  fingerprint is retained only for pre-transition historical evidence.
 - Cursor IDE/editor CLI version: `3.0.12`; Cursor Agent CLI absent
 - Claude Desktop version: `1.569.0`; Claude Code CLI absent
 - Canonical internal presentation: local Git-ignored
   `artifacts/OCI-Founder-Toolkit-Oracle-Template-v11-User-Guide.pptx`, marked
   `Confidential: Internal`
-- Public source evaluation repository:
+- Public source preview repository:
   [`danielgandolfi1984/oracle_founder_pack`](https://github.com/danielgandolfi1984/oracle_founder_pack);
-  source preview on `main` under the restrictive evaluation license, with no
-  immutable tag, GitHub release, marketplace, registry, or package coordinate
+  source on `main` under UPL-1.0, with `v0.1.0` as the immutable GitHub
+  public-preview tag and prerelease; no marketplace or registry coordinate
 
 ## Evidence collected
 
 | Check | Result | Evidence |
 |---|---|---|
-| Dependency-free repository validation | Passed | `python3 scripts/validate.py` covers standalone-skill closure, package/evidence freshness, and the machine-readable historical behavioral coverage index; host-preflight renewal uses the explicit cycle-breaking mode before the full evidence check |
+| Dependency-free repository validation | Passed: 1,437 checks | `python3 scripts/validate.py` passed against the current public-preview source, covering manifests and schema, standalone-skill closure, links and local JSON, package/evidence freshness, secret scanning, and the machine-readable historical behavioral coverage index |
 | Host-preflight unit contracts | Passed | Tests cover fingerprints, path redaction, safe Cursor probing, Codex validator classification, secret-dropping subprocess environment, explicit validator dependencies, atomic output, overwrite refusal, and symlink rejection |
-| Read-only host preflight | Passed as current inventory; release blocked | The fresh receipt passes source validation in the explicit cycle-breaking mode at current skill tree `b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e`. It detected Codex CLI and Cursor IDE; Cursor Agent and Claude Code were absent. No install, model session, OCI command, host-configuration change, or cloud mutation occurred, and `release_qualified` remains `false`. Evidence: [`tests/results/2026-09-18-host-preflight.json`](../tests/results/2026-09-18-host-preflight.json) |
-| Isolated project install lifecycle | Passed with native-host reservations | A reviewed dependency lock and CLI hashes gate execution of `skills@1.7.0`. The renewed run copied a verified npm cache and used `npm ci --offline` while retaining lock and package-integrity checks. Separate Codex, Cursor, and Claude Code projects each passed install, filtered list, removal, reinstall, filtered list, and final removal with exact destination and tree-hash checks. Residual allowlists passed; observed global skill targets remained unchanged. Cursor duplicate discovery, global lifecycle, and native Cursor/Claude visibility remain open. Evidence: [`tests/results/2026-09-18-skill-install-lifecycle.json`](../tests/results/2026-09-18-skill-install-lifecycle.json) |
-| Portable skill validation | Passed | Skill Creator `quick_validate.py` returned `Skill is valid!` using explicit PyYAML `6.0.2`; reviewed macOS/Python 3.9 and Linux/Python 3.12 wheel hashes are pinned in `requirements-validation.txt` |
-| Codex plugin manifest validation | Passed with CLI limitation | Plugin Creator `validate_plugin.py` returned `Plugin validation passed` with the same explicit dependency runtime; Codex CLI `0.153.4` exposes plugin management but no native `plugin validate` |
-| Agent Plugins v1 schema | Passed locally and in remote CI baselines | Root `plugin.json` passes the vendored published `1.0.0` schema snapshot. The snapshot hash and Apache-2.0 provenance are recorded; the dependency-free check passed in public runs 35355021483 at `bf5ebb3` and 35359228279 at `deb13d8` |
+| Read-only host preflight | Passed with native-host reservations | The renewed receipt is bound to skill tree `c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37`; its embedded repository validation and the requested Skill Creator and Plugin Creator validators passed. It detected Codex CLI and Cursor IDE; Cursor Agent and Claude Code were absent. No install, model session, OCI command, host-configuration change, or cloud mutation occurred, and `release_qualified` remains `false`. Evidence: [`tests/results/2026-09-18-host-preflight.json`](../tests/results/2026-09-18-host-preflight.json) |
+| Isolated source install lifecycle | Passed with native-host reservations | The renewed current-source run used the reviewed dependency lock, verified CLI hashes, and a copied npm cache with `npm ci --offline`. Separate Codex, Cursor, and Claude Code project layouts passed install, filtered list, removal, reinstall, filtered list, and final removal at skill tree `c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37`. Cursor duplicate discovery, global lifecycle, and native Cursor/Claude visibility remain open. Evidence: [`tests/results/2026-09-18-skill-install-lifecycle.json`](../tests/results/2026-09-18-skill-install-lifecycle.json) |
+| Portable skill validation | Passed | Skill Creator `quick_validate.py` returned `Skill is valid!` against the current public-preview skill using the explicit development-validator runtime |
+| Codex plugin manifest validation | Passed | Plugin Creator `validate_plugin.py` returned `Plugin validation passed` against the current UPL/publisher manifests. Codex CLI `0.153.4` exposes plugin management but no native `plugin validate` |
+| Agent Plugins v1 schema | Passed | Root `plugin.json` passed the vendored published `1.0.0` schema snapshot as part of the current 1,437-check repository validation. Historical public runs 35355021483 at `bf5ebb3` and 35359228279 at `deb13d8` remain exact-revision remote evidence |
 | Public GitHub Actions baselines | Passed for the recorded revisions | [Run 35355021483](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35355021483) completed successfully for `bf5ebb3bef3d53ff03601a05221f7825ecd849f2`, including repository/schema/secret checks, both unit suites, deterministic package verification, source and archive install lifecycles, and Terraform format/init/validate. It emitted runner migration warnings. The workflow was then pinned to `ubuntu-24.04` and official Node.js 24 action lines by full commit SHA; [run 35359228279](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35359228279) passed that updated workflow for `deb13d83e037704e3aa3894304673ba7a58da68d` |
-| Deterministic evaluation packages | Passed | Two clean builds are byte-for-byte identical. Skill-only SHA-256: `1e41859b5ac86522356aa922f177189c3f95a1deaba8dae77d6a95e1cd64ab23`. Full-toolkit SHA-256: `aa332c7555ad88e17f86f99dbd1e33e0f211f48e6e40b980eedb8992c1333790`, with internal root `oci-founder-toolkit/`. Both archives reject symlinks/unexpected members and include checksum plus per-file manifests; presentations, development output, secrets, state, plans, receipts, and caches are excluded |
-| Packaged archive install lifecycle | Passed with native-host reservations | Both current verified archives passed project-scoped install/list/remove/reinstall/list/remove in isolated Codex, Cursor, and Claude Code layouts, with installed skill tree `b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e` and clean residuals. Each renewed summary hash-binds its committed exact raw receipt. Evidence: [skill-only summary](../tests/results/2026-09-18-skill-package-install-lifecycle.json), [skill-only raw](../tests/results/2026-09-18-skill-package-install-lifecycle.raw.json), [full-toolkit summary](../tests/results/2026-09-18-full-package-install-lifecycle.json), and [full-toolkit raw](../tests/results/2026-09-18-full-package-install-lifecycle.raw.json) |
+| Deterministic public-preview packages | Passed | The current archives were rebuilt deterministically and verified: skill-only SHA-256 `517c4f6d4d29b35d085d4cf534656608e6c1d7315526563ee632ee5ae9fe7954` and full-toolkit SHA-256 `33037edf2783895c03a5e40bb03a0f18468a26945dc7fce8a9e251ea7e75ca80`. The earlier `1e41859b5ac86522356aa922f177189c3f95a1deaba8dae77d6a95e1cd64ab23` and `aa332c7555ad88e17f86f99dbd1e33e0f211f48e6e40b980eedb8992c1333790` values are historical pre-transition hashes only |
+| Packaged archive install lifecycle | Passed with native-host reservations | Both renewed public-preview archives passed project-scoped install/list/remove/reinstall/list/remove in isolated Codex, Cursor, and Claude Code layouts at skill tree `c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37`. Exact raw receipts and summaries are committed; native host discovery, global-profile lifecycle, and the post-publication remote-tag install check remain separate. Evidence: [skill-only summary](../tests/results/2026-09-18-skill-package-install-lifecycle.json), [skill-only raw](../tests/results/2026-09-18-skill-package-install-lifecycle.raw.json), [full-toolkit summary](../tests/results/2026-09-18-full-package-install-lifecycle.json), and [full-toolkit raw](../tests/results/2026-09-18-full-package-install-lifecycle.raw.json) |
 | Offline Oracle Skills lock verifier | Available; real-checkout run not completed | `python3 scripts/verify_oracle_skills_lock.py --checkout /absolute/path/to/oracle-skills-reviewed` checks the locked commit, reviewed trees, clean worktree, and `LICENSE.txt` through Git object reads without network or mutation. It has not been run against a real checkout in this workspace |
 | Hardened native Codex runner unit contracts | Passed | All 12 current unit contracts pass, covering offline-cache parsing, response and semantic contracts, command/path rejection, effect accounting, deny-shim detection and fail-closed behavior, installed-skill binding, redaction, and clean removal |
 | Historical native Codex receipt and current assessment | Q2 `PASS_WITH_RESERVATIONS`; Q3 `PARTIAL`; formal gates blocked | The historical Codex CLI `0.153.4` receipt recorded probe Q2/Q3 as `PASS`, exact copied-skill identity, structured founder guidance, deny shims, clean removal, and no observed forbidden or cloud-mutation effect. The current assessment normalizes Q2 to `PASS_WITH_RESERVATIONS` and Q3 to `PARTIAL`. Verified offline-cache installer acquisition is available; a fresh hardened rerun is `BLOCKED` only because a new authenticated model session and external model egress were not authorized. It started no model session and attempted no cloud mutation. Formal Q2 and Q3 remain `BLOCKED`. Evidence: [historical receipt](../tests/results/2026-09-18-codex-native-runner-probe.json) and [current assessment](../tests/results/2026-09-18-codex-native-runner-assessment.json) |
-| Targeted current-skill revision assessment | Three content-forward cases passed; formal gates blocked | Focused-answer routing, skill-only upstream fail-closed behavior, and full-toolkit verification-first routing passed in Codex subagent sessions against skill tree `b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e`. The assessment used no network, file write, OCI command, or cloud mutation; it is not host-native evidence. Evidence: [`tests/results/2026-09-18-skill-revision-assessment.json`](../tests/results/2026-09-18-skill-revision-assessment.json) |
+| Targeted current-skill assessment | Three content-forward cases passed; formal native gates blocked | Focused-answer routing, skill-only upstream fail-closed behavior, and full-toolkit verification-first Cursor routing passed in Codex subagent sessions against current skill tree `c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37`. The assessment used no network, file write, OCI command, or cloud mutation. It is current but non-native and therefore does not close Q2 or Q3. Evidence: [`tests/results/2026-09-18-skill-revision-assessment.json`](../tests/results/2026-09-18-skill-revision-assessment.json) |
 | Standalone-skill package closure | Passed | The Container API route now resolves to an adapter inside the copied skill and fails closed when the full toolkit blueprint is absent |
-| Static safety and secret review | Passed locally with no recorded critical/high finding | Preview, approval, least-privilege, exact-target teardown, delegated-skill, and tenancy-target gates were exercised; the high-confidence scan passes over both exact package allowlists and the repository source tree |
+| Static safety and secret review | Passed | Preview, approval, least-privilege, exact-target teardown, delegated-skill, and tenancy-target gates were exercised. The high-confidence scan passed over the current public-preview package allowlists and repository source tree within the 1,437-check validation |
 | Historical independent founder-plan evaluation | Passed with reservations as supporting evidence | Safe planning response, no mutation, and correct Cloud Run non-equivalence, bound to the former skill fingerprint; it is not current-skill native evidence. Evidence: [`tests/results/2026-09-17-orient-fastapi-gcp.md`](../tests/results/2026-09-17-orient-fastapi-gcp.md) |
 | Historical behavioral prompt evaluation | Prior 24-case results indexed; native gate blocked | The coverage index and recorded results are bound to the former skill fingerprint. It explicitly records zero native-complete, transcript-bound, or tool-trace-bound cases, so it cannot close Q3 or represent the current skill. Evidence: [`tests/results/2026-09-18-behavioral-case-index.json`](../tests/results/2026-09-18-behavioral-case-index.json) |
-| Internal Oracle source review | Passed with follow-up gates | Read-only searches and selected-document review across authorized internal Oracle knowledge sources confirmed the sandbox boundaries and identified the scan, production ingress, cost-governance, remote-state, logging, and plugin-governance gaps below; no internal-only content was copied into the distributable repository |
-| Relative links and local JSON | Passed | Covered by `scripts/validate.py` |
+| Author's internal source cross-check | Completed with follow-up technical gates | Daniel Gandolfi reviewed selected authorized internal Oracle sources read-only as an individual accuracy cross-check. This was not an Oracle review or approval. It confirmed sandbox boundaries and identified the scan, production ingress, cost-governance, remote-state, logging, and plugin-governance gaps below; no internal-only content was copied into the public repository or packages |
+| Relative links and local JSON | Passed | Covered by the successful current 1,437-check `scripts/validate.py` run |
 | Container API unit contracts | Passed | The unit suite covers the HTTP contract, config rejection, plan redaction/blocking, concrete and unknown relationship attacks, exact provider/reference bindings, observability state relationships, saved-plan/source-snapshot provenance, repository derivation, receipt lineage, symlink-safe artifact writing, and exact teardown/readback reconciliation including child container/VNIC IDs |
 | Terraform formatting | Passed | `terraform fmt -check -recursive blueprints/container-api/terraform` |
 | Bootstrap Terraform validation | Passed | Offline provider-schema validation with Terraform `1.16.3` and OCI provider `9.2.0` |
@@ -85,6 +89,9 @@ capabilities that remain unverified. It is not a release certification.
   their upstream support windows change. The current workflow uses official
   Node.js 24 action lines and `ubuntu-24.04`; every later source revision still
   needs its own successful remote run.
+- A successful GitHub Actions run bound to the current public-preview revision.
+  The renewed local repository, package, lifecycle, host-preflight, and targeted
+  assessment evidence does not relabel the earlier exact-revision CI runs.
 - Formal Codex Q3 and full native replay of the behavioral prompt fixtures on
   the current skill across Codex, Cursor, and Claude Code, with deny shims,
   transcript/tool-trace binding, and independent semantic grading. The older
@@ -113,22 +120,17 @@ capabilities that remain unverified. It is not a release certification.
   Resource Manager compatible** and no such compatibility claim is made.
 - Centralized Container Instance application stdout/stderr ingestion; the
   current preview intentionally offers only bounded on-demand retrieval.
-- Approved distribution owner, publisher identity, support/security contacts,
-  compatibility range, signing/SBOM policy, and lifecycle/deprecation policy
-  for a supported plugin release. Evaluation changelog and release checklist now
-  exist but do not authorize publication.
-- An approved open-source/public-use license and the remaining publisher,
-  naming/trademark, support, security, and Oracle repository-ownership gates.
-  Public source availability under restrictive evaluation terms does not close
-  them, and no immutable tag, GitHub release, marketplace entry, registry
-  coordinate, or package coordinate exists.
+- Marketplace or registry publication. Distribution signing/SBOM policy and
+  hardened artifact provenance remain promotion gates for a stable release;
+  the documented compatibility and lifecycle boundaries for the `v0.1.0`
+  GitHub coordinate describe a public preview only.
 - The under-60-minute endpoint target.
-- Public naming, trademark, security, legal, and open-source approval.
 
 ## Source reconciliation on 2026-09-17
 
-Authorized internal Oracle knowledge sources were searched and selected current
-materials were reviewed read-only. A follow-up review on
+Daniel Gandolfi searched authorized internal Oracle knowledge sources and
+reviewed selected current materials read-only as an individual accuracy
+cross-check. This was not an Oracle review, endorsement, or approval. A follow-up review on
 2026-09-17 also challenged the packaging and developer-onboarding flow. It
 reinforced the need for one portable capability package, explicit context and
 permissions, pinned compatibility, clear onboarding completion criteria, and a
@@ -161,12 +163,14 @@ Public evidence: [OCIR image scanning](https://docs.oracle.com/en-us/iaas/Conten
 [Resource Manager Terraform versions](https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Reference/terraformversions.htm),
 and [Container Instance log retrieval](https://docs.oracle.com/en-us/iaas/Content/container-instances/retrieve-logs.htm).
 
-## Release gate
+## Stable-release gate
 
-Do not describe this draft as generally available or cross-host certified. A
-public release requires native install/runtime tests on Codex, Cursor, and Claude
-Code; native cross-host replay of the behavioral suite; an approved license; and, for executable paths,
-the apply/verify/idempotency/rollback/teardown quality gate in
+The public source preview is usable under UPL-1.0 now, but do not describe it as
+generally available, Oracle-supported, production-qualified, or cross-host
+certified. A stable release requires native install/runtime tests on Codex,
+Cursor, and Claude Code; native cross-host replay of the behavioral suite; and,
+for executable paths, the apply/verify/idempotency/rollback/teardown quality
+gate in
 [`PRODUCT.md`](PRODUCT.md). Follow the Q0–Q4 evidence contract in
 [`HOST-QUALIFICATION.md`](HOST-QUALIFICATION.md). Do not treat the preview's
 local receipt files as signed deployment attestations.

@@ -64,7 +64,7 @@
               "$HOME/.codex/skills/.system/plugin-creator/scripts/validate_plugin.py",
               "$TOOLKIT_ROOT"
             ],
-            "duration_ms": 157,
+            "duration_ms": 143,
             "exit_code": 0,
             "stderr_excerpt": "",
             "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -83,7 +83,7 @@
               "$HOME/.codex/skills/.system/skill-creator/scripts/quick_validate.py",
               "$TOOLKIT_ROOT/skills/oci-founder"
             ],
-            "duration_ms": 103,
+            "duration_ms": 109,
             "exit_code": 0,
             "stderr_excerpt": "",
             "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -104,7 +104,7 @@
           "plugin",
           "--help"
         ],
-        "duration_ms": 14,
+        "duration_ms": 16,
         "exit_code": 0,
         "stderr_excerpt": "WARNING: proceeding, even though we could not create PATH aliases: Operation not permitted (os error 1)\n",
         "stderr_sha256": "3087f13b0d34323fbc05177ef68ae53dc523d9acaf6c0c63852825479db5af2a",
@@ -119,7 +119,7 @@
           "/Applications/ChatGPT.app/Contents/Resources/codex",
           "--version"
         ],
-        "duration_ms": 24,
+        "duration_ms": 17,
         "exit_code": 0,
         "stderr_excerpt": "WARNING: proceeding, even though we could not create PATH aliases: Operation not permitted (os error 1)\n",
         "stderr_sha256": "3087f13b0d34323fbc05177ef68ae53dc523d9acaf6c0c63852825479db5af2a",
@@ -147,10 +147,10 @@
           "/Applications/Cursor.app/Contents/Resources/app/bin/cursor",
           "--version"
         ],
-        "duration_ms": 392,
+        "duration_ms": 318,
         "exit_code": 0,
-        "stderr_excerpt": "[0918/115159.787757:ERROR:electron/shell/common/mac/codesign_util.cc:111] SecCodeCheckValidity: Error Domain=NSOSStatusErrorDomain Code=-2147409622 \"(null)\" (-2147409622)\n",
-        "stderr_sha256": "0a03a30eba5e07bb938be6af5595611b5c0193a3d58b7f385319db2465762c04",
+        "stderr_excerpt": "[0918/143540.260673:ERROR:electron/shell/common/mac/codesign_util.cc:111] SecCodeCheckValidity: Error Domain=NSOSStatusErrorDomain Code=-2147409622 \"(null)\" (-2147409622)\n",
+        "stderr_sha256": "44b85be5174bee291bb800e1eb5a26fb286b0d2e6b6029843a4e6c0dee15feee",
         "stdout_excerpt": "3.0.12\na80ff7dfcaa45d7750f6e30be457261379c29b00\narm64\n",
         "stdout_sha256": "a94d4c4501dcbe7fda41874346d115cc14d6e7b3b3395483dc91edbe7b9d534a",
         "timed_out": false
@@ -161,7 +161,7 @@
     }
   },
   "kind": "oci-founder-host-preflight",
-  "observed_at_utc": "2026-09-18T14:52:00.058075+00:00",
+  "observed_at_utc": "2026-09-18T17:35:40.478727+00:00",
   "repo_validation": {
     "mode": "source-without-host-preflight-evidence",
     "probe": {
@@ -170,12 +170,12 @@
         "$TOOLKIT_ROOT/scripts/validate.py",
         "--skip-host-preflight-evidence"
       ],
-      "duration_ms": 257,
+      "duration_ms": 351,
       "exit_code": 0,
       "stderr_excerpt": "",
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "stdout_excerpt": "OCI Founder Toolkit validation passed (1370 checks).\n",
-      "stdout_sha256": "48580b0a480d227c161d303777d982e5d090aed7d63f8913f97a91713db2d320",
+      "stdout_excerpt": "Founder Toolkit for OCI validation passed (1419 checks).\n",
+      "stdout_sha256": "cd865fa3cf33c6cbc1db6fb3381709ce8bd1940bd23e7685375b5b7b59b4a11e",
       "timed_out": false
     },
     "status": "passed"
@@ -198,18 +198,18 @@
     "release_qualified": false
   },
   "toolkit": {
-    "container_api_blueprint_sha256": "1b3f9d011699eb130b78a90ad61d51026bf9a6e1053b88d36e607c41526c9f24",
+    "container_api_blueprint_sha256": "da24fa575ffd404abeb40cb43c49c3788015a784755ef38ee0ed97c7f19048be",
     "manifest_sha256": {
-      ".claude-plugin/plugin.json": "c9a2063f937d6a30729876b4ff0a3fe56674ce88a7e9724f56c173aa5660b7ac",
-      ".codex-plugin/plugin.json": "ec4d6051cd399fc8fe34e31e46b4a6e108d2574f9f6c9db42bcbb14c52fcb1f7",
-      "plugin.json": "e8bfee22b780d4ebd23b3af903eb8267e4786ca091b3b99e92cbf9987630cbe0"
+      ".claude-plugin/plugin.json": "edff184d361e098532725eeac30ab69f9e7e6a8f1b2796101982ef1979d26d31",
+      ".codex-plugin/plugin.json": "15166c24c00bbb68c84c259b7be5d616b36824c4d107cdfaeb49a1a40ddc74bc",
+      "plugin.json": "7521332c99fdff90cfec4c47605c69c2ea36b5b162b04f068c563910c68b5aaf"
     },
     "root": "$TOOLKIT_ROOT",
-    "skill_tree_sha256": "b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e",
-    "source_fingerprint": "18506487b2e350dd41bed393c654363985372255e05d2ee5326734dbe6369004",
+    "skill_tree_sha256": "c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37",
+    "source_fingerprint": "4d69f51fef943725f913b327fd249212ce2ec5c7f80be18eb06e09f7aaab05cc",
     "validation_tool_sha256": {
-      "scripts/qualify_hosts.py": "95acb70429cf9d2b8d2c114dbd542793811bbf2f01d3b7a102188d2e59f1199d",
-      "scripts/validate.py": "3c71789f6277ac37d8493bfe290e83fe18d7127edf4cf3a4417268affa684906"
+      "scripts/qualify_hosts.py": "afdfc2e940c3f929dac945701406bee63513d5774775356d9a9b614c7fb64e8c",
+      "scripts/validate.py": "c3263a11c6570a826e5a53d303e72796371ced637570aecaff11e78325427e0a"
     }
   }
 }

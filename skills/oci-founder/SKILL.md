@@ -2,13 +2,19 @@
 name: oci-founder
 description: Plan and sequence cross-service OCI journeys for founders and backend developers new to Oracle Cloud Infrastructure. Use when starting, migrating, or evaluating an OCI backend; translating AWS, Google Cloud, or Azure concepts; choosing a founder-friendly runtime; or defining security, cost, observability, delivery, and teardown guardrails. For isolated Functions, OKE, Enterprise AI, or Oracle Database work, prefer the dedicated verified Oracle skill.
 metadata:
-  author: oci-founder-toolkit
+  author: Daniel Gandolfi
   version: "0.1.0"
 ---
 
-# OCI Founder
+# Founder Toolkit for OCI
 
 Turn a backend goal or existing repository into a small, reviewable OCI plan. Optimize for a founder who knows software development but not OCI terminology.
+
+This skill is part of an independent personal project created and maintained by
+Daniel Gandolfi, who works at Oracle and publishes it in his personal capacity.
+It is not an Oracle product and is not sponsored, endorsed, maintained, or
+supported by Oracle. No Oracle Support coverage or service-level agreement is
+provided.
 
 ## Interaction contract
 

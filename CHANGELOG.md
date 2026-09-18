@@ -1,10 +1,11 @@
 # Changelog
 
-All notable changes to the OCI Founder Toolkit evaluation are recorded here.
-The project publishes a public source preview but has not published a tagged or
-supported public release.
+All notable changes to Founder Toolkit for OCI are recorded here. The project
+publishes an independent public open-source preview under UPL-1.0, with
+best-effort community support and no SLA. It has not published a tagged stable
+release or claimed cross-host or production qualification.
 
-## Unreleased — `0.1.0` evaluation
+## `0.1.0` — 2026-09-18 (public preview)
 
 ### Added
 
@@ -18,41 +19,58 @@ supported public release.
 - Container API `0.2.0-preview.3`, kept separately versioned and sandbox-only.
 - Locked `skills@1.7.0` project-scoped install/list/remove/reinstall lifecycle
   across Codex, Cursor, and Claude Code layouts for the checkout, skill-only
-  archive, and full-toolkit archive. The archive runs use a copied verified npm
-  cache with `npm ci --offline`; exact raw receipts are committed and bound by
-  their summaries.
+  archive, and full-toolkit archive at current skill tree
+  `c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37`.
+  The archive runs use a copied verified npm cache with `npm ci --offline`;
+  exact raw receipts are committed and bound by their summaries.
 - Historical native Codex `0.153.4` discovery and one explicit, read-only
   behavior-probe receipt. Its recorded Q2/Q3 `PASS` results are normalized by
   the current assessment to Q2 `PASS_WITH_RESERVATIONS` and Q3 `PARTIAL`.
 - Targeted current-skill assessment covering three content-forward cases at
   skill tree
-  `b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e`;
-  the assessment remains non-native and does not close Q2 or Q3.
+  `c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37`.
+  All three cases passed without file writes, network calls, OCI commands, or
+  cloud mutations. The assessment remains non-native and does not close Q2 or
+  Q3.
 - Hardened native Codex runner with 12 passing unit contracts, verified offline
   npm-cache acquisition, and a dated renewal assessment.
 - Canonical Oracle-template founder guide presentation, v11, kept local and
   Git-ignored because it is marked `Confidential: Internal`, and excluded from
-  the evaluation archives.
+  every public package and license grant.
 - Vendored Agent Plugins `1.0.0` schema snapshot with provenance and a
   dependency-free validator.
-- Deterministic, allowlisted skill-only and full-toolkit evaluation archives,
-  each with a SHA-256 checksum and per-file content manifest. Current archive
-  SHA-256 values are `1e41859b5ac86522356aa922f177189c3f95a1deaba8dae77d6a95e1cd64ab23`
-  for skill-only and
-  `aa332c7555ad88e17f86f99dbd1e33e0f211f48e6e40b980eedb8992c1333790`
-  for full-toolkit. The versioned full archive extracts under the stable
-  `oci-founder-toolkit/` root, and both package lifecycle receipts were renewed
-  for these artifacts.
+- Deterministic, allowlisted public-preview packages with per-file content
+  manifests: skill-only SHA-256
+  `517c4f6d4d29b35d085d4cf534656608e6c1d7315526563ee632ee5ae9fe7954`
+  and full-toolkit SHA-256
+  `33037edf2783895c03a5e40bb03a0f18468a26945dc7fce8a9e251ea7e75ca80`.
+  The earlier pre-transition evaluation hashes
+  `1e41859b5ac86522356aa922f177189c3f95a1deaba8dae77d6a95e1cd64ab23`
+  and `aa332c7555ad88e17f86f99dbd1e33e0f211f48e6e40b980eedb8992c1333790`
+  are retained only as historical evidence.
 - High-confidence secret scan over the exact package allowlists and repository
   source tree.
 - Offline, read-only `oracle/skills` lock verifier for the locked commit,
   reviewed trees, clean worktree, and `LICENSE.txt`.
-- Public source-evaluation repository,
+- Public open-source repository,
   [`danielgandolfi1984/oracle_founder_pack`](https://github.com/danielgandolfi1984/oracle_founder_pack),
-  published on `main` under the restrictive evaluation license, without a tag,
-  GitHub release, marketplace entry, registry coordinate, or package coordinate.
+  published on `main` under UPL-1.0 as an independent personal project by
+  Daniel Gandolfi. The `v0.1.0` tag and GitHub prerelease are the immutable
+  public-preview coordinate; no marketplace or registry coordinate is claimed.
 - Pinned CI action revisions and CI gates for schema validation, package
   determinism, installation lifecycle, unit contracts, and Terraform checks.
+
+### Changed
+
+- Adopted UPL-1.0 for the repository's original public content.
+- Recorded Daniel Gandolfi as creator, copyright holder, publisher, maintainer,
+  and release manager in his personal capacity.
+- Adopted the public name **Founder Toolkit for OCI** while retaining technical
+  identifiers such as `oci-founder-toolkit` and `oci-founder` for compatibility.
+- Made the independent-project boundary explicit: this is not an Oracle product
+  and is not sponsored, endorsed, maintained, or supported by Oracle.
+- Established best-effort GitHub support and private vulnerability reporting,
+  with no support or response-time SLA.
 
 ### Safety
 
@@ -62,19 +80,17 @@ supported public release.
   the caller's full environment.
 - Host-preflight evidence uses atomic writes, refuses symlink targets/parents,
   and requires explicit overwrite.
-- Host-preflight renewal breaks its validation cycle explicitly; the fresh
-  read-only receipt passes at the current skill fingerprint while retaining
-  `release_qualified: false`.
+- Host-preflight renewal breaks its validation cycle explicitly. The current
+  read-only receipt is bound to skill tree
+  `c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37`,
+  passed its embedded repository validation and both development validators,
+  and retained `release_qualified: false` because native host gates remain.
 - Package builds exclude editor output, presentations, credentials, local
   environment files, Terraform state/plans, generated receipts, caches, and
   symlinks.
 
-### Known release blockers
+### Known qualification blockers
 
-- No approved open-source/public-use license, publisher identity,
-  support/security contact, or completed Oracle repository-ownership, naming,
-  and trademark decision. The source preview remains under restrictive
-  evaluation terms.
 - Cursor Agent and Claude Code are unavailable on the current host; Cursor
   duplicate discovery is not qualified.
 - A fresh hardened native Codex rerun is `BLOCKED` only because a new
@@ -89,6 +105,6 @@ supported public release.
   in this workspace.
 - No authenticated OCI sandbox plan/apply/idempotency/rollback/teardown run has
   occurred.
-- A supported public release remains `BLOCKED`; the public source preview has no
-  immutable tag, GitHub release, marketplace entry, registry coordinate, or
-  package coordinate.
+- A cross-host-qualified stable release remains `BLOCKED`; the immutable
+  `v0.1.0` public preview is legally usable under UPL-1.0 but does not create a
+  marketplace entry, registry coordinate, support SLA, or production claim.

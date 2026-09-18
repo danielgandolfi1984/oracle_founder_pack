@@ -1,16 +1,16 @@
 {
   "schema_version": "1.1",
   "kind": "oci-founder-full-package-install-lifecycle",
-  "observed_at_utc": "2026-09-18T16:03:18.582944+00:00",
+  "observed_at_utc": "2026-09-18T17:20:33.120189+00:00",
   "status": "pass_with_reservations",
   "package": {
-    "archive_file": "oci-founder-toolkit-0.1.0-evaluation.tar.gz",
+    "archive_file": "oci-founder-toolkit-0.1.0-preview.tar.gz",
     "archive_root": "oci-founder-toolkit",
-    "archive_sha256": "aa332c7555ad88e17f86f99dbd1e33e0f211f48e6e40b980eedb8992c1333790",
-    "archive_size": 81571,
-    "manifest_sha256": "ba266bc6dea0a964807fb9623fbf3e0782297a4465f85e98f358770ee21af384",
-    "content_sha256": "806605b6f2503cae634ce8987dfe77c0a1f411371f5ef6679607a6e79f40a295",
-    "file_count": 43,
+    "archive_sha256": "33037edf2783895c03a5e40bb03a0f18468a26945dc7fce8a9e251ea7e75ca80",
+    "archive_size": 84825,
+    "manifest_sha256": "31a93afd62a4903fbafcc55fffe25707a7314d5f273927e8b3d92fee79708315",
+    "content_sha256": "5dee0e382a4488b4bced3e11033c14aea3145d4f34f5d05f2e61ccc881c79105",
+    "file_count": 48,
     "format": "tar+gzip",
     "normalized_mtime": 0,
     "normalized_owner": "0:0"
@@ -20,12 +20,12 @@
     "archive_members_regular_only": true,
     "archive_member_hashes_match_manifest": true,
     "archive_symlinks": false,
-    "skill_tree_sha256": "b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e",
-    "source_skill_tree_sha256": "b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e"
+    "skill_tree_sha256": "c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37",
+    "source_skill_tree_sha256": "c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37"
   },
   "lifecycle": {
     "raw_receipt_path": "tests/results/2026-09-18-full-package-install-lifecycle.raw.json",
-    "raw_receipt_sha256": "7b82237d7fec38a8c9343fb2c165e556c1756229da60ddac10e947912f7b5df9",
+    "raw_receipt_sha256": "fbe437d191799b4a53ab56a946a68ed2592b44d64e3a99dccf2d3145fe2321a7",
     "raw_receipt_retention": "committed",
     "runner_sha256": "5a93fc494d8a1609e6b3ca0b07706fd3f9eebbc782c27a5c67f5ca6753b073ff",
     "scope": "three-isolated-projects",
@@ -34,7 +34,7 @@
     "dependency_lock_verified": true,
     "package_integrity_verified_before_execution": true,
     "acquisition_mode": "verified-offline-cache",
-    "offline_cache_tree_sha256": "6d0b09044b196a97d197771d5e7e2c4aba09b4c6fed69e7ca2db033fb8ff0bde",
+    "offline_cache_tree_sha256": "8a4cf203c00b3328e690eb4b8bc490c9ae779625c6beaa5b340b19ea3ca680e9",
     "cases": [
       {
         "agent": "codex",
@@ -83,10 +83,10 @@
   },
   "release_qualified": false,
   "reservations": [
-    "The archive is a locally built evaluation artifact, not a public distribution.",
+    "The archive is a public-preview artifact under UPL-1.0, not a stable or production-qualified distribution.",
     "This proves project-scoped package lifecycle, not native Cursor or Claude Code discovery.",
     "An empty disposable OpenCode config-directory fixture under isolated XDG_CONFIG_HOME exercises shared .agents removal semantics without starting a model session.",
-    "Global-profile lifecycle and public-coordinate installation remain open.",
+    "Global-profile lifecycle remains open; immutable public-coordinate installation is verified separately after the release tag is published.",
     "The exact redacted lifecycle receipt is committed and bound by SHA-256."
   ]
 }

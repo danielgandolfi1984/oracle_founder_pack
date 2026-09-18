@@ -1,22 +1,37 @@
-LicenseRef-OCI-Founder-Toolkit-Evaluation
+Copyright (c) 2026 Daniel Gandolfi
 
-OCI Founder Toolkit — Source Evaluation Notice
+The Universal Permissive License (UPL), Version 1.0
 
-No open-source or general redistribution license has been selected. When the
-project owner makes this source publicly visible on GitHub, GitHub and its users
-receive only the limited rights required by the GitHub Terms of Service for a
-public repository, including viewing and forking within the service:
-https://docs.github.com/en/site-policy/github-terms/github-terms-of-service#5-license-grant-to-other-users
+Subject to the condition set forth below, permission is hereby granted to any
+person obtaining a copy of this software, associated documentation and/or data
+(collectively the "Software"), free of charge and under any and all copyright
+rights in the Software, and any and all patent rights owned or freely
+licensable by each licensor hereunder covering either (i) the unmodified
+Software as contributed to or provided by such licensor, or (ii) the Larger
+Works (as defined below), to deal in both
 
-No additional license is granted to copy, modify, redistribute, publish, run,
-or use this repository outside an evaluation context expressly authorized in
-writing by the project owner or Oracle. Public visibility alone is not that
-authorization.
+(a) the Software, and
 
-Before any tagged release, package or marketplace publication, or broader
-grant of use, the project owner and the appropriate Oracle legal and
-open-source review teams must approve a license and update this file, the plugin
-manifests, and the third-party notices.
+(b) any piece of software and/or hardware listed in the lrgrwrks.txt file if
+one is included with the Software (each a "Larger Work" to which the Software
+is contributed by such licensors),
 
-Third-party materials and dependencies remain subject to their own licenses.
-See THIRD_PARTY_NOTICES.md.
+without restriction, including without limitation the rights to copy, create
+derivative works of, display, perform, and distribute the Software and make,
+use, sell, offer for sale, import, export, have made, and have sold the Software
+and the Larger Work(s), and to sublicense the foregoing rights on either these
+or other terms.
+
+This license is subject to the following condition:
+
+The above copyright notice and either this complete permission notice or at a
+minimum a reference to the UPL must be included in all copies or substantial
+portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

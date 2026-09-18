@@ -1,148 +1,137 @@
-# ADR 0003: Choose the public-license and publisher model
+# ADR 0003: Publish as an independent personal project
 
-- Status: proposed; approval required
+- Status: accepted
 - Date: 2026-09-18
-- Decision owners: project rights holder, Oracle Legal/OSS, Oracle trademark,
-  security, support, and repository owners
+- Decision owner: Daniel Gandolfi
 
-## Outcome needed
+## Decision
 
-The repository is publicly visible, but the current evaluation license does
-not grant the public permission to install, run, modify, or redistribute the
-toolkit. Before an **installable** founder-facing public preview can be
-published, the decision owners must approve the rights holder, publisher,
-project classification, license, name/brand use, contribution model, security
-intake, and support boundary.
+Founder Toolkit for OCI is an independent personal open-source project created
+and maintained by Daniel Gandolfi.
 
-This record prepares that decision. It does not provide legal advice, grant
-rights, change the current license, or represent Oracle approval.
+- Copyright holder and licensor: Daniel Gandolfi
+- Public publisher, maintainer, and release manager: Daniel Gandolfi
+- Repository: `danielgandolfi1984/oracle_founder_pack`
+- License: Universal Permissive License 1.0, SPDX `UPL-1.0`
+- Public display name: **Founder Toolkit for OCI**
+- Compatible technical identifiers retained: `oci-founder-toolkit` and
+  `oci-founder`
+- Support: best-effort community support through GitHub Issues, with no SLA
+- Security intake: GitHub private vulnerability reporting
+- Release status: public preview; not production-qualified or Oracle-supported
 
-## Why this is a product blocker
+Daniel Gandolfi works at Oracle and publishes this project in his personal
+capacity. The views expressed here are his own and do not represent Oracle.
+This is not an Oracle product and is not sponsored, endorsed, maintained, or
+supported by Oracle.
 
-The founder experience promises a short, self-service installation path. That
-promise cannot be offered to the general public while every evaluator needs
-prior written authorization and no authorization-request channel exists.
-Technical validation cannot substitute for permission to use the software.
+The user's project-owner declaration is the basis for recording Daniel
+Gandolfi as the rights holder and publisher. This ADR records the repository
+decision; it is not legal advice about employment or intellectual-property
+obligations outside the repository.
 
-Three release states must remain distinct:
+## Naming and trademark boundary
 
-| State | What it means | Current status |
-|---|---|---|
-| Public source | People can view and fork through GitHub as permitted by GitHub's functionality; this does not grant broader install or execution rights | Available |
-| Installable public preview | A public license authorizes self-service use and an immutable distribution coordinate supplies a stable installation target, with explicit preview and no-SLA boundaries | Blocked |
-| Oracle-supported release | Oracle-approved publisher, support, security, lifecycle, field qualification, and distribution controls are operational | Blocked |
+“Founder Toolkit” is the project name. “for OCI” is a descriptive statement of
+the platform it works with. Public metadata uses a neutral visual identity and
+does not use Oracle logos, the O Tag, Oracle trade dress, or an Oracle publisher
+identity.
 
-An open-source license can enable the second state. It does not create Oracle
-Support coverage, an SLA, a production-readiness claim, or permission to use
-Oracle trademarks and logos.
+Accurate references to Oracle products and official Oracle documentation remain
+permitted as descriptive technical context. They must not imply that Oracle
+created, certified, sponsors, endorses, maintains, or supports this project.
 
-## Options considered
+The repository includes this attribution:
 
-| Option | Founder adoption | Patent and contribution model | Operational cost | Assessment |
-|---|---|---|---|---|
-| Keep the restrictive evaluation license | Every public user still needs prior written authorization | No new public grant | Lowest transition effort, but incompatible with self-service adoption | Use only if the project remains a controlled evaluation |
-| **UPL-1.0** | Permissive use, modification, distribution, sublicensing, and commercial use | Express copyright and patent grants; contribution policy still needs separate approval | Simple redistribution obligations and alignment with `oracle/skills` | **Provisional recommendation, subject to approval** |
-| Apache-2.0 | Broad, familiar permissive adoption | Express patent grant and defensive patent termination; intentionally submitted contributions are addressed by the license unless the contributor explicitly states otherwise or another agreement applies | Requires license preservation, modified-file notices, and `NOTICE` handling when applicable | Strong fallback if Oracle policy prefers its patent and notice model |
-| Dual UPL-1.0/Apache-2.0 | Downstream users choose either license | Two patent/compliance regimes | More manifest, packaging, contribution, and support ambiguity | Not recommended without a concrete legal or commercial need |
-| Open source plus a separate commercial license | Can support a future commercial model | Requires centralized ownership or sufficient contributor agreements | Highest governance burden | Defer unless a real dual-licensing strategy exists |
+> Oracle, Java, MySQL, and NetSuite are registered trademarks of Oracle and/or
+> its affiliates. Other names may be trademarks of their respective owners.
 
-## Provisional recommendation
-
-Evaluate **UPL-1.0** first because it aligns with the reviewed
-[`oracle/skills` license at the pinned commit](https://github.com/oracle/skills/blob/b0afa3bfd7c7e3547458d7fe52649ab1b59706b7/LICENSE.txt),
-permits the founder-first self-service use case, includes an express patent
-grant, and keeps the public license model simple. Use **Apache-2.0** as the
-fallback if Oracle Legal/OSS or patent policy prefers defensive patent
-termination and the Apache notice model.
-
-Do not implement either option until the actual rights holder and authorized
-publisher are documented. Repository history, employment, a personal GitHub
-account, or public visibility alone does not establish authority to relicense.
-Do not use a dual license merely to postpone the decision.
-
-## Approval packet
-
-The approvers must record each item below; none should be inferred by a build
-script or repository contributor.
-
-| Decision | Required recorded value |
-|---|---|
-| Project classification | Official Oracle project, Oracle-sponsored preview, or independent/community project |
-| Rights holder | Legal entity or person that owns and can license the original work, including applicable copyright years |
-| Publisher | Public author/developer/publisher identity used in manifests, packages, and release notes |
-| Repository home | Approved personal or organization-owned repository and migration plan, if any |
-| Public license | Canonical license and SPDX identifier: `UPL-1.0` or `Apache-2.0` |
-| Patent review | Approval of the selected patent grant and termination model |
-| Name and marks | Approval or replacement of “OCI Founder Toolkit,” Oracle/OCI references, logos, and visual assets |
-| Contributions | Oracle Contributor Agreement, another CLA, DCO, or closed-contribution policy; merge and release authority |
-| Security | Named owner, confidential external intake, supported versions, disclosure process, and response boundary |
-| Support | Community or Oracle channel, supported versions, lifecycle/deprecation policy, and explicit SLA or no-SLA statement |
-| Distribution | Tag/release owner, namespaces, SBOM/provenance/signing requirements, and compromised-release withdrawal process |
-| Scope and exclusions | Which code, skills, documentation, examples, and assets are covered; explicit exclusions |
-| Evidence | Approver names/roles, dates, and durable links to Legal/OSS, trademark, security, and support decisions |
-
-If the project is Oracle-sponsored, Oracle employees and external contributors
-must follow the contribution process approved for that project. The repository
-must not claim an Oracle publisher, Oracle Contributor Agreement requirement,
-or official status before those decisions are recorded.
-
-## Trademark and internal-material boundary
-
-Neither proposed software license authorizes branding the toolkit as
-Oracle-sponsored or using Oracle logos. The project name, publisher identity,
-branding, and logo/template use require the applicable approval and must not
-imply sponsorship or support that has not been approved. Accurate referential
-text about Oracle and OCI must follow the Oracle trademark guidelines.
+## Internal presentation boundary
 
 The Oracle-template presentation at
-`artifacts/OCI-Founder-Toolkit-Oracle-Template-v11-User-Guide.pptx` remains
-Git-ignored, excluded from every archive, marked `Confidential: Internal`, and
-outside any proposed public software license. Publishing it requires a
-separate content, confidentiality, and brand decision.
+`artifacts/OCI-Founder-Toolkit-Oracle-Template-v11-User-Guide.pptx` remains:
 
-## Implementation after approval
+- an internal, confidential working artifact;
+- ignored by Git;
+- excluded from source control and every public archive;
+- outside the UPL-1.0 grant for this project; and
+- unavailable for public redistribution without a separate Oracle content,
+  confidentiality, and brand decision.
 
-Apply the approved decision atomically rather than changing only `LICENSE`:
+The public repository may describe that boundary but must never embed, attach,
+or publish the internal deck.
 
-1. Replace the evaluation license with the canonical approved text and
-   approved rights-holder notice.
-2. Synchronize the SPDX identifier, publisher, repository, and project status
-   in all three plugin manifests, package builders, validators, tests, README,
-   Quickstart, compatibility, roadmap, and release documentation.
-3. Publish contribution, code-of-conduct, governance, maintainer, security,
-   support, lifecycle, and third-party policies approved for the project.
-4. Include support and security instructions in every distributable archive;
-   regenerate deterministic packages, hashes, manifests, and lifecycle
-   evidence.
-5. Enable the approved confidential vulnerability-reporting path and document
-   a compromised-release withdrawal process.
-6. Publish an immutable preview tag only after its exact revision passes CI,
-   public-coordinate install/remove/reinstall, required SBOM/provenance/signing
-   checks, and the remaining preview gates in `RELEASING.md`.
+## Contribution model
 
-Keep `preview`, `sandbox-only`, `no SLA`, and unqualified-host/field warnings
-where they remain true. A public license grants rights; it does not make the
-toolkit production-ready or supported.
+Contributions are accepted through GitHub issues and pull requests.
+Contributors must have the right to submit their work and submit it under
+UPL-1.0. Oracle-confidential, customer-confidential, and other unauthorized
+third-party material is prohibited.
 
-## Consequences while this ADR is proposed
+The project does not require or imply an Oracle Contributor Agreement. Reusable
+Oracle service procedures should still be proposed to the upstream
+`oracle/skills` project rather than copied into this toolkit.
 
-- `LICENSE` and `LicenseRef-OCI-Founder-Toolkit-Evaluation` remain unchanged.
-- No tag, GitHub release, marketplace listing, public package, or install
-  invitation is authorized.
-- The source may continue to be reviewed under its existing terms.
-- Technical qualification and an OCI sandbox pilot may continue for authorized
-  collaborators under the existing terms, but they do not close the legal,
-  publisher, trademark, security, or support gates.
+## Public-preview boundary
+
+The public license authorizes use, modification, and redistribution. It does
+not establish:
+
+- Oracle Support coverage;
+- a response-time or availability SLA;
+- production readiness;
+- native behavioral qualification across Codex, Cursor Agent, and Claude Code;
+- a fixed price, Free Tier, quota, region, or service guarantee; or
+- live OCI plan, apply, rollback, or teardown evidence.
+
+The planning skill may be published as `0.1.0` while those limitations remain
+explicit. The Container API blueprint remains a separately versioned,
+sandbox-only field preview.
+
+## Distribution decision
+
+Public-preview packages use:
+
+- `status: public-preview`;
+- `license: UPL-1.0`;
+- publisher Daniel Gandolfi;
+- deterministic archives, manifests, and checksums; and
+- immutable tag `v0.1.0` for the first public preview.
+
+The source revision must pass CI before tagging. Release artifacts must be built
+from that exact revision. Security and support policies must be present inside
+the public archives.
+
+## Consequences
+
+Positive:
+
+- founders can install and use the planning skill without individual written
+  authorization;
+- the publisher and support boundary are explicit;
+- the license aligns with the reviewed `oracle/skills` dependency;
+- the project can remain personal without claiming Oracle product status.
+
+Tradeoffs:
+
+- Daniel Gandolfi owns release, security, support, and lifecycle decisions;
+- support remains best effort;
+- public wording must preserve the independent-project and trademark boundary;
+- technical and OCI field qualification remain separate from licensing.
+
+## Superseded state
+
+This decision replaces the restrictive evaluation license and the former
+`LicenseRef-OCI-Founder-Toolkit-Evaluation` identifier. References that treated
+Oracle approval as a prerequisite for this personal repository are superseded.
+Oracle approval remains necessary only for separately publishing the internal
+Oracle-template deck or making an official Oracle sponsorship, branding, or
+support claim.
 
 ## Primary references
 
 - [Universal Permissive License and FAQ](https://oss.oracle.com/licenses/upl/)
 - [SPDX UPL-1.0 identifier](https://spdx.org/licenses/UPL-1.0.html)
-- [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0.html)
-- [Applying Apache License 2.0](https://www.apache.org/legal/apply-license)
 - [Oracle trademark guidelines](https://www.oracle.com/legal/trademarks/)
 - [Oracle logo guidelines](https://www.oracle.com/legal/logos/)
-- [Oracle Contributor Agreement](https://oca.opensource.oracle.com/js/views/home.html)
-- [GitHub repository licensing guidance](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository)
-- [GitHub public-repository license grant](https://docs.github.com/en/site-policy/github-terms/github-terms-of-service#5-license-grant-to-other-users)
 - [GitHub private vulnerability reporting](https://docs.github.com/en/code-security/how-tos/report-and-fix-vulnerabilities/report-privately)

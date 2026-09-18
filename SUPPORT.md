@@ -1,29 +1,30 @@
-# Support status
+# Support
 
-OCI Founder Toolkit `0.1.0` is an evaluation draft with no public support SLA.
-Do not represent it as an Oracle-supported product or marketplace package.
-The public source evaluation preview is
-`https://github.com/danielgandolfi1984/oracle_founder_pack`, but it does not
-contain an approved release, support channel, or support SLA.
+Founder Toolkit for OCI is an independent personal open-source project
+maintained by Daniel Gandolfi. It is not an Oracle product and is not covered
+by Oracle Support.
 
-Current evidence supports:
+For usage questions, documentation problems, and non-sensitive bug reports,
+open a [GitHub issue](https://github.com/danielgandolfi1984/oracle_founder_pack/issues).
+Search existing issues first and include the toolkit version, selected agent,
+operating system, reproduction steps, and redacted output.
 
-- structural validation of the portable skill and three manifests;
-- project-scoped install/list/remove/reinstall with `skills@1.7.0` for Codex,
-  Cursor, and Claude Code destination layouts;
-- native Codex `0.153.4` discovery and one explicit read-only probe;
-- local unit and Terraform provider-schema checks for the separately versioned
-  Container API preview.
+Support is provided on a best-effort community basis. There is no response-time
+commitment, service-level agreement, availability guarantee, or production
+support commitment. A generated plan, successful local validation, or example
+Terraform does not create Oracle Support coverage.
 
-It does not yet support a claim of:
+Do not use a public issue for a suspected vulnerability or for credentials,
+customer information, private OCIDs, Terraform state, or exploit evidence.
+Follow [SECURITY.md](SECURITY.md) instead.
 
-- supported public installation or redistribution;
-- native Cursor Agent or Claude Code compatibility;
-- global-profile lifecycle compatibility;
-- production or highly available Container API deployment;
-- live OCI apply, rollback, or teardown behavior;
-- a fixed price, region, quota, limit, or availability guarantee.
+## Current support boundary
 
-Before any tagged or supported release, replace this evaluation notice with an
-approved ownership, support, versioning, deprecation, and
-vulnerability-response policy.
+The `0.1.x` line provides the public planning skill and local package lifecycle.
+Native Cursor Agent and Claude Code behavioral qualification, global-profile
+lifecycle, and production OCI deployment remain explicitly unqualified. The
+Container API blueprint is a separate sandbox-only preview and has not been
+applied in an OCI tenancy by this project.
+
+See [docs/COMPATIBILITY.md](docs/COMPATIBILITY.md) and
+[docs/VALIDATION.md](docs/VALIDATION.md) for exact evidence and limitations.

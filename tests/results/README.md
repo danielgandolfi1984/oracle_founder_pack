@@ -1,4 +1,17 @@
-# Validation results
+# Founder Toolkit for OCI validation results
+
+Founder Toolkit for OCI is a personal, independent public-preview project
+created and maintained by Daniel Gandolfi, an Oracle employee publishing in his
+personal capacity. The views expressed here are his own and do not represent
+Oracle. This is not an Oracle product and is not sponsored, endorsed,
+maintained, or supported by Oracle.
+
+The project's original public content is licensed under the Universal
+Permissive License 1.0 (`UPL-1.0`); see [`LICENSE`](../../LICENSE). The internal
+Oracle-template presentation remains confidential, is excluded from the public
+repository and every public distribution, and is outside this license grant.
+These records document public-preview evidence; they do not establish Oracle
+qualification, production readiness, or Oracle Support coverage.
 
 This directory records dated behavioral evaluations and machine-readable host
 preflight evidence.
@@ -19,31 +32,31 @@ identifiers, or secret values.
 - [`2026-09-18-host-preflight.json`](2026-09-18-host-preflight.json): current
   read-only host inventory, source and validator-runtime fingerprints,
   environment-allowlist policy, passing development validators, and explicit
-  no-install/no-model/no-cloud-mutation evidence. The fresh receipt passes source
-  validation through the explicit cycle-breaking mode at current skill tree
-  `b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e`
-  and retains `release_qualified: false`.
+  no-install/no-model/no-cloud-mutation evidence. The current receipt passes
+  repository, plugin, and skill validation at skill tree
+  `c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37`.
 - [`2026-09-18-skill-install-lifecycle.json`](2026-09-18-skill-install-lifecycle.json):
-  pinned, one-project-per-agent install/list/remove/reinstall evidence with
-  reviewed npm lock and CLI hashes, exact destination/tree matching, residual
-  allowlists, and unchanged observed global skill targets. The renewed run uses
-  a copied verified npm cache with `npm ci --offline` while retaining lock and
-  package-integrity checks. An empty OpenCode config-directory fixture inside
-  the isolated `XDG_CONFIG_HOME` makes the shared universal `.agents` removal
-  probe deterministic without starting an OpenCode session.
+  current pinned, one-project-per-agent install/list/remove/reinstall evidence
+  across Codex, Cursor, and Claude Code layouts, with reviewed npm lock and CLI
+  hashes, exact destination/tree matching, residual allowlists, and unchanged
+  observed global skill targets. The run uses a copied verified npm cache with
+  `npm ci --offline` while retaining lock and package-integrity checks. An empty
+  OpenCode config-directory fixture inside the isolated `XDG_CONFIG_HOME` makes
+  the shared universal `.agents` removal probe deterministic without starting
+  an OpenCode session.
 - [`2026-09-18-skill-package-install-lifecycle.json`](2026-09-18-skill-package-install-lifecycle.json):
   skill-only archive summary for project-scoped lifecycle across Codex, Cursor,
   and Claude Code layouts. It records archive SHA-256
-  `1e41859b5ac86522356aa922f177189c3f95a1deaba8dae77d6a95e1cd64ab23`,
+  `517c4f6d4d29b35d085d4cf534656608e6c1d7315526563ee632ee5ae9fe7954`,
   verifies skill tree
-  `b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e`,
+  `c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37`,
   and binds the committed exact raw receipt by SHA-256.
 - [`2026-09-18-skill-package-install-lifecycle.raw.json`](2026-09-18-skill-package-install-lifecycle.raw.json):
   exact redacted skill-only archive lifecycle receipt retained by the summary.
 - [`2026-09-18-full-package-install-lifecycle.json`](2026-09-18-full-package-install-lifecycle.json):
   verified full-toolkit archive summary for project-scoped lifecycle across all
   three layouts. It records archive SHA-256
-  `aa332c7555ad88e17f86f99dbd1e33e0f211f48e6e40b980eedb8992c1333790`,
+  `33037edf2783895c03a5e40bb03a0f18468a26945dc7fce8a9e251ea7e75ca80`,
   internal root `oci-founder-toolkit/`, and the same current skill tree, and
   binds the committed exact raw receipt by SHA-256.
 - [`2026-09-18-full-package-install-lifecycle.raw.json`](2026-09-18-full-package-install-lifecycle.raw.json):
@@ -72,10 +85,12 @@ identifiers, or secret values.
   qualification remain `BLOCKED`.
 - [`2026-09-18-skill-revision-assessment.json`](2026-09-18-skill-revision-assessment.json):
   targeted assessment of three content-forward cases against current skill tree
-  `b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e`.
+  `c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37`.
   All three ran in Codex subagent sessions and passed without file writes,
   network calls, OCI commands, or cloud mutations. This is not host-native
-  evidence; formal native and release gates remain `BLOCKED`.
+  evidence; formal Q2/Q3, global-profile lifecycle, native Cursor and Claude
+  Code qualification, live OCI validation, and release qualification remain
+  `BLOCKED`.
 - [`2026-09-18-behavioral-case-index.json`](2026-09-18-behavioral-case-index.json):
   historical 24-case prompt hashes, contracts, evaluators, and evidence paths,
   bound to former skill tree

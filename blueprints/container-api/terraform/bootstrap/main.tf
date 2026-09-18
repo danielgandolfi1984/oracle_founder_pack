@@ -24,7 +24,7 @@ resource "oci_artifacts_container_repository" "api" {
 resource "oci_identity_dynamic_group" "container_instances" {
   compartment_id = var.tenancy_ocid
   name           = local.dynamic_group_name
-  description    = "Sandbox Container Instances for ${var.project_slug}; managed by OCI Founder Toolkit"
+  description    = "Sandbox Container Instances for ${var.project_slug}; generated with Founder Toolkit for OCI"
   matching_rule  = "ALL {resource.type='computecontainerinstance', resource.compartment.id='${var.compartment_id}'}"
   freeform_tags  = local.tags
 }
@@ -64,7 +64,7 @@ resource "oci_budget_alert_rule" "actual" {
   type           = "ACTUAL"
   display_name   = "${var.project_slug}-actual-spend"
   description    = "Notify when actual sandbox spend crosses the configured percentage"
-  message        = "OCI Founder sandbox budget threshold reached. Review resources and expiry tags."
+  message        = "Founder Toolkit for OCI sandbox budget threshold reached. Review resources and expiry tags."
   recipients     = var.budget_recipients
   freeform_tags  = local.tags
 }

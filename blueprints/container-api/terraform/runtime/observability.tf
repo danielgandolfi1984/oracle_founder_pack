@@ -68,7 +68,7 @@ resource "oci_monitoring_alarm" "high_cpu" {
   is_enabled            = true
   pending_duration      = "PT5M"
   destinations          = [oci_ons_notification_topic.alarms.id]
-  body                  = "Sustained high CPU on the OCI Founder sandbox Container Instance."
+  body                  = "Sustained high CPU on the Founder Toolkit for OCI sandbox Container Instance."
   freeform_tags         = local.tags
 }
 
@@ -82,6 +82,6 @@ resource "oci_monitoring_alarm" "high_memory" {
   is_enabled            = true
   pending_duration      = "PT5M"
   destinations          = [oci_ons_notification_topic.alarms.id]
-  body                  = "Sustained high memory use on the OCI Founder sandbox Container Instance."
+  body                  = "Sustained high memory use on the Founder Toolkit for OCI sandbox Container Instance."
   freeform_tags         = local.tags
 }

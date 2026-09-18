@@ -1,4 +1,4 @@
-# OCI Founder Toolkit contributor instructions
+# Founder Toolkit for OCI contributor instructions
 
 ## Mission
 

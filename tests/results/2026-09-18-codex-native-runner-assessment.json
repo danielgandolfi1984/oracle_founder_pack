@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
   "kind": "oci-founder-codex-native-runner-assessment",
-  "observed_at_utc": "2026-09-18T13:07:31Z",
+  "observed_at_utc": "2026-09-18T17:22:26Z",
   "current_runner": {
     "path": "scripts/probe_codex_native.py",
     "sha256": "23617141142c76b7a35496d2cc9af572e2a981b05cff64992061fd402f543c92",
-    "skill_tree_sha256": "b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e",
+    "skill_tree_sha256": "c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37",
     "unit_contract_count": 12,
     "unit_contracts_passed": true,
     "native_rerun_status": "BLOCKED"
@@ -23,7 +23,7 @@
   },
   "renewal": {
     "status": "BLOCKED",
-    "reason": "The hardened runner can now reacquire the reviewed installer from a verified offline npm cache, but a new authenticated model session still requires explicit external-egress authorization.",
+    "reason": "The hardened runner's 12 unit contracts were replayed successfully against the current public-preview tree. A fresh authenticated native model session was not started, so native Q2/Q3 remain blocked rather than being inferred from the license-notice, public-identity, and installed-skill disclaimer revision.",
     "model_session_started": false,
     "cloud_mutation_attempted": false
   },

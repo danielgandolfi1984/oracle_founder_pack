@@ -11,7 +11,7 @@ The path has not yet passed a live-tenancy, idempotency, rollback, or teardown t
 
 ## Decision
 
-Ship `0.2.0-preview.3` as a sandbox-only candidate under the existing evaluation package version.
+Ship `0.2.0-preview.3` as a sandbox-only candidate in the UPL-1.0 public-preview package.
 
 Use two Terraform states:
 

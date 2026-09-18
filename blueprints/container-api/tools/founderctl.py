@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Offline safety helpers for the OCI Founder Container API preview.
+"""Offline safety helpers for the Founder Toolkit for OCI Container API preview.
 
 This tool invokes only the read-only ``terraform show -json`` operation, using
 an argument array and no shell, to bind reviews to exact saved plans. It never
@@ -3580,7 +3580,7 @@ def command_teardown_audit(args: argparse.Namespace) -> int:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Offline contract checks for the OCI Founder Container API preview"
+        description="Offline contract checks for the Founder Toolkit for OCI Container API preview"
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
 

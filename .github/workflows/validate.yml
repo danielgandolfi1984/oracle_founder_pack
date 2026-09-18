@@ -40,10 +40,10 @@ jobs:
           if not isinstance(version, str) or re.fullmatch(r"\d+\.\d+\.\d+", version) is None:
               raise SystemExit("plugin.json version must be strict semver")
           values = {
-              "skill_root": f"oci-founder-skill-{version}-evaluation",
-              "skill_archive": f"oci-founder-skill-{version}-evaluation.tar.gz",
+              "skill_root": f"oci-founder-skill-{version}-preview",
+              "skill_archive": f"oci-founder-skill-{version}-preview.tar.gz",
               "toolkit_root": "oci-founder-toolkit",
-              "toolkit_archive": f"oci-founder-toolkit-{version}-evaluation.tar.gz",
+              "toolkit_archive": f"oci-founder-toolkit-{version}-preview.tar.gz",
           }
           with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
               for key, value in values.items():

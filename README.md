@@ -1,28 +1,31 @@
-# OCI Founder Toolkit
+# Founder Toolkit for OCI
 
 [![Validation](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/workflows/validate.yml/badge.svg?branch=main)](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/workflows/validate.yml)
 
 > Plan your backend's path to OCI with the coding agent you already use.
 
-OCI Founder Toolkit is an agent-native, backend-first path for technical founders and developers who know AWS, Google Cloud, or Azure but are new to Oracle Cloud Infrastructure (OCI).
+Founder Toolkit for OCI is an agent-native, backend-first path for technical
+founders and developers who know AWS, Google Cloud, or Azure but are new to
+Oracle Cloud Infrastructure (OCI).
+
+This is an independent personal project created and maintained by
+[Daniel Gandolfi](https://github.com/danielgandolfi1984), who works at Oracle
+and publishes here in his personal capacity. The views expressed here are his
+own and do not represent Oracle. This is not an Oracle product and is not
+sponsored, endorsed, maintained, or supported by Oracle.
 
 The toolkit is not another OCI service encyclopedia. It composes official Oracle knowledge into opinionated founder journeys: understand an existing repository, translate familiar cloud concepts, choose a small architecture, establish guardrails, ship, verify, operate, and eventually tear down or graduate.
 
 ## Start here: first OCI recommendation in about 10 minutes
 
-The current public artifact is a source evaluation preview. If you already have
-the written evaluation authorization required by [`LICENSE`](LICENSE), you can
-install its planning skill in one backend repository without an OCI tenancy,
-OCI CLI, credentials, or cloud changes:
+The `0.1.0` planning skill is a public preview under the
+[UPL-1.0](LICENSE). Install it in one backend repository without an OCI
+tenancy, OCI CLI, credentials, or cloud changes:
 
 ```bash
-git clone https://github.com/danielgandolfi1984/oracle_founder_pack.git oci-founder-toolkit
-cd oci-founder-toolkit
-git rev-parse HEAD
-python3 -B scripts/validate.py
-
 cd /absolute/path/to/your-backend
-npx --yes skills@1.7.0 add /absolute/path/to/oci-founder-toolkit \
+npx --yes skills@1.7.0 add \
+  'https://github.com/danielgandolfi1984/oracle_founder_pack#v0.1.0' \
   --skill oci-founder -a codex --copy -y
 npx --yes skills@1.7.0 list -a codex --json
 ```
@@ -46,17 +49,17 @@ expected output, use-case prompts, updating, removal, and troubleshooting.
 
 ## Help and security status
 
-- **[Get help](SUPPORT.md):** review the current support boundary before relying
-  on the toolkit. This evaluation has no approved public support channel or SLA.
-- **[Report a vulnerability](SECURITY.md):** follow the current security policy.
-  Do not disclose vulnerability details, credentials, private OCIDs, Terraform
-  state, or exploit evidence in a public GitHub issue; no public confidential
-  intake has been approved yet.
+- **[Get help](SUPPORT.md):** use GitHub Issues for best-effort community help.
+  There is no SLA or Oracle Support coverage.
+- **[Report a vulnerability](SECURITY.md):** use GitHub private vulnerability
+  reporting. Never disclose vulnerability details, credentials, private OCIDs,
+  Terraform state, or exploit evidence in a public issue.
 
 ## Status
 
-This repository publishes a **source evaluation preview**, not a supported
-public release. The portable skill remains at `0.1.0`; the separately versioned
+This repository publishes an independent **public preview**, not an
+Oracle-supported or production-qualified product. The portable skill is
+versioned `0.1.0` and licensed under UPL-1.0; the separately versioned
 [`0.2.0-preview.3` Container API blueprint](blueprints/container-api/README.md)
 is sandbox-only and has not been applied in an OCI tenancy.
 
@@ -68,16 +71,15 @@ The subsequent founder-onboarding baseline
 also passed in
 [run 35359228279](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35359228279).
 Those runs close the remote source-CI gap for their exact revisions, but not
-native Cursor/Claude qualification, cross-host behavioral replay, licensing,
-support, or live OCI field validation.
+native Cursor/Claude qualification, cross-host behavioral replay, support
+commitments, or live OCI field validation.
 See the [validation record](docs/VALIDATION.md) for hashes, receipts, Q0–Q4
 status, and remaining gates.
 
-There is no immutable tag, GitHub release, marketplace entry, registry
-coordinate, package coordinate, or general public-use license. Public visibility
-does not authorize installation or execution. Only reviewers who already have
-written authorization from the project owner or Oracle may follow the evaluation
-commands. No public authorization-request channel has been approved yet.
+The `v0.1.0` tag and GitHub release are the immutable public-preview coordinate.
+There is no marketplace or registry coordinate. Public use, modification, and
+redistribution are governed by UPL-1.0; technical limitations and the no-SLA
+support boundary still apply.
 
 ## What works today
 
@@ -87,7 +89,7 @@ commands. No public authorization-request channel has been approved yet.
 | Review or generate the Container API sandbox path | Available in the full source checkout | Explicit request plus `blueprints/container-api` | No live OCI plan/apply/rollback/destroy evidence; not production-ready |
 | Plan a Function API and route an operational procedure | Planning available | Reviewed `oracle/skills` checkout and verified Functions skills for execution | The portable skill alone fails closed at planning level |
 | Plan OKE, Enterprise AI, or Oracle Database work | Orientation and routing available | Separately verified official Oracle domain skill | This toolkit does not duplicate the service procedure |
-| Claim a supported production deployment | Not available | Native host, legal/support, security, and live field gates | A green CI run or generated Terraform is not production evidence |
+| Claim a supported production deployment | Not available | Native host, operational support, security, and live field gates | A green CI run or generated Terraform is not production evidence |
 
 ## Guided founder documentation
 
@@ -98,13 +100,13 @@ commands. No public authorization-request channel has been approved yet.
 | Decode tenancy, compartments, VCNs, OCIDs, identities, budgets, quotas, and other OCI terms | [OCI glossary](docs/GLOSSARY.md) |
 | Establish the minimum identity, network, cost, observability, delivery, and teardown guardrails | [Founder Baseline](docs/FOUNDER-BASELINE.md) |
 | Check exact evidence, open gates, or release status | [Validation record](docs/VALIDATION.md) and [compatibility matrix](docs/COMPATIBILITY.md) |
-| Understand why public installation is still blocked and prepare the Oracle decision | [Proposed license and publisher ADR](docs/decisions/0003-public-license-and-publisher.md) |
+| Review the personal publisher, license, support, and brand decision | [Accepted license and publisher ADR](docs/decisions/0003-public-license-and-publisher.md) |
 
 ## Why this exists
 
 Cloud-experienced founders usually do not lack backend skills. They lack an OCI mental model at the exact moment they need to make architecture, IAM, networking, and cost decisions. General coding agents often reinforce the AWS/GCP/Azure concepts that dominate public examples.
 
-OCI Founder Toolkit closes that gap with three layers:
+Founder Toolkit for OCI closes that gap with three layers:
 
 1. **Founder journey** — a short path from repository to verified endpoint.
 2. **Translation** — explicit mappings and important non-equivalences between clouds.
@@ -175,18 +177,19 @@ The verifier checks the locked commit, reviewed trees, clean worktree, and
 real `oracle/skills` checkout in this workspace, so no successful checkout
 receipt is claimed.
 
-## Install this evaluation draft
+## Install the public preview
 
-There is no public package coordinate or immutable release tag yet. For an
-authorized evaluation, clone the public source preview and record the exact
-commit before installing it project-scoped in the backend being evaluated:
+Use the immutable `v0.1.0` source tag directly, or clone that tag when you want
+to inspect and validate the complete toolkit before installation:
 
 Prerequisites: Git, Python 3.9 or newer for local validation, Node.js
 `>=22.20.0` with `npx` for the pinned Agent Skills CLI, and the selected coding
 agent already installed and authenticated.
 
 ```bash
-git clone https://github.com/danielgandolfi1984/oracle_founder_pack.git oci-founder-toolkit
+git clone --branch v0.1.0 --depth 1 \
+  https://github.com/danielgandolfi1984/oracle_founder_pack.git \
+  oci-founder-toolkit
 cd oci-founder-toolkit
 git rev-parse HEAD
 python3 -B scripts/validate.py
@@ -215,6 +218,10 @@ npx --yes skills@1.7.0 list -a codex --json
 
 The final line verifies the Codex example. Replace `codex` there with the same
 agent selected by the add command.
+
+Alternatively, install directly from the immutable tag by replacing the local
+path in exactly one command with
+`https://github.com/danielgandolfi1984/oracle_founder_pack#v0.1.0`.
 
 `npx` can still resolve ranged transitive dependencies differently over time.
 These end-user commands therefore are not a bit-for-bit replay of the formal
@@ -325,7 +332,7 @@ OKE is a graduation path, not the default. The official upstream OKE skills alre
 ├── docs/USE-CASES.md                  # Copyable founder/developer recipes
 ├── docs/FOUNDER-BASELINE.md           # Minimum governance, cost, and safety baseline
 ├── docs/                              # Product, architecture, roadmap, decisions
-├── packaging/                         # Archive-specific evaluation readmes
+├── packaging/                         # Archive-specific public-preview readmes
 ├── schemas/                           # Reviewed Agent Plugins schema snapshot
 ├── upstream/                          # Oracle Skills provenance and lock
 ├── scripts/build_release.py           # Deterministic allowlisted package builder
@@ -353,8 +360,9 @@ python3 scripts/qualify_skill_install.py --allow-download
 
 The release and repository-source secret scan passes locally. The renewed
 read-only host-preflight receipt passes source validation at the current skill
-fingerprint and records `release_qualified: false`; it does not close any
-native-host or public-release gate.
+fingerprint and records `release_qualified: false`; that field means the
+toolkit is not qualified as a supported cross-host or production release. It
+does not prohibit the clearly scoped UPL-licensed public preview.
 
 The native Codex probe is intentionally separate from passive validation: it
 acquires only the reviewed installer lock contents, either through an explicit
@@ -436,3 +444,13 @@ The latest review and the resulting open gates are recorded in
 - [OCI Terraform Provider](https://docs.oracle.com/en-us/iaas/Content/dev/terraform/home.htm)
 - [Open Agent Skills specification](https://agentskills.io/specification)
 - [Agent Plugins specification](https://agent-plugins.org/specification)
+
+## License and trademarks
+
+Copyright (c) 2026 Daniel Gandolfi. Licensed under the
+[Universal Permissive License 1.0](LICENSE).
+
+Oracle, Java, MySQL, and NetSuite are registered trademarks of Oracle and/or
+its affiliates. Other names may be trademarks of their respective owners.
+Oracle and OCI names are used descriptively to identify the platform this
+independent toolkit works with; no sponsorship or endorsement is implied.

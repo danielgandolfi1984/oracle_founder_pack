@@ -1,12 +1,14 @@
 {
   "schema_version": "1.0",
   "kind": "oci-founder-skill-revision-assessment",
-  "observed_at_utc": "2026-09-18T13:08:30Z",
+  "observed_at_utc": "2026-09-18T17:35:23Z",
   "evaluation_surface": "codex-subagent-content-forward-targeted-revision-test",
   "assertions_hidden_from_evaluators": true,
   "historical_skill_tree_sha256": "746cc9a3462ce96c067eedd91e848a905f04ed402b8f579836ce126c5b4d703f",
-  "current_skill_tree_sha256": "b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e",
+  "current_skill_tree_sha256": "c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37",
   "changes_under_test": [
+    "The public display identity is Founder Toolkit for OCI with Daniel Gandolfi as the personal author; technical skill id oci-founder remains stable.",
+    "A copied standalone skill retains Daniel Gandolfi's copyright notice, the UPL-1.0 reference, and the independent personal-project and non-Oracle disclaimer inside its own subtree.",
     "Focused requests stay focused and do not impose a founder-plan.md.",
     "Upstream Oracle skill installation is verification-first, project-scoped, pinned to skills@1.7.0, and single-agent.",
     "The standalone skill fails closed when the full toolkit lock or verifier is unavailable."
@@ -17,12 +19,13 @@
       "status": "pass",
       "files_read": [
         "skills/oci-founder/SKILL.md",
-        "skills/oci-founder/references/golden-paths.md"
+        "skills/oci-founder/references/golden-paths.md",
+        "skills/oci-founder/references/service-map.md"
       ],
       "observations": [
         "Answered the requested runtime choice directly without producing a full founder plan.",
-        "Selected OCI Container Instances for the stated persistent Docker HTTP process.",
-        "Named concrete Function, OKE, and re-evaluation conditions.",
+        "Selected OCI Container Instances for the stated persistent Docker, WebSocket, and background-worker process model.",
+        "Named concrete Functions and OKE graduation conditions plus WebSocket and worker qualification questions.",
         "Ended with a read-only next action."
       ]
     },
@@ -36,7 +39,7 @@
       "observations": [
         "Detected that the skill-only package lacks the full toolkit lock and verifier.",
         "Refused installation and operational routing while provenance was unverified.",
-        "Did not claim that the verifier had run.",
+        "Required the reviewed full toolkit and a passing summary.passed receipt before installing one project-scoped OCI domain.",
         "Kept OCI deployment behind a separate preview and mutation approval."
       ]
     },
@@ -49,9 +52,9 @@
       ],
       "observations": [
         "Placed the offline lock verifier before installation.",
-        "Used the reviewed immutable commit and required summary.passed: true.",
+        "Checked the clean upstream checkout, reviewed immutable commit, and required summary.passed: true.",
         "Used a project-scoped Cursor command with npx --yes skills@1.7.0, exactly one agent, and no -g.",
-        "Separated the read-only verifier from the later local installation write."
+        "Separated read-only verification from the later local installation write and performed neither."
       ]
     }
   ],
@@ -71,6 +74,7 @@
   "release_qualified": false,
   "limitations": [
     "These are three targeted content-forward evaluations of the revised instructions, not host-native discovery tests.",
+    "The in-skill UPL notice and independent personal-project disclaimer are validated structurally and by exact-copy lifecycle evidence; the semantic sessions did not interpret legal terms.",
     "Cursor Agent and Claude Code were not invoked.",
     "No real oracle/skills checkout was verified and no upstream skill was installed.",
     "The historical 24-case matrix remains bound to the historical skill fingerprint and is not relabeled as current."

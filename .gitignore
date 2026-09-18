@@ -29,6 +29,6 @@ __pycache__/
 .pptx-build/
 dist/
 
-# Presentation artifacts use Oracle-internal branding and remain local until
-# brand and redistribution approval explicitly clears a public deck.
+# Presentation artifacts use Oracle-internal branding and remain local,
+# confidential, and outside this personal project's public distribution.
 artifacts/*

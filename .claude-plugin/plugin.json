@@ -2,6 +2,12 @@
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "oci-founder-toolkit",
   "version": "0.1.0",
-    "description": "Guide backend-first OCI journeys with portable agent skills, official Oracle guidance, and explicit mutation gates.",
-  "license": "LicenseRef-OCI-Founder-Toolkit-Evaluation"
+  "description": "Guide backend-first OCI journeys with an independent portable skill, official Oracle guidance, and explicit mutation gates.",
+  "author": {
+    "name": "Daniel Gandolfi",
+    "url": "https://github.com/danielgandolfi1984"
+  },
+  "homepage": "https://github.com/danielgandolfi1984/oracle_founder_pack",
+  "repository": "https://github.com/danielgandolfi1984/oracle_founder_pack",
+  "license": "UPL-1.0"
 }

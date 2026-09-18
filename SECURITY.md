@@ -1,23 +1,31 @@
-# Security status
+# Security policy
 
-OCI Founder Toolkit is an unlicensed evaluation draft, not a supported public
-product. It has no approved public security contact or vulnerability-response
-SLA. That missing ownership is a public-release blocker, not a field to invent.
+Founder Toolkit for OCI is an independent personal open-source project, not an
+Oracle product. Security reports are handled by Daniel Gandolfi, the project
+maintainer, on a best-effort basis and are not covered by Oracle Support or an
+Oracle response SLA.
 
-Authorized Oracle reviewers should report suspected vulnerabilities through an
-approved internal Oracle security channel and must not include credentials,
-private keys, tokens, customer identifiers, private OCIDs, Terraform state, or
-secret values in an issue or repository artifact.
+## Reporting a vulnerability
 
-External reviewers must not disclose vulnerability details, exploit steps, or
-sensitive evidence in a public GitHub issue. GitHub private vulnerability
-reporting is not enabled for this repository and no public confidential intake
-or response owner has been approved. That is an explicit release blocker; it is
-not permission to substitute a public issue or an invented contact address.
+Use the repository's
+[private vulnerability reporting](https://github.com/danielgandolfi1984/oracle_founder_pack/security/advisories/new)
+for a suspected vulnerability. Do not open a public issue containing exploit
+details, credentials, private keys, auth tokens, customer information, private
+OCIDs, Terraform state, or other sensitive evidence.
 
-## Evaluation safety boundary
+Include the affected version, impact, reproduction steps, and a minimal
+redacted proof of concept. The maintainer will acknowledge and triage reports
+as availability permits; no response or remediation time is guaranteed.
 
-- Read-only assessment and local generation are the defaults.
+## Supported versions
+
+Only the latest published `0.1.x` release is eligible for best-effort security
+fixes. Source snapshots, prerelease blueprints, older releases, and unmodified
+third-party dependencies may be out of scope.
+
+## Safety boundary
+
+- Read-only assessment and planning are the defaults.
 - OCI writes, IAM changes, apply, and destroy require an exact preview and
   explicit approval immediately before the mutation.
 - Destructive scope must come from reviewed state and deployment receipts, not
@@ -25,8 +33,8 @@ not permission to substitute a public issue or an invented contact address.
 - Secrets belong in an approved secret manager and must not be copied into
   source, examples, images, Terraform variables/state, logs, or receipts.
 - The Container API path is sandbox-only and has not been exercised in an OCI
-  tenancy.
+  tenancy by this project.
 
-The repository's checks are defense-in-depth, not a substitute for Oracle's
-formal security review. See [`docs/RELEASING.md`](docs/RELEASING.md) for the
-remaining public-release gates.
+The repository's checks are defense-in-depth, not a substitute for a security
+review of a user's application or OCI environment. See
+[docs/RELEASING.md](docs/RELEASING.md) for the remaining qualification gates.

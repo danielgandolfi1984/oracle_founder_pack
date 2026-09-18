@@ -1,4 +1,15 @@
-# Founder and developer recipes
+# Founder Toolkit for OCI: founder and developer recipes
+
+Founder Toolkit for OCI is a personal, independent public-preview project
+created and maintained by Daniel Gandolfi, an Oracle employee publishing in his
+personal capacity. The views expressed here are his own and do not represent
+Oracle. This is not an Oracle product and is not sponsored, endorsed,
+maintained, or supported by Oracle.
+
+The project's original public content is licensed under the Universal
+Permissive License 1.0 (`UPL-1.0`); see [`LICENSE`](../LICENSE). The internal
+Oracle-template presentation remains confidential, is excluded from the public
+repository and every public distribution, and is outside this license grant.
 
 Use these recipes after installing the `oci-founder` skill in the backend
 repository you want to evaluate. They are written for founders and developers

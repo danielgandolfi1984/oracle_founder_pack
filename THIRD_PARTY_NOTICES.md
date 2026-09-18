@@ -1,11 +1,10 @@
 # Third-party notices
 
-## Toolkit licensing status
+## Toolkit license
 
-The OCI Founder Toolkit itself is an unlicensed evaluation draft. No public-use
-license has been selected. See [`LICENSE`](LICENSE). The UPL-1.0 notice below
-applies to the upstream Oracle Skills project, not to this toolkit's original
-content.
+Founder Toolkit for OCI original content is Copyright (c) 2026 Daniel Gandolfi
+and licensed under the Universal Permissive License 1.0 (UPL-1.0). See
+[`LICENSE`](LICENSE).
 
 ## Oracle Skills
 
@@ -15,7 +14,10 @@ content.
 - License: Universal Permissive License 1.0 (UPL-1.0)
 - License text: https://github.com/oracle/skills/blob/b0afa3bfd7c7e3547458d7fe52649ab1b59706b7/LICENSE.txt
 
-No Oracle Skills files are vendored in this source tree at version `0.1.0`. The project is an external source and install-time dependency. If a future distribution bundles selected upstream files, that distribution must include the corresponding UPL license text, source provenance, and checksums.
+No Oracle Skills files are vendored in this source tree at version `0.1.0`.
+The project is an external source and install-time dependency. If a future
+distribution bundles selected upstream files, that distribution must include
+the corresponding UPL license text, source provenance, and checksums.
 
 ## Agent Plugins manifest schema
 
@@ -29,7 +31,7 @@ No Oracle Skills files are vendored in this source tree at version `0.1.0`. The 
 - License mapping: https://github.com/agentplugins/agent-plugins-spec/blob/main/LICENSE.md
 
 The schema snapshot is included only in the source repository for deterministic
-manifest validation. It is not included in the runtime evaluation archives.
+manifest validation. It is not included in the runtime packages.
 
 ## PyYAML
 
@@ -39,6 +41,6 @@ manifest validation. It is not included in the runtime evaluation archives.
 - License: MIT
 
 PyYAML is a pinned development-validator dependency and is not vendored or
-included in the runtime evaluation archives. The reviewed macOS/Python 3.9 and
-Linux/Python 3.12 wheel hashes are recorded in
+included in the runtime packages. The reviewed macOS/Python 3.9 and Linux
+x86_64/Python 3.12 wheel hashes are recorded in
 `requirements-validation.txt`.

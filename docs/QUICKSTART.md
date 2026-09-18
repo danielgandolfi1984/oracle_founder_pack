@@ -1,4 +1,4 @@
-# OCI Founder Toolkit quickstart
+# Founder Toolkit for OCI quickstart
 
 Use this guide to give Codex, Cursor, or Claude Code the `oci-founder` skill in
 one backend repository and get a planning-only OCI recommendation. The install
@@ -6,12 +6,10 @@ and first prompt do not require an OCI tenancy, OCI CLI, or OCI credentials.
 The installer writes project-scoped skill metadata; the read-only first prompt
 does not modify application source or provision cloud resources.
 
-This repository currently publishes a **source evaluation preview**, not a
-tagged or supported release. Follow the installation steps only if you already
-have the written evaluation authorization required by [`LICENSE`](../LICENSE).
-Public visibility alone is not authorization, and no public authorization
-request channel has been approved. Authorized reviewers should record the
-commit they evaluate and keep the installation project-scoped.
+This repository publishes an independent **public preview** under
+[UPL-1.0](../LICENSE). It is a personal project by Daniel Gandolfi, not an
+Oracle product, and has no Oracle Support coverage or SLA. Use the immutable
+`v0.1.0` tag and keep the installation project-scoped.
 
 ## 1. Check the prerequisites
 
@@ -30,16 +28,17 @@ state into an agent prompt. None are needed for this quickstart.
 ## 2. Clone and validate the exact source
 
 ```bash
-git clone https://github.com/danielgandolfi1984/oracle_founder_pack.git oci-founder-toolkit
+git clone --branch v0.1.0 --depth 1 \
+  https://github.com/danielgandolfi1984/oracle_founder_pack.git \
+  oci-founder-toolkit
 cd oci-founder-toolkit
 git rev-parse HEAD
 python3 -B scripts/validate.py
 ```
 
-Save the commit printed by `git rev-parse HEAD` with your evaluation notes. Do
-not continue if validation fails. Recording a moving `main` commit tells you
-what you evaluated; it does not turn that commit into an approved immutable
-release coordinate.
+Save the commit printed by `git rev-parse HEAD` with your notes. Do not continue
+if validation fails. The tag is the readable release coordinate; the printed
+40-character commit is the immutable source identity.
 
 ## 3. Install in one backend and for one agent
 
@@ -67,6 +66,13 @@ The command copies the skill into the current backend. It does not install it
 globally. Do not run all three commands in the same project: Cursor can discover
 several compatible skill directories, and duplicate-name precedence has not
 been qualified.
+
+To skip the local checkout, replace `/absolute/path/to/oci-founder-toolkit` in
+exactly one add command with the immutable source coordinate:
+
+```text
+https://github.com/danielgandolfi1984/oracle_founder_pack#v0.1.0
+```
 
 Pinning `skills@1.7.0` fixes the top-level installer version, but `npx` can
 resolve ranged transitive dependencies differently over time. This convenience
@@ -176,12 +182,12 @@ automatic apply.
 
 ## 7. Update or remove the local copy
 
-Review and validate a newer source commit before replacing the skill:
+Review and validate a newer release tag before replacing the skill. Replace
+`v0.1.0` below with the new tag you intend to adopt:
 
 ```bash
-git -C /absolute/path/to/oci-founder-toolkit fetch origin
-git -C /absolute/path/to/oci-founder-toolkit log --oneline HEAD..origin/main
-git -C /absolute/path/to/oci-founder-toolkit pull --ff-only
+git -C /absolute/path/to/oci-founder-toolkit fetch --tags origin
+git -C /absolute/path/to/oci-founder-toolkit checkout --detach v0.1.0
 python3 -B /absolute/path/to/oci-founder-toolkit/scripts/validate.py
 ```
 
@@ -230,11 +236,11 @@ reviewed full toolkit checkout available for the blueprint, or follow the
 verified upstream flow in the main [`README`](../README.md) before operational
 routing.
 
-### You expected a one-line public package install
+### You expected a marketplace install
 
-No immutable GitHub release, marketplace entry, or registry coordinate exists
-yet. The currently qualified evaluation flow is clone, validate, record the
-commit, and install a project-scoped copy from the local checkout.
+No marketplace or registry coordinate exists yet. Use the immutable GitHub tag
+directly or download the archive, checksum, and manifest from the `v0.1.0`
+GitHub release. Native full-plugin marketplace installation remains unqualified.
 
 ## Continue from here
 

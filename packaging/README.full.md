@@ -1,14 +1,14 @@
-# OCI Founder Toolkit — full evaluation package
+# Founder Toolkit for OCI — full public preview
 
-This archive contains the portable `oci-founder` skill plus the sandbox-only
-Container API blueprint. It is not a public release, marketplace package, or
-production-supported deployment path. It grants no public-use or redistribution
-rights. Read `LICENSE` before using or sharing it.
+This public-preview archive contains the portable `oci-founder` skill plus the
+sandbox-only Container API blueprint. It is licensed under UPL-1.0 and may be
+used, modified, and redistributed under that license. It is not a marketplace
+package or production-supported deployment path. Read `LICENSE` before use.
 
-The public source evaluation preview is
-`https://github.com/danielgandolfi1984/oracle_founder_pack`. Public source
-access does not make this archive an approved release; use only a reviewed
-commit whose identity you recorded before installation.
+This is an independent personal project by Daniel Gandolfi. It is not an Oracle
+product and is not sponsored, endorsed, maintained, or supported by Oracle. It
+has no SLA or Oracle Support coverage. Source and releases:
+`https://github.com/danielgandolfi1984/oracle_founder_pack`.
 
 ## Package contents
 
@@ -31,7 +31,7 @@ agent and use the absolute path to this extracted directory:
 Prerequisite: Node.js `>=22.20.0` with `npx`.
 
 ```bash
-# Codex (project-scoped evaluation)
+# Codex (project-scoped preview)
 npx --yes skills@1.7.0 add /absolute/path/to/oci-founder-toolkit \
   --skill oci-founder -a codex --copy -y
 
@@ -120,9 +120,9 @@ obtained deliberately and passes the included verifier.
 
 - **Get help:** read the current
   [support status](https://github.com/danielgandolfi1984/oracle_founder_pack/blob/main/SUPPORT.md).
-  This evaluation has no approved public support channel or SLA.
+  Community support is best effort and has no SLA or Oracle Support coverage.
 - **Report a vulnerability:** read the current
   [security status](https://github.com/danielgandolfi1984/oracle_founder_pack/blob/main/SECURITY.md).
-  Do not disclose vulnerability details, credentials, private OCIDs, Terraform
-  state, or exploit evidence in a public GitHub issue. No public confidential
-  intake has been approved yet.
+  Use GitHub private vulnerability reporting. Do not disclose vulnerability
+  details, credentials, private OCIDs, Terraform state, or exploit evidence in
+  a public GitHub issue.

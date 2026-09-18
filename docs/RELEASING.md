@@ -1,36 +1,42 @@
-# Evaluation and release procedure
+# Public-preview and release procedure
 
-This procedure can produce a locally verified evaluation candidate. It cannot
-authorize a tagged or supported public release. The public source preview
-remains under the restrictive evaluation `LICENSE`; packages, marketplace
-publication, and broader use or redistribution rights remain blocked until
-Oracle legal, OSS, naming, trademark, security, support, and repository
-ownership gates are resolved.
+This repository is an independent personal project published by Daniel
+Gandolfi under the Universal Permissive License 1.0 (`UPL-1.0`). Daniel works at
+Oracle, but publishes this toolkit in his personal capacity. It is not an
+Oracle product and is not sponsored, endorsed, maintained, or supported by
+Oracle. The project has no Oracle Support coverage, warranty, service-level
+agreement, or production-readiness commitment.
 
-A source evaluation preview is published from `main` at
-[`danielgandolfi1984/oracle_founder_pack`](https://github.com/danielgandolfi1984/oracle_founder_pack),
-but no immutable tag, GitHub release, marketplace entry, registry coordinate,
-or package coordinate exists. Public source access is not an open-source
-license or a supported-release approval and does not close legal, OSS,
-publisher, support, or Oracle repository-ownership gates.
+The UPL authorizes public use, modification, and redistribution under its
+terms. It does not qualify a host, architecture, package coordinate, or OCI
+deployment, and it does not authorize Oracle logos or imply Oracle sponsorship.
+Technical claims remain bounded by the evidence in this procedure.
 
-The proposed
-[public-license and publisher decision](decisions/0003-public-license-and-publisher.md)
-defines the approval packet, compares UPL-1.0 with Apache-2.0, and separates
-public source, installable public preview, and Oracle-supported release. It is
-decision preparation only; it does not change the current license.
+The source is published from `main` at
+[`danielgandolfi1984/oracle_founder_pack`](https://github.com/danielgandolfi1984/oracle_founder_pack).
+The `v0.1.0` tag and matching GitHub prerelease are the immutable public-preview
+coordinate after the exact source revision passes CI. They are not a
+marketplace, registry, stable, or cross-host-qualified release.
+
+The
+[license and publisher decision](decisions/0003-public-license-and-publisher.md)
+records the independent-project classification, Daniel Gandolfi as publisher,
+and the distinction between an installable personal public preview and an
+Oracle-supported product.
 
 ## Candidate types
 
 | Candidate | Contents | Intended use |
 |---|---|---|
-| Skill-only | `skills/oci-founder`, evaluation README, license, notices | Planning, translation, and routing evaluation |
-| Full toolkit | Portable skill, three manifests, Container API preview, upstream review lock, license, notices | Reviewed sandbox evaluation with the executable preview present |
+| Skill-only | `skills/oci-founder`, preview README, license, security/support guidance, notices | Public planning, translation, and routing preview |
+| Full toolkit | Portable skill, three manifests, Container API preview, upstream review lock, license, security/support guidance, notices | Personal public preview with the sandbox-only executable path present |
 
 Neither archive contains presentations. The canonical Oracle-template deck is
 maintained locally at `artifacts/OCI-Founder-Toolkit-Oracle-Template-v11-User-Guide.pptx`.
-It is marked `Confidential: Internal`, remains Git-ignored, and requires an
-explicit redistribution/brand decision before public distribution.
+It is marked `Confidential: Internal`, remains Git-ignored, is outside the
+public UPL distribution, and must not be published. Any future distribution of
+that deck requires a separate Oracle content, confidentiality, and brand
+decision.
 
 ## Local release gate
 
@@ -58,11 +64,13 @@ with lifecycle scripts disabled, verifies the package manifest and executable
 hashes before use, and operates in disposable project repositories. It does not
 qualify a global user profile or native host discovery.
 
-The current lifecycle evidence was renewed by copying a verified npm cache into
-disposable state and running `npm ci --offline`. Dependency-lock, package
-integrity, manifest, and executable-hash checks remained active. The local
-secret scan covers both release allowlists and the repository source tree, and
-passes.
+The current source and package lifecycle evidence was produced by copying a
+verified npm cache into disposable state and running `npm ci --offline`.
+Dependency-lock, package-integrity, manifest, and executable-hash checks
+remained active. Source plus both preview packages passed project-scoped
+install/list/remove/reinstall lifecycle across all three supported layouts.
+The local secret scan covers both release allowlists and the repository source
+tree.
 
 To verify an already-present reviewed Oracle Skills checkout without network or
 mutation, run:
@@ -116,9 +124,9 @@ Current assessment:
 [`tests/results/2026-09-18-codex-native-runner-assessment.json`](../tests/results/2026-09-18-codex-native-runner-assessment.json).
 The separate
 [`targeted current-skill assessment`](../tests/results/2026-09-18-skill-revision-assessment.json)
-passes three content-forward cases at skill tree
-`b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e`;
-it is not a native replay and does not close either formal gate.
+passes three content-forward cases at current skill tree
+`c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37`.
+It is not a native replay and does not close either formal gate.
 
 For the installed Skill Creator and Plugin Creator development validators,
 prepare an isolated dependency directory with the reviewed wheel hashes:
@@ -149,23 +157,25 @@ verifies both sets, and requires byte-for-byte equality. Each archive has a
 `.sha256` file and a `.manifest.json` inventory containing every member's path,
 source path, mode, size, and SHA-256 digest.
 
-The full-toolkit artifact remains versioned as
-`oci-founder-toolkit-0.1.0-evaluation.tar.gz`, but extracts into the stable
-`oci-founder-toolkit/` root that matches the plugin manifest name. Extract it
-into a clean parent directory so files from an older candidate cannot remain in
-that stable root.
+The public-preview package names are
+`oci-founder-skill-0.1.0-preview.tar.gz` and
+`oci-founder-toolkit-0.1.0-preview.tar.gz`. The full toolkit extracts into the
+stable `oci-founder-toolkit/` root that matches the plugin manifest name.
+Extract it into a clean parent directory so files from an older candidate
+cannot remain in that stable root.
 
 The current skill-only archive SHA-256 is
-`1e41859b5ac86522356aa922f177189c3f95a1deaba8dae77d6a95e1cd64ab23`.
+`517c4f6d4d29b35d085d4cf534656608e6c1d7315526563ee632ee5ae9fe7954`.
 The current full-toolkit archive SHA-256 is
-`aa332c7555ad88e17f86f99dbd1e33e0f211f48e6e40b980eedb8992c1333790`.
+`33037edf2783895c03a5e40bb03a0f18468a26945dc7fce8a9e251ea7e75ca80`.
 The renewed
 [skill-only summary](../tests/results/2026-09-18-skill-package-install-lifecycle.json),
 [skill-only raw receipt](../tests/results/2026-09-18-skill-package-install-lifecycle.raw.json),
 [full-toolkit summary](../tests/results/2026-09-18-full-package-install-lifecycle.json)
 and [full-toolkit raw receipt](../tests/results/2026-09-18-full-package-install-lifecycle.raw.json)
-are current and bind these archives, their manifests and inventories, and the
-installed skill tree to the current source fingerprint.
+bind these `-preview` archives, their manifests and inventories, and current
+skill fingerprint
+`c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37`.
 
 To qualify an extracted full-toolkit archive rather than the development tree:
 
@@ -174,23 +184,31 @@ python3 scripts/qualify_skill_install.py --allow-download \
   --source /absolute/path/to/extracted/oci-founder-toolkit
 ```
 
-Do not publish `dist/`. These files are evaluation artifacts under the current
-license.
+Do not publish an ad hoc local `dist/` directory. Publish only artifacts built
+from the immutable preview revision, verified against their manifests and
+checksums, and attached to the matching tag or release coordinate.
 
-The renewed read-only host-preflight receipt passes source validation through
-the explicit cycle-breaking mode at the current skill fingerprint and still
-records `release_qualified: false`. Archive lifecycle and preflight renewal do
-not replace native host, public-coordinate, license, or OCI field gates.
+The current read-only host-preflight receipt passes source validation through
+the explicit cycle-breaking mode and passes the available development
+validators at the current skill fingerprint. It records
+`release_qualified: false`. Archive lifecycle and preflight evidence do not
+replace native-host, public-coordinate, or OCI field gates.
 
-## Public-release gates
+## Public-preview and qualification gates
 
-Every item below must have durable evidence before the word "public" or
-"generally available" is used:
+The UPL makes the source public and reusable; the word `public` is not itself a
+technical qualification claim. Before publishing an immutable public-preview
+package, items 1–2, the pre-tag portion of item 5, and item 6a below need
+durable evidence. The remote-coordinate portion of item 5 is necessarily run
+after the tag exists and before the GitHub prerelease is completed. Items 3–4,
+6b, 7, and 8 govern narrower native-host, hardened-distribution, OCI field, and
+usability claims that are not made by this preview. None of these gates creates
+Oracle Support or an SLA.
 
-1. Approved license and SPDX identifier, Oracle publisher identity, product
-   name/trademark review, approval and ownership of the provisional repository,
-   support contact, security contact, and lifecycle/deprecation policy.
-2. Approved toolkit content in the dedicated Git repository, immutable
+1. Canonical UPL-1.0 license, Daniel Gandolfi publisher identity, independent
+   project disclaimer, community support boundary, confidential security
+   intake, and lifecycle/deprecation policy.
+2. Reviewed toolkit content in the dedicated Git repository, immutable
    commit/tag, CI run bound to that revision, and archive checksums bound to the
    same revision.
 3. Native Q0–Q4 qualification on current Codex, Cursor Agent, and Claude Code,
@@ -198,14 +216,29 @@ Every item below must have durable evidence before the word "public" or
 4. Twenty-four of twenty-four behavioral fixtures in fresh sessions with
    redacted transcript/tool-trace hashes, machine assertions, deny shims, and
    independent semantic verdicts.
-5. Public-coordinate installation, removal, and reinstall from the immutable
-   tag or marketplace entry.
-6. Security, dependency, IaC, container, and package scans with no unresolved
-   critical/high finding; reviewed standard SBOM/provenance and signing policy.
+5. Project-scoped installation, removal, and reinstall from the exact local
+   source and deterministic archives before tagging, followed by one
+   project-scoped install/remove check from the immutable public tag before the
+   first prerelease is finalized. Marketplace qualification is separate.
+6. Distribution assurance:
+   - **6a — public-preview minimum:** high-confidence source secret scan;
+     repository/schema/unit/IaC checks applicable to the shipped source;
+     deterministic package inventories, manifests, SHA-256 sidecars, and
+     archive lifecycle evidence; no unresolved critical/high finding in those
+     executed checks.
+   - **6b — hardened/stable promotion:** dependency and built-container-image
+     vulnerability scans where those artifacts are distributed, plus a
+     reviewed SBOM, provenance, and signing policy. The preview distributes
+     source and archives, not a built runtime image, and does not claim this
+     promotion gate.
 7. For executable paths, a separately authorized OCI sandbox run covering
    plan, exact-target approval, apply, verification, second-plan idempotency,
    rollback, exact-ID teardown, and retained-resource reconciliation.
 8. Founder usability evidence for the completion and time-to-endpoint targets.
 
-If any gate is absent, report it as `BLOCKED`; do not substitute a local static
-check for host-native, public-install, or tenancy evidence.
+If a gate required for a specific claim is absent, report that claim as
+`BLOCKED`; do not substitute a local static check for host-native,
+public-coordinate, or tenancy evidence. A blocked qualification claim does not
+revoke the UPL or turn the personal source project into an Oracle product.
+Formal Q2/Q3, native Cursor and Claude Code replay, global-profile lifecycle,
+and live OCI field validation remain `BLOCKED` or open as described above.

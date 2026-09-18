@@ -19,9 +19,9 @@
             ".agents/skills/oci-founder"
           ],
           "regular_copy": true,
-          "source_tree_sha256": "b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e",
+          "source_tree_sha256": "c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37",
           "tree_sha256": {
-            ".agents/skills/oci-founder": "b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e"
+            ".agents/skills/oci-founder": "c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37"
           }
         },
         "required": true
@@ -60,9 +60,9 @@
           ".agents/skills/oci-founder"
         ],
         "regular_copy": true,
-        "source_tree_sha256": "b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e",
+        "source_tree_sha256": "c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37",
         "tree_sha256": {
-          ".agents/skills/oci-founder": "b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e"
+          ".agents/skills/oci-founder": "c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37"
         }
       },
       "first_list_contains_skill": true,
@@ -103,9 +103,9 @@
           ".agents/skills/oci-founder"
         ],
         "regular_copy": true,
-        "source_tree_sha256": "b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e",
+        "source_tree_sha256": "c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37",
         "tree_sha256": {
-          ".agents/skills/oci-founder": "b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e"
+          ".agents/skills/oci-founder": "c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37"
         }
       },
       "second_list_contains_skill": true,
@@ -120,7 +120,7 @@
             "codex",
             "-y"
           ],
-          "duration_ms": 118,
+          "duration_ms": 101,
           "exit_code": 0,
           "stderr_excerpt": "",
           "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -136,7 +136,7 @@
             "oci-founder",
             "-y"
           ],
-          "duration_ms": 121,
+          "duration_ms": 111,
           "exit_code": 0,
           "stderr_excerpt": "",
           "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -172,12 +172,12 @@
             "-y",
             "--json"
           ],
-          "duration_ms": 120,
+          "duration_ms": 125,
           "exit_code": 0,
           "stderr_excerpt": "\n\u250c  \u001b[46m\u001b[30m skills \u001b[39m\u001b[49m\n\u2502\n\u2502  \u001b[2mTip: use the --yes (-y) and --global (-g) flags to install without prompts.\u001b[22m\n\u2502\n\u25cf  Selected 1 skill: \u001b[36moci-founder\u001b[39m\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                                \u2502\n\u2502  \u001b[36m./.agents/skills/oci-founder\u001b[39m  \u2502\n\u2502    \u001b[2mcopy \u2192\u001b[22m Codex                \u2502\n\u2502                                \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n",
           "stderr_sha256": "2d08c78d3ea967a2bd82e96db39efea8d0f8ed9d0ec1837e97dda08905a76c3b",
-          "stdout_excerpt": "[\n  {\n    \"name\": \"oci-founder\",\n    \"status\": \"installed\",\n    \"source\": \"$TOOLKIT_ROOT\",\n    \"ref\": null,\n    \"hash\": \"5b6740abccda11152dccdb18da991f648b380e45481fa9426f04e2beeef41a2f\",\n    \"path\": \"$QUALIFICATION_ROOT/backend-codex/.agents/skills/oci-founder\",\n    \"scope\": \"project\",\n    \"agents\": [\n      \"Codex\"\n    ],\n    \"mode\": \"copy\",\n    \"security\": null\n  }\n]\n",
-          "stdout_sha256": "21ce653af54818960f38796670a780bb1fa0f21f74bfa6735e262b9bc9d35818",
+          "stdout_excerpt": "[\n  {\n    \"name\": \"oci-founder\",\n    \"status\": \"installed\",\n    \"source\": \"$TOOLKIT_ROOT\",\n    \"ref\": null,\n    \"hash\": \"e1717eacd533265d23e0c6d91ba1c5c600b990646e11a05395b48830a50f568f\",\n    \"path\": \"$QUALIFICATION_ROOT/backend-codex/.agents/skills/oci-founder\",\n    \"scope\": \"project\",\n    \"agents\": [\n      \"Codex\"\n    ],\n    \"mode\": \"copy\",\n    \"security\": null\n  }\n]\n",
+          "stdout_sha256": "b10d455f260c7a0cb206e94e36081d8eb9049974fdc625d231bbce3590b341d9",
           "timed_out": false
         },
         "list": {
@@ -189,7 +189,7 @@
             "codex",
             "--json"
           ],
-          "duration_ms": 105,
+          "duration_ms": 102,
           "exit_code": 0,
           "stderr_excerpt": "",
           "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -211,12 +211,12 @@
             "-y",
             "--json"
           ],
-          "duration_ms": 118,
+          "duration_ms": 121,
           "exit_code": 0,
           "stderr_excerpt": "\n\u250c  \u001b[46m\u001b[30m skills \u001b[39m\u001b[49m\n\u2502\n\u2502  \u001b[2mTip: use the --yes (-y) and --global (-g) flags to install without prompts.\u001b[22m\n\u2502\n\u25cf  Selected 1 skill: \u001b[36moci-founder\u001b[39m\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                                \u2502\n\u2502  \u001b[36m./.agents/skills/oci-founder\u001b[39m  \u2502\n\u2502    \u001b[2mcopy \u2192\u001b[22m Codex                \u2502\n\u2502                                \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n",
           "stderr_sha256": "2d08c78d3ea967a2bd82e96db39efea8d0f8ed9d0ec1837e97dda08905a76c3b",
-          "stdout_excerpt": "[\n  {\n    \"name\": \"oci-founder\",\n    \"status\": \"installed\",\n    \"source\": \"$TOOLKIT_ROOT\",\n    \"ref\": null,\n    \"hash\": \"5b6740abccda11152dccdb18da991f648b380e45481fa9426f04e2beeef41a2f\",\n    \"path\": \"$QUALIFICATION_ROOT/backend-codex/.agents/skills/oci-founder\",\n    \"scope\": \"project\",\n    \"agents\": [\n      \"Codex\"\n    ],\n    \"mode\": \"copy\",\n    \"security\": null\n  }\n]\n",
-          "stdout_sha256": "21ce653af54818960f38796670a780bb1fa0f21f74bfa6735e262b9bc9d35818",
+          "stdout_excerpt": "[\n  {\n    \"name\": \"oci-founder\",\n    \"status\": \"installed\",\n    \"source\": \"$TOOLKIT_ROOT\",\n    \"ref\": null,\n    \"hash\": \"e1717eacd533265d23e0c6d91ba1c5c600b990646e11a05395b48830a50f568f\",\n    \"path\": \"$QUALIFICATION_ROOT/backend-codex/.agents/skills/oci-founder\",\n    \"scope\": \"project\",\n    \"agents\": [\n      \"Codex\"\n    ],\n    \"mode\": \"copy\",\n    \"security\": null\n  }\n]\n",
+          "stdout_sha256": "b10d455f260c7a0cb206e94e36081d8eb9049974fdc625d231bbce3590b341d9",
           "timed_out": false
         },
         "relist": {
@@ -228,7 +228,7 @@
             "codex",
             "--json"
           ],
-          "duration_ms": 110,
+          "duration_ms": 107,
           "exit_code": 0,
           "stderr_excerpt": "",
           "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -273,9 +273,9 @@
             ".agents/skills/oci-founder"
           ],
           "regular_copy": true,
-          "source_tree_sha256": "b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e",
+          "source_tree_sha256": "c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37",
           "tree_sha256": {
-            ".agents/skills/oci-founder": "b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e"
+            ".agents/skills/oci-founder": "c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37"
           }
         },
         "required": true
@@ -314,9 +314,9 @@
           ".agents/skills/oci-founder"
         ],
         "regular_copy": true,
-        "source_tree_sha256": "b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e",
+        "source_tree_sha256": "c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37",
         "tree_sha256": {
-          ".agents/skills/oci-founder": "b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e"
+          ".agents/skills/oci-founder": "c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37"
         }
       },
       "first_list_contains_skill": true,
@@ -357,9 +357,9 @@
           ".agents/skills/oci-founder"
         ],
         "regular_copy": true,
-        "source_tree_sha256": "b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e",
+        "source_tree_sha256": "c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37",
         "tree_sha256": {
-          ".agents/skills/oci-founder": "b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e"
+          ".agents/skills/oci-founder": "c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37"
         }
       },
       "second_list_contains_skill": true,
@@ -374,7 +374,7 @@
             "cursor",
             "-y"
           ],
-          "duration_ms": 110,
+          "duration_ms": 112,
           "exit_code": 0,
           "stderr_excerpt": "",
           "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -390,7 +390,7 @@
             "oci-founder",
             "-y"
           ],
-          "duration_ms": 118,
+          "duration_ms": 115,
           "exit_code": 0,
           "stderr_excerpt": "",
           "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -404,7 +404,7 @@
             "init",
             "-q"
           ],
-          "duration_ms": 36,
+          "duration_ms": 33,
           "exit_code": 0,
           "stderr_excerpt": "",
           "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -426,12 +426,12 @@
             "-y",
             "--json"
           ],
-          "duration_ms": 119,
+          "duration_ms": 120,
           "exit_code": 0,
           "stderr_excerpt": "\n\u250c  \u001b[46m\u001b[30m skills \u001b[39m\u001b[49m\n\u2502\n\u2502  \u001b[2mTip: use the --yes (-y) and --global (-g) flags to install without prompts.\u001b[22m\n\u2502\n\u25cf  Selected 1 skill: \u001b[36moci-founder\u001b[39m\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                                \u2502\n\u2502  \u001b[36m./.agents/skills/oci-founder\u001b[39m  \u2502\n\u2502    \u001b[2mcopy \u2192\u001b[22m Cursor               \u2502\n\u2502                                \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n",
           "stderr_sha256": "84ddb498006dad875700e3c822da41c6e87af4fe00d485620d72191a6d41876c",
-          "stdout_excerpt": "[\n  {\n    \"name\": \"oci-founder\",\n    \"status\": \"installed\",\n    \"source\": \"$TOOLKIT_ROOT\",\n    \"ref\": null,\n    \"hash\": \"5b6740abccda11152dccdb18da991f648b380e45481fa9426f04e2beeef41a2f\",\n    \"path\": \"$QUALIFICATION_ROOT/backend-cursor/.agents/skills/oci-founder\",\n    \"scope\": \"project\",\n    \"agents\": [\n      \"Cursor\"\n    ],\n    \"mode\": \"copy\",\n    \"security\": null\n  }\n]\n",
-          "stdout_sha256": "1ec61dadd181d5707fbde4e9e84a932e4cbff38db5e8fc2ff7a260ad7721d4e1",
+          "stdout_excerpt": "[\n  {\n    \"name\": \"oci-founder\",\n    \"status\": \"installed\",\n    \"source\": \"$TOOLKIT_ROOT\",\n    \"ref\": null,\n    \"hash\": \"e1717eacd533265d23e0c6d91ba1c5c600b990646e11a05395b48830a50f568f\",\n    \"path\": \"$QUALIFICATION_ROOT/backend-cursor/.agents/skills/oci-founder\",\n    \"scope\": \"project\",\n    \"agents\": [\n      \"Cursor\"\n    ],\n    \"mode\": \"copy\",\n    \"security\": null\n  }\n]\n",
+          "stdout_sha256": "242842f97837aba0b7200b8ae2649f1635c1a4a1fb626bf043511c70f03f1f54",
           "timed_out": false
         },
         "list": {
@@ -443,7 +443,7 @@
             "cursor",
             "--json"
           ],
-          "duration_ms": 106,
+          "duration_ms": 102,
           "exit_code": 0,
           "stderr_excerpt": "",
           "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -465,12 +465,12 @@
             "-y",
             "--json"
           ],
-          "duration_ms": 122,
+          "duration_ms": 128,
           "exit_code": 0,
           "stderr_excerpt": "\n\u250c  \u001b[46m\u001b[30m skills \u001b[39m\u001b[49m\n\u2502\n\u2502  \u001b[2mTip: use the --yes (-y) and --global (-g) flags to install without prompts.\u001b[22m\n\u2502\n\u25cf  Selected 1 skill: \u001b[36moci-founder\u001b[39m\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                                \u2502\n\u2502  \u001b[36m./.agents/skills/oci-founder\u001b[39m  \u2502\n\u2502    \u001b[2mcopy \u2192\u001b[22m Cursor               \u2502\n\u2502                                \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n",
           "stderr_sha256": "84ddb498006dad875700e3c822da41c6e87af4fe00d485620d72191a6d41876c",
-          "stdout_excerpt": "[\n  {\n    \"name\": \"oci-founder\",\n    \"status\": \"installed\",\n    \"source\": \"$TOOLKIT_ROOT\",\n    \"ref\": null,\n    \"hash\": \"5b6740abccda11152dccdb18da991f648b380e45481fa9426f04e2beeef41a2f\",\n    \"path\": \"$QUALIFICATION_ROOT/backend-cursor/.agents/skills/oci-founder\",\n    \"scope\": \"project\",\n    \"agents\": [\n      \"Cursor\"\n    ],\n    \"mode\": \"copy\",\n    \"security\": null\n  }\n]\n",
-          "stdout_sha256": "1ec61dadd181d5707fbde4e9e84a932e4cbff38db5e8fc2ff7a260ad7721d4e1",
+          "stdout_excerpt": "[\n  {\n    \"name\": \"oci-founder\",\n    \"status\": \"installed\",\n    \"source\": \"$TOOLKIT_ROOT\",\n    \"ref\": null,\n    \"hash\": \"e1717eacd533265d23e0c6d91ba1c5c600b990646e11a05395b48830a50f568f\",\n    \"path\": \"$QUALIFICATION_ROOT/backend-cursor/.agents/skills/oci-founder\",\n    \"scope\": \"project\",\n    \"agents\": [\n      \"Cursor\"\n    ],\n    \"mode\": \"copy\",\n    \"security\": null\n  }\n]\n",
+          "stdout_sha256": "242842f97837aba0b7200b8ae2649f1635c1a4a1fb626bf043511c70f03f1f54",
           "timed_out": false
         },
         "relist": {
@@ -482,7 +482,7 @@
             "cursor",
             "--json"
           ],
-          "duration_ms": 113,
+          "duration_ms": 99,
           "exit_code": 0,
           "stderr_excerpt": "",
           "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -498,7 +498,7 @@
             "oci-founder",
             "-y"
           ],
-          "duration_ms": 115,
+          "duration_ms": 114,
           "exit_code": 0,
           "stderr_excerpt": "",
           "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -550,9 +550,9 @@
           ".claude/skills/oci-founder"
         ],
         "regular_copy": true,
-        "source_tree_sha256": "b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e",
+        "source_tree_sha256": "c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37",
         "tree_sha256": {
-          ".claude/skills/oci-founder": "b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e"
+          ".claude/skills/oci-founder": "c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37"
         }
       },
       "first_list_contains_skill": true,
@@ -593,9 +593,9 @@
           ".claude/skills/oci-founder"
         ],
         "regular_copy": true,
-        "source_tree_sha256": "b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e",
+        "source_tree_sha256": "c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37",
         "tree_sha256": {
-          ".claude/skills/oci-founder": "b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e"
+          ".claude/skills/oci-founder": "c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37"
         }
       },
       "second_list_contains_skill": true,
@@ -608,7 +608,7 @@
             "oci-founder",
             "-y"
           ],
-          "duration_ms": 119,
+          "duration_ms": 120,
           "exit_code": 0,
           "stderr_excerpt": "",
           "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -622,7 +622,7 @@
             "init",
             "-q"
           ],
-          "duration_ms": 29,
+          "duration_ms": 30,
           "exit_code": 0,
           "stderr_excerpt": "",
           "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -644,12 +644,12 @@
             "-y",
             "--json"
           ],
-          "duration_ms": 126,
+          "duration_ms": 117,
           "exit_code": 0,
           "stderr_excerpt": "\n\u250c  \u001b[46m\u001b[30m skills \u001b[39m\u001b[49m\n\u2502\n\u2502  \u001b[2mTip: use the --yes (-y) and --global (-g) flags to install without prompts.\u001b[22m\n\u2502\n\u25cf  Selected 1 skill: \u001b[36moci-founder\u001b[39m\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                                \u2502\n\u2502  \u001b[36m./.agents/skills/oci-founder\u001b[39m  \u2502\n\u2502    \u001b[2mcopy \u2192\u001b[22m Claude Code          \u2502\n\u2502                                \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n",
           "stderr_sha256": "4d4a92035fb6ba4ca1d6cfff7f8869db8e2355483f66a4721c5edc00abe8ac07",
-          "stdout_excerpt": "[\n  {\n    \"name\": \"oci-founder\",\n    \"status\": \"installed\",\n    \"source\": \"$TOOLKIT_ROOT\",\n    \"ref\": null,\n    \"hash\": \"5b6740abccda11152dccdb18da991f648b380e45481fa9426f04e2beeef41a2f\",\n    \"path\": \"$QUALIFICATION_ROOT/backend-claude-code/.claude/skills/oci-founder\",\n    \"scope\": \"project\",\n    \"agents\": [\n      \"Claude Code\"\n    ],\n    \"mode\": \"copy\",\n    \"security\": null\n  }\n]\n",
-          "stdout_sha256": "72d274dd17739a0170117102578f2e52331838a606c48c3fb2301932f42ea39e",
+          "stdout_excerpt": "[\n  {\n    \"name\": \"oci-founder\",\n    \"status\": \"installed\",\n    \"source\": \"$TOOLKIT_ROOT\",\n    \"ref\": null,\n    \"hash\": \"e1717eacd533265d23e0c6d91ba1c5c600b990646e11a05395b48830a50f568f\",\n    \"path\": \"$QUALIFICATION_ROOT/backend-claude-code/.claude/skills/oci-founder\",\n    \"scope\": \"project\",\n    \"agents\": [\n      \"Claude Code\"\n    ],\n    \"mode\": \"copy\",\n    \"security\": null\n  }\n]\n",
+          "stdout_sha256": "c9bf8fc59d16cee75a878205b27c659cb97cbb7cb68701a28be68717e7d20289",
           "timed_out": false
         },
         "list": {
@@ -661,7 +661,7 @@
             "claude-code",
             "--json"
           ],
-          "duration_ms": 104,
+          "duration_ms": 105,
           "exit_code": 0,
           "stderr_excerpt": "",
           "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -683,12 +683,12 @@
             "-y",
             "--json"
           ],
-          "duration_ms": 128,
+          "duration_ms": 125,
           "exit_code": 0,
           "stderr_excerpt": "\n\u250c  \u001b[46m\u001b[30m skills \u001b[39m\u001b[49m\n\u2502\n\u2502  \u001b[2mTip: use the --yes (-y) and --global (-g) flags to install without prompts.\u001b[22m\n\u2502\n\u25cf  Selected 1 skill: \u001b[36moci-founder\u001b[39m\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                                \u2502\n\u2502  \u001b[36m./.agents/skills/oci-founder\u001b[39m  \u2502\n\u2502    \u001b[2mcopy \u2192\u001b[22m Claude Code          \u2502\n\u2502                                \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n",
           "stderr_sha256": "4d4a92035fb6ba4ca1d6cfff7f8869db8e2355483f66a4721c5edc00abe8ac07",
-          "stdout_excerpt": "[\n  {\n    \"name\": \"oci-founder\",\n    \"status\": \"installed\",\n    \"source\": \"$TOOLKIT_ROOT\",\n    \"ref\": null,\n    \"hash\": \"5b6740abccda11152dccdb18da991f648b380e45481fa9426f04e2beeef41a2f\",\n    \"path\": \"$QUALIFICATION_ROOT/backend-claude-code/.claude/skills/oci-founder\",\n    \"scope\": \"project\",\n    \"agents\": [\n      \"Claude Code\"\n    ],\n    \"mode\": \"copy\",\n    \"security\": null\n  }\n]\n",
-          "stdout_sha256": "72d274dd17739a0170117102578f2e52331838a606c48c3fb2301932f42ea39e",
+          "stdout_excerpt": "[\n  {\n    \"name\": \"oci-founder\",\n    \"status\": \"installed\",\n    \"source\": \"$TOOLKIT_ROOT\",\n    \"ref\": null,\n    \"hash\": \"e1717eacd533265d23e0c6d91ba1c5c600b990646e11a05395b48830a50f568f\",\n    \"path\": \"$QUALIFICATION_ROOT/backend-claude-code/.claude/skills/oci-founder\",\n    \"scope\": \"project\",\n    \"agents\": [\n      \"Claude Code\"\n    ],\n    \"mode\": \"copy\",\n    \"security\": null\n  }\n]\n",
+          "stdout_sha256": "c9bf8fc59d16cee75a878205b27c659cb97cbb7cb68701a28be68717e7d20289",
           "timed_out": false
         },
         "relist": {
@@ -700,7 +700,7 @@
             "claude-code",
             "--json"
           ],
-          "duration_ms": 109,
+          "duration_ms": 102,
           "exit_code": 0,
           "stderr_excerpt": "",
           "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -716,7 +716,7 @@
             "oci-founder",
             "-y"
           ],
-          "duration_ms": 112,
+          "duration_ms": 114,
           "exit_code": 0,
           "stderr_excerpt": "",
           "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -762,7 +762,7 @@
     "user_npm_config_disabled": true
   },
   "kind": "oci-founder-skill-install-lifecycle",
-  "observed_at_utc": "2026-09-18T16:03:18.582944+00:00",
+  "observed_at_utc": "2026-09-18T17:20:33.120189+00:00",
   "policy": {
     "agents": [
       "codex",
@@ -864,10 +864,10 @@
     "observed_version": "1.7.0",
     "offline_cache": {
       "copied_before_npm_execution": true,
-      "copied_tree_sha256": "6d0b09044b196a97d197771d5e7e2c4aba09b4c6fed69e7ca2db033fb8ff0bde",
+      "copied_tree_sha256": "8a4cf203c00b3328e690eb4b8bc490c9ae779625c6beaa5b340b19ea3ca680e9",
       "provided": true,
       "source_path_recorded": false,
-      "source_tree_sha256": "6d0b09044b196a97d197771d5e7e2c4aba09b4c6fed69e7ca2db033fb8ff0bde"
+      "source_tree_sha256": "8a4cf203c00b3328e690eb4b8bc490c9ae779625c6beaa5b340b19ea3ca680e9"
     },
     "package": "skills",
     "source": "npm-pinned-reviewed-files-offline-cache",
@@ -885,12 +885,12 @@
         "--no-fund",
         "--offline"
       ],
-      "duration_ms": 456,
+      "duration_ms": 441,
       "exit_code": 0,
       "stderr_excerpt": "",
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "stdout_excerpt": "\nadded 8 packages in 342ms\n",
-      "stdout_sha256": "9ff29bfeb8c69cd4c16faa52d13dd9b6b708b26646e310f82f5d26cbf9cd0c59",
+      "stdout_excerpt": "\nadded 8 packages in 328ms\n",
+      "stdout_sha256": "737399243c40364584fa9059655d42e163f2a918587b1005390a177acd493b3b",
       "timed_out": false
     },
     "version": {
@@ -899,7 +899,7 @@
         "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
         "--version"
       ],
-      "duration_ms": 96,
+      "duration_ms": 136,
       "exit_code": 0,
       "stderr_excerpt": "",
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -910,8 +910,8 @@
   },
   "toolkit": {
     "skill_source_unchanged": true,
-    "skill_tree_sha256_after": "b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e",
-    "skill_tree_sha256_before": "b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e",
+    "skill_tree_sha256_after": "c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37",
+    "skill_tree_sha256_before": "c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37",
     "source": "$TOOLKIT_ROOT"
   }
 }

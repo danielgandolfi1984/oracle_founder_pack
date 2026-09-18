@@ -4,6 +4,12 @@ This playbook separates package structure, host discovery, installation,
 behavior, and OCI field execution. A local application icon is not evidence
 that its coding-agent CLI, plugin loader, or skill runtime is available.
 
+Founder Toolkit for OCI is an independent personal project published by Daniel
+Gandolfi under `UPL-1.0`. Daniel works at Oracle, but the toolkit is not an
+Oracle product and has no Oracle Support coverage, warranty, SLA, or implied
+production-readiness commitment. The public license permits use; it does not
+turn an unverified host or deployment claim into a qualified one.
+
 The host preflight is intentionally read-only. It inventories installed
 surfaces, fingerprints the exact toolkit source, runs repository checks, and can
 run validators that are already installed. A separate opt-in lifecycle runner
@@ -32,9 +38,9 @@ Each surface needs its own version and evidence. Do not summarize all of them as
 |---|---|---|
 | Q0 — source | Repository checks, manifest and skill fingerprints, unit tests | Implemented locally; complete public CI baselines passed at `bf5ebb3` in [run 35355021483](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35355021483) and at `deb13d8` in [run 35359228279](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35359228279). Each later revision still requires its own passing run |
 | Q1 — native validation | Host-supported strict validator or a documented development validator | Partial; see the dated matrix below |
-| Q2 — install and discovery | Isolated install, exact installed-skill hash, visibility, clean removal | Checkout plus the current skill-only and full-toolkit archives pass project lifecycle on all three layouts; the historical Codex receipt normalizes to `PASS_WITH_RESERVATIONS`, a fresh hardened renewal is `BLOCKED` pending an authorized model session, and formal Q2 remains `BLOCKED` |
+| Q2 — install and discovery | Isolated install, exact installed-skill hash, visibility, clean removal | The current source, skill-only package, and full-toolkit package pass project lifecycle on all three layouts. The historical Codex receipt normalizes to `PASS_WITH_RESERVATIONS`; formal Q2 remains `BLOCKED` pending current native cross-host discovery and the remaining gates |
 | Q3 — behavior | All fixtures in fresh sessions, effect log, independent semantic evaluation | The historical Codex receipt normalizes to `PARTIAL`; the fresh renewal started no model session, and formal Q3 remains `BLOCKED` pending the native suite, independent grading, and Cursor/Claude Code replay |
-| Q4 — reinstall | Repeatable update/removal with no stale or conflicting copy | Project remove/reinstall passes; global and native-host lifecycle remain open |
+| Q4 — reinstall | Repeatable update/removal with no stale or conflicting copy | Current source and preview-package remove/reinstall lifecycle passes in isolated projects; global and native-host lifecycle remain open |
 
 Q0 through Q4 qualify the agent package. Authenticated OCI plan/apply,
 idempotency, endpoint checks, rollback, and teardown belong to a separate field
@@ -72,17 +78,17 @@ playbook's read-only boundary.
 
 | Surface | Observed version | Q0/Q1 evidence | Blocking gate |
 |---|---:|---|---|
-| Codex CLI | `0.153.4` | CLI and plugin-management surface detected; repository/schema/development validators and current checkout/archive lifecycle pass; the historical native receipt normalizes to Q2 `PASS_WITH_RESERVATIONS` and Q3 `PARTIAL` | Verified offline installer acquisition is available, but the fresh hardened renewal is `BLOCKED` pending authorization for a new authenticated model session; formal Q2/Q3 also require a fully disposable profile, upstream dependencies, current-skill native replay, and independent grading |
-| Cursor IDE | `3.0.12` | App and embedded editor CLI detected; isolated project lifecycle passes | Cursor Agent is unavailable; editor CLI exposes no native plugin validator; duplicate discovery and replay remain open |
+| Codex CLI | `0.153.4` | CLI and plugin-management surface detected; current repository/schema/development validators and source/package lifecycle pass; the historical native receipt normalizes to Q2 `PASS_WITH_RESERVATIONS` and Q3 `PARTIAL` | Verified offline installer acquisition is available, but a current native replay remains open; formal Q2/Q3 also require a fully disposable profile, reviewed upstream dependencies, current-skill native replay, and independent grading |
+| Cursor IDE | `3.0.12` | App and embedded editor CLI detected; current isolated source/package lifecycle passes | Cursor Agent is unavailable; editor CLI exposes no native plugin validator; duplicate discovery and native replay remain open |
 | Claude Desktop | `1.569.0` | Desktop bundle detected | Desktop is not Claude Code |
 | Claude Code | not present | None | Install the CLI deliberately, then run `claude plugin validate . --strict` and the isolated runtime procedure |
 
 The current machine-readable preflight evidence is in
 [`tests/results/2026-09-18-host-preflight.json`](../tests/results/2026-09-18-host-preflight.json).
 It records no credentials or raw environment variables and redacts the user home
-and toolkit paths. The fresh receipt runs source validation in the explicit
-cycle-breaking mode, passes at current skill tree
-`b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e`,
+and toolkit paths. The receipt passed source validation and the available
+development validators at skill tree
+`c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37`,
 and records `release_qualified: false`. It cannot by itself close native gates.
 
 ## Q2 — isolated install and discovery
@@ -129,8 +135,8 @@ one per supported agent:
 python3 scripts/qualify_skill_install.py --allow-download
 ```
 
-The current run copied a previously verified npm cache into disposable state
-and used `npm ci --offline --ignore-scripts`. It still verified the reviewed
+The current run copied a previously verified npm cache into disposable
+state and used `npm ci --offline --ignore-scripts`. It still verified the reviewed
 dependency lock, package integrity, CLI manifest, and executable hashes before
 execution, and passed each child process only an explicit environment
 allowlist. It then installs, lists, removes, reinstalls, lists, and removes again
@@ -141,14 +147,15 @@ targets were unchanged. No claim is made about the rest of the user profile.
 The evidence is in
 [`tests/results/2026-09-18-skill-install-lifecycle.json`](../tests/results/2026-09-18-skill-install-lifecycle.json).
 
-The same lifecycle passed from both extracted, verified archives. The
-skill-only SHA-256 is
-`1e41859b5ac86522356aa922f177189c3f95a1deaba8dae77d6a95e1cd64ab23`;
-the full-toolkit SHA-256 is
-`aa332c7555ad88e17f86f99dbd1e33e0f211f48e6e40b980eedb8992c1333790`,
-and that versioned archive extracts under `oci-founder-toolkit/`. Both renewed
-package receipts verify the current skill tree fingerprint
-`b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e`.
+The same lifecycle passed from both extracted, verified public-preview
+archives. The skill-only archive is
+`oci-founder-skill-0.1.0-preview.tar.gz` with SHA-256
+`517c4f6d4d29b35d085d4cf534656608e6c1d7315526563ee632ee5ae9fe7954`.
+The full archive is `oci-founder-toolkit-0.1.0-preview.tar.gz` with SHA-256
+`33037edf2783895c03a5e40bb03a0f18468a26945dc7fce8a9e251ea7e75ca80`
+and extracts under `oci-founder-toolkit/`. Both current package receipts verify
+skill tree fingerprint
+`c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37`.
 Each summary binds the archive, manifest, content inventory, runner, installed
 tree, and committed exact raw receipt by SHA-256:
 [skill-only summary](../tests/results/2026-09-18-skill-package-install-lifecycle.json),
@@ -160,8 +167,8 @@ This is package-lifecycle evidence, not native host discovery. The Codex and
 Cursor cases each produced one `.agents/skills/oci-founder` copy; the Claude
 Code case produced one `.claude/skills/oci-founder` copy. Cursor documents that
 it scans both locations, so duplicate-name behavior must pass a native Cursor
-test before a combined multi-agent install can be recommended. For an actual
-evaluation, choose one agent per installation command.
+test before a combined multi-agent install can be recommended. For a
+public-preview installation, choose one agent per installation command.
 
 ### Historical Codex receipt and hardened-runner renewal
 
@@ -214,10 +221,12 @@ Current assessment:
 
 A separate
 [`targeted current-skill assessment`](../tests/results/2026-09-18-skill-revision-assessment.json)
-passed three Codex-subagent content-forward cases at the current skill
-fingerprint. It used no network, file write, OCI command, or cloud mutation, and
-is not host-native discovery or behavior evidence; it does not close Q2, Q3, or
-the release gate.
+passes three Codex-subagent content-forward cases against current skill
+fingerprint
+`c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37`.
+It used no network, file write, OCI command, or cloud mutation. It is not
+host-native discovery or behavior evidence and does not close Q2, Q3, or the
+release gate.
 
 ## Q3 — behavioral replay
 
@@ -257,20 +266,23 @@ omit `-a` from the remove command: the agent-filtered form can report success
 while leaving the universal `.agents` copy used by Codex or Cursor. The second
 install must load the new reviewed fingerprint, leave no stale skill, and preserve no
 unexpected configuration. Record both filesystem trees and all host commands as
-argv arrays. The current project test leaves only empty skill directories and an
-empty `skills-lock.json`; native global-profile behavior remains open.
+argv arrays. The current source and package tests leave only empty skill
+directories and an empty `skills-lock.json`. Native global-profile behavior
+remains open.
 
 ## Release rule
 
 Do not claim cross-host support until every named surface passes Q0 through Q4
 without skipped gates. A manual GUI result may be retained as supporting
 evidence, but it must not be presented as deterministic CLI qualification.
-The public `main` source preview is cloneable and remote source-CI baselines
-passed at `bf5ebb3` and `deb13d8`, but this is not qualified public-install
-evidence: there is no immutable tag, GitHub release, marketplace entry,
-registry coordinate, or package coordinate. Remote-source installation,
-native cross-host discovery, and native behavioral lifecycle remain
-unqualified.
+The public `main` source is reusable under UPL-1.0, and historical remote
+source-CI baselines passed at `bf5ebb3` and `deb13d8`. That does not qualify an
+immutable public preview as a stable host result: `v0.1.0` is the GitHub tag and
+prerelease coordinate, while marketplace publication, native cross-host
+discovery, and native behavioral lifecycle remain unqualified. State those
+technical limits without suggesting that the personal project is
+Oracle-supported or covered by an SLA. Global-profile lifecycle and live OCI
+plan/apply/idempotency/rollback/teardown validation also remain open.
 
 ## Official host references
 

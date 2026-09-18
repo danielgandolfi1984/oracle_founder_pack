@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Read-only host preflight for OCI Founder Toolkit.
+"""Read-only host preflight for Founder Toolkit for OCI.
 
 This command inventories the local Codex, Cursor, and Claude surfaces, records
 toolkit fingerprints, and can run validators that are already installed. It
@@ -526,7 +526,7 @@ def presence_failures(report: dict[str, Any], required: Sequence[str]) -> list[s
 
 def render_text(report: dict[str, Any]) -> str:
     rows = [
-        "OCI Founder Toolkit host preflight (read-only)",
+        "Founder Toolkit for OCI host preflight (read-only)",
         f"Toolkit fingerprint: {report['toolkit']['source_fingerprint']}",
         f"Repository validation: {report['repo_validation']['status']}",
     ]

@@ -21,6 +21,12 @@ class BuildReleaseTests(unittest.TestCase):
     def test_two_clean_builds_are_byte_for_byte_identical(self) -> None:
         manifests = build_release.deterministic_check()
         self.assertEqual({"skill-only", "full-toolkit"}, {item["package_kind"] for item in manifests})
+        for manifest in manifests:
+            self.assertEqual("1.1", manifest["schema_version"])
+            self.assertEqual("oci-founder-package", manifest["kind"])
+            self.assertEqual("public-preview", manifest["status"])
+            self.assertEqual("UPL-1.0", manifest["license"])
+            self.assertEqual(build_release.PACKAGE_PUBLISHER, manifest["publisher"])
 
     def test_built_archives_verify_and_have_the_expected_boundaries(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
@@ -36,6 +42,8 @@ class BuildReleaseTests(unittest.TestCase):
             skill_paths = {item["path"] for item in by_kind["skill-only"]["files"]}
             full_paths = {item["path"] for item in by_kind["full-toolkit"]["files"]}
             self.assertTrue(any(path.endswith("/skills/oci-founder/SKILL.md") for path in skill_paths))
+            self.assertTrue(any(path.endswith("/skills/oci-founder/LICENSE") for path in skill_paths))
+            self.assertTrue(any(path.endswith("/skills/oci-founder/LICENSE") for path in full_paths))
             self.assertFalse(any("/blueprints/" in path for path in skill_paths))
             self.assertFalse(any(path.endswith("/plugin.json") for path in skill_paths))
             self.assertFalse(
@@ -51,7 +59,7 @@ class BuildReleaseTests(unittest.TestCase):
 
     def test_full_toolkit_uses_versioned_filename_and_manifest_root(self) -> None:
         version = build_release.load_version()
-        expected_archive = f"oci-founder-toolkit-{version}-evaluation.tar.gz"
+        expected_archive = f"oci-founder-toolkit-{version}-preview.tar.gz"
         with tempfile.TemporaryDirectory() as temporary:
             output = Path(temporary)
             manifests = build_release.build_all(output)
@@ -69,7 +77,7 @@ class BuildReleaseTests(unittest.TestCase):
             )
             self.assertFalse(
                 any(
-                    name.startswith(f"oci-founder-toolkit-{version}-evaluation/")
+                    name.startswith(f"oci-founder-toolkit-{version}-preview/")
                     for name in member_names
                 )
             )
@@ -154,6 +162,10 @@ class BuildReleaseTests(unittest.TestCase):
         sources = {path.relative_to(ROOT).as_posix() for path in full.exact_sources}
         self.assertTrue(set(build_release.SKILL_PACKAGE_PATHS) <= sources)
         self.assertTrue(set(build_release.BLUEPRINT_PACKAGE_PATHS) <= sources)
+        self.assertTrue(
+            {"LICENSE", "SECURITY.md", "SUPPORT.md", "CONTRIBUTING.md", "GOVERNANCE.md"}
+            <= sources
+        )
 
     def test_sensitive_local_artifact_patterns_are_forbidden(self) -> None:
         forbidden = (

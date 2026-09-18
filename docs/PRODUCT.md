@@ -1,10 +1,22 @@
-# Product brief
+# Founder Toolkit for OCI: product brief
+
+Founder Toolkit for OCI is a personal, independent public-preview project
+created and maintained by Daniel Gandolfi, an Oracle employee publishing in his
+personal capacity. The views expressed here are his own and do not represent
+Oracle. This is not an Oracle product and is not sponsored, endorsed,
+maintained, or supported by Oracle.
+
+The project's original public content is licensed under the Universal
+Permissive License 1.0 (`UPL-1.0`); see [`LICENSE`](../LICENSE). The internal
+Oracle-template presentation remains confidential, is excluded from the public
+repository and every public distribution, and is outside this license grant.
 
 ## Thesis
 
 OCI adoption for founders is primarily an experience problem, not a catalog problem. A backend developer who already understands containers, HTTP APIs, relational databases, CI/CD, and cloud tradeoffs should not need to become an OCI specialist before shipping the first useful workload.
 
-OCI Founder Toolkit turns OCI into a guided journey inside the developer's existing coding agent.
+Founder Toolkit for OCI turns OCI into a guided journey inside the developer's
+existing coding agent.
 
 **Tagline:** Plan your backend's path to OCI with the coding agent you already use.
 

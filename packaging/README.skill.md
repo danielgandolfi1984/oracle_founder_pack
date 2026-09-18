@@ -1,13 +1,13 @@
-# OCI Founder skill — evaluation package
+# Founder Toolkit for OCI — skill public preview
 
-This archive contains the portable `oci-founder` planning and routing skill for
-local evaluation. It is not a public release and grants no public-use or
-redistribution rights. Read `LICENSE` before using or sharing it.
+This public-preview archive contains the portable `oci-founder` planning and
+routing skill. It is licensed under UPL-1.0 and may be used, modified, and
+redistributed under that license. Read `LICENSE` before using or sharing it.
 
-The public source evaluation preview is
-`https://github.com/danielgandolfi1984/oracle_founder_pack`. Public source
-access does not make this archive an approved release; use only a reviewed
-commit whose identity you recorded before installation.
+This is an independent personal project by Daniel Gandolfi. It is not an Oracle
+product and is not sponsored, endorsed, maintained, or supported by Oracle. It
+has no SLA or Oracle Support coverage. Source and releases:
+`https://github.com/danielgandolfi1984/oracle_founder_pack`.
 
 The package is intentionally planning-only. It does not contain the executable
 Container API blueprint, upstream Oracle service skills, the full toolkit's
@@ -29,8 +29,8 @@ agent and use the absolute path to this extracted directory:
 Prerequisite: Node.js `>=22.20.0` with `npx`.
 
 ```bash
-# Codex (project-scoped evaluation)
-npx --yes skills@1.7.0 add /absolute/path/to/oci-founder-skill-0.1.0-evaluation \
+# Codex (project-scoped preview)
+npx --yes skills@1.7.0 add /absolute/path/to/oci-founder-skill-0.1.0-preview \
   --skill oci-founder -a codex --copy -y
 
 npx --yes skills@1.7.0 list -a codex --json
@@ -108,9 +108,9 @@ toolkit verifier. Their absence must not be bypassed with an unreviewed checkout
 
 - **Get help:** read the current
   [support status](https://github.com/danielgandolfi1984/oracle_founder_pack/blob/main/SUPPORT.md).
-  This evaluation has no approved public support channel or SLA.
+  Community support is best effort and has no SLA or Oracle Support coverage.
 - **Report a vulnerability:** read the current
   [security status](https://github.com/danielgandolfi1984/oracle_founder_pack/blob/main/SECURITY.md).
-  Do not disclose vulnerability details, credentials, private OCIDs, Terraform
-  state, or exploit evidence in a public GitHub issue. No public confidential
-  intake has been approved yet.
+  Use GitHub private vulnerability reporting. Do not disclose vulnerability
+  details, credentials, private OCIDs, Terraform state, or exploit evidence in
+  a public GitHub issue.

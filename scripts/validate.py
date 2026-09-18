@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Dependency-free structural checks for OCI Founder Toolkit."""
+"""Dependency-free structural checks for Founder Toolkit for OCI."""
 
 from __future__ import annotations
 
@@ -13,7 +13,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PROVISIONAL_REPOSITORY = "https://github.com/danielgandolfi1984/oracle_founder_pack"
+PUBLIC_REPOSITORY = "https://github.com/danielgandolfi1984/oracle_founder_pack"
 ERRORS: list[str] = []
 CHECKS = 0
 IGNORED_VALIDATION_PARTS = {".git", ".pptx-build", "__pycache__", ".terraform"}
@@ -97,12 +97,15 @@ required_files = [
     "CHANGELOG.md",
     "SECURITY.md",
     "SUPPORT.md",
+    "CONTRIBUTING.md",
+    "GOVERNANCE.md",
     "AGENTS.md",
     "CLAUDE.md",
     "plugin.json",
     ".codex-plugin/plugin.json",
     ".claude-plugin/plugin.json",
     "skills/oci-founder/SKILL.md",
+    "skills/oci-founder/LICENSE",
     "skills/oci-founder/agents/openai.yaml",
     "skills/oci-founder/references/container-api-preview.md",
     "skills/oci-founder/references/use-cases.md",
@@ -113,6 +116,7 @@ required_files = [
     "docs/HOST-QUALIFICATION.md",
     "docs/RELEASING.md",
     "docs/VALIDATION.md",
+    "docs/decisions/0003-public-license-and-publisher.md",
     "scripts/qualify_hosts.py",
     "scripts/qualify_skill_install.py",
     "scripts/build_release.py",
@@ -202,8 +206,25 @@ versions = {portable.get("version"), codex.get("version"), claude.get("version")
 check(len(versions) == 1, "plugin manifest versions must match")
 licenses = {portable.get("license"), codex.get("license"), claude.get("license")}
 check(
-    licenses == {"LicenseRef-OCI-Founder-Toolkit-Evaluation"},
-    "evaluation manifests must reference the repository evaluation license notice",
+    licenses == {"UPL-1.0"},
+    "all manifests must use the approved UPL-1.0 SPDX identifier",
+)
+expected_author = {
+    "name": "Daniel Gandolfi",
+    "url": "https://github.com/danielgandolfi1984",
+}
+for relative, manifest in (
+    ("plugin.json", portable),
+    (".codex-plugin/plugin.json", codex),
+    (".claude-plugin/plugin.json", claude),
+):
+    check(
+        manifest.get("author") == expected_author,
+        f"{relative}: publisher must be Daniel Gandolfi with the reviewed profile URL",
+    )
+check(
+    codex.get("interface", {}).get("developerName") == "Daniel Gandolfi",
+    ".codex-plugin/plugin.json: developerName must identify Daniel Gandolfi",
 )
 check(
     portable.get("$schema") == "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
@@ -239,14 +260,19 @@ check(
     "plugin.json: planning-only 0.1 description must not promise to ship",
 )
 check(
-    portable.get("repository") == PROVISIONAL_REPOSITORY
-    and portable.get("homepage") == PROVISIONAL_REPOSITORY,
-    "plugin.json: provisional repository and homepage must match the selected GitHub repository",
+    portable.get("repository") == PUBLIC_REPOSITORY
+    and portable.get("homepage") == PUBLIC_REPOSITORY,
+    "plugin.json: repository and homepage must match the public GitHub repository",
 )
 check(
-    codex.get("repository") == PROVISIONAL_REPOSITORY
-    and codex.get("homepage") == PROVISIONAL_REPOSITORY,
-    ".codex-plugin/plugin.json: provisional repository metadata is missing or inconsistent",
+    codex.get("repository") == PUBLIC_REPOSITORY
+    and codex.get("homepage") == PUBLIC_REPOSITORY,
+    ".codex-plugin/plugin.json: repository metadata is missing or inconsistent",
+)
+check(
+    claude.get("repository") == PUBLIC_REPOSITORY
+    and claude.get("homepage") == PUBLIC_REPOSITORY,
+    ".claude-plugin/plugin.json: repository metadata is missing or inconsistent",
 )
 
 portable_allowed = {
@@ -279,8 +305,14 @@ check(
     ".gitignore: Oracle-internal presentations must not be eligible for a public-source commit",
 )
 for package_readme in ("packaging/README.skill.md", "packaging/README.full.md"):
-    package_text = (ROOT / package_readme).read_text(encoding="utf-8").lower()
-    check("not a public release" in package_text, f"{package_readme}: evaluation status must be explicit")
+    package_text = re.sub(
+        r"\s+",
+        " ",
+        (ROOT / package_readme).read_text(encoding="utf-8").lower(),
+    )
+    check("public preview" in package_text, f"{package_readme}: public-preview status must be explicit")
+    check("no sla" in package_text, f"{package_readme}: no-SLA boundary must be explicit")
+    check("not an oracle product" in package_text, f"{package_readme}: independent-project boundary must be explicit")
     check("project-scoped" in package_text, f"{package_readme}: qualified install scope must be explicit")
 check(
     len(str(portable.get("name", ""))) <= 64
@@ -292,6 +324,14 @@ skill_files = sorted((ROOT / "skills").glob("*/SKILL.md"))
 check(bool(skill_files), "skills/: at least one immediate child skill is required")
 all_skill_files = sorted((ROOT / "skills").rglob("SKILL.md"))
 check(skill_files == all_skill_files, "skills must be immediate children of skills/ for portable discovery")
+
+skill_license_notice = (ROOT / "skills/oci-founder/LICENSE").read_text(encoding="utf-8")
+check(
+    "Copyright (c) 2026 Daniel Gandolfi" in skill_license_notice
+    and "UPL-1.0" in skill_license_notice
+    and "https://oss.oracle.com/licenses/upl/" in skill_license_notice,
+    "portable skill copy must retain the reviewed copyright and UPL-1.0 reference",
+)
 
 for skill_path in skill_files:
     frontmatter, text = parse_frontmatter(skill_path)
@@ -1271,4 +1311,4 @@ if ERRORS:
         print(f"- {error}", file=sys.stderr)
     sys.exit(1)
 
-print(f"OCI Founder Toolkit validation passed ({CHECKS} checks).")
+print(f"Founder Toolkit for OCI validation passed ({CHECKS} checks).")
