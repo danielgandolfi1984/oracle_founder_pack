@@ -30,7 +30,7 @@ Prerequisite: Node.js `>=22.20.0` with `npx`.
 
 ```bash
 # Codex (project-scoped preview)
-npx --yes skills@1.7.0 add /absolute/path/to/oci-founder-skill-0.1.0-preview \
+npx --yes skills@1.7.0 add /absolute/path/to/oci-founder-skill-0.1.1-preview \
   --skill oci-founder -a codex --copy -y
 
 npx --yes skills@1.7.0 list -a codex --json

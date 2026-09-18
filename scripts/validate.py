@@ -14,6 +14,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC_REPOSITORY = "https://github.com/danielgandolfi1984/oracle_founder_pack"
+PUBLISHED_VERSION = "0.1.0"
+PUBLISHED_SKILL_TREE_SHA256 = "c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37"
 ERRORS: list[str] = []
 CHECKS = 0
 IGNORED_VALIDATION_PARTS = {".git", ".pptx-build", "__pycache__", ".terraform"}
@@ -142,6 +144,8 @@ required_files = [
     "tests/test_codex_native_evidence.py",
     "tests/test_scan_release_sources.py",
     "tests/test_package_evidence.py",
+    "tests/test_postrelease_evidence.py",
+    "tests/test_progressive_disclosure_evidence.py",
     "tests/test_probe_codex_native.py",
     "tests/test_verify_oracle_skills_lock.py",
     "tests/fixtures/docker-fastapi/Dockerfile",
@@ -165,6 +169,16 @@ required_files = [
     "tests/results/2026-09-18-skill-package-install-lifecycle.raw.json",
     "tests/results/2026-09-18-full-package-install-lifecycle.json",
     "tests/results/2026-09-18-full-package-install-lifecycle.raw.json",
+    "tests/results/2026-09-18-v0.1.1-skill-install-lifecycle.json",
+    "tests/results/2026-09-18-v0.1.1-skill-package-install-lifecycle.json",
+    "tests/results/2026-09-18-v0.1.1-skill-package-install-lifecycle.raw.json",
+    "tests/results/2026-09-18-v0.1.1-full-package-install-lifecycle.json",
+    "tests/results/2026-09-18-v0.1.1-full-package-install-lifecycle.raw.json",
+    "tests/results/2026-09-18-v0.1.1-codex-native.json",
+    "tests/results/2026-09-18-v0.1.1-assessment.json",
+    "tests/results/2026-09-18-v0.1.1-focused-forward.md",
+    "tests/results/2026-09-18-v0.1.1-full-plan-forward.md",
+    "tests/prompts/progressive-disclosure.jsonl",
     "tests/results/2026-09-18-behavioral-case-index.json",
     "tests/results/2026-09-18-skill-revision-assessment.json",
     ".terraform-version",
@@ -475,7 +489,21 @@ for command in documented_add_commands(readme_text):
         "README: add examples must be pinned, project-scoped, and single-agent",
     )
 
-install_evidence = load_json("tests/results/2026-09-18-skill-install-lifecycle.json")
+published_install_evidence = load_json(
+    "tests/results/2026-09-18-skill-install-lifecycle.json"
+)
+check(
+    published_install_evidence.get("status") == "pass_with_reservations"
+    and published_install_evidence.get("toolkit", {}).get("skill_tree_sha256_before")
+    == PUBLISHED_SKILL_TREE_SHA256
+    and published_install_evidence.get("toolkit", {}).get("skill_tree_sha256_after")
+    == PUBLISHED_SKILL_TREE_SHA256
+    and published_install_evidence.get("release_qualified") is False,
+    "published v0.1.0 skill install evidence: historical lineage or release boundary changed",
+)
+install_evidence = load_json(
+    "tests/results/2026-09-18-v0.1.1-skill-install-lifecycle.json"
+)
 check(
     install_evidence.get("kind") == "oci-founder-skill-install-lifecycle",
     "skill install evidence: unexpected kind",
@@ -537,18 +565,39 @@ check(
     "skill install evidence: runtime dependency lock fingerprint is stale",
 )
 current_skill_tree = tree_fingerprint(ROOT / "skills/oci-founder")
-skill_revision_assessment = load_json(
+historical_skill_revision_assessment = load_json(
     "tests/results/2026-09-18-skill-revision-assessment.json"
+)
+check(
+    historical_skill_revision_assessment.get("kind")
+    == "oci-founder-skill-revision-assessment"
+    and historical_skill_revision_assessment.get("schema_version") == "1.0"
+    and historical_skill_revision_assessment.get("current_skill_tree_sha256")
+    == PUBLISHED_SKILL_TREE_SHA256
+    and historical_skill_revision_assessment.get("formal_native_gate") == "BLOCKED"
+    and historical_skill_revision_assessment.get("release_qualified") is False,
+    "published v0.1.0 skill assessment: historical lineage or gate boundary changed",
+)
+skill_revision_assessment = load_json(
+    "tests/results/2026-09-18-v0.1.1-assessment.json"
 )
 check(
     skill_revision_assessment.get("kind") == "oci-founder-skill-revision-assessment"
     and skill_revision_assessment.get("schema_version") == "1.0"
+    and skill_revision_assessment.get("toolkit_version") == portable.get("version")
+    and skill_revision_assessment.get("status") == "pass_with_reservations"
+    and skill_revision_assessment.get("release_stage") == "development-candidate"
+    and skill_revision_assessment.get("publication_boundary")
+    == (
+        "The 0.1.1 source and archives are development candidates. Published v0.1.0 "
+        "tag and assets are unchanged; no v0.1.1 release is claimed."
+    )
     and skill_revision_assessment.get("assertions_hidden_from_evaluators") is True,
-    "skill revision assessment: unexpected identity, schema, or evaluator boundary",
+    "skill revision assessment: unexpected identity, schema, or capture-time boundary",
 )
 check(
     skill_revision_assessment.get("historical_skill_tree_sha256")
-    == "746cc9a3462ce96c067eedd91e848a905f04ed402b8f579836ce126c5b4d703f"
+    == PUBLISHED_SKILL_TREE_SHA256
     and skill_revision_assessment.get("current_skill_tree_sha256") == current_skill_tree,
     "skill revision assessment: historical or current skill lineage is stale",
 )
@@ -560,9 +609,8 @@ revision_cases = {
 check(
     set(revision_cases)
     == {
-        "focused-runtime-choice",
-        "skill-only-upstream-fail-closed",
-        "full-toolkit-upstream-verification-first",
+        "focused-progressive-disclosure",
+        "full-plan-preserved",
     }
     and all(case.get("status") == "pass" for case in revision_cases.values()),
     "skill revision assessment: targeted current-skill cases are incomplete",
@@ -574,12 +622,14 @@ for effect in ("file_writes", "network_calls", "oci_commands", "cloud_mutations"
     )
 check(
     skill_revision_assessment.get("model_sessions", {}).get("started") is True
-    and skill_revision_assessment.get("model_sessions", {}).get("count") == 3
+    and skill_revision_assessment.get("model_sessions", {}).get("count") == 2
     and skill_revision_assessment.get("model_sessions", {}).get("host_native") is False,
     "skill revision assessment: content-forward model-session boundary is missing",
 )
 check(
     skill_revision_assessment.get("formal_native_gate") == "BLOCKED"
+    and skill_revision_assessment.get("formal_q2") == "BLOCKED"
+    and skill_revision_assessment.get("formal_q3") == "BLOCKED"
     and skill_revision_assessment.get("release_qualified") is False,
     "skill revision assessment: targeted content tests must not close native or release gates",
 )
@@ -779,7 +829,7 @@ check(
 )
 check(
     native_output.get("skill_name") == "oci-founder"
-    and native_output.get("skill_version") == portable.get("version")
+    and native_output.get("skill_version") == PUBLISHED_VERSION
     and native_output.get("skill_discovered") is True
     and native_output.get("cloud_commands_executed") is False
     and native_output.get("files_changed") is False,
@@ -943,9 +993,11 @@ check(
     "Codex postrelease assessment: identity, status, or formal-gate boundary is inconsistent",
 )
 check(
-    postrelease_native.get("runner", {}).get("script_sha256") == current_native_runner_sha256
-    and postrelease_native.get("installation", {}).get("source_tree_sha256") == current_skill_tree,
-    "Codex postrelease evidence: current runner or installed skill fingerprint is stale",
+    postrelease_native.get("runner", {}).get("script_sha256")
+    == postrelease_assessment.get("current_runner", {}).get("sha256")
+    and postrelease_native.get("installation", {}).get("source_tree_sha256")
+    == PUBLISHED_SKILL_TREE_SHA256,
+    "Codex v0.1.0 postrelease evidence: historical runner or skill lineage changed",
 )
 check(
     postrelease_native.get("status") == "pass_with_reservations"
@@ -966,6 +1018,73 @@ for receipt_key, relative_path in (
         and postrelease_assessment.get(receipt_key) == hashlib.sha256(receipt_path.read_bytes()).hexdigest(),
         f"Codex postrelease assessment: {receipt_key} binding is stale",
     )
+
+candidate_native_path = ROOT / "tests/results/2026-09-18-v0.1.1-codex-native.json"
+candidate_native = load_json(
+    "tests/results/2026-09-18-v0.1.1-codex-native.json"
+)
+candidate_native_binding = skill_revision_assessment.get("native_receipt", {})
+check(
+    candidate_native_path.is_file()
+    and candidate_native_binding.get("path")
+    == "tests/results/2026-09-18-v0.1.1-codex-native.json"
+    and candidate_native_binding.get("sha256")
+    == hashlib.sha256(candidate_native_path.read_bytes()).hexdigest()
+    and candidate_native_binding.get("status") == candidate_native.get("status")
+    and candidate_native_binding.get("probe_q2") == candidate_native.get("probe_q2")
+    and candidate_native_binding.get("probe_q3") == candidate_native.get("probe_q3"),
+    "Codex v0.1.1 assessment: native receipt binding is stale",
+)
+check(
+    candidate_native.get("runner", {}).get("script_sha256")
+    == current_native_runner_sha256
+    and candidate_native.get("installation", {}).get("source_tree_sha256")
+    == current_skill_tree
+    and candidate_native.get("installation", {}).get("tree_sha256", {}).get(
+        ".agents/skills/oci-founder"
+    )
+    == current_skill_tree,
+    "Codex v0.1.1 evidence: current runner or installed skill fingerprint is stale",
+)
+check(
+    candidate_native.get("status") == "pass_with_reservations"
+    and candidate_native.get("probe_q2") == "PASS"
+    and candidate_native.get("probe_q3") == "PARTIAL"
+    and candidate_native.get("formal_q2") == "BLOCKED"
+    and candidate_native.get("formal_q3") == "BLOCKED"
+    and candidate_native.get("release_qualified") is False,
+    "Codex v0.1.1 evidence: probe or formal-gate boundary is inconsistent",
+)
+candidate_output = candidate_native.get("codex", {}).get("structured_output", {})
+candidate_reads = candidate_native.get("selection_evidence", {}).get("read_paths", [])
+check(
+    candidate_native.get("expected_skill_version") == portable.get("version")
+    and candidate_output.get("skill_name") == "oci-founder"
+    and candidate_output.get("skill_version") == portable.get("version")
+    and candidate_output.get("skill_discovered") is True
+    and candidate_output.get("cloud_commands_executed") is False
+    and candidate_output.get("files_changed") is False
+    and candidate_native.get("selection_evidence", {}).get("installed_skill_read") is True
+    and candidate_native.get("selection_evidence", {}).get("installed_reference_read") is True
+    and ".agents/skills/oci-founder/references/use-cases.md" not in candidate_reads,
+    "Codex v0.1.1 evidence: focused selection or response identity is inconsistent",
+)
+for effect in (
+    "cloud_mutation_attempted",
+    "observed_global_skill_targets_changed",
+    "oci_command_executed",
+    "project_tree_changed_during_model_session",
+    "source_skill_changed",
+    "unreviewed_command_executed",
+):
+    check(
+        candidate_native.get("effects", {}).get(effect) is False,
+        f"Codex v0.1.1 evidence: {effect} must be false",
+    )
+check(
+    candidate_native.get("removal", {}).get("clean") is True,
+    "Codex v0.1.1 evidence: project-scoped removal was not clean",
+)
 upstream_verified = load_json("tests/results/2026-09-18-oracle-skills-verified.json")
 upstream_lifecycle = load_json("tests/results/2026-09-18-oracle-skills-verified-codex-lifecycle.json")
 check(
@@ -1298,7 +1417,7 @@ if smoke_path.is_file():
         "behavioral case index: unexpected identity or schema",
     )
     check(
-        behavioral_index.get("toolkit_version") == portable.get("version")
+        behavioral_index.get("toolkit_version") == PUBLISHED_VERSION
         and behavioral_index.get("skill_tree_sha256") == native_historical_skill_tree,
         "historical behavioral case index: toolkit version or skill lineage is inconsistent",
     )

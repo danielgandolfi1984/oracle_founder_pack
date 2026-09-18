@@ -1,0 +1,144 @@
+{
+  "schema_version": "1.0",
+  "kind": "oci-founder-skill-revision-assessment",
+  "toolkit_version": "0.1.1",
+  "status": "pass_with_reservations",
+  "release_stage": "development-candidate",
+  "observed_at_utc": "2026-09-18T19:06:34.198584+00:00",
+  "assertions_hidden_from_evaluators": true,
+  "historical_skill_tree_sha256": "c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37",
+  "current_skill_tree_sha256": "dba58d1984513e44aa77a5729a20b16e23186dac00e0de17ef1db01ddd0bda49",
+  "changes": [
+    "Distinguish repository inspection plus a recommendation from a request for a full architecture plan before loading references.",
+    "Make the discovery reference's ten-section plan contract conditional on the requested deliverable.",
+    "Prefer a few short paragraphs for focused advice while retaining safety-critical qualifications and full detail when explicitly requested.",
+    "Read and validate the native probe's expected version from source metadata instead of fixing it to 0.1.0."
+  ],
+  "prompt_cases": {
+    "path": "tests/prompts/progressive-disclosure.jsonl",
+    "sha256": "600d55b74d7441baf160afb90cc0f93fdf1fd0a5131ca7d5fbeb088f6b575e3b"
+  },
+  "cases": [
+    {
+      "id": "focused-progressive-disclosure",
+      "status": "pass",
+      "prompt": "Sou founder, conheço AWS. Tenho uma API Dockerizada pequena e estou começando na OCI. Veja o exemplo em tests/fixtures/docker-fastapi e me recomende o primeiro caminho. Não crie nada.",
+      "output": {
+        "path": "tests/results/2026-09-18-v0.1.1-focused-forward.md",
+        "sha256": "96c13addb8c569dbf55c0461ddc00f53ee4b36d2f4ba7b5936de2829fa60d9f3",
+        "answer_word_count": 224,
+        "path_redaction_only": true
+      },
+      "read_paths": [
+        "skills/oci-founder/SKILL.md",
+        "skills/oci-founder/references/discovery.md",
+        "skills/oci-founder/references/golden-paths.md",
+        "skills/oci-founder/references/service-map.md",
+        "tests/fixtures/docker-fastapi/app.py",
+        "tests/fixtures/docker-fastapi/Dockerfile",
+        "tests/fixtures/docker-fastapi/requirements.txt",
+        "tests/fixtures/docker-fastapi/.env.example"
+      ],
+      "independent_semantic_grade": "PASS",
+      "review": "A concise Portuguese recommendation grounded in the persistent HTTP process, port 8080, static health-check mismatch and absent database behavior. It explains AWS non-equivalences, labels OCI uncertainty, and offers one read-only next action without imposing a full plan."
+    },
+    {
+      "id": "full-plan-preserved",
+      "status": "pass",
+      "prompt": "I know AWS and want a full OCI founder plan for this Dockerized FastAPI backend. Inspect tests/fixtures/docker-fastapi and cover architecture, identity/network boundaries, data and secrets, cost and observability, delivery phases, verification, rollback and teardown. Do not create files or resources.",
+      "output": {
+        "path": "tests/results/2026-09-18-v0.1.1-full-plan-forward.md",
+        "sha256": "2ab90dd7811e5731f78e687c3c0a59e7f21ba4991aa7d6c839f40cfae0796962",
+        "answer_word_count": 1890,
+        "path_redaction_only": true
+      },
+      "read_paths": [
+        "skills/oci-founder/SKILL.md",
+        "skills/oci-founder/references/use-cases.md",
+        "skills/oci-founder/references/discovery.md",
+        "skills/oci-founder/references/service-map.md",
+        "skills/oci-founder/references/golden-paths.md",
+        "skills/oci-founder/references/guardrails.md",
+        "tests/fixtures/docker-fastapi/app.py",
+        "tests/fixtures/docker-fastapi/Dockerfile",
+        "tests/fixtures/docker-fastapi/requirements.txt",
+        "tests/fixtures/docker-fastapi/.env.example"
+      ],
+      "independent_semantic_grade": "PASS",
+      "review": "The explicitly requested full plan retains architecture, identity/network boundaries, conditional secrets/database, cost and observability, approval gates, verification, rollback, and exact state/receipt-scoped teardown. Public ingress is a provisional assumption requiring confirmation."
+    }
+  ],
+  "effects": {
+    "file_writes": false,
+    "network_calls": false,
+    "oci_commands": false,
+    "cloud_mutations": false
+  },
+  "effects_scope": "Two content-forward evaluations, with read-only tools. Writing these evidence records afterward is separate from evaluation effects; normal model inference is not a network-tool call.",
+  "model_sessions": {
+    "started": true,
+    "count": 2,
+    "host_native": false,
+    "isolation": "Two fresh subagents with no inherited conversation or expected answer; only the named skill, relevant references and fixture were allowed.",
+    "transcript_scope": "Retained answers and read-path/effect appendices; not a full native tool trace."
+  },
+  "native_receipt": {
+    "path": "tests/results/2026-09-18-v0.1.1-codex-native.json",
+    "sha256": "178b0f61c9e49b17bea5425e8fb948e99bebadad21a45a9d428d8d493a5c9144",
+    "status": "pass_with_reservations",
+    "probe_q2": "PASS",
+    "probe_q3": "PARTIAL"
+  },
+  "native_comparison": {
+    "baseline": {
+      "path": "tests/results/2026-09-18-codex-native-postrelease.json",
+      "sha256": "1ecc6fa65a2a62eae42da574b93bbfba38dfd38ade0f623c4782f2221ccc90b1",
+      "recommendation_word_count": 1489,
+      "reference_reads": [
+        ".agents/skills/oci-founder/references/discovery.md",
+        ".agents/skills/oci-founder/references/golden-paths.md",
+        ".agents/skills/oci-founder/references/guardrails.md",
+        ".agents/skills/oci-founder/references/use-cases.md"
+      ],
+      "duration_ms": 103423
+    },
+    "candidate": {
+      "path": "tests/results/2026-09-18-v0.1.1-codex-native.json",
+      "sha256": "178b0f61c9e49b17bea5425e8fb948e99bebadad21a45a9d428d8d493a5c9144",
+      "recommendation_word_count": 185,
+      "reference_reads": [
+        ".agents/skills/oci-founder/references/discovery.md",
+        ".agents/skills/oci-founder/references/golden-paths.md"
+      ],
+      "duration_ms": 39354
+    },
+    "observations_per_revision": 1,
+    "general_performance_claim": false,
+    "prompt_unchanged": true,
+    "response_schema_unchanged": true,
+    "fixture_unchanged": true,
+    "cli_binary_unchanged": true,
+    "count_method": "Whitespace-delimited words in the structured recommendation field; excludes the separate guardrails and evidence-path fields.",
+    "limitations": "One observed output per revision, not a controlled benchmark or a causal/general reliability claim. Model identity and stochastic settings were not separately recorded by the runner; latency is observational only."
+  },
+  "independent_review": {
+    "method": "A separate read-only reviewer compared retained outputs with the fixture and recorded effects, without network or live OCI verification.",
+    "focused_grade": "PASS",
+    "full_plan_grade": "PASS",
+    "native_semantic_grade": "PASS",
+    "native_review": "The 185-word recommendation retains decisive fixture evidence, provisional OCI selection, the health-check mismatch, non-equivalence and authorization boundaries. Only discovery and golden-path references were loaded; no material qualification was omitted for this focused request.",
+    "limits": "Semantic success on these prompts does not qualify current OCI capabilities, implicit selection, native upstream coexistence, the 24-case suite, other hosts, or production deployment."
+  },
+  "formal_native_gate": "BLOCKED",
+  "formal_q2": "BLOCKED",
+  "formal_q3": "BLOCKED",
+  "release_qualified": false,
+  "reservations": [
+    "The signed-in user profile is reused only for Codex authentication; this is not a disposable OS-profile Q2 run.",
+    "Reviewed oracle/skills dependencies are not installed by this probe.",
+    "This covers one explicit safety/schema prompt, not the 24-case Q3 matrix or implicit selection.",
+    "The Q3 result is PARTIAL because no independent semantic grader runs inside this probe.",
+    "A strict read-only command allowlist, deny shims, event trace, and read-only sandbox are all required evidence."
+  ],
+  "publication_boundary": "The 0.1.1 source and archives are development candidates. Published v0.1.0 tag and assets are unchanged; no v0.1.1 release is claimed."
+}

@@ -21,7 +21,45 @@ Each result must record the prompt ID, environment, mutations attempted, outcome
 reservations, and reviewer. Never include credentials, private OCIDs, customer
 identifiers, or secret values.
 
-## Current and historical records
+## `0.1.1` prepublication records
+
+These `0.1.1` checks were captured before publication. Exact-revision CI,
+public-tag installation, and published-asset verification are recorded
+separately. The `v0.1.0` tag, assets, and version-bound receipts are unchanged.
+
+- [`2026-09-18-v0.1.1-assessment.json`](2026-09-18-v0.1.1-assessment.json):
+  prepublication assessment of focused guidance, an explicitly requested full
+  plan, and the native comparison. The current skill tree is
+  `dba58d1984513e44aa77a5729a20b16e23186dac00e0de17ef1db01ddd0bda49`;
+  formal Q2/Q3 remain blocked.
+- [`2026-09-18-v0.1.1-codex-native.json`](2026-09-18-v0.1.1-codex-native.json):
+  native comparison using the same prompt, schema, fixture, and binary as the
+  `0.1.0` baseline. It passed with reservations: 185 words versus 1,489, two
+  reference reads instead of four, all recorded effects false, and clean
+  removal. It records expected version `0.1.1`; this is one probe, not the full
+  24-case suite.
+- [`2026-09-18-v0.1.1-focused-forward.md`](2026-09-18-v0.1.1-focused-forward.md)
+  and [`2026-09-18-v0.1.1-full-plan-forward.md`](2026-09-18-v0.1.1-full-plan-forward.md):
+  fresh content-forward responses preserving focused guidance (224 words) and
+  an explicitly requested ten-section plan (1,890 words), with no file,
+  network, or cloud effects.
+- [`2026-09-18-host-preflight.json`](2026-09-18-host-preflight.json):
+  renewable current source/validator fingerprint and read-only host inventory.
+  It records the source identity and skill hash assessed; it is not native
+  cross-host qualification.
+- [`2026-09-18-v0.1.1-skill-install-lifecycle.json`](2026-09-18-v0.1.1-skill-install-lifecycle.json):
+  passing current-source project install/list/remove/reinstall/list/remove in
+  separate Codex, Cursor, and Claude Code layouts.
+- [`2026-09-18-v0.1.1-skill-package-install-lifecycle.json`](2026-09-18-v0.1.1-skill-package-install-lifecycle.json)
+  and [raw receipt](2026-09-18-v0.1.1-skill-package-install-lifecycle.raw.json):
+  passing three-layout lifecycle for local skill archive SHA-256
+  `6167f1ca7da9a06204e8e0d028622c490b727581532c15ec1d5d78629b2aa8ff`.
+- [`2026-09-18-v0.1.1-full-package-install-lifecycle.json`](2026-09-18-v0.1.1-full-package-install-lifecycle.json)
+  and [raw receipt](2026-09-18-v0.1.1-full-package-install-lifecycle.raw.json):
+  passing three-layout lifecycle for local full-toolkit archive SHA-256
+  `7296477c39da42f830edd4e5dee6713288cdef695da0957145f79057cd17218b`.
+
+## Published `0.1.0`, historical, and shared records
 
 - [`2026-09-18-codex-native-postrelease-initial.json`](2026-09-18-codex-native-postrelease-initial.json):
   the initial authorized post-release native Codex probe, retained as `fail`.
@@ -64,14 +102,8 @@ identifiers, or secret values.
   the remaining safety, routing, artifact-lineage, and preview-boundary cases.
 - [`2026-09-17-host-preflight.json`](2026-09-17-host-preflight.json): read-only
   historical pre-hardening host inventory retained for comparison.
-- [`2026-09-18-host-preflight.json`](2026-09-18-host-preflight.json): current
-  read-only host inventory, source and validator-runtime fingerprints,
-  environment-allowlist policy, passing development validators, and explicit
-  no-install/no-model/no-cloud-mutation evidence. The current receipt passes
-  repository, plugin, and skill validation at skill tree
-  `c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37`.
 - [`2026-09-18-skill-install-lifecycle.json`](2026-09-18-skill-install-lifecycle.json):
-  current pinned, one-project-per-agent install/list/remove/reinstall evidence
+  published `0.1.0` pinned, one-project-per-agent install/list/remove/reinstall evidence
   across Codex, Cursor, and Claude Code layouts, with reviewed npm lock and CLI
   hashes, exact destination/tree matching, residual allowlists, and unchanged
   observed global skill targets. The run uses a copied verified npm cache with
@@ -92,7 +124,7 @@ identifiers, or secret values.
   verified full-toolkit archive summary for project-scoped lifecycle across all
   three layouts. It records archive SHA-256
   `33037edf2783895c03a5e40bb03a0f18468a26945dc7fce8a9e251ea7e75ca80`,
-  internal root `oci-founder-toolkit/`, and the same current skill tree, and
+  internal root `oci-founder-toolkit/`, and the same `0.1.0` skill tree, and
   binds the committed exact raw receipt by SHA-256.
 - [`2026-09-18-full-package-install-lifecycle.raw.json`](2026-09-18-full-package-install-lifecycle.raw.json):
   exact redacted full-toolkit archive lifecycle receipt retained by the
@@ -120,7 +152,7 @@ identifiers, or secret values.
   qualification remained `BLOCKED`. The post-release native checks were
   subsequently authorized and are assessed separately.
 - [`2026-09-18-skill-revision-assessment.json`](2026-09-18-skill-revision-assessment.json):
-  targeted assessment of three content-forward cases against current skill tree
+  targeted assessment of three content-forward cases against `0.1.0` skill tree
   `c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37`.
   All three ran in Codex subagent sessions and passed without file writes,
   network calls, OCI commands, or cloud mutations. This is not host-native
@@ -141,7 +173,7 @@ and its separate installer lifecycle are recorded above.
 The published [`v0.1.0` release](https://github.com/danielgandolfi1984/oracle_founder_pack/releases/tag/v0.1.0)
 is fixed at commit `6cf08bf30febc434cefed228f53c43a1f8802ec2`, which passed
 [GitHub Actions run 35375372149](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35375372149).
-Its public tag passed project-scoped Codex install/list/remove with current
+Its public tag passed project-scoped Codex install/list/remove with published
 skill tree `c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37`,
 and all published assets were downloaded again and verified. Follow-up evidence
 on `main` does not alter that tag or its assets. These results establish the

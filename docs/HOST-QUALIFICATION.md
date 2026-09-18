@@ -10,6 +10,19 @@ Oracle product and has no Oracle Support coverage, warranty, SLA, or implied
 production-readiness commitment. The public license permits use; it does not
 turn an unverified host or deployment claim into a qualified one.
 
+Public preview `0.1.1` uses
+skill tree `dba58d1984513e44aa77a5729a20b16e23186dac00e0de17ef1db01ddd0bda49`
+and has separate [prepublication evidence](../tests/results/2026-09-18-v0.1.1-assessment.json).
+Its source and both local packages passed lifecycle checks across all three
+installer layouts. Exact-revision CI, public-tag installation, and published
+asset verification are recorded separately; `0.1.0` native receipts remain
+bound to the earlier released skill.
+The [native `0.1.1` comparison](../tests/results/2026-09-18-v0.1.1-codex-native.json)
+passed with reservations using the same prompt, schema, and fixture: 185 words
+versus 1,489, two reference reads instead of four, no observed mutation, and
+clean removal. Probe Q2 is `PASS` and Q3 is `PARTIAL`; formal Q2/Q3 remain
+blocked because this is one prompt in a shared authentication profile.
+
 The host preflight is intentionally read-only. It inventories installed
 surfaces, fingerprints the exact toolkit source, runs repository checks, and can
 run validators that are already installed. A separate opt-in lifecycle runner
@@ -38,7 +51,7 @@ Each surface needs its own version and evidence. Do not summarize all of them as
 |---|---|---|
 | Q0 — source | Repository checks, manifest and skill fingerprints, unit tests | Passed for immutable `v0.1.0` commit `6cf08bf30febc434cefed228f53c43a1f8802ec2` in [run 35375372149](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35375372149). Each later revision still requires its own passing run |
 | Q1 — native validation | Host-supported strict validator or a documented development validator | Partial; see the dated matrix below |
-| Q2 — install and discovery | Isolated install, exact installed-skill hash, visibility, clean removal | Source and both packages pass project lifecycle on all three layouts. The fresh native Codex probe records Q2 `PASS` for the exact released skill; formal Q2 remains `BLOCKED` pending fully disposable profiles, upstream native integration, and cross-host discovery |
+| Q2 — install and discovery | Isolated install, exact installed-skill hash, visibility, clean removal | `0.1.1` source and both local packages pass project lifecycle on all three layouts. Its native Codex probe records Q2 `PASS`; formal Q2 remains `BLOCKED` pending fully disposable profiles, upstream native integration, and cross-host discovery |
 | Q3 — behavior | All fixtures in fresh sessions, effect log, independent semantic evaluation | The fresh Codex safety/schema probe passed one explicit prompt and records Q3 `PARTIAL`; formal Q3 remains `BLOCKED` pending all 24 cases, independent grading of the suite, and Cursor/Claude Code replay |
 | Q4 — reinstall | Repeatable update/removal with no stale or conflicting copy | Current source and preview-package remove/reinstall lifecycle passes in isolated projects; global and native-host lifecycle remain open |
 
@@ -78,7 +91,7 @@ playbook's read-only boundary.
 
 | Surface | Observed version | Q0/Q1 evidence | Blocking gate |
 |---|---:|---|---|
-| Codex CLI | `0.153.4` | CLI and plugin-management surface detected; development validators and source/package lifecycle pass; the fresh released-skill native probe records Q2 `PASS` and Q3 `PARTIAL` with no observed mutation | Formal Q2/Q3 require a fully disposable profile, upstream dependencies in the native session, all 24 cases with independent grading, and cross-host qualification |
+| Codex CLI | `0.153.4` | CLI and plugin-management surface detected; `0.1.1` source/package lifecycle passes; its native probe records Q2 `PASS` and Q3 `PARTIAL` with no observed mutation | Formal Q2/Q3 require a fully disposable profile, upstream dependencies in the native session, all 24 cases with independent grading, and cross-host qualification |
 | Cursor IDE | `3.0.12` | App and embedded editor CLI detected; current isolated source/package lifecycle passes | Cursor Agent is unavailable; editor CLI exposes no native plugin validator; duplicate discovery and native replay remain open |
 | Claude Desktop | `1.569.0` | Desktop bundle detected | Desktop is not Claude Code |
 | Claude Code | not present | None | Install the CLI deliberately, then run `claude plugin validate . --strict` and the isolated runtime procedure |
@@ -86,10 +99,9 @@ playbook's read-only boundary.
 The current machine-readable preflight evidence is in
 [`tests/results/2026-09-18-host-preflight.json`](../tests/results/2026-09-18-host-preflight.json).
 It records no credentials or raw environment variables and redacts the user home
-and toolkit paths. The receipt passed source validation and the available
-development validators at skill tree
-`c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37`,
-and records `release_qualified: false`. It cannot by itself close native gates.
+and toolkit paths. The snapshot records source and validator fingerprints and
+`release_qualified: false`, and is renewed after the final development edits.
+It cannot by itself close native gates.
 
 ## Q2 — isolated install and discovery
 
@@ -135,7 +147,7 @@ model session ran, so sibling Database references and native discovery remain
 unqualified. Four named global OCI targets were unchanged; the user home was
 not fully isolated or audited.
 
-### Current project-lifecycle evidence
+### Versioned project-lifecycle evidence
 
 The pinned `skills@1.7.0` lifecycle passed in three disposable Git repositories,
 one per supported agent:
@@ -153,24 +165,18 @@ for Codex, Cursor, and Claude Code separately. Every installed tree matched the
 reviewed source fingerprint, every removal left only the allowed empty
 directories and an empty lock, and the four explicitly observed global skill
 targets were unchanged. No claim is made about the rest of the user profile.
-The evidence is in
-[`tests/results/2026-09-18-skill-install-lifecycle.json`](../tests/results/2026-09-18-skill-install-lifecycle.json).
+The current `0.1.1` source evidence is in
+[`tests/results/2026-09-18-v0.1.1-skill-install-lifecycle.json`](../tests/results/2026-09-18-v0.1.1-skill-install-lifecycle.json).
+The [earlier source receipt](../tests/results/2026-09-18-skill-install-lifecycle.json)
+is retained for `0.1.0`.
 
-The same lifecycle passed from both extracted, verified public-preview
-archives. The skill-only archive is
-`oci-founder-skill-0.1.0-preview.tar.gz` with SHA-256
-`517c4f6d4d29b35d085d4cf534656608e6c1d7315526563ee632ee5ae9fe7954`.
-The full archive is `oci-founder-toolkit-0.1.0-preview.tar.gz` with SHA-256
-`33037edf2783895c03a5e40bb03a0f18468a26945dc7fce8a9e251ea7e75ca80`
-and extracts under `oci-founder-toolkit/`. Both current package receipts verify
-skill tree fingerprint
-`c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37`.
-Each summary binds the archive, manifest, content inventory, runner, installed
-tree, and committed exact raw receipt by SHA-256:
-[skill-only summary](../tests/results/2026-09-18-skill-package-install-lifecycle.json),
-[skill-only raw receipt](../tests/results/2026-09-18-skill-package-install-lifecycle.raw.json),
-[full-toolkit summary](../tests/results/2026-09-18-full-package-install-lifecycle.json),
-and [full-toolkit raw receipt](../tests/results/2026-09-18-full-package-install-lifecycle.raw.json).
+The same lifecycle passed for the local `0.1.1` skill-only and full-toolkit
+archives. Their summaries bind archive, manifest, inventory, runner, installed
+tree, and exact raw receipt by SHA-256:
+[skill-only summary](../tests/results/2026-09-18-v0.1.1-skill-package-install-lifecycle.json),
+[full-toolkit summary](../tests/results/2026-09-18-v0.1.1-full-package-install-lifecycle.json).
+The [validation record](VALIDATION.md) keeps the published `0.1.0` package
+receipts separately; new local packages do not replace the release assets.
 
 This is package-lifecycle evidence, not native host discovery. The Codex and
 Cursor cases each produced one `.agents/skills/oci-founder` copy; the Claude
@@ -207,6 +213,8 @@ runs Codex CLI with explicit `$oci-founder`, `--ephemeral`,
 and a structured output schema, then removes the skill and audits residuals. It
 uses an environment allowlist and prepends logging deny shims for `oci`,
 `terraform`, `fn`, `docker`, and `kubectl`; it never invokes OCI itself.
+The runner reads the expected version from source `metadata.version`, rejects
+missing or invalid versions before acquisition, and records it in the receipt.
 The CLI execution mode is documented in
 [Codex non-interactive mode](https://learn.chatgpt.com/docs/non-interactive-mode).
 
@@ -248,8 +256,8 @@ Prepublication assessment:
 [`tests/results/2026-09-18-codex-native-runner-assessment.json`](../tests/results/2026-09-18-codex-native-runner-assessment.json).
 
 A separate
-[`targeted current-skill assessment`](../tests/results/2026-09-18-skill-revision-assessment.json)
-passes three Codex-subagent content-forward cases against current skill
+[`targeted 0.1.0 assessment`](../tests/results/2026-09-18-skill-revision-assessment.json)
+passes three Codex-subagent content-forward cases against published skill
 fingerprint
 `c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37`.
 It used no network, file write, OCI command, or cloud mutation. It is not

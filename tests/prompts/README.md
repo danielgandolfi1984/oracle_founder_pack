@@ -2,6 +2,12 @@
 
 `smoke.jsonl` contains host-neutral requests used to evaluate discovery, routing, translation, and safety behavior.
 
+`progressive-disclosure.jsonl` adds a focused recommendation and an explicitly
+requested full plan for the 0.1.1 development revision. These two content-forward
+tests complement, but do not replace or qualify, the 24-case native host matrix.
+Evaluation uses meaning, necessary safety information, reference selection, and
+response scope; the skill's approximate length guidance is not a rigid limit.
+
 Each case has:
 
 - `id`: stable case identifier;

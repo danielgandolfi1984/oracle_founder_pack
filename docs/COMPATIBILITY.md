@@ -4,13 +4,25 @@ Founder Toolkit for OCI keeps one skill implementation and multiple thin
 manifests. It is an independent personal project by Daniel Gandolfi with
 best-effort community support and no Oracle or project support SLA.
 
+The public-preview installation targets `v0.1.1`, whose skill
+tree is `dba58d1984513e44aa77a5729a20b16e23186dac00e0de17ef1db01ddd0bda49`.
+Its source and both local packages passed project installation lifecycles in
+all three layouts; focused and full-plan content-forward checks also passed.
+The native `0.1.1` comparison passed with reservations: the same prompt produced
+a 185-word recommendation versus 1,489 for `0.1.0`, with two reference reads instead of four,
+no observed mutation, and clean removal. It is one probe, not the full suite.
+See the [`0.1.1` assessment](../tests/results/2026-09-18-v0.1.1-assessment.json).
+These are prepublication checks; exact-revision CI, public-tag installation,
+and asset verification are recorded separately. The matrix below separates
+local layout tests from native host evidence.
+
 ## Packaging matrix
 
 | Host | Package mechanism | Included artifact | Validation status |
 |---|---|---|---|
-| Codex CLI | Codex compatibility manifest and portable skill | `.codex-plugin/plugin.json` | CLI `0.153.4`; source and public-preview packages passed project-scoped lifecycle; development validators passed; the fresh native probe loaded the released skill and passed one explicit safety/schema prompt with no observed mutation. Probe Q2 is `PASS` and Q3 is `PARTIAL`; formal Q2/Q3 remain `BLOCKED` |
-| Cursor IDE / Agent | Agent Plugins v1 and portable skill | `plugin.json` | IDE `3.0.12` was detected; the current source and public-preview packages passed project-scoped lifecycle, but Cursor Agent is unavailable; duplicate discovery and native runtime validation remain unqualified |
-| Claude Code | Claude plugin manifest and portable skill | `.claude-plugin/plugin.json` | The current source and public-preview packages passed project-scoped lifecycle, but Claude Code is unavailable on the dated host; strict validation and native runtime discovery remain unqualified |
+| Codex CLI | Codex compatibility manifest and portable skill | `.codex-plugin/plugin.json` | CLI `0.153.4`; `0.1.1` source and local packages passed project-scoped lifecycle; its native probe loaded the candidate skill and passed one explicit safety/schema prompt with no observed mutation. Probe Q2 is `PASS` and Q3 is `PARTIAL`; formal Q2/Q3 remain `BLOCKED` |
+| Cursor IDE / Agent | Agent Plugins v1 and portable skill | `plugin.json` | IDE `3.0.12` was detected; `0.1.1` source and local packages passed project-scoped lifecycle, but Cursor Agent is unavailable; duplicate discovery and native runtime validation remain unqualified |
+| Claude Code | Claude plugin manifest and portable skill | `.claude-plugin/plugin.json` | `0.1.1` source and local packages passed project-scoped lifecycle, but Claude Code is unavailable on the dated host; strict validation and native runtime discovery remain unqualified |
 
 All three adapters point to `skills/oci-founder/SKILL.md`. This table describes
 packaging intent, not a production-support claim. See [`VALIDATION.md`](VALIDATION.md)
@@ -26,13 +38,13 @@ skill hash, and all published assets were downloaded again and verified.
 Follow-up docs and evidence on `main` do not change the tag or its assets. No
 stable, marketplace, registry, or Oracle support claim is made.
 
-The current source, skill-only archive, and full-toolkit archive passed
+The published `0.1.0` source, skill-only archive, and full-toolkit archive passed
 project-scoped install/list/remove/reinstall in separate Codex, Cursor, and
-Claude Code layouts. The current skill tree SHA-256 is
+Claude Code layouts. The published skill tree SHA-256 is
 `c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37`.
-The current skill-only archive SHA-256 is
+The published skill-only archive SHA-256 is
 `517c4f6d4d29b35d085d4cf534656608e6c1d7315526563ee632ee5ae9fe7954`;
-the current full-toolkit archive SHA-256 is
+the published full-toolkit archive SHA-256 is
 `33037edf2783895c03a5e40bb03a0f18468a26945dc7fce8a9e251ea7e75ca80`,
 with internal root `oci-founder-toolkit/`. These lifecycle results establish
 filesystem-layout and package behavior, not native Cursor Agent or Claude Code
@@ -79,7 +91,7 @@ skill files:
 
 ```bash
 npx --yes skills@1.7.0 add \
-  'https://github.com/danielgandolfi1984/oracle_founder_pack#v0.1.0' \
+  'https://github.com/danielgandolfi1984/oracle_founder_pack#v0.1.1' \
   --skill oci-founder -a codex --copy -y
 npx --yes skills@1.7.0 list -a codex --json
 ```
@@ -107,7 +119,9 @@ an open gate and is not the quickstart default. Do not use `skills update` for
 this local source.
 
 For project-only use, run from the target backend, use the immutable tag or an
-absolute path to a reviewed toolkit checkout, omit `-g`, and select one agent. The automated
+absolute path to a reviewed toolkit checkout, omit `-g`, and select one agent.
+To evaluate an unpublished revision deliberately, use an absolute local path
+to that reviewed checkout. The automated
 project lifecycle test uses a different disposable repository for each agent,
 verifies the exact expected destination, and compares the installed tree with
 the reviewed source without touching a global installation target.
@@ -129,7 +143,7 @@ python3 -B -m unittest tests.test_probe_codex_native -v
 
 The skill-install qualification command uses the committed dependency lock,
 `npm ci --ignore-scripts`, an environment allowlist, and reviewed CLI file
-hashes. The current source and public-preview package evidence used a copied
+hashes. The current candidate source and local package evidence used a copied
 verified npm cache with `npm ci --offline`, while the lock and
 package-integrity checks remained enabled, and passed the project-scoped
 lifecycle in the Codex, Cursor, and Claude Code layouts. The native-runner unit
@@ -170,10 +184,10 @@ runtime is provided; the exact dependency procedure is in
 surfaces present without installing anything; see
 [`HOST-QUALIFICATION.md`](HOST-QUALIFICATION.md). Cursor native runtime and
 Claude strict validation remain stable-release gates rather than completed
-claims. The current host-preflight receipt passed repository, plugin, and skill
-validation against skill tree
-`c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37`.
-The fresh [native Codex receipt](../tests/results/2026-09-18-codex-native-postrelease.json)
+claims. The current [host-preflight receipt](../tests/results/2026-09-18-host-preflight.json)
+records the exact source and available validators; it is renewed
+after the final edits.
+The `0.1.0` [native Codex receipt](../tests/results/2026-09-18-codex-native-postrelease.json)
 passed with reservations against the released skill: all four machine assertions
 and the output schema passed, with clean removal and no observed project edit,
 unreviewed command, OCI command, or cloud mutation. It covers one explicit
@@ -182,7 +196,7 @@ upstream dependencies in the native session or replay all 24 cases. Probe Q2 is
 `PASS` and Q3 is `PARTIAL`. The initial failed harness run and the separate
 [assessment](../tests/results/2026-09-18-codex-native-postrelease-assessment.json)
 remain linked from [`VALIDATION.md`](VALIDATION.md). The runner accepts a
-verified offline npm cache. The targeted three-case assessment
+verified offline npm cache. The `0.1.0` targeted three-case assessment
 passed against the same skill tree without file writes, network calls, OCI
 commands, or cloud mutations. It is non-native and does not replace native
 discovery or replay. Formal Q2/Q3, global-profile lifecycle, native Cursor and

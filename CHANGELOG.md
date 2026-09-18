@@ -5,9 +5,28 @@ publishes an independent public open-source preview under UPL-1.0, with
 best-effort community support and no SLA. It has not published a tagged stable
 release or claimed cross-host or production qualification.
 
-## Unreleased
+## `0.1.1` — 2026-09-18 (public preview)
 
-### Documentation and evidence
+- Shortened focused recommendations and limited reference loading to the
+  question being answered, while retaining the complete ten-section founder
+  plan when explicitly requested.
+- Evaluated both focused guidance and a requested full plan in fresh
+  content-forward sessions; both passed without file, network, or cloud effects.
+- Repeated the native Codex probe with the same prompt, schema, and fixture:
+  the recommendation was 185 words versus 1,489 for `0.1.0`, with two reference
+  reads instead of four. Machine checks and independent semantic review passed;
+  all recorded effects were false, and removal was clean. This
+  single comparison does not qualify the full behavioral suite.
+- Renewed source and both local package install/list/remove/reinstall evidence
+  across Codex, Cursor, and Claude Code layouts at skill tree
+  `dba58d1984513e44aa77a5729a20b16e23186dac00e0de17ef1db01ddd0bda49`.
+- Bound native version assertions to validated `metadata.version` from the
+  source skill and recorded that expected version in each new receipt.
+- Kept `v0.1.0` and its published assets unchanged. These checks are
+  prepublication evidence for `0.1.1`; exact-revision CI, public-tag installation,
+  and published-asset verification are recorded separately.
+
+### Post-release `0.1.0` documentation and evidence
 
 - Reconciled release status with the published `v0.1.0` tag at
   `6cf08bf30febc434cefed228f53c43a1f8802ec2`, successful exact-source
@@ -30,8 +49,8 @@ release or claimed cross-host or production qualification.
   no observed project edit or cloud mutation. Independent semantic review
   passed with reservations about answer length and reference loading. Probe Q2
   is `PASS`, Q3 is `PARTIAL`; formal Q2/Q3 remain `BLOCKED`.
-- Kept package version `0.1.0`, the portable skill, and the published release
-  tag and assets unchanged.
+- That documentation and evidence update kept package version `0.1.0`, the
+  portable skill, and the published release tag and assets unchanged.
 
 ## `0.1.0` — 2026-09-18 (public preview)
 
@@ -54,7 +73,7 @@ release or claimed cross-host or production qualification.
 - Historical native Codex `0.153.4` discovery and one explicit, read-only
   behavior-probe receipt. Its recorded Q2/Q3 `PASS` results are normalized by
   the prepublication assessment to Q2 `PASS_WITH_RESERVATIONS` and Q3 `PARTIAL`.
-- Targeted current-skill assessment covering three content-forward cases at
+- Targeted `0.1.0` assessment covering three content-forward cases at
   skill tree
   `c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37`.
   All three cases passed without file writes, network calls, OCI commands, or

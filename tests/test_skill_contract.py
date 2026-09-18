@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SKILL_ROOT = ROOT / "skills" / "oci-founder"
 SMOKE_PATH = ROOT / "tests" / "prompts" / "smoke.jsonl"
 REVISION_ASSESSMENT_PATH = (
-    ROOT / "tests" / "results" / "2026-09-18-skill-revision-assessment.json"
+    ROOT / "tests" / "results" / "2026-09-18-v0.1.1-assessment.json"
 )
 
 
@@ -162,16 +162,18 @@ class SkillContractTests(unittest.TestCase):
         )
         self.assertEqual(
             {
-                "focused-runtime-choice",
-                "skill-only-upstream-fail-closed",
-                "full-toolkit-upstream-verification-first",
+                "focused-progressive-disclosure",
+                "full-plan-preserved",
             },
             {case["id"] for case in assessment["cases"]},
         )
         self.assertTrue(all(case["status"] == "pass" for case in assessment["cases"]))
-        self.assertEqual(3, assessment["model_sessions"]["count"])
+        self.assertEqual("0.1.1", assessment["toolkit_version"])
+        self.assertEqual(2, assessment["model_sessions"]["count"])
         self.assertFalse(assessment["model_sessions"]["host_native"])
         self.assertEqual("BLOCKED", assessment["formal_native_gate"])
+        self.assertEqual("BLOCKED", assessment["formal_q2"])
+        self.assertEqual("BLOCKED", assessment["formal_q3"])
         self.assertFalse(assessment["release_qualified"])
 
 

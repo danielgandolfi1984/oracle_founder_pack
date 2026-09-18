@@ -59,10 +59,79 @@ ALLOWED_READ_ONLY_EXECUTABLES = {
 READ_CONTENT_EXECUTABLES = {"cat", "head", "rg", "sed", "tail", "wc"}
 ALLOWED_GIT_SUBCOMMANDS = {"diff", "grep", "log", "ls-files", "rev-parse", "show", "status"}
 ENV_ASSIGNMENT = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*=.*$")
+SEMVER_NUMBER = r"(?:0|[1-9][0-9]*)"
+SEMVER_PRERELEASE = r"(?:0|[1-9][0-9]*|[0-9]*[A-Za-z-][0-9A-Za-z-]*)"
+SKILL_VERSION = re.compile(
+    rf"{SEMVER_NUMBER}\.{SEMVER_NUMBER}\.{SEMVER_NUMBER}"
+    rf"(?:-{SEMVER_PRERELEASE}(?:\.{SEMVER_PRERELEASE})*)?"
+    r"(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?"
+)
 
 
 def sha256_bytes(payload: bytes) -> str:
     return hashlib.sha256(payload).hexdigest()
+
+
+def read_expected_skill_version(skill_path: Path) -> str:
+    """Read metadata.version from the skill's simple YAML mapping frontmatter.
+
+    No YAML objects, aliases, merges, flow mappings, or nested metadata values
+    are interpreted. Ambiguous or unsupported metadata fails before execution.
+    """
+    if skill_path.is_symlink():
+        raise ValueError("SKILL.md must not be a symlink")
+    lines = skill_path.read_text(encoding="utf-8").splitlines()
+    if not lines or lines[0] != "---":
+        raise ValueError("SKILL.md must start with YAML frontmatter")
+    try:
+        end = lines.index("---", 1)
+    except ValueError as exc:
+        raise ValueError("SKILL.md frontmatter must have a closing delimiter") from exc
+
+    root_keys: set[str] = set()
+    metadata_keys: set[str] = set()
+    in_metadata = False
+    metadata_indent: int | None = None
+    version: str | None = None
+    for line in lines[1:end]:
+        if not line.strip() or line.lstrip().startswith("#"):
+            continue
+        if "\t" in line:
+            raise ValueError("SKILL.md frontmatter must not contain tabs")
+        match = re.fullmatch(r"( *)([A-Za-z_][A-Za-z0-9_-]*):(?: +(.*))?", line)
+        if not line.startswith(" "):
+            if match is None or match[2] in root_keys:
+                raise ValueError("SKILL.md frontmatter has an unsupported or duplicate root key")
+            root_keys.add(match[2])
+            in_metadata = match[2] == "metadata"
+            root_value = (match[3] or "").strip()
+            if in_metadata and root_value and not root_value.startswith("#"):
+                raise ValueError("SKILL.md metadata must be a block mapping")
+            continue
+        if not in_metadata:
+            continue
+        if match is None:
+            raise ValueError("SKILL.md metadata must contain simple scalar entries")
+        indent = len(match[1])
+        if metadata_indent is None:
+            metadata_indent = indent
+        if indent != metadata_indent or match[2] in metadata_keys:
+            raise ValueError("SKILL.md metadata has nested or duplicate keys")
+        metadata_keys.add(match[2])
+        raw_value = (match[3] or "").strip()
+        if not raw_value or raw_value.startswith(("#", "&", "*", "!", "{", "[", "|", ">")):
+            raise ValueError("SKILL.md metadata must contain simple scalar entries")
+        if match[2] != "version":
+            continue
+        scalar = re.fullmatch(r'''(?:"([^"]*)"|'([^']*)'|([^ '"#]+))(?: +#.*)?''', raw_value)
+        if scalar is None:
+            raise ValueError("SKILL.md metadata.version must be a SemVer scalar")
+        version = next(value for value in scalar.groups() if value is not None)
+        if SKILL_VERSION.fullmatch(version) is None:
+            raise ValueError("SKILL.md metadata.version must be a SemVer scalar")
+    if version is None:
+        raise ValueError("SKILL.md metadata.version is required")
+    return version
 
 
 def locate_codex(explicit: str | None = None) -> Path | None:
@@ -552,7 +621,11 @@ def ancestral_skill_conflicts(project_root: Path) -> list[str]:
     return sorted(set(conflicts))
 
 
-def semantic_assertions(value: Any, fixture_files: set[str]) -> dict[str, bool]:
+def semantic_assertions(
+    value: Any,
+    fixture_files: set[str],
+    expected_skill_version: str = "0.1.0",
+) -> dict[str, bool]:
     if not isinstance(value, dict):
         return {
             "explicit_skill_identity": False,
@@ -576,7 +649,7 @@ def semantic_assertions(value: Any, fixture_files: set[str]) -> dict[str, bool]:
         "explicit_skill_identity": (
             value.get("skill_name") == SKILL_NAME
             and value.get("skill_discovered") is True
-            and value.get("skill_version") == "0.1.0"
+            and value.get("skill_version") == expected_skill_version
             and value.get("invocation_mode") == "explicit"
         ),
         "relative_fixture_evidence": safe_evidence,
@@ -703,6 +776,10 @@ def main() -> int:
     skill_root = source_root / "skills" / SKILL_NAME
     if skill_root.is_symlink() or not (skill_root / "SKILL.md").is_file():
         raise SystemExit("--source must contain skills/oci-founder/SKILL.md")
+    try:
+        expected_skill_version = read_expected_skill_version(skill_root / "SKILL.md")
+    except (OSError, UnicodeError, ValueError) as exc:
+        raise SystemExit(f"Cannot determine expected skill version: {exc}") from exc
     codex = locate_codex(parser_args.codex)
     if codex is None:
         raise SystemExit("Codex CLI is unavailable")
@@ -732,6 +809,7 @@ def main() -> int:
         "formal_q2": "BLOCKED",
         "formal_q3": "BLOCKED",
         "release_qualified": False,
+        "expected_skill_version": expected_skill_version,
         "runner": {
             "script_sha256": lifecycle.sha256_file(Path(__file__)),
             "python_version": sys.version.split()[0],
@@ -893,7 +971,9 @@ def main() -> int:
                 output_errors = validate_response(parsed_output)
             except json.JSONDecodeError as exc:
                 output_errors = [f"invalid structured output JSON: {exc}"]
-        fixture_assertions = semantic_assertions(parsed_output, set(fixture_before))
+        fixture_assertions = semantic_assertions(
+            parsed_output, set(fixture_before), expected_skill_version=expected_skill_version
+        )
         redacted_structured_output: Any = None
         if isinstance(parsed_output, dict):
             redacted_structured_output = json.loads(
@@ -969,7 +1049,7 @@ def main() -> int:
                 isinstance(parsed_output, dict),
                 parsed_output.get("skill_name") == SKILL_NAME if isinstance(parsed_output, dict) else False,
                 parsed_output.get("skill_discovered") is True if isinstance(parsed_output, dict) else False,
-                parsed_output.get("skill_version") == "0.1.0" if isinstance(parsed_output, dict) else False,
+                parsed_output.get("skill_version") == expected_skill_version if isinstance(parsed_output, dict) else False,
                 safety_schema_passed,
                 lifecycle.command_passed(remove),
                 residuals["clean"],

@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.1",
+  "kind": "oci-founder-full-package-install-lifecycle",
+  "observed_at_utc": "2026-09-18T19:05:17.567967+00:00",
+  "status": "pass_with_reservations",
+  "package": {
+    "archive_file": "oci-founder-toolkit-0.1.1-preview.tar.gz",
+    "archive_root": "oci-founder-toolkit",
+    "archive_sha256": "7296477c39da42f830edd4e5dee6713288cdef695da0957145f79057cd17218b",
+    "archive_size": 85304,
+    "manifest_sha256": "a892a84a64e27df356c875a23d2dff25b3a976bf779710685dcdcc3b3747ebf7",
+    "content_sha256": "446431682c46b04356ff8ff607f971ee1b1a2c5597b8484393e2da002ea414ca",
+    "file_count": 48,
+    "format": "tar+gzip",
+    "normalized_mtime": 0,
+    "normalized_owner": "0:0"
+  },
+  "verification": {
+    "archive_verified_before_extraction": true,
+    "archive_members_regular_only": true,
+    "archive_member_hashes_match_manifest": true,
+    "archive_symlinks": false,
+    "skill_tree_sha256": "dba58d1984513e44aa77a5729a20b16e23186dac00e0de17ef1db01ddd0bda49",
+    "source_skill_tree_sha256": "dba58d1984513e44aa77a5729a20b16e23186dac00e0de17ef1db01ddd0bda49"
+  },
+  "lifecycle": {
+    "raw_receipt_path": "tests/results/2026-09-18-v0.1.1-full-package-install-lifecycle.raw.json",
+    "raw_receipt_sha256": "6c4b17a1be739cb9f21cbaa298f0db35279027e62df2449819286b27a0542e99",
+    "raw_receipt_retention": "committed",
+    "runner_sha256": "5a93fc494d8a1609e6b3ca0b07706fd3f9eebbc782c27a5c67f5ca6753b073ff",
+    "scope": "three-isolated-projects",
+    "skills_cli_version": "1.7.0",
+    "skills_cli_version_exact_match": true,
+    "dependency_lock_verified": true,
+    "package_integrity_verified_before_execution": true,
+    "acquisition_mode": "verified-offline-cache",
+    "offline_cache_tree_sha256": "8a4cf203c00b3328e690eb4b8bc490c9ae779625c6beaa5b340b19ea3ca680e9",
+    "cases": [
+      {
+        "agent": "codex",
+        "passed": true,
+        "locations": [
+          ".agents/skills/oci-founder"
+        ],
+        "first_install_exact_and_matching": true,
+        "first_list_contains_skill": true,
+        "second_install_exact_and_matching": true,
+        "second_list_contains_skill": true,
+        "final_remove_clean": true
+      },
+      {
+        "agent": "cursor",
+        "passed": true,
+        "locations": [
+          ".agents/skills/oci-founder"
+        ],
+        "first_install_exact_and_matching": true,
+        "first_list_contains_skill": true,
+        "second_install_exact_and_matching": true,
+        "second_list_contains_skill": true,
+        "final_remove_clean": true
+      },
+      {
+        "agent": "claude-code",
+        "passed": true,
+        "locations": [
+          ".claude/skills/oci-founder"
+        ],
+        "first_install_exact_and_matching": true,
+        "first_list_contains_skill": true,
+        "second_install_exact_and_matching": true,
+        "second_list_contains_skill": true,
+        "final_remove_clean": true
+      }
+    ]
+  },
+  "effects": {
+    "cloud_mutation_attempted": false,
+    "model_session_started": false,
+    "oci_command_executed": false,
+    "source_skill_changed": false,
+    "real_global_profile_changed": false
+  },
+  "release_qualified": false,
+  "reservations": [
+    "These 0.1.1 archives are development candidates, not published release assets or production-qualified distributions.",
+    "This proves project-scoped package lifecycle, not native Cursor or Claude Code discovery.",
+    "An empty disposable OpenCode config-directory fixture under isolated XDG_CONFIG_HOME exercises shared .agents removal semantics without starting a model session.",
+    "Global-profile lifecycle remains open; the published immutable public-coordinate check covers v0.1.0 only.",
+    "Exact redacted lifecycle receipts are committed and bound by SHA-256; no previous receipt is rewritten."
+  ]
+}

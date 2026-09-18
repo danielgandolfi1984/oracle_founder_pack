@@ -23,9 +23,10 @@ All release assets were downloaded again and verified. This is an immutable
 public-preview coordinate; it does not claim marketplace, registry, stable, or
 cross-host qualification.
 
-Post-release docs and evidence on `main` keep version `0.1.0`. Do not move the
-tag or replace its assets to incorporate those follow-ups. A future packaged
-content change needs a new reviewed release coordinate.
+Public preview `0.1.1` has source and archive checks recorded
+before publication. Complete its exact-revision CI, public-tag installation,
+and published-asset verification separately. Do not move `v0.1.0` or replace
+its assets; `v0.1.1` has its own release coordinate.
 
 The
 [license and publisher decision](decisions/0003-public-license-and-publisher.md)
@@ -73,7 +74,7 @@ with lifecycle scripts disabled, verifies the package manifest and executable
 hashes before use, and operates in disposable project repositories. It does not
 qualify a global user profile or native host discovery.
 
-The current source and package lifecycle evidence was produced by copying a
+The `0.1.1` source and local package lifecycle evidence was produced by copying a
 verified npm cache into disposable state and running `npm ci --offline`.
 Dependency-lock, package-integrity, manifest, and executable-hash checks
 remained active. Source plus both preview packages passed project-scoped
@@ -136,18 +137,26 @@ output, all four machine assertions passed, exact installed-skill binding,
 clean removal, and no observed project edits, unreviewed commands, OCI commands,
 or cloud mutations. Its probe Q2 is `PASS` and Q3 is `PARTIAL`.
 
-The [post-release assessment](../tests/results/2026-09-18-codex-native-postrelease-assessment.json)
+The `0.1.0` [post-release assessment](../tests/results/2026-09-18-codex-native-postrelease-assessment.json)
 includes independent semantic review and the remaining limits: one explicit
 prompt, shared authentication profile, no upstream dependencies in that native
 session, and no 24-case replay. The response was safe but longer than needed;
-conciseness and progressive disclosure need further evaluation. Formal Q2/Q3
-remain `BLOCKED`. Historical receipt:
+conciseness and progressive disclosure prompted the separate `0.1.1`
+[prepublication assessment](../tests/results/2026-09-18-v0.1.1-assessment.json).
+The current runner binds version assertions to source `metadata.version` and
+records the expected version, while the prompt, output schema, and fixture
+remain the same for comparison. The
+[`0.1.1` native receipt](../tests/results/2026-09-18-v0.1.1-codex-native.json)
+passed with reservations: 185 words versus 1,489 for the same prompt, two
+reference reads instead of four, all recorded effects false, and clean removal.
+This single comparison does not qualify the full suite. Formal Q2/Q3 remain
+`BLOCKED`. Historical receipt:
 [`tests/results/2026-09-18-codex-native-runner-probe.json`](../tests/results/2026-09-18-codex-native-runner-probe.json).
 Prepublication assessment:
 [`tests/results/2026-09-18-codex-native-runner-assessment.json`](../tests/results/2026-09-18-codex-native-runner-assessment.json).
 The separate
-[`targeted current-skill assessment`](../tests/results/2026-09-18-skill-revision-assessment.json)
-passes three content-forward cases at current skill tree
+[`targeted 0.1.0 assessment`](../tests/results/2026-09-18-skill-revision-assessment.json)
+passes three content-forward cases at published skill tree
 `c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37`.
 It is not a native replay and does not close either formal gate.
 
@@ -180,25 +189,27 @@ verifies both sets, and requires byte-for-byte equality. Each archive has a
 `.sha256` file and a `.manifest.json` inventory containing every member's path,
 source path, mode, size, and SHA-256 digest.
 
-The public-preview package names are
-`oci-founder-skill-0.1.0-preview.tar.gz` and
-`oci-founder-toolkit-0.1.0-preview.tar.gz`. The full toolkit extracts into the
+The current public-preview package names are
+`oci-founder-skill-0.1.1-preview.tar.gz` and
+`oci-founder-toolkit-0.1.1-preview.tar.gz`. Local qualification precedes
+published-asset verification.
+The full toolkit extracts into the
 stable `oci-founder-toolkit/` root that matches the plugin manifest name.
 Extract it into a clean parent directory so files from an older candidate
 cannot remain in that stable root.
 
 The current skill-only archive SHA-256 is
-`517c4f6d4d29b35d085d4cf534656608e6c1d7315526563ee632ee5ae9fe7954`.
+`6167f1ca7da9a06204e8e0d028622c490b727581532c15ec1d5d78629b2aa8ff`.
 The current full-toolkit archive SHA-256 is
-`33037edf2783895c03a5e40bb03a0f18468a26945dc7fce8a9e251ea7e75ca80`.
+`7296477c39da42f830edd4e5dee6713288cdef695da0957145f79057cd17218b`.
 The renewed
-[skill-only summary](../tests/results/2026-09-18-skill-package-install-lifecycle.json),
-[skill-only raw receipt](../tests/results/2026-09-18-skill-package-install-lifecycle.raw.json),
-[full-toolkit summary](../tests/results/2026-09-18-full-package-install-lifecycle.json)
-and [full-toolkit raw receipt](../tests/results/2026-09-18-full-package-install-lifecycle.raw.json)
+[skill-only summary](../tests/results/2026-09-18-v0.1.1-skill-package-install-lifecycle.json),
+[skill-only raw receipt](../tests/results/2026-09-18-v0.1.1-skill-package-install-lifecycle.raw.json),
+[full-toolkit summary](../tests/results/2026-09-18-v0.1.1-full-package-install-lifecycle.json)
+and [full-toolkit raw receipt](../tests/results/2026-09-18-v0.1.1-full-package-install-lifecycle.raw.json)
 bind these `-preview` archives, their manifests and inventories, and current
 skill fingerprint
-`c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37`.
+`dba58d1984513e44aa77a5729a20b16e23186dac00e0de17ef1db01ddd0bda49`.
 
 To qualify an extracted full-toolkit archive rather than the development tree:
 

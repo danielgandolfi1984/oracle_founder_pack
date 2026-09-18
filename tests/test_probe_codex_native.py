@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 import tempfile
@@ -15,6 +16,117 @@ import probe_codex_native as probe  # noqa: E402
 
 
 class ProbeCodexNativeTests(unittest.TestCase):
+    def test_expected_version_reads_only_frontmatter_metadata(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            skill = Path(temporary) / "SKILL.md"
+            for scalar, version in (
+                ("0.1.0", "0.1.0"),
+                ('"0.1.1"', "0.1.1"),
+                ("'0.2.0-preview.3' # reviewed", "0.2.0-preview.3"),
+                ('"1.2.3+build.4"', "1.2.3+build.4"),
+            ):
+                with self.subTest(scalar=scalar):
+                    skill.write_text(
+                        "---\nname: oci-founder\nmetadata: # provenance\n"
+                        f"  author: Example\n  version: {scalar}\n---\n"
+                        "metadata:\n  version: 9.9.9\n",
+                        encoding="utf-8",
+                    )
+                    self.assertEqual(version, probe.read_expected_skill_version(skill))
+
+    def test_expected_version_fails_closed_on_missing_invalid_or_ambiguous_metadata(self) -> None:
+        frontmatter_cases = (
+            "name: oci-founder\n",
+            "version: 0.1.1\n",
+            "metadata:\n  author: Example\n",
+            "metadata: {version: 0.1.1}\n",
+            "metadata:\n  version: 0.1.1\nmetadata:\n  version: 0.1.0\n",
+            "metadata:\n  version: 0.1.1\n  version: 0.1.0\n",
+            "metadata:\n  nested:\n    version: 0.1.1\n",
+            "metadata:\n  version: &release 0.1.1\n",
+            "metadata:\n  version: *release\n",
+            '"metadata":\n  version: 0.1.1\n',
+            "metadata:\n\tversion: 0.1.1\n",
+            *(f"metadata:\n  version: {value}\n" for value in (
+                "", "null", "latest", "0.1", "01.1.1", "0.1.1-01", '"0.1.1', "0.1.1 extra",
+            )),
+        )
+        with tempfile.TemporaryDirectory() as temporary:
+            skill = Path(temporary) / "SKILL.md"
+            for frontmatter in frontmatter_cases:
+                with self.subTest(frontmatter=frontmatter):
+                    skill.write_text(f"---\n{frontmatter}---\n", encoding="utf-8")
+                    with self.assertRaises(ValueError):
+                        probe.read_expected_skill_version(skill)
+            for content in ("metadata:\n  version: 0.1.1\n", "---\nmetadata:\n  version: 0.1.1\n"):
+                with self.subTest(content=content):
+                    skill.write_text(content, encoding="utf-8")
+                    with self.assertRaises(ValueError):
+                        probe.read_expected_skill_version(skill)
+
+    def test_expected_version_rejects_symlink_source(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            target = root / "target.md"
+            target.write_text('---\nmetadata:\n  version: "0.1.1"\n---\n', encoding="utf-8")
+            skill = root / "SKILL.md"
+            skill.symlink_to(target)
+            with self.assertRaisesRegex(ValueError, "symlink"):
+                probe.read_expected_skill_version(skill)
+
+    def test_main_rejects_missing_version_before_any_probe_acquisition(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            skill = root / "skills/oci-founder/SKILL.md"
+            skill.parent.mkdir(parents=True)
+            skill.write_text("---\nname: oci-founder\n---\n", encoding="utf-8")
+            args = argparse.Namespace(
+                allow_download=False,
+                offline_npm_cache=Path("/tmp/reviewed-cache"),
+                allow_model_session=True,
+                timeout_seconds=60,
+                source=root,
+            )
+            with patch.object(probe, "parse_args", return_value=args), \
+                    patch.object(probe, "locate_codex") as locate, \
+                    patch.object(probe.lifecycle, "acquire_cli") as acquire, \
+                    patch.object(probe, "run_codex") as run:
+                with self.assertRaisesRegex(SystemExit, "metadata.version is required"):
+                    probe.main()
+                locate.assert_not_called()
+                acquire.assert_not_called()
+                run.assert_not_called()
+
+    def test_receipt_records_source_version_even_if_installer_acquisition_is_blocked(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            skill = root / "skills/oci-founder/SKILL.md"
+            skill.parent.mkdir(parents=True)
+            skill.write_text('---\nmetadata:\n  version: "0.1.1"\n---\n', encoding="utf-8")
+            args = argparse.Namespace(
+                allow_download=False,
+                offline_npm_cache=Path("/tmp/reviewed-cache"),
+                allow_model_session=True,
+                timeout_seconds=60,
+                source=root,
+                codex=None,
+                node=None,
+                npm=None,
+                output="-",
+                overwrite=False,
+                keep=False,
+            )
+            with patch.object(probe, "parse_args", return_value=args), \
+                    patch.object(probe, "locate_codex", return_value=Path(sys.executable)), \
+                    patch.object(probe.lifecycle, "global_snapshot", return_value={}), \
+                    patch.object(probe.lifecycle, "command_result", return_value={}), \
+                    patch.object(probe.lifecycle, "acquire_cli", return_value=(None, {}, {})), \
+                    patch.object(probe.lifecycle, "emit_evidence") as emit, \
+                    patch.object(probe, "run_codex") as run:
+                self.assertEqual(2, probe.main())
+                self.assertEqual("0.1.1", emit.call_args.args[0]["expected_skill_version"])
+                run.assert_not_called()
+
     def test_parser_accepts_reviewed_offline_npm_cache(self) -> None:
         with patch.object(
             sys,
@@ -212,6 +324,26 @@ class ProbeCodexNativeTests(unittest.TestCase):
         self.assertTrue(all(probe.semantic_assertions(value, {"Dockerfile"}).values()))
         value["evidence_paths"] = ["../secret"]
         self.assertFalse(probe.semantic_assertions(value, {"Dockerfile"})["relative_fixture_evidence"])
+
+    def test_semantic_assertions_bind_explicit_version_and_preserve_historical_default(self) -> None:
+        value = {
+            "skill_name": "oci-founder",
+            "skill_discovered": True,
+            "skill_version": "0.1.1",
+            "invocation_mode": "explicit",
+            "evidence_paths": ["Dockerfile"],
+            "recommendation": "Use Container API for this HTTP process.",
+            "guardrails": ["Do not deploy or provision resources."],
+        }
+        self.assertTrue(all(probe.semantic_assertions(
+            value, {"Dockerfile"}, expected_skill_version="0.1.1"
+        ).values()))
+        self.assertFalse(probe.semantic_assertions(value, {"Dockerfile"})["explicit_skill_identity"])
+        value["skill_version"] = "0.1.0"
+        self.assertTrue(all(probe.semantic_assertions(value, {"Dockerfile"}).values()))
+        self.assertFalse(probe.semantic_assertions(
+            value, {"Dockerfile"}, expected_skill_version="0.1.1"
+        )["explicit_skill_identity"])
 
     def test_redaction_removes_paths_thread_and_policy_identifiers(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

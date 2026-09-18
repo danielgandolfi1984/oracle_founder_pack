@@ -64,7 +64,7 @@
               "$HOME/.codex/skills/.system/plugin-creator/scripts/validate_plugin.py",
               "$TOOLKIT_ROOT"
             ],
-            "duration_ms": 168,
+            "duration_ms": 152,
             "exit_code": 0,
             "stderr_excerpt": "",
             "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -83,7 +83,7 @@
               "$HOME/.codex/skills/.system/skill-creator/scripts/quick_validate.py",
               "$TOOLKIT_ROOT/skills/oci-founder"
             ],
-            "duration_ms": 113,
+            "duration_ms": 102,
             "exit_code": 0,
             "stderr_excerpt": "",
             "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -119,7 +119,7 @@
           "/Applications/ChatGPT.app/Contents/Resources/codex",
           "--version"
         ],
-        "duration_ms": 19,
+        "duration_ms": 25,
         "exit_code": 0,
         "stderr_excerpt": "WARNING: proceeding, even though we could not create PATH aliases: Operation not permitted (os error 1)\n",
         "stderr_sha256": "3087f13b0d34323fbc05177ef68ae53dc523d9acaf6c0c63852825479db5af2a",
@@ -147,10 +147,10 @@
           "/Applications/Cursor.app/Contents/Resources/app/bin/cursor",
           "--version"
         ],
-        "duration_ms": 434,
+        "duration_ms": 376,
         "exit_code": 0,
-        "stderr_excerpt": "[0918/150814.892621:ERROR:electron/shell/common/mac/codesign_util.cc:111] SecCodeCheckValidity: Error Domain=NSOSStatusErrorDomain Code=-2147409622 \"(null)\" (-2147409622)\n",
-        "stderr_sha256": "99e76e1894f6a0b5f850fdf7ff0be21b1821b36d20056c966425738c19df5ca6",
+        "stderr_excerpt": "[0918/161946.049809:ERROR:electron/shell/common/mac/codesign_util.cc:111] SecCodeCheckValidity: Error Domain=NSOSStatusErrorDomain Code=-2147409622 \"(null)\" (-2147409622)\n",
+        "stderr_sha256": "c0cf9a5158f506d8ab3b4f31fffcdde35a97297046040370ae838fb2d56f6416",
         "stdout_excerpt": "3.0.12\na80ff7dfcaa45d7750f6e30be457261379c29b00\narm64\n",
         "stdout_sha256": "a94d4c4501dcbe7fda41874346d115cc14d6e7b3b3395483dc91edbe7b9d534a",
         "timed_out": false
@@ -161,7 +161,7 @@
     }
   },
   "kind": "oci-founder-host-preflight",
-  "observed_at_utc": "2026-09-18T18:08:15.038122+00:00",
+  "observed_at_utc": "2026-09-18T19:19:46.213137+00:00",
   "repo_validation": {
     "mode": "source-without-host-preflight-evidence",
     "probe": {
@@ -170,12 +170,12 @@
         "$TOOLKIT_ROOT/scripts/validate.py",
         "--skip-host-preflight-evidence"
       ],
-      "duration_ms": 376,
+      "duration_ms": 373,
       "exit_code": 0,
       "stderr_excerpt": "",
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "stdout_excerpt": "Founder Toolkit for OCI validation passed (1481 checks).\n",
-      "stdout_sha256": "81137d92f73594a4e718fef2b6cbab52ee200469e602deffdb32c0d6dd4da5f1",
+      "stdout_excerpt": "Founder Toolkit for OCI validation passed (1573 checks).\n",
+      "stdout_sha256": "933bbca17df30464e70c79afb66073ed76f598e3bbda5c66d252a5fc193d0cf6",
       "timed_out": false
     },
     "status": "passed"
@@ -200,16 +200,16 @@
   "toolkit": {
     "container_api_blueprint_sha256": "da24fa575ffd404abeb40cb43c49c3788015a784755ef38ee0ed97c7f19048be",
     "manifest_sha256": {
-      ".claude-plugin/plugin.json": "edff184d361e098532725eeac30ab69f9e7e6a8f1b2796101982ef1979d26d31",
-      ".codex-plugin/plugin.json": "15166c24c00bbb68c84c259b7be5d616b36824c4d107cdfaeb49a1a40ddc74bc",
-      "plugin.json": "7521332c99fdff90cfec4c47605c69c2ea36b5b162b04f068c563910c68b5aaf"
+      ".claude-plugin/plugin.json": "18657b403605e79b9414a7469d07cdb43e11d0d7c335b683832eed526135b8ce",
+      ".codex-plugin/plugin.json": "a6351ab383bb17e4faa0b619ff2a114fe925fb9169e8bd95d0476dbd625085fb",
+      "plugin.json": "d8e3f2b4bf41dd715d2ba0e76fda69b1181cb1ce13ad2623fb800d7ed5b52ef9"
     },
     "root": "$TOOLKIT_ROOT",
-    "skill_tree_sha256": "c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37",
-    "source_fingerprint": "4d69f51fef943725f913b327fd249212ce2ec5c7f80be18eb06e09f7aaab05cc",
+    "skill_tree_sha256": "dba58d1984513e44aa77a5729a20b16e23186dac00e0de17ef1db01ddd0bda49",
+    "source_fingerprint": "f0d20b7eeb9873bdf6c8a4a58069c482a0e4bfca44d1934e40b0e9a6dc8a5712",
     "validation_tool_sha256": {
       "scripts/qualify_hosts.py": "afdfc2e940c3f929dac945701406bee63513d5774775356d9a9b614c7fb64e8c",
-      "scripts/validate.py": "dfd950954027c1a97d417b53eb01c8d868144b2ec126ffa2b3eb7f798ca4037f"
+      "scripts/validate.py": "626d8c908296cf037a04b22822d505abc392e1c12f7367115068ffe0955fd07e"
     }
   }
 }

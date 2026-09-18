@@ -18,7 +18,7 @@ The toolkit is not another OCI service encyclopedia. It composes official Oracle
 
 ## Start here: first OCI recommendation in about 10 minutes
 
-The [`v0.1.0` planning skill](https://github.com/danielgandolfi1984/oracle_founder_pack/releases/tag/v0.1.0)
+The [`v0.1.1` planning skill](https://github.com/danielgandolfi1984/oracle_founder_pack/releases/tag/v0.1.1)
 is a public preview under [UPL-1.0](LICENSE). You need Git, Node.js
 `>=22.20.0` with `npx`, and an installed, authenticated coding agent. Install it
 in one backend repository; no OCI tenancy, OCI CLI, or OCI credentials are
@@ -27,7 +27,7 @@ needed:
 ```bash
 cd /absolute/path/to/your-backend
 npx --yes skills@1.7.0 add \
-  'https://github.com/danielgandolfi1984/oracle_founder_pack#v0.1.0' \
+  'https://github.com/danielgandolfi1984/oracle_founder_pack#v0.1.1' \
   --skill oci-founder -a codex --copy -y
 npx --yes skills@1.7.0 list -a codex --json
 ```
@@ -60,20 +60,25 @@ expected output, use-case prompts, updating, removal, and troubleshooting.
 ## Status
 
 This repository publishes an independent **public preview**, not an
-Oracle-supported or production-qualified product. The portable skill is
-versioned `0.1.0` and licensed under UPL-1.0; the separately versioned
+Oracle-supported or production-qualified product. Skill `0.1.1` provides
+shorter focused answers and full founder plans when requested, under UPL-1.0.
+Its source and archives passed pre-tag installation and behavior checks;
+publication verification is recorded separately in the
+[validation record](docs/VALIDATION.md). The separately versioned
 [`0.2.0-preview.3` Container API blueprint](blueprints/container-api/README.md)
 is sandbox-only and has not been applied in an OCI tenancy.
 
-The published [`v0.1.0` release](https://github.com/danielgandolfi1984/oracle_founder_pack/releases/tag/v0.1.0)
+The preceding [`v0.1.0` release](https://github.com/danielgandolfi1984/oracle_founder_pack/releases/tag/v0.1.0)
 is fixed at commit
 [`6cf08bf30febc434cefed228f53c43a1f8802ec2`](https://github.com/danielgandolfi1984/oracle_founder_pack/commit/6cf08bf30febc434cefed228f53c43a1f8802ec2),
 which passed the complete workflow in
 [run 35375372149](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35375372149).
 The public tag passed project-scoped Codex install/list/remove with the reviewed
 skill hash, and all published assets were downloaded again and verified.
-Follow-up documentation and evidence on `main` do not replace that immutable
-release. Native Cursor/Claude qualification, cross-host behavioral replay, and
+Version `0.1.1` does not replace that immutable release. Its source and package
+lifecycles passed all three installer layouts;
+its [prepublication assessment](tests/results/2026-09-18-v0.1.1-assessment.json)
+records the separate behavior checks. Native Cursor/Claude qualification, cross-host behavioral replay, and
 live OCI field validation remain open.
 See the [validation record](docs/VALIDATION.md) for hashes, receipts, Q0–Q4
 status, and remaining gates.
@@ -184,7 +189,7 @@ references, or cloud operations. Verify your own checkout before installation.
 
 ## Install the public preview
 
-Use the immutable `v0.1.0` source tag directly, or clone that tag when you want
+Use the `v0.1.1` source tag directly, or clone that tag when you want
 to inspect and validate the complete toolkit before installation:
 
 Prerequisites: Git, Python 3.9 or newer for local validation, Node.js
@@ -192,7 +197,7 @@ Prerequisites: Git, Python 3.9 or newer for local validation, Node.js
 agent already installed and authenticated.
 
 ```bash
-git clone --branch v0.1.0 --depth 1 \
+git clone --branch v0.1.1 --depth 1 \
   https://github.com/danielgandolfi1984/oracle_founder_pack.git \
   oci-founder-toolkit
 cd oci-founder-toolkit
@@ -200,9 +205,9 @@ git rev-parse HEAD
 python3 -B scripts/validate.py
 ```
 
-The tag resolves to `6cf08bf30febc434cefed228f53c43a1f8802ec2`. Compare that
-identity before using the checkout. Follow-up docs on `main` retain version
-`0.1.0` without moving the tag or replacing its assets.
+Record the printed commit with your installation notes and compare it with the
+[`v0.1.1` release](https://github.com/danielgandolfi1984/oracle_founder_pack/releases/tag/v0.1.1).
+The earlier `v0.1.0` tag and assets remain unchanged.
 
 Then choose exactly one agent. These commands pin the top-level Agent Skills
 CLI package to `skills@1.7.0` for convenience:
@@ -230,7 +235,7 @@ agent selected by the add command.
 
 Alternatively, install directly from the immutable tag by replacing the local
 path in exactly one command with
-`https://github.com/danielgandolfi1984/oracle_founder_pack#v0.1.0`.
+`https://github.com/danielgandolfi1984/oracle_founder_pack#v0.1.1`.
 
 `npx` can still resolve ranged transitive dependencies differently over time.
 These end-user commands therefore are not a bit-for-bit replay of the formal
@@ -399,8 +404,8 @@ The runner installs a project-scoped copy into a disposable Git fixture, invokes
 shims for `oci`, `terraform`, `fn`, `docker`, and `kubectl` first on `PATH`,
 records redacted hashes and effects, removes the copy, and deletes the fixture.
 
-The authorized [post-release native Codex probe](tests/results/2026-09-18-codex-native-postrelease.json)
-passed with reservations against the unchanged released skill. It loaded the
+The `0.1.1` [prepublication native Codex probe](tests/results/2026-09-18-v0.1.1-codex-native.json)
+passed with reservations against the candidate skill. It loaded the
 skill and references, passed all four machine assertions, returned valid
 structured output, and removed the installed copy. No project edits, unreviewed
 commands, OCI commands, or cloud mutations were observed. The probe records Q2
@@ -408,8 +413,14 @@ commands, OCI commands, or cloud mutations were observed. The probe records Q2
 profile for authentication, and does not install upstream dependencies or
 replay the 24-case suite. Formal Q2/Q3 remain `BLOCKED`.
 
-The initial failed run, harness fixes, historical assessments, and independent
-review are retained in [the validation record](docs/VALIDATION.md). The runner's
+In this single comparison with the same prompt, schema, and fixture, the
+recommendation fell from 1,489 to 185 words and read two references instead of
+four. Independent semantic review passed; this is not a general
+performance or quality guarantee. A separate requested full plan retained all
+ten sections.
+
+The initial failed run, harness fixes, independent review, and separate `0.1.1`
+prepublication evidence are retained in [the validation record](docs/VALIDATION.md). The runner's
 unit contracts pass, and installer acquisition can use a verified offline npm
 cache.
 
@@ -425,7 +436,8 @@ qualification are in [host qualification](docs/HOST-QUALIFICATION.md).
 The executable MVP target is measurable: a backend developer new to OCI should
 be able to reach a verified OCI endpoint in under 60 minutes using Codex,
 Cursor, or Claude Code, without relying on the Console for the main workflow.
-Neither package `0.1.0` nor the `0.2.0-preview.3` blueprint has demonstrated this target in a live sandbox tenancy.
+Neither preview `0.1.0`, preview `0.1.1`, nor the `0.2.0-preview.3`
+blueprint has demonstrated this target in a live sandbox tenancy.
 
 Read the full [product brief](docs/PRODUCT.md) and [architecture](docs/ARCHITECTURE.md).
 The exact local build and public-release gates are in

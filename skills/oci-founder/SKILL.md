@@ -3,7 +3,7 @@ name: oci-founder
 description: Plan and sequence cross-service OCI journeys for founders and backend developers new to Oracle Cloud Infrastructure. Use when starting, migrating, or evaluating an OCI backend; translating AWS, Google Cloud, or Azure concepts; choosing a founder-friendly runtime; or defining security, cost, observability, delivery, and teardown guardrails. For isolated Functions, OKE, Enterprise AI, or Oracle Database work, prefer the dedicated verified Oracle skill.
 metadata:
   author: Daniel Gandolfi
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Founder Toolkit for OCI
@@ -24,7 +24,7 @@ through a full architecture exercise.
 | Mode | Use when | Default boundary |
 |---|---|---|
 | Answer | The user asks for an explanation, comparison, translation, or next-step recommendation | Answer directly; inspect only evidence needed for the claim and do not create files |
-| Assess | The user asks what this repository or product should use on OCI | Inspect read-only, then answer the decision asked; produce a founder plan only when the user requests a full assessment/plan or the request genuinely spans journey phases |
+| Assess | The user asks what this repository or product should use on OCI | Inspect read-only, then answer the decision asked; a repository inspection does not by itself call for a full founder plan |
 | Generate | The user asks for local plans, IaC, configuration, or code | Write only the requested local artifacts, preserve existing work, validate them, and do not contact OCI unless separately authorized |
 | Execute | The user asks to deploy or change OCI | Prepare and review the exact target and change set, then stop for explicit approval immediately before the mutation |
 | Diagnose | The user reports a failure or unexpected behavior | Collect read-only evidence and classify the failure; do not execute a fix unless the user also authorizes it |
@@ -35,6 +35,26 @@ outcome or recommendation, then explain OCI vocabulary. A request for guidance
 does not authorize repository edits, dependency installation, credential access,
 or cloud actions. If intent is ambiguous, stay at the less mutating mode and ask
 only a question whose answer changes the decision.
+
+### Focused recommendation or full plan?
+
+Choose the deliverable before loading references. "Inspect this backend and
+recommend an OCI path" asks for a focused recommendation, even though the future
+deployment will involve several services and phases. Read enough evidence to
+make that decision; do not turn the internal checklist into the response.
+
+For a focused Answer or Assess request, lead with the recommendation and its
+reason, cite the decisive evidence, explain the main tradeoff or blocker, and
+give one next action. This usually fits in a few short paragraphs (roughly
+150–300 words), not a ten-section plan. Adapt to the user's requested detail and
+include any safety-critical qualification even when that takes more space.
+Mention only decision-changing unknowns and relevant guardrails; do not recite
+every service, delivery phase, or future operational control.
+
+Use the full plan contract only when the user asks for a full assessment, an
+architecture/delivery plan, or several journey phases as the actual deliverable.
+A detailed planning request should still receive the necessary detail. Never
+use brevity to omit an approval gate or to claim unverified OCI behavior.
 
 ## Operating model
 
@@ -51,8 +71,8 @@ Read only the smallest reference needed for the request.
 
 | Need | Read |
 |---|---|
-| Sequence a request that spans multiple journey phases, or resolve an ambiguous outcome/completion condition | [references/use-cases.md](references/use-cases.md) |
-| Discover an existing backend and write the initial plan | [references/discovery.md](references/discovery.md) |
+| Deliver a requested multi-phase journey or resolve which journey outcome the user wants | [references/use-cases.md](references/use-cases.md) |
+| Inspect an existing backend; use the plan section only for a requested full plan | [references/discovery.md](references/discovery.md) |
 | Translate AWS, Google Cloud, or Azure terminology | [references/service-map.md](references/service-map.md) |
 | Choose between Container API, Function API, or a graduation path | [references/golden-paths.md](references/golden-paths.md) |
 | Review identity, cost, secrets, Terraform, mutations, or teardown | [references/guardrails.md](references/guardrails.md) |
@@ -69,7 +89,7 @@ skill directory. The portable skill can be installed by itself, so follow the
 Container API adapter above and fail closed when the external blueprint is not
 present. Use that field preview only when the user explicitly asks to generate,
 review, verify, roll back, operate, or tear down that sandbox path, or names one
-of its artifacts. Keep its version/status separate from this `0.1.0` skill. Do
+of its artifacts. Keep its version/status separate from this `0.1.1` skill. Do
 not assume a generic deployment receipt belongs to this blueprint when the
 repository or artifact type does not establish that context.
 
@@ -81,7 +101,7 @@ repository or artifact type does not establish that context.
 - For a greenfield workload, replace repository evidence with explicit constraints, provisional assumptions, and the smallest reversible first milestone.
 - Ask only for material facts that cannot be learned safely from the repository.
 - Explain OCI concepts in the user's source-cloud vocabulary, while naming non-equivalences.
-- Lead with a concise decision snapshot and at most five decision-changing unknowns before the full plan.
+- Lead with the decision and surface only the unknowns that could reverse it. Do not append a full plan to a focused recommendation.
 - When the user requests a full assessment, return a `founder-plan.md`-shaped proposal using the contract in `references/discovery.md`; otherwise answer only the focused decision.
 
 ### Bootstrap
@@ -153,18 +173,10 @@ the sole support for a public product claim.
 
 ## Full founder plan output
 
-When the user explicitly asks for a full assessment or full plan, it should contain:
-
-1. Current repository or product facts and unknowns.
-2. Recommended golden path and rejected alternatives.
-3. Source-cloud-to-OCI concept translation.
-4. OCI services and why each exists.
-5. Identity and network boundaries.
-6. Data and secret handling.
-7. Observability and cost guardrails.
-8. Delivery phases with approval gates.
-9. Verification, rollback, and teardown.
-10. Current official sources and upstream skills to reuse.
+When the user explicitly asks for a full assessment or full plan, use the
+[`founder-plan.md` contract](references/discovery.md#founder-planmd-contract).
+Its architecture, baseline, delivery, verification, and teardown sections apply
+to that deliverable, not to every repository recommendation.
 
 Use directional cost drivers rather than fixed prices unless the user explicitly requests a current estimate and current official pricing has been checked.
 

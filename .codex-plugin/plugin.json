@@ -1,6 +1,6 @@
 {
   "name": "oci-founder-toolkit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "An independent, safe-by-default path from an existing codebase to a secure and cost-aware OCI journey.",
   "license": "UPL-1.0",
   "author": {

@@ -22,16 +22,19 @@ Current public-preview scope:
 Exit gate: manifests and skill validate locally, every reference resolves, and
 an independent agent produces a safe plan from a realistic backend prompt.
 
-Status on 2026-09-18: **partially met**. Dependency-free repository validation
-passed against the released public-preview source. The Agent Plugins
+Status on 2026-09-18: **partially met**. Preview `0.1.1` adds focused answers,
+minimal reference loading, and complete founder plans retained for explicit
+requests. Its source and archive tests passed before publication; publication
+verification is recorded separately. Dependency-free repository validation passed against the
+released public-preview source. The Agent Plugins
 `1.0.0` schema, Skill Creator and Plugin Creator validators, static safety and
 secret checks, fail-closed standalone adapter, and relative-link/local-JSON
-checks passed. The current skill tree SHA-256 is
+checks passed for the published skill tree SHA-256
 `c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37`.
 
-The source, skill-package, and full-package project-scoped lifecycles passed
+The `0.1.0` source, skill-package, and full-package project-scoped lifecycles passed
 install, filtered list, removal, reinstall, filtered list, and cleanup in
-separate Codex, Cursor, and Claude Code layouts. Current deterministic archive
+separate Codex, Cursor, and Claude Code layouts. Published deterministic archive
 SHA-256 values are
 `517c4f6d4d29b35d085d4cf534656608e6c1d7315526563ee632ee5ae9fe7954`
 for the skill package and
@@ -40,10 +43,22 @@ for the full package. The renewed read-only host preflight and its embedded
 repository validation passed, while correctly retaining
 `release_qualified: false` because native-host gates remain.
 
-The three-case current-skill assessment passed focused-answer routing,
+The three-case `0.1.0` assessment passed focused-answer routing,
 skill-only upstream fail-closed behavior, and full-toolkit verification-first
 routing without file writes, network calls, OCI commands, or cloud mutations.
 It is non-native evidence and does not close Q2 or Q3.
+
+The new `0.1.1` skill tree is
+`dba58d1984513e44aa77a5729a20b16e23186dac00e0de17ef1db01ddd0bda49`.
+Its source and both local packages passed lifecycle checks in all three layouts.
+Fresh content-forward evaluations passed both a focused answer of 224
+words and a requested complete ten-section plan, with no file, network, or
+cloud effects. These results are recorded separately in the
+[`0.1.1` assessment](../tests/results/2026-09-18-v0.1.1-assessment.json).
+The same-prompt native comparison also passed with reservations: 185 words
+versus 1,489 for `0.1.0`, two reference reads instead of four, no observed
+mutation, and clean removal. This is one comparison, not full-suite or usability
+qualification.
 
 The project is now an independent public source preview on `main` at
 [`danielgandolfi1984/oracle_founder_pack`](https://github.com/danielgandolfi1984/oracle_founder_pack),
@@ -54,8 +69,8 @@ at commit `6cf08bf30febc434cefed228f53c43a1f8802ec2` provides the immutable
 public-preview coordinate. Its exact-source
 [CI run 35375372149](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35375372149),
 public-tag Codex install/list/remove check, and redownloaded asset verification
-passed. Follow-up docs and evidence on `main` retain version `0.1.0` without
-replacing the published artifacts. Marketplace and registry publication
+passed. Preview version `0.1.1` does not replace the published `0.1.0`
+artifacts. Marketplace and registry publication
 remain outside this milestone and separate from the technical qualification
 gates.
 
@@ -65,13 +80,13 @@ cross-host replay, and OCI sandbox field evidence remain unresolved. The real
 locked `oracle/skills` checkout now passes verification, and its OCI domain
 passes isolated Codex project install/list/remove/reinstall with the exact
 source hash; upstream native discovery and sibling Database navigation remain
-open. The fresh post-release Codex probe passed one explicit safety/schema
+open. The `0.1.0` post-release Codex probe passed one explicit safety/schema
 prompt against the released skill with no observed mutation, valid structured
 output, and clean removal. It records probe Q2 `PASS` and Q3 `PARTIAL`;
 independent semantic review passed with reservations. The response was safe and
 grounded in the fixture but too long for the focused request. Improving
-conciseness and loading fewer references for focused questions is a follow-up
-usability task; the released skill remains unchanged. Historical receipts and
+conciseness and loading fewer references for focused questions motivated the
+`0.1.1` change; the released `0.1.0` skill remains unchanged. Historical receipts and
 the current assessment are tracked separately in [`VALIDATION.md`](VALIDATION.md).
 
 The first full public CI baseline passed at `bf5ebb3` in

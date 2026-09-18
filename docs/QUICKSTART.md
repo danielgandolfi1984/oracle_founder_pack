@@ -9,9 +9,8 @@ does not modify application source or provision cloud resources.
 This repository publishes an independent **public preview** under
 [UPL-1.0](../LICENSE). It is a personal project by Daniel Gandolfi, not an
 Oracle product, and has no Oracle Support coverage or SLA. Use the immutable
-[`v0.1.0` release](https://github.com/danielgandolfi1984/oracle_founder_pack/releases/tag/v0.1.0)
-and keep the installation project-scoped. Its source commit is
-`6cf08bf30febc434cefed228f53c43a1f8802ec2`.
+[`v0.1.1` release](https://github.com/danielgandolfi1984/oracle_founder_pack/releases/tag/v0.1.1)
+and keep the installation project-scoped.
 
 ## 1. Check the prerequisites
 
@@ -36,17 +35,17 @@ cd /absolute/path/to/your-backend
 
 # Codex
 npx --yes skills@1.7.0 add \
-  'https://github.com/danielgandolfi1984/oracle_founder_pack#v0.1.0' \
+  'https://github.com/danielgandolfi1984/oracle_founder_pack#v0.1.1' \
   --skill oci-founder -a codex --copy -y
 
 # OR Cursor
 npx --yes skills@1.7.0 add \
-  'https://github.com/danielgandolfi1984/oracle_founder_pack#v0.1.0' \
+  'https://github.com/danielgandolfi1984/oracle_founder_pack#v0.1.1' \
   --skill oci-founder -a cursor --copy -y
 
 # OR Claude Code
 npx --yes skills@1.7.0 add \
-  'https://github.com/danielgandolfi1984/oracle_founder_pack#v0.1.0' \
+  'https://github.com/danielgandolfi1984/oracle_founder_pack#v0.1.1' \
   --skill oci-founder -a claude-code --copy -y
 ```
 
@@ -164,13 +163,13 @@ automatic apply.
 ## 6. Update or remove the local copy
 
 Review the newer release before replacing the skill. From the same backend
-project used for installation, remove and reinstall it. Replace `v0.1.0` below
+project used for installation, remove and reinstall it. Replace `v0.1.1` below
 with the reviewed tag you intend to adopt:
 
 ```bash
 npx --yes skills@1.7.0 remove oci-founder -y
 npx --yes skills@1.7.0 add \
-  'https://github.com/danielgandolfi1984/oracle_founder_pack#v0.1.0' \
+  'https://github.com/danielgandolfi1984/oracle_founder_pack#v0.1.1' \
   --skill oci-founder -a codex --copy -y
 ```
 
@@ -190,7 +189,7 @@ validation, or use the Container API sandbox files, clone the exact release.
 Local validation also needs Python 3.9 or newer:
 
 ```bash
-git clone --branch v0.1.0 --depth 1 \
+git clone --branch v0.1.1 --depth 1 \
   https://github.com/danielgandolfi1984/oracle_founder_pack.git \
   oci-founder-toolkit
 cd oci-founder-toolkit
@@ -198,8 +197,8 @@ git rev-parse HEAD
 python3 -B scripts/validate.py
 ```
 
-Confirm the printed commit is
-`6cf08bf30febc434cefed228f53c43a1f8802ec2` and validation passes. To install
+Record the printed commit, compare it with the release, and confirm validation
+passes. To install
 from that reviewed checkout, replace the GitHub URL in step 2 with its absolute
 local path, then run the command from your backend repository. The standalone
 skill copy does not include the full toolkit's blueprints, upstream lock, or
@@ -236,7 +235,7 @@ routing.
 
 No marketplace or registry coordinate exists yet. Use the immutable GitHub tag
 directly or download the archive, checksum, and manifest from the
-[`v0.1.0` GitHub release](https://github.com/danielgandolfi1984/oracle_founder_pack/releases/tag/v0.1.0).
+[`v0.1.1` GitHub release](https://github.com/danielgandolfi1984/oracle_founder_pack/releases/tag/v0.1.1).
 Native full-plugin marketplace installation remains unqualified.
 
 ## Continue from here

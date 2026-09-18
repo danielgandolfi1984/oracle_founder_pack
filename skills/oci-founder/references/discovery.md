@@ -1,6 +1,8 @@
 # Founder discovery and plan contract
 
-Use this reference to inspect an existing backend and create the first OCI proposal. Discovery is read-only.
+Use this reference to inspect an existing backend. Discovery is read-only and
+should be limited to evidence needed for the user's decision. Inspecting a
+repository does not imply that a full architecture plan was requested.
 
 ## Inspect before asking
 
@@ -35,6 +37,11 @@ Ask only what materially changes the architecture and cannot be inferred safely:
 Do not force the user to invent forecasts. Unknown traffic is a valid input and should lead to reversible choices plus observability.
 
 ## `founder-plan.md` contract
+
+Use this section only for a requested full assessment, architecture/delivery
+plan, or multi-phase journey. For a focused recommendation, return the decision,
+decisive repository evidence, material tradeoff or blocker, and one next action;
+do not reproduce the sections below or a service-by-service baseline.
 
 Start with a short decision snapshot: the provisional recommendation, why it is
 the smallest adequate option, the mutation level authorized, and no more than

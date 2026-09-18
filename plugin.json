@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "oci-founder-toolkit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Plan backend-first projects for OCI using portable agent skills and official Oracle guidance.",
   "author": {
     "name": "Daniel Gandolfi",

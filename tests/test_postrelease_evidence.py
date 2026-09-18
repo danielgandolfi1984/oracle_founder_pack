@@ -15,6 +15,11 @@ import probe_codex_native as probe  # noqa: E402
 import qualify_skill_install as lifecycle  # noqa: E402
 
 
+PUBLISHED_SKILL_TREE_SHA256 = "c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37"
+CANDIDATE_NATIVE_NAME = "2026-09-18-v0.1.1-codex-native.json"
+CANDIDATE_ASSESSMENT_NAME = "2026-09-18-v0.1.1-assessment.json"
+
+
 def read(name: str) -> dict:
     return json.loads((RESULTS / name).read_text(encoding="utf-8"))
 
@@ -59,23 +64,79 @@ class PostreleaseEvidenceTests(unittest.TestCase):
         self.assertFalse(receipt["effects"]["cloud_mutation_attempted"])
         self.assertFalse(receipt["release_qualified"])
 
-    def test_native_rerun_binds_current_code_skill_fixture_and_response_contract(self) -> None:
+    def test_published_native_rerun_remains_bound_to_v0_1_0_lineage(self) -> None:
         receipt = read("2026-09-18-codex-native-postrelease.json")
+        initial = read("2026-09-18-codex-native-postrelease-initial.json")
+        assessment = read("2026-09-18-codex-native-postrelease-assessment.json")
+        self.assertEqual(
+            assessment["current_runner"]["sha256"],
+            receipt["runner"]["script_sha256"],
+        )
+        self.assertEqual(
+            initial["installation"]["source_tree_sha256"],
+            receipt["installation"]["source_tree_sha256"],
+        )
+        self.assertEqual(PUBLISHED_SKILL_TREE_SHA256, receipt["installation"]["source_tree_sha256"])
+        self.assertEqual(
+            {".agents/skills/oci-founder": PUBLISHED_SKILL_TREE_SHA256},
+            receipt["installation"]["tree_sha256"],
+        )
+        self.assertTrue(receipt["codex"]["structured_output_valid"])
+        self.assertTrue(all(receipt["codex"]["semantic_assertions"].values()))
+        self.assertTrue(receipt["selection_evidence"]["installed_skill_read"])
+        self.assertTrue(receipt["selection_evidence"]["installed_reference_read"])
+
+    def test_v0_1_1_native_rerun_binds_current_code_skill_and_focused_contract(self) -> None:
+        receipt = read(CANDIDATE_NATIVE_NAME)
+        assessment = read(CANDIDATE_ASSESSMENT_NAME)
         self.assertEqual(
             hashlib.sha256((ROOT / "scripts/probe_codex_native.py").read_bytes()).hexdigest(),
             receipt["runner"]["script_sha256"],
         )
         skill_hash = lifecycle.tree_fingerprint(ROOT / "skills/oci-founder")
         self.assertEqual(skill_hash, receipt["installation"]["source_tree_sha256"])
-        self.assertEqual({".agents/skills/oci-founder": skill_hash}, receipt["installation"]["tree_sha256"])
+        self.assertEqual(
+            {".agents/skills/oci-founder": skill_hash},
+            receipt["installation"]["tree_sha256"],
+        )
         schema_bytes = (json.dumps(probe.response_schema(), indent=2, sort_keys=True) + "\n").encode()
-        self.assertEqual(hashlib.sha256(schema_bytes).hexdigest(), receipt["codex"]["response_schema_sha256"])
+        self.assertEqual(
+            hashlib.sha256(schema_bytes).hexdigest(),
+            receipt["codex"]["response_schema_sha256"],
+        )
         manifest = probe.fixture_manifest(ROOT / "tests/fixtures/docker-fastapi")
-        self.assertEqual(probe.manifest_fingerprint(manifest), receipt["fixture"]["manifest_sha256"])
+        self.assertEqual(
+            probe.manifest_fingerprint(manifest),
+            receipt["fixture"]["manifest_sha256"],
+        )
         self.assertEqual([], probe.validate_response(receipt["codex"]["structured_output"]))
-        self.assertTrue(all(probe.semantic_assertions(receipt["codex"]["structured_output"], set(manifest)).values()))
+        self.assertTrue(
+            all(
+                probe.semantic_assertions(
+                    receipt["codex"]["structured_output"],
+                    set(manifest),
+                    expected_skill_version=receipt["expected_skill_version"],
+                ).values()
+            )
+        )
         self.assertTrue(receipt["selection_evidence"]["installed_skill_read"])
         self.assertTrue(receipt["selection_evidence"]["installed_reference_read"])
+        self.assertNotIn(
+            ".agents/skills/oci-founder/references/use-cases.md",
+            receipt["selection_evidence"]["read_paths"],
+        )
+        native_binding = assessment["native_receipt"]
+        self.assertEqual(f"tests/results/{CANDIDATE_NATIVE_NAME}", native_binding["path"])
+        self.assertEqual(
+            hashlib.sha256((RESULTS / CANDIDATE_NATIVE_NAME).read_bytes()).hexdigest(),
+            native_binding["sha256"],
+        )
+        self.assertEqual("pass_with_reservations", receipt["status"])
+        self.assertEqual("PASS", receipt["probe_q2"])
+        self.assertEqual("PARTIAL", receipt["probe_q3"])
+        self.assertEqual("BLOCKED", receipt["formal_q2"])
+        self.assertEqual("BLOCKED", receipt["formal_q3"])
+        self.assertFalse(receipt["release_qualified"])
 
     def test_failed_attempt_is_preserved_and_native_success_keeps_formal_limits(self) -> None:
         initial_name = "2026-09-18-codex-native-postrelease-initial.json"
