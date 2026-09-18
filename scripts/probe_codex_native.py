@@ -59,7 +59,6 @@ ALLOWED_READ_ONLY_EXECUTABLES = {
 READ_CONTENT_EXECUTABLES = {"cat", "head", "rg", "sed", "tail", "wc"}
 ALLOWED_GIT_SUBCOMMANDS = {"diff", "grep", "log", "ls-files", "rev-parse", "show", "status"}
 ENV_ASSIGNMENT = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*=.*$")
-SHELL_CONTROL_SPLIT = re.compile(r"\s*(?:&&|\|\||[;|\n])\s*")
 
 
 def sha256_bytes(payload: bytes) -> str:
@@ -109,7 +108,14 @@ def response_schema() -> dict[str, Any]:
             "skill_name": {"type": "string"},
             "skill_discovered": {"type": "boolean"},
             "skill_version": {"type": "string"},
-            "invocation_mode": {"type": "string"},
+            "invocation_mode": {
+                "type": "string",
+                "enum": ["explicit"],
+                "description": (
+                    "Skill selection category. 'explicit' means the user selected "
+                    "$oci-founder by name; it is not the skill's interaction mode."
+                ),
+            },
             "evidence_paths": {"type": "array", "items": {"type": "string"}},
             "recommendation": {"type": "string"},
             "guardrails": {"type": "array", "items": {"type": "string"}},
@@ -198,27 +204,128 @@ def _command_executable(tokens: Sequence[str]) -> tuple[str | None, int | None]:
     return None, None
 
 
+def _split_shell_segments(payload: str) -> tuple[list[str], list[str]]:
+    """Split commands on real shell controls while preserving quoted literals.
+
+    This is deliberately a small policy scanner, not a shell parser. It accepts
+    quoting and escaping needed by read-only inspection commands, identifies the
+    controls needed to discover every executed segment, and fails closed on
+    expansion, redirection, malformed quoting, or unsupported shell grouping.
+    """
+
+    segments: list[str] = []
+    current: list[str] = []
+    unsafe: set[str] = set()
+    quote: str | None = None
+    escaped = False
+    index = 0
+
+    def flush() -> None:
+        segment = "".join(current).strip()
+        if segment:
+            segments.append(segment)
+        current.clear()
+
+    while index < len(payload):
+        character = payload[index]
+
+        if quote == "'":
+            current.append(character)
+            if character == "'":
+                quote = None
+            index += 1
+            continue
+
+        if escaped:
+            current.append(character)
+            escaped = False
+            index += 1
+            continue
+
+        if character == "\\":
+            current.append(character)
+            escaped = True
+            index += 1
+            continue
+
+        if quote == '"':
+            current.append(character)
+            if character == '"':
+                quote = None
+            elif character == "`":
+                unsafe.add("backticks")
+            elif character == "$" and index + 1 < len(payload) and payload[index + 1] == "(":
+                unsafe.add("command-substitution")
+                current.append("(")
+                index += 1
+            index += 1
+            continue
+
+        if character in {"'", '"'}:
+            quote = character
+            current.append(character)
+            index += 1
+            continue
+
+        if character == "$" and index + 1 < len(payload) and payload[index + 1] == "(":
+            unsafe.add("command-substitution")
+            current.extend(("$", "("))
+            index += 2
+            continue
+        if character == "`":
+            unsafe.add("backticks")
+            current.append(character)
+            index += 1
+            continue
+        if character == "<":
+            unsafe.add("input-redirection")
+            current.append(character)
+            index += 1
+            continue
+        if character == ">":
+            unsafe.add("output-redirection")
+            current.append(character)
+            index += 1
+            continue
+
+        if payload.startswith("&&", index) or payload.startswith("||", index):
+            flush()
+            index += 2
+            continue
+        if character in {";", "|", "\n"}:
+            flush()
+            index += 1
+            continue
+        if character == "&":
+            unsafe.add("unsupported-shell-syntax")
+            flush()
+            index += 1
+            continue
+        if character in {"(", ")", "{", "}"}:
+            unsafe.add("unsupported-shell-syntax")
+            flush()
+            index += 1
+            continue
+
+        current.append(character)
+        index += 1
+
+    flush()
+    if quote is not None or escaped:
+        unsafe.add("unparseable-shell")
+    return segments, sorted(unsafe)
+
+
 def command_policy(command: str, project_root: Path | None = None) -> dict[str, Any]:
     payload = shell_payload(command)
-    unsafe_shell_features = sorted(
-        marker
-        for marker, present in {
-            "command-substitution": "$(" in payload,
-            "backticks": "`" in payload,
-            "input-redirection": "<" in payload,
-            "output-redirection": ">" in payload,
-        }.items()
-        if present
-    )
+    shell_segments, unsafe_shell_features = _split_shell_segments(payload)
     executables: list[str] = []
     disallowed: list[str] = []
     forbidden: list[str] = []
     argument_policy_failures: list[str] = []
     path_policy_failures: list[str] = []
     parsed_segments: list[tuple[str, list[str], int]] = []
-    for segment in SHELL_CONTROL_SPLIT.split(payload):
-        if not segment.strip():
-            continue
+    for segment in shell_segments:
         try:
             tokens = shlex.split(segment)
         except ValueError:

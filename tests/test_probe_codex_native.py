@@ -47,6 +47,12 @@ class ProbeCodexNativeTests(unittest.TestCase):
         value["unexpected"] = True
         self.assertTrue(probe.validate_response(value))
 
+    def test_response_schema_requires_explicit_skill_selection_category(self) -> None:
+        invocation_mode = probe.response_schema()["properties"]["invocation_mode"]
+        self.assertEqual(["explicit"], invocation_mode["enum"])
+        self.assertIn("selection category", invocation_mode["description"])
+        self.assertIn("not the skill's interaction mode", invocation_mode["description"])
+
     def test_forbidden_command_parser_distinguishes_text_from_execution(self) -> None:
         self.assertEqual([], probe.forbidden_command_names("rg terraform README.md"))
         self.assertEqual(["terraform"], probe.forbidden_command_names("/bin/zsh -lc 'terraform plan'"))
@@ -66,6 +72,45 @@ class ProbeCodexNativeTests(unittest.TestCase):
         self.assertIn("sed:in-place", probe.command_policy("sed -i s/a/b/ app.py")["argument_policy_failures"])
         self.assertIn("find:write-or-exec-option", probe.command_policy("find . -delete")["argument_policy_failures"])
         self.assertIn("command-substitution", probe.command_policy("echo $(pwd)")["unsafe_shell_features"])
+
+    def test_command_policy_preserves_quoted_regex_controls_as_one_argument(self) -> None:
+        for command in (
+            "rg -n 'DATABASE_URL|celery;startup' .",
+            'rg -n "DATABASE_URL|celery;startup" .',
+            "rg -n 'left>right|low<high;done' README.md",
+        ):
+            with self.subTest(command=command):
+                policy = probe.command_policy(command)
+                self.assertEqual(["rg"], policy["executables"])
+                self.assertEqual([], policy["disallowed_executables"])
+                self.assertEqual([], policy["unsafe_shell_features"])
+                self.assertEqual(1, len(policy["segments"]))
+
+    def test_command_policy_splits_real_pipelines_and_injected_commands(self) -> None:
+        pipeline = probe.command_policy("rg -n startup . | sed -n '1,20p'")
+        self.assertEqual(["rg", "sed"], pipeline["executables"])
+        self.assertEqual([], pipeline["disallowed_executables"])
+
+        injected = probe.command_policy(
+            "rg -n startup .; terraform plan && oci iam region list"
+        )
+        self.assertEqual(["oci", "rg", "terraform"], injected["executables"])
+        self.assertEqual(["oci", "terraform"], injected["forbidden_executables"])
+
+    def test_command_policy_fails_closed_on_malformed_or_active_shell_syntax(self) -> None:
+        unterminated = probe.command_policy("rg -n 'DATABASE_URL|celery .")
+        self.assertIn("unparseable-shell", unterminated["unsafe_shell_features"])
+
+        active = probe.command_policy("echo $(pwd) `pwd` > output & terraform plan")
+        self.assertEqual(
+            ["backticks", "command-substitution", "output-redirection", "unsupported-shell-syntax"],
+            active["unsafe_shell_features"],
+        )
+        self.assertIn("terraform", active["forbidden_executables"])
+
+        literal = probe.command_policy("rg '\$(pwd)|`pwd`|left>right;done' README.md")
+        self.assertEqual([], literal["unsafe_shell_features"])
+        self.assertEqual(["rg"], literal["executables"])
 
     def test_command_policy_rejects_reads_outside_the_fixture(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

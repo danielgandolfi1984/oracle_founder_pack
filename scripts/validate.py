@@ -156,6 +156,11 @@ required_files = [
     "tests/results/2026-09-18-codex-native-output.json",
     "tests/results/2026-09-18-codex-native-runner-probe.json",
     "tests/results/2026-09-18-codex-native-runner-assessment.json",
+    "tests/results/2026-09-18-codex-native-postrelease-initial.json",
+    "tests/results/2026-09-18-codex-native-postrelease.json",
+    "tests/results/2026-09-18-codex-native-postrelease-assessment.json",
+    "tests/results/2026-09-18-oracle-skills-verified.json",
+    "tests/results/2026-09-18-oracle-skills-verified-codex-lifecycle.json",
     "tests/results/2026-09-18-skill-package-install-lifecycle.json",
     "tests/results/2026-09-18-skill-package-install-lifecycle.raw.json",
     "tests/results/2026-09-18-full-package-install-lifecycle.json",
@@ -885,6 +890,9 @@ current_native_runner_sha256 = hashlib.sha256(
 assessment_current = native_runner_assessment.get("current_runner", {})
 assessment_historical = native_runner_assessment.get("historical_receipt", {})
 assessment_renewal = native_runner_assessment.get("renewal", {})
+postrelease_initial = load_json(
+    "tests/results/2026-09-18-codex-native-postrelease-initial.json"
+)
 check(
     native_runner_assessment.get("kind") == "oci-founder-codex-native-runner-assessment"
     and native_runner_assessment.get("schema_version") == "1.0",
@@ -892,12 +900,13 @@ check(
 )
 check(
     assessment_current.get("path") == "scripts/probe_codex_native.py"
-    and assessment_current.get("sha256") == current_native_runner_sha256
-    and assessment_current.get("skill_tree_sha256") == current_skill_tree
+    and assessment_current.get("sha256") == postrelease_initial.get("runner", {}).get("script_sha256")
+    and assessment_current.get("skill_tree_sha256")
+    == postrelease_initial.get("installation", {}).get("source_tree_sha256")
     and assessment_current.get("unit_contract_count") == 12
     and assessment_current.get("unit_contracts_passed") is True
     and assessment_current.get("native_rerun_status") == "BLOCKED",
-    "Codex native runner assessment: hardened runner status or fingerprint is stale",
+    "Codex prepublication assessment: original runner or skill lineage is inconsistent",
 )
 check(
     assessment_historical.get("path")
@@ -919,6 +928,63 @@ check(
     and native_runner_assessment.get("formal_q3") == "BLOCKED"
     and native_runner_assessment.get("release_qualified") is False,
     "Codex native runner assessment: renewal or formal-gate status is overstated",
+)
+
+postrelease_native = load_json("tests/results/2026-09-18-codex-native-postrelease.json")
+postrelease_assessment = load_json("tests/results/2026-09-18-codex-native-postrelease-assessment.json")
+check(
+    postrelease_assessment.get("kind")
+    == "oci-founder-codex-native-postrelease-assessment"
+    and postrelease_assessment.get("schema_version") == "1.0"
+    and postrelease_assessment.get("status") == "pass_with_reservations"
+    and postrelease_assessment.get("formal_q2") == "BLOCKED"
+    and postrelease_assessment.get("formal_q3") == "BLOCKED"
+    and postrelease_assessment.get("release_qualified") is False,
+    "Codex postrelease assessment: identity, status, or formal-gate boundary is inconsistent",
+)
+check(
+    postrelease_native.get("runner", {}).get("script_sha256") == current_native_runner_sha256
+    and postrelease_native.get("installation", {}).get("source_tree_sha256") == current_skill_tree,
+    "Codex postrelease evidence: current runner or installed skill fingerprint is stale",
+)
+check(
+    postrelease_native.get("status") == "pass_with_reservations"
+    and postrelease_native.get("probe_q2") == "PASS"
+    and postrelease_native.get("probe_q3") == "PARTIAL"
+    and postrelease_native.get("formal_q2") == "BLOCKED"
+    and postrelease_native.get("formal_q3") == "BLOCKED"
+    and postrelease_native.get("release_qualified") is False,
+    "Codex postrelease evidence: native smoke result or formal-gate boundary is inconsistent",
+)
+for receipt_key, relative_path in (
+    ("initial_receipt_sha256", "tests/results/2026-09-18-codex-native-postrelease-initial.json"),
+    ("current_receipt_sha256", "tests/results/2026-09-18-codex-native-postrelease.json"),
+):
+    receipt_path = ROOT / relative_path
+    check(
+        receipt_path.is_file()
+        and postrelease_assessment.get(receipt_key) == hashlib.sha256(receipt_path.read_bytes()).hexdigest(),
+        f"Codex postrelease assessment: {receipt_key} binding is stale",
+    )
+upstream_verified = load_json("tests/results/2026-09-18-oracle-skills-verified.json")
+upstream_lifecycle = load_json("tests/results/2026-09-18-oracle-skills-verified-codex-lifecycle.json")
+check(
+    upstream_verified.get("summary", {}).get("passed") is True
+    and upstream_verified.get("repository", {}).get("worktree_clean") is True
+    and upstream_lifecycle.get("runner", {}).get("lock_sha256")
+    == hashlib.sha256((ROOT / "upstream/oracle-skills.lock.json").read_bytes()).hexdigest()
+    and upstream_lifecycle.get("verification", {}).get("before_install") == upstream_verified
+    and upstream_lifecycle.get("verification", {}).get("after_final_removal") == upstream_verified,
+    "Oracle Skills postrelease verification: real-checkout receipt or source lock binding is stale",
+)
+check(
+    upstream_lifecycle.get("case", {}).get("passed") is True
+    and upstream_lifecycle.get("case", {}).get("final_remove_residuals", {}).get("clean") is True
+    and upstream_lifecycle.get("profile_safety", {}).get("global_install_attempted") is False
+    and upstream_lifecycle.get("profile_safety", {}).get("observed_global_skill_targets_unchanged") is True
+    and upstream_lifecycle.get("effects", {}).get("cloud_mutation_attempted") is False
+    and upstream_lifecycle.get("release_qualified") is False,
+    "Oracle Skills postrelease lifecycle: installation, cleanup, or native qualification boundary failed",
 )
 
 host_preflight = load_json("tests/results/2026-09-18-host-preflight.json")

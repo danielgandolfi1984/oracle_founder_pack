@@ -8,7 +8,7 @@ best-effort community support and no Oracle or project support SLA.
 
 | Host | Package mechanism | Included artifact | Validation status |
 |---|---|---|---|
-| Codex CLI | Codex compatibility manifest and portable skill | `.codex-plugin/plugin.json` | CLI `0.153.4`; the current source and public-preview packages passed project-scoped lifecycle; the current host preflight passed repository, plugin, and skill validation; the current targeted three-case assessment passed but was non-native; the historical native receipt remains normalized to Q2 `PASS_WITH_RESERVATIONS` and Q3 `PARTIAL`, and formal Q2/Q3 remain `BLOCKED` |
+| Codex CLI | Codex compatibility manifest and portable skill | `.codex-plugin/plugin.json` | CLI `0.153.4`; source and public-preview packages passed project-scoped lifecycle; development validators passed; the fresh native probe loaded the released skill and passed one explicit safety/schema prompt with no observed mutation. Probe Q2 is `PASS` and Q3 is `PARTIAL`; formal Q2/Q3 remain `BLOCKED` |
 | Cursor IDE / Agent | Agent Plugins v1 and portable skill | `plugin.json` | IDE `3.0.12` was detected; the current source and public-preview packages passed project-scoped lifecycle, but Cursor Agent is unavailable; duplicate discovery and native runtime validation remain unqualified |
 | Claude Code | Claude plugin manifest and portable skill | `.claude-plugin/plugin.json` | The current source and public-preview packages passed project-scoped lifecycle, but Claude Code is unavailable on the dated host; strict validation and native runtime discovery remain unqualified |
 
@@ -17,13 +17,14 @@ packaging intent, not a production-support claim. See [`VALIDATION.md`](VALIDATI
 for exact evidence and open gates. Public source use is authorized by UPL-1.0;
 a tagged, cross-host-qualified stable release remains `BLOCKED`.
 
-The public source preview on `main` at
-[`danielgandolfi1984/oracle_founder_pack`](https://github.com/danielgandolfi1984/oracle_founder_pack)
-is licensed under UPL-1.0 and may be cloned, installed, modified, and
-redistributed subject to that license. It is not a qualified immutable install
-coordinate for a stable release: `v0.1.0` is the GitHub public-preview tag and
-prerelease, while no marketplace or registry coordinate is claimed. It is not
-an Oracle product and carries no Oracle or project support SLA.
+The published [`v0.1.0` public preview](https://github.com/danielgandolfi1984/oracle_founder_pack/releases/tag/v0.1.0)
+is fixed at commit `6cf08bf30febc434cefed228f53c43a1f8802ec2` and may be
+cloned, installed, modified, and redistributed under UPL-1.0. That commit passed
+[CI run 35375372149](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35375372149).
+Its public tag passed project-scoped Codex install/list/remove with the reviewed
+skill hash, and all published assets were downloaded again and verified.
+Follow-up docs and evidence on `main` do not change the tag or its assets. No
+stable, marketplace, registry, or Oracle support claim is made.
 
 The current source, skill-only archive, and full-toolkit archive passed
 project-scoped install/list/remove/reinstall in separate Codex, Cursor, and
@@ -70,14 +71,15 @@ Invocation syntax varies by host and surface. Keep it in user documentation, not
 
 ## Public-preview installation
 
-From the target backend, install from an absolute path for the one agent you
-intend to use. This project-scoped convenience command pins the top-level Agent
+From the target backend, install the release tag for the one agent you intend
+to use. This project-scoped convenience command pins the top-level Agent
 Skills CLI package to the version exercised by the lifecycle test. The selected
 host must already be installed and authenticated; this command only copies the
 skill files:
 
 ```bash
-npx --yes skills@1.7.0 add /absolute/path/to/oci-founder-toolkit \
+npx --yes skills@1.7.0 add \
+  'https://github.com/danielgandolfi1984/oracle_founder_pack#v0.1.0' \
   --skill oci-founder -a codex --copy -y
 npx --yes skills@1.7.0 list -a codex --json
 ```
@@ -104,8 +106,8 @@ recommended cleanup command within that project. Global installation remains
 an open gate and is not the quickstart default. Do not use `skills update` for
 this local source.
 
-For project-only use, run from the target backend, pass an absolute path to the
-reviewed toolkit checkout, omit `-g`, and select one agent. The automated
+For project-only use, run from the target backend, use the immutable tag or an
+absolute path to a reviewed toolkit checkout, omit `-g`, and select one agent. The automated
 project lifecycle test uses a different disposable repository for each agent,
 verifies the exact expected destination, and compares the installed tree with
 the reviewed source without touching a global installation target.
@@ -132,7 +134,8 @@ verified npm cache with `npm ci --offline`, while the lock and
 package-integrity checks remained enabled, and passed the project-scoped
 lifecycle in the Codex, Cursor, and Claude Code layouts. The native-runner unit
 command checks the hardened runner without downloading or starting a model
-session; all 12 contracts pass in the current assessment.
+session. The prepublication assessment recorded 12 passing contracts;
+post-release fixes add regression coverage for the native probe harness.
 
 For an already-present Oracle Skills checkout, the separate verifier is offline
 and read-only:
@@ -142,8 +145,13 @@ python3 scripts/verify_oracle_skills_lock.py \
   --checkout /absolute/path/to/oracle-skills-reviewed
 ```
 
-It checks the locked commit, trees, clean worktree, and `LICENSE.txt`. No real
-checkout-bound run has been completed in this workspace.
+It checks the locked commit, trees, clean worktree, and `LICENSE.txt`. The real
+locked checkout [passed verification](../tests/results/2026-09-18-oracle-skills-verified.json).
+Its OCI domain also passed an isolated Codex
+[install/list/remove/reinstall lifecycle](../tests/results/2026-09-18-oracle-skills-verified-codex-lifecycle.json)
+with an exact source/installed tree match and all nine domain `SKILL.md` files
+retained. That result does not qualify native discovery or sibling Database
+references; the Database domain was verified but not installed.
 
 When the relevant host CLI is installed, also run its native validator. Claude Code documents:
 
@@ -152,11 +160,9 @@ claude plugin validate . --strict
 ```
 
 The root manifest is validated locally against the reviewed Agent Plugins
-`1.0.0` schema snapshot. The same check passed in the first complete public CI
-baseline at `bf5ebb3` in
-[run 35355021483](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35355021483)
-and in the updated founder-onboarding baseline at `deb13d8` in
-[run 35359228279](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35359228279).
+`1.0.0` schema snapshot. The same check passed for the immutable release commit
+`6cf08bf` in
+[run 35375372149](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35375372149).
 The Codex compatibility manifest and skill
 also pass their installed development validators when the reviewed PyYAML
 runtime is provided; the exact dependency procedure is in
@@ -167,12 +173,16 @@ Claude strict validation remain stable-release gates rather than completed
 claims. The current host-preflight receipt passed repository, plugin, and skill
 validation against skill tree
 `c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37`.
-The historical Codex receipt and its normalized assessment are linked from
-[`VALIDATION.md`](VALIDATION.md); a fresh hardened native rerun is `BLOCKED`
-before model execution only because a new authenticated model session and
-external model egress were not authorized. The runner accepts a verified
-offline npm cache for reviewed installer acquisition. No model session or cloud
-mutation occurred in that renewal. The current targeted three-case assessment
+The fresh [native Codex receipt](../tests/results/2026-09-18-codex-native-postrelease.json)
+passed with reservations against the released skill: all four machine assertions
+and the output schema passed, with clean removal and no observed project edit,
+unreviewed command, OCI command, or cloud mutation. It covers one explicit
+prompt and reuses the signed-in profile for authentication; it does not install
+upstream dependencies in the native session or replay all 24 cases. Probe Q2 is
+`PASS` and Q3 is `PARTIAL`. The initial failed harness run and the separate
+[assessment](../tests/results/2026-09-18-codex-native-postrelease-assessment.json)
+remain linked from [`VALIDATION.md`](VALIDATION.md). The runner accepts a
+verified offline npm cache. The targeted three-case assessment
 passed against the same skill tree without file writes, network calls, OCI
 commands, or cloud mutations. It is non-native and does not replace native
 discovery or replay. Formal Q2/Q3, global-profile lifecycle, native Cursor and

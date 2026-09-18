@@ -64,7 +64,7 @@
               "$HOME/.codex/skills/.system/plugin-creator/scripts/validate_plugin.py",
               "$TOOLKIT_ROOT"
             ],
-            "duration_ms": 143,
+            "duration_ms": 168,
             "exit_code": 0,
             "stderr_excerpt": "",
             "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -83,7 +83,7 @@
               "$HOME/.codex/skills/.system/skill-creator/scripts/quick_validate.py",
               "$TOOLKIT_ROOT/skills/oci-founder"
             ],
-            "duration_ms": 109,
+            "duration_ms": 113,
             "exit_code": 0,
             "stderr_excerpt": "",
             "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -104,7 +104,7 @@
           "plugin",
           "--help"
         ],
-        "duration_ms": 16,
+        "duration_ms": 18,
         "exit_code": 0,
         "stderr_excerpt": "WARNING: proceeding, even though we could not create PATH aliases: Operation not permitted (os error 1)\n",
         "stderr_sha256": "3087f13b0d34323fbc05177ef68ae53dc523d9acaf6c0c63852825479db5af2a",
@@ -119,7 +119,7 @@
           "/Applications/ChatGPT.app/Contents/Resources/codex",
           "--version"
         ],
-        "duration_ms": 17,
+        "duration_ms": 19,
         "exit_code": 0,
         "stderr_excerpt": "WARNING: proceeding, even though we could not create PATH aliases: Operation not permitted (os error 1)\n",
         "stderr_sha256": "3087f13b0d34323fbc05177ef68ae53dc523d9acaf6c0c63852825479db5af2a",
@@ -147,10 +147,10 @@
           "/Applications/Cursor.app/Contents/Resources/app/bin/cursor",
           "--version"
         ],
-        "duration_ms": 318,
+        "duration_ms": 434,
         "exit_code": 0,
-        "stderr_excerpt": "[0918/143540.260673:ERROR:electron/shell/common/mac/codesign_util.cc:111] SecCodeCheckValidity: Error Domain=NSOSStatusErrorDomain Code=-2147409622 \"(null)\" (-2147409622)\n",
-        "stderr_sha256": "44b85be5174bee291bb800e1eb5a26fb286b0d2e6b6029843a4e6c0dee15feee",
+        "stderr_excerpt": "[0918/150814.892621:ERROR:electron/shell/common/mac/codesign_util.cc:111] SecCodeCheckValidity: Error Domain=NSOSStatusErrorDomain Code=-2147409622 \"(null)\" (-2147409622)\n",
+        "stderr_sha256": "99e76e1894f6a0b5f850fdf7ff0be21b1821b36d20056c966425738c19df5ca6",
         "stdout_excerpt": "3.0.12\na80ff7dfcaa45d7750f6e30be457261379c29b00\narm64\n",
         "stdout_sha256": "a94d4c4501dcbe7fda41874346d115cc14d6e7b3b3395483dc91edbe7b9d534a",
         "timed_out": false
@@ -161,7 +161,7 @@
     }
   },
   "kind": "oci-founder-host-preflight",
-  "observed_at_utc": "2026-09-18T17:35:40.478727+00:00",
+  "observed_at_utc": "2026-09-18T18:08:15.038122+00:00",
   "repo_validation": {
     "mode": "source-without-host-preflight-evidence",
     "probe": {
@@ -170,12 +170,12 @@
         "$TOOLKIT_ROOT/scripts/validate.py",
         "--skip-host-preflight-evidence"
       ],
-      "duration_ms": 351,
+      "duration_ms": 376,
       "exit_code": 0,
       "stderr_excerpt": "",
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "stdout_excerpt": "Founder Toolkit for OCI validation passed (1419 checks).\n",
-      "stdout_sha256": "cd865fa3cf33c6cbc1db6fb3381709ce8bd1940bd23e7685375b5b7b59b4a11e",
+      "stdout_excerpt": "Founder Toolkit for OCI validation passed (1481 checks).\n",
+      "stdout_sha256": "81137d92f73594a4e718fef2b6cbab52ee200469e602deffdb32c0d6dd4da5f1",
       "timed_out": false
     },
     "status": "passed"
@@ -209,7 +209,7 @@
     "source_fingerprint": "4d69f51fef943725f913b327fd249212ce2ec5c7f80be18eb06e09f7aaab05cc",
     "validation_tool_sha256": {
       "scripts/qualify_hosts.py": "afdfc2e940c3f929dac945701406bee63513d5774775356d9a9b614c7fb64e8c",
-      "scripts/validate.py": "c3263a11c6570a826e5a53d303e72796371ced637570aecaff11e78325427e0a"
+      "scripts/validate.py": "dfd950954027c1a97d417b53eb01c8d868144b2ec126ffa2b3eb7f798ca4037f"
     }
   }
 }

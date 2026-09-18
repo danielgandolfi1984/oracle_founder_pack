@@ -9,15 +9,16 @@ does not modify application source or provision cloud resources.
 This repository publishes an independent **public preview** under
 [UPL-1.0](../LICENSE). It is a personal project by Daniel Gandolfi, not an
 Oracle product, and has no Oracle Support coverage or SLA. Use the immutable
-`v0.1.0` tag and keep the installation project-scoped.
+[`v0.1.0` release](https://github.com/danielgandolfi1984/oracle_founder_pack/releases/tag/v0.1.0)
+and keep the installation project-scoped. Its source commit is
+`6cf08bf30febc434cefed228f53c43a1f8802ec2`.
 
 ## 1. Check the prerequisites
 
 You need:
 
 - Git;
-- Python 3.9 or newer to validate the checkout;
-- Node.js `>=22.20.0` with `npx` for the pinned Agent Skills CLI; and
+- Node.js `>=22.20.0` with `npx` for the pinned Agent Skills CLI;
 - the selected Codex, Cursor, or Claude Code host already installed and
   authenticated; and
 - the backend repository where you want the skill to be available.
@@ -25,40 +26,27 @@ You need:
 Do not paste OCI API keys, auth tokens, private keys, passwords, or Terraform
 state into an agent prompt. None are needed for this quickstart.
 
-## 2. Clone and validate the exact source
+## 2. Install in one backend and for one agent
 
-```bash
-git clone --branch v0.1.0 --depth 1 \
-  https://github.com/danielgandolfi1984/oracle_founder_pack.git \
-  oci-founder-toolkit
-cd oci-founder-toolkit
-git rev-parse HEAD
-python3 -B scripts/validate.py
-```
-
-Save the commit printed by `git rev-parse HEAD` with your notes. Do not continue
-if validation fails. The tag is the readable release coordinate; the printed
-40-character commit is the immutable source identity.
-
-## 3. Install in one backend and for one agent
-
-Change to the backend that should use the skill. Replace the toolkit path below
-with the absolute path to the checkout from step 2, then run exactly one add
-command.
+Change to the backend that should use the skill, then run exactly one add
+command for your coding agent:
 
 ```bash
 cd /absolute/path/to/your-backend
 
 # Codex
-npx --yes skills@1.7.0 add /absolute/path/to/oci-founder-toolkit \
+npx --yes skills@1.7.0 add \
+  'https://github.com/danielgandolfi1984/oracle_founder_pack#v0.1.0' \
   --skill oci-founder -a codex --copy -y
 
 # OR Cursor
-npx --yes skills@1.7.0 add /absolute/path/to/oci-founder-toolkit \
+npx --yes skills@1.7.0 add \
+  'https://github.com/danielgandolfi1984/oracle_founder_pack#v0.1.0' \
   --skill oci-founder -a cursor --copy -y
 
 # OR Claude Code
-npx --yes skills@1.7.0 add /absolute/path/to/oci-founder-toolkit \
+npx --yes skills@1.7.0 add \
+  'https://github.com/danielgandolfi1984/oracle_founder_pack#v0.1.0' \
   --skill oci-founder -a claude-code --copy -y
 ```
 
@@ -66,13 +54,6 @@ The command copies the skill into the current backend. It does not install it
 globally. Do not run all three commands in the same project: Cursor can discover
 several compatible skill directories, and duplicate-name precedence has not
 been qualified.
-
-To skip the local checkout, replace `/absolute/path/to/oci-founder-toolkit` in
-exactly one add command with the immutable source coordinate:
-
-```text
-https://github.com/danielgandolfi1984/oracle_founder_pack#v0.1.0
-```
 
 Pinning `skills@1.7.0` fixes the top-level installer version, but `npx` can
 resolve ranged transitive dependencies differently over time. This convenience
@@ -90,7 +71,7 @@ The JSON result should contain a project-scoped skill named `oci-founder`. The
 qualified destination for Codex and Cursor is `.agents/skills/oci-founder`; for
 Claude Code it is `.claude/skills/oci-founder`.
 
-## 4. Make the first request
+## 3. Make the first request
 
 Open the target backend in the selected agent and use the host's explicit
 invocation for the first smoke test:
@@ -125,7 +106,7 @@ A useful first response should include:
 It should not create OCI resources, change IAM, run `terraform apply`, expose a
 secret, or claim an unverified fixed price.
 
-## 5. Pick the next founder job
+## 4. Pick the next founder job
 
 Use a focused prompt when you need one decision:
 
@@ -165,7 +146,7 @@ use fixed prices or imply that a budget alert caps spending.
 For a full repository assessment, ask for a `founder-plan.md`. A focused
 question should stay focused and should not force that artifact.
 
-## 6. Know the approval boundary
+## 5. Know the approval boundary
 
 | Request | What the skill may do by default | What still needs a separate gate |
 |---|---|---|
@@ -180,23 +161,16 @@ Installation grants no cloud authority. A prompt to design and deploy can
 prepare a design and preview, but it must not turn an unseen plan into an
 automatic apply.
 
-## 7. Update or remove the local copy
+## 6. Update or remove the local copy
 
-Review and validate a newer release tag before replacing the skill. Replace
-`v0.1.0` below with the new tag you intend to adopt:
-
-```bash
-git -C /absolute/path/to/oci-founder-toolkit fetch --tags origin
-git -C /absolute/path/to/oci-founder-toolkit checkout --detach v0.1.0
-python3 -B /absolute/path/to/oci-founder-toolkit/scripts/validate.py
-```
-
-Then, from the same backend project used for installation, remove and reinstall
-the reviewed local copy:
+Review the newer release before replacing the skill. From the same backend
+project used for installation, remove and reinstall it. Replace `v0.1.0` below
+with the reviewed tag you intend to adopt:
 
 ```bash
 npx --yes skills@1.7.0 remove oci-founder -y
-npx --yes skills@1.7.0 add /absolute/path/to/oci-founder-toolkit \
+npx --yes skills@1.7.0 add \
+  'https://github.com/danielgandolfi1984/oracle_founder_pack#v0.1.0' \
   --skill oci-founder -a codex --copy -y
 ```
 
@@ -209,13 +183,35 @@ backend project and confirm with
 `npx --yes skills@1.7.0 list -a codex --json`, replacing `codex` with the agent
 whose copy you removed.
 
+## Optional: inspect the full toolkit
+
+The planning skill is enough for the first prompt. To inspect source, run local
+validation, or use the Container API sandbox files, clone the exact release.
+Local validation also needs Python 3.9 or newer:
+
+```bash
+git clone --branch v0.1.0 --depth 1 \
+  https://github.com/danielgandolfi1984/oracle_founder_pack.git \
+  oci-founder-toolkit
+cd oci-founder-toolkit
+git rev-parse HEAD
+python3 -B scripts/validate.py
+```
+
+Confirm the printed commit is
+`6cf08bf30febc434cefed228f53c43a1f8802ec2` and validation passes. To install
+from that reviewed checkout, replace the GitHub URL in step 2 with its absolute
+local path, then run the command from your backend repository. The standalone
+skill copy does not include the full toolkit's blueprints, upstream lock, or
+upstream verifier.
+
 ## Troubleshooting
 
 ### `oci-founder` is not listed
 
 - Confirm you ran the command from the target backend, not from the toolkit
   checkout.
-- Confirm the toolkit argument is an absolute path.
+- Confirm the source is the exact GitHub tag URL or an absolute checkout path.
 - Check `node --version` and `npx --version`.
 - Use the same agent value for add and list.
 - Reload the project or start a new agent session after installation.
@@ -239,8 +235,9 @@ routing.
 ### You expected a marketplace install
 
 No marketplace or registry coordinate exists yet. Use the immutable GitHub tag
-directly or download the archive, checksum, and manifest from the `v0.1.0`
-GitHub release. Native full-plugin marketplace installation remains unqualified.
+directly or download the archive, checksum, and manifest from the
+[`v0.1.0` GitHub release](https://github.com/danielgandolfi1984/oracle_founder_pack/releases/tag/v0.1.0).
+Native full-plugin marketplace installation remains unqualified.
 
 ## Continue from here
 

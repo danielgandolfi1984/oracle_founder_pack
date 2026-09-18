@@ -14,9 +14,18 @@ Technical claims remain bounded by the evidence in this procedure.
 
 The source is published from `main` at
 [`danielgandolfi1984/oracle_founder_pack`](https://github.com/danielgandolfi1984/oracle_founder_pack).
-The `v0.1.0` tag and matching GitHub prerelease are the immutable public-preview
-coordinate after the exact source revision passes CI. They are not a
-marketplace, registry, stable, or cross-host-qualified release.
+The published [`v0.1.0` GitHub prerelease](https://github.com/danielgandolfi1984/oracle_founder_pack/releases/tag/v0.1.0)
+is fixed at commit `6cf08bf30febc434cefed228f53c43a1f8802ec2`. That revision
+passed [CI run 35375372149](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35375372149),
+and its public tag passed project-scoped Codex install/list/remove with skill
+tree `c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37`.
+All release assets were downloaded again and verified. This is an immutable
+public-preview coordinate; it does not claim marketplace, registry, stable, or
+cross-host qualification.
+
+Post-release docs and evidence on `main` keep version `0.1.0`. Do not move the
+tag or replace its assets to incorporate those follow-ups. A future packaged
+content change needs a new reviewed release coordinate.
 
 The
 [license and publisher decision](decisions/0003-public-license-and-publisher.md)
@@ -81,8 +90,12 @@ python3 scripts/verify_oracle_skills_lock.py \
 ```
 
 This verifies the locked commit, reviewed trees, clean worktree, and
-`LICENSE.txt`. It has not been run against a real checkout in this workspace;
-do not treat the verifier's presence as completed upstream qualification.
+`LICENSE.txt`. The real locked checkout
+[passed verification](../tests/results/2026-09-18-oracle-skills-verified.json)
+before and after its OCI domain passed an isolated Codex
+[project installation lifecycle](../tests/results/2026-09-18-oracle-skills-verified-codex-lifecycle.json).
+Native upstream discovery, sibling Database navigation, and full-profile
+isolation remain separate gates. Reverify the checkout used for each release.
 
 Native Codex probing is a separately authorized evidence step, not a passive
 local check. The runner can acquire the reviewed installer through an explicit
@@ -99,7 +112,7 @@ python3 scripts/probe_codex_native.py \
 ```
 
 The hardened runner's current unit contracts can be checked without those
-effects; all 12 pass in the dated assessment:
+effects:
 
 ```bash
 python3 -B -m unittest tests.test_probe_codex_native -v
@@ -110,17 +123,27 @@ environment allowlist, `codex exec --ephemeral`, a read-only sandbox, structured
 output, event capture, and deny shims for cloud/deployment CLIs. The existing
 receipt is historical and bound to former skill tree
 `746cc9a3462ce96c067eedd91e848a905f04ed402b8f579836ce126c5b4d703f`:
-it recorded probe Q2/Q3 as `PASS`, while the current assessment normalizes Q2
+it recorded probe Q2/Q3 as `PASS`, while the prepublication assessment normalizes Q2
 to `PASS_WITH_RESERVATIONS` and Q3 to `PARTIAL`.
 
-A fresh hardened rerun is `BLOCKED` only because a new authenticated model
-session and external model egress were not authorized; verified offline-cache
-installer acquisition is available. It started no model session and attempted
-no cloud mutation. Formal Q2 and Q3 remain `BLOCKED`; the historical result
-does not replace the fully disposable profile, cross-host, or native behavioral
-gates. Historical receipt:
+The earlier prepublication renewal stopped before model execution because
+authorization had not yet been given. That restriction was superseded for the
+post-release checks. The first new run exposed parser and schema defects; its
+failed receipt was retained. After regression tests and harness fixes, the
+[fresh native probe](../tests/results/2026-09-18-codex-native-postrelease.json)
+passed with reservations against the unchanged release skill: valid structured
+output, all four machine assertions passed, exact installed-skill binding,
+clean removal, and no observed project edits, unreviewed commands, OCI commands,
+or cloud mutations. Its probe Q2 is `PASS` and Q3 is `PARTIAL`.
+
+The [post-release assessment](../tests/results/2026-09-18-codex-native-postrelease-assessment.json)
+includes independent semantic review and the remaining limits: one explicit
+prompt, shared authentication profile, no upstream dependencies in that native
+session, and no 24-case replay. The response was safe but longer than needed;
+conciseness and progressive disclosure need further evaluation. Formal Q2/Q3
+remain `BLOCKED`. Historical receipt:
 [`tests/results/2026-09-18-codex-native-runner-probe.json`](../tests/results/2026-09-18-codex-native-runner-probe.json).
-Current assessment:
+Prepublication assessment:
 [`tests/results/2026-09-18-codex-native-runner-assessment.json`](../tests/results/2026-09-18-codex-native-runner-assessment.json).
 The separate
 [`targeted current-skill assessment`](../tests/results/2026-09-18-skill-revision-assessment.json)
@@ -192,7 +215,8 @@ The current read-only host-preflight receipt passes source validation through
 the explicit cycle-breaking mode and passes the available development
 validators at the current skill fingerprint. It records
 `release_qualified: false`. Archive lifecycle and preflight evidence do not
-replace native-host, public-coordinate, or OCI field gates.
+replace native-host or OCI field gates. The public-coordinate check for
+`v0.1.0` passed separately as recorded above.
 
 ## Public-preview and qualification gates
 

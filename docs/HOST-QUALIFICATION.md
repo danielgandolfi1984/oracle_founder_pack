@@ -36,10 +36,10 @@ Each surface needs its own version and evidence. Do not summarize all of them as
 
 | Level | Evidence | Automation status |
 |---|---|---|
-| Q0 — source | Repository checks, manifest and skill fingerprints, unit tests | Implemented locally; complete public CI baselines passed at `bf5ebb3` in [run 35355021483](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35355021483) and at `deb13d8` in [run 35359228279](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35359228279). Each later revision still requires its own passing run |
+| Q0 — source | Repository checks, manifest and skill fingerprints, unit tests | Passed for immutable `v0.1.0` commit `6cf08bf30febc434cefed228f53c43a1f8802ec2` in [run 35375372149](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35375372149). Each later revision still requires its own passing run |
 | Q1 — native validation | Host-supported strict validator or a documented development validator | Partial; see the dated matrix below |
-| Q2 — install and discovery | Isolated install, exact installed-skill hash, visibility, clean removal | The current source, skill-only package, and full-toolkit package pass project lifecycle on all three layouts. The historical Codex receipt normalizes to `PASS_WITH_RESERVATIONS`; formal Q2 remains `BLOCKED` pending current native cross-host discovery and the remaining gates |
-| Q3 — behavior | All fixtures in fresh sessions, effect log, independent semantic evaluation | The historical Codex receipt normalizes to `PARTIAL`; the fresh renewal started no model session, and formal Q3 remains `BLOCKED` pending the native suite, independent grading, and Cursor/Claude Code replay |
+| Q2 — install and discovery | Isolated install, exact installed-skill hash, visibility, clean removal | Source and both packages pass project lifecycle on all three layouts. The fresh native Codex probe records Q2 `PASS` for the exact released skill; formal Q2 remains `BLOCKED` pending fully disposable profiles, upstream native integration, and cross-host discovery |
+| Q3 — behavior | All fixtures in fresh sessions, effect log, independent semantic evaluation | The fresh Codex safety/schema probe passed one explicit prompt and records Q3 `PARTIAL`; formal Q3 remains `BLOCKED` pending all 24 cases, independent grading of the suite, and Cursor/Claude Code replay |
 | Q4 — reinstall | Repeatable update/removal with no stale or conflicting copy | Current source and preview-package remove/reinstall lifecycle passes in isolated projects; global and native-host lifecycle remain open |
 
 Q0 through Q4 qualify the agent package. Authenticated OCI plan/apply,
@@ -78,7 +78,7 @@ playbook's read-only boundary.
 
 | Surface | Observed version | Q0/Q1 evidence | Blocking gate |
 |---|---:|---|---|
-| Codex CLI | `0.153.4` | CLI and plugin-management surface detected; current repository/schema/development validators and source/package lifecycle pass; the historical native receipt normalizes to Q2 `PASS_WITH_RESERVATIONS` and Q3 `PARTIAL` | Verified offline installer acquisition is available, but a current native replay remains open; formal Q2/Q3 also require a fully disposable profile, reviewed upstream dependencies, current-skill native replay, and independent grading |
+| Codex CLI | `0.153.4` | CLI and plugin-management surface detected; development validators and source/package lifecycle pass; the fresh released-skill native probe records Q2 `PASS` and Q3 `PARTIAL` with no observed mutation | Formal Q2/Q3 require a fully disposable profile, upstream dependencies in the native session, all 24 cases with independent grading, and cross-host qualification |
 | Cursor IDE | `3.0.12` | App and embedded editor CLI detected; current isolated source/package lifecycle passes | Cursor Agent is unavailable; editor CLI exposes no native plugin validator; duplicate discovery and native replay remain open |
 | Claude Desktop | `1.569.0` | Desktop bundle detected | Desktop is not Claude Code |
 | Claude Code | not present | None | Install the CLI deliberately, then run `claude plugin validate . --strict` and the isolated runtime procedure |
@@ -122,9 +122,18 @@ python3 scripts/verify_oracle_skills_lock.py \
 
 The verifier checks that the locked commit exists and is `HEAD`, that the
 reviewed tree object IDs and `LICENSE.txt` hash match, and that the worktree is
-clean. It reads committed objects rather than working-tree content. This
-workspace has not run it against a real `oracle/skills` checkout, so upstream
-Q2 dependency verification remains open.
+clean. It reads committed objects rather than working-tree content. The real
+locked checkout passed all checks before and after its isolated OCI-domain
+installation lifecycle. Evidence:
+[verification receipt](../tests/results/2026-09-18-oracle-skills-verified.json)
+and [Codex lifecycle receipt](../tests/results/2026-09-18-oracle-skills-verified-codex-lifecycle.json).
+The installed OCI tree matched source SHA-256
+`1d339b2826f1d5e5b10df72f2b5b931bb0ea0ec1dc7ed3c81a02e46ef344bb80`
+and retained all nine domain `SKILL.md` files. Only the OCI domain was installed;
+the Database and Claude plugin trees were verified but not installed. No native
+model session ran, so sibling Database references and native discovery remain
+unqualified. Four named global OCI targets were unchanged; the user home was
+not fully isolated or audited.
 
 ### Current project-lifecycle evidence
 
@@ -170,7 +179,14 @@ it scans both locations, so duplicate-name behavior must pass a native Cursor
 test before a combined multi-agent install can be recommended. For a
 public-preview installation, choose one agent per installation command.
 
-### Historical Codex receipt and hardened-runner renewal
+The published [`v0.1.0` tag](https://github.com/danielgandolfi1984/oracle_founder_pack/releases/tag/v0.1.0)
+also passed a project-scoped Codex install/list/remove check with skill tree
+`c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37`.
+All published assets were downloaded again and verified. This closes the
+public-coordinate installation check for the release, while native discovery
+and behavior retain their own gates.
+
+### Native Codex probe and historical evidence
 
 Run the automated probe only when one reviewed installer-acquisition mode and
 one authenticated model session are authorized. The acquisition may use a
@@ -191,8 +207,10 @@ runs Codex CLI with explicit `$oci-founder`, `--ephemeral`,
 and a structured output schema, then removes the skill and audits residuals. It
 uses an environment allowlist and prepends logging deny shims for `oci`,
 `terraform`, `fn`, `docker`, and `kubectl`; it never invokes OCI itself.
+The CLI execution mode is documented in
+[Codex non-interactive mode](https://learn.chatgpt.com/docs/non-interactive-mode).
 
-The hardened runner's 12 unit contracts currently pass:
+Run the hardened runner's unit contracts without starting a model session:
 
 ```bash
 python3 -B -m unittest tests.test_probe_codex_native -v
@@ -200,7 +218,7 @@ python3 -B -m unittest tests.test_probe_codex_native -v
 
 The dated Codex CLI `0.153.4` receipt is historical. It recorded exact
 installed/source tree hashes, schema-valid founder guidance, clean removal, no
-forbidden effect, and probe Q2/Q3 as `PASS`. The current assessment normalizes
+forbidden effect, and probe Q2/Q3 as `PASS`. The prepublication assessment normalizes
 that evidence to Q2 `PASS_WITH_RESERVATIONS` and Q3 `PARTIAL`; the receipt did
 not use a fully disposable host profile, install the reviewed `oracle/skills`
 dependencies, replay the full behavioral matrix, or run an independent
@@ -208,15 +226,25 @@ semantic grader. Both that native receipt and the older 24-case evidence are
 bound to former skill tree
 `746cc9a3462ce96c067eedd91e848a905f04ed402b8f579836ce126c5b4d703f`.
 
-A fresh run of the hardened runner is `BLOCKED` only because a new authenticated
-model session and external model egress were not authorized; the runner now
-accepts the verified offline npm cache for reviewed installer acquisition. The
-renewal therefore started no model session and attempted no cloud mutation.
-Formal Q2 and Q3 remain `BLOCKED`. Cursor Agent and Claude Code are unavailable
-on the current host, so their native replay also remains blocked. Historical
-receipt:
+The prepublication renewal stopped before model execution because authorization
+had not yet been given. That restriction was superseded by authorization for
+the post-release checks. The first new run exposed quoted-shell parsing and
+invocation-schema defects; its failed receipt is preserved. After the harness
+fixes, the fresh
+[native receipt](../tests/results/2026-09-18-codex-native-postrelease.json)
+passed with reservations: exact installed-skill binding, loaded skill and
+references, valid structured output, four passing machine assertions, clean
+removal, and no observed project edit, unreviewed command, OCI command, or cloud
+mutation. It records probe Q2 `PASS` and Q3 `PARTIAL`. See the separate
+[post-release assessment](../tests/results/2026-09-18-codex-native-postrelease-assessment.json).
+
+This probe covers one explicit prompt using the signed-in profile for
+authentication. The separately verified upstream dependency was not installed
+in its native session, and it did not run the 24-case suite. Formal Q2/Q3 remain
+`BLOCKED`. Cursor Agent and Claude Code are unavailable on the current host.
+Historical receipt:
 [`tests/results/2026-09-18-codex-native-runner-probe.json`](../tests/results/2026-09-18-codex-native-runner-probe.json).
-Current assessment:
+Prepublication assessment:
 [`tests/results/2026-09-18-codex-native-runner-assessment.json`](../tests/results/2026-09-18-codex-native-runner-assessment.json).
 
 A separate
@@ -275,11 +303,11 @@ remains open.
 Do not claim cross-host support until every named surface passes Q0 through Q4
 without skipped gates. A manual GUI result may be retained as supporting
 evidence, but it must not be presented as deterministic CLI qualification.
-The public `main` source is reusable under UPL-1.0, and historical remote
-source-CI baselines passed at `bf5ebb3` and `deb13d8`. That does not qualify an
-immutable public preview as a stable host result: `v0.1.0` is the GitHub tag and
-prerelease coordinate, while marketplace publication, native cross-host
-discovery, and native behavioral lifecycle remain unqualified. State those
+The public source is reusable under UPL-1.0. The published `v0.1.0` commit
+`6cf08bf30febc434cefed228f53c43a1f8802ec2` passed its exact-source CI run and
+public-tag installation check. These qualify the immutable public-preview
+coordinate; marketplace publication, native cross-host discovery, and native
+behavioral lifecycle remain unqualified. State those
 technical limits without suggesting that the personal project is
 Oracle-supported or covered by an SLA. Global-profile lifecycle and live OCI
 plan/apply/idempotency/rollback/teardown validation also remain open.
@@ -287,7 +315,7 @@ plan/apply/idempotency/rollback/teardown validation also remain open.
 ## Official host references
 
 - [Codex skills](https://developers.openai.com/codex/skills/)
-- [Codex non-interactive mode](https://developers.openai.com/pt-BR/docs/non-interactive-mode)
+- [Codex non-interactive mode](https://learn.chatgpt.com/docs/non-interactive-mode)
 - [Build plugins for ChatGPT and Codex](https://learn.chatgpt.com/pt-BR/docs/build-plugins)
 - [Cursor plugins reference](https://cursor.com/docs/reference/plugins)
 - [Claude Code plugins reference](https://code.claude.com/docs/en/plugins-reference)

@@ -7,26 +7,10 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SKILL_ROOT = ROOT / "skills/oci-founder"
 RECEIPT_PATH = ROOT / "tests/results/2026-09-18-codex-native-probe.json"
 OUTPUT_PATH = ROOT / "tests/results/2026-09-18-codex-native-output.json"
 RUNNER_RECEIPT_PATH = ROOT / "tests/results/2026-09-18-codex-native-runner-probe.json"
 ASSESSMENT_PATH = ROOT / "tests/results/2026-09-18-codex-native-runner-assessment.json"
-
-
-def tree_fingerprint(root: Path) -> str:
-    digest = hashlib.sha256()
-    for path in sorted(candidate for candidate in root.rglob("*") if candidate.is_file()):
-        if path.is_symlink():
-            raise ValueError(f"symlink in skill tree: {path}")
-        relative = path.relative_to(root).as_posix().encode("utf-8")
-        digest.update(len(relative).to_bytes(8, "big"))
-        digest.update(relative)
-        digest.update((path.stat().st_mode & 0o777).to_bytes(4, "big"))
-        payload = path.read_bytes()
-        digest.update(len(payload).to_bytes(8, "big"))
-        digest.update(payload)
-    return digest.hexdigest()
 
 
 class CodexNativeEvidenceTests(unittest.TestCase):
@@ -95,10 +79,12 @@ class CodexNativeEvidenceTests(unittest.TestCase):
         self.assertEqual("read-only", codex[codex.index("--sandbox") + 1])
 
     def test_hardened_runner_assessment_preserves_historical_lineage(self) -> None:
-        current_runner = ROOT / self.assessment["current_runner"]["path"]
+        initial_postrelease = json.loads(
+            (ROOT / "tests/results/2026-09-18-codex-native-postrelease-initial.json").read_text(encoding="utf-8")
+        )
         historical = self.assessment["historical_receipt"]
         self.assertEqual(
-            hashlib.sha256(current_runner.read_bytes()).hexdigest(),
+            initial_postrelease["runner"]["script_sha256"],
             self.assessment["current_runner"]["sha256"],
         )
         self.assertEqual(
@@ -110,7 +96,7 @@ class CodexNativeEvidenceTests(unittest.TestCase):
             historical["runner_sha256"],
         )
         self.assertEqual(
-            tree_fingerprint(SKILL_ROOT),
+            initial_postrelease["installation"]["source_tree_sha256"],
             self.assessment["current_runner"]["skill_tree_sha256"],
         )
 

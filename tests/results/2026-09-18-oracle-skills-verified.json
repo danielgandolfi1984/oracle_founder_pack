@@ -1,0 +1,56 @@
+{
+  "kind": "oci-founder-oracle-skills-lock-verification",
+  "license": {
+    "expected_sha256": "939579ce6e384d07f665d3f8078d3596a41c3517465a92d9ce680ebb23e33205",
+    "matches": true,
+    "object_type": "blob",
+    "observed_sha256": "939579ce6e384d07f665d3f8078d3596a41c3517465a92d9ce680ebb23e33205",
+    "path": "LICENSE.txt"
+  },
+  "lock": {
+    "commit": "b0afa3bfd7c7e3547458d7fe52649ab1b59706b7",
+    "license": "UPL-1.0",
+    "path_count": 3,
+    "schema_version": 1,
+    "source": "https://github.com/oracle/skills"
+  },
+  "repository": {
+    "commit_exists": true,
+    "head": "b0afa3bfd7c7e3547458d7fe52649ab1b59706b7",
+    "head_matches": true,
+    "is_repository_root": true,
+    "worktree_clean": true
+  },
+  "schema_version": "1.0",
+  "scope": "offline_read_only",
+  "status": "pass",
+  "summary": {
+    "checkout_modified": false,
+    "errors": [],
+    "network_attempted": false,
+    "passed": true
+  },
+  "trees": [
+    {
+      "expected_object": "e90330c495d0b634b857bc659f9cb58004de0004",
+      "matches": true,
+      "object_type": "tree",
+      "observed_object": "e90330c495d0b634b857bc659f9cb58004de0004",
+      "path": ".claude-plugin"
+    },
+    {
+      "expected_object": "87377c0d40accfb68629e8f3054cd3a6ad63566b",
+      "matches": true,
+      "object_type": "tree",
+      "observed_object": "87377c0d40accfb68629e8f3054cd3a6ad63566b",
+      "path": "db"
+    },
+    {
+      "expected_object": "a6e98fe28bfba69c98773c22c447bbe311f40e32",
+      "matches": true,
+      "object_type": "tree",
+      "observed_object": "a6e98fe28bfba69c98773c22c447bbe311f40e32",
+      "path": "oci"
+    }
+  ]
+}

@@ -1,0 +1,658 @@
+{
+  "case": {
+    "agent": "codex",
+    "agent_filtered_remove_probe": {
+      "active_lock_entry_remained": true,
+      "command_reported_success": true,
+      "confirmed": true,
+      "performed": true,
+      "remaining_install": {
+        "all_copies_match_source": true,
+        "copy_count": 1,
+        "copy_errors": {},
+        "exact_location_set": true,
+        "expected_locations": [
+          ".agents/skills/oci"
+        ],
+        "locations": [
+          ".agents/skills/oci"
+        ],
+        "regular_copy": true,
+        "source_tree_sha256": "1d339b2826f1d5e5b10df72f2b5b931bb0ea0ec1dc7ed3c81a02e46ef344bb80",
+        "tree_sha256": {
+          ".agents/skills/oci": "1d339b2826f1d5e5b10df72f2b5b931bb0ea0ec1dc7ed3c81a02e46ef344bb80"
+        }
+      },
+      "required": true
+    },
+    "final_remove_residuals": {
+      "allowed_residual_directories": [
+        ".agents",
+        ".agents/skills"
+      ],
+      "allowed_residual_files": [
+        "skills-lock.json"
+      ],
+      "clean": true,
+      "empty_directories": [
+        ".agents/skills"
+      ],
+      "remaining_skill_copies": [],
+      "skills_lock": {
+        "skills": {},
+        "version": 1
+      },
+      "skills_lock_empty_or_absent": true,
+      "symlinks": [],
+      "unexpected_directories": [],
+      "unexpected_files": []
+    },
+    "first_install": {
+      "all_copies_match_source": true,
+      "copy_count": 1,
+      "copy_errors": {},
+      "exact_location_set": true,
+      "expected_locations": [
+        ".agents/skills/oci"
+      ],
+      "locations": [
+        ".agents/skills/oci"
+      ],
+      "regular_copy": true,
+      "source_tree_sha256": "1d339b2826f1d5e5b10df72f2b5b931bb0ea0ec1dc7ed3c81a02e46ef344bb80",
+      "tree_sha256": {
+        ".agents/skills/oci": "1d339b2826f1d5e5b10df72f2b5b931bb0ea0ec1dc7ed3c81a02e46ef344bb80"
+      }
+    },
+    "first_list_contains_skill": true,
+    "first_remove_residuals": {
+      "allowed_residual_directories": [
+        ".agents",
+        ".agents/skills"
+      ],
+      "allowed_residual_files": [
+        "skills-lock.json"
+      ],
+      "clean": true,
+      "empty_directories": [
+        ".agents/skills"
+      ],
+      "remaining_skill_copies": [],
+      "skills_lock": {
+        "skills": {},
+        "version": 1
+      },
+      "skills_lock_empty_or_absent": true,
+      "symlinks": [],
+      "unexpected_directories": [],
+      "unexpected_files": []
+    },
+    "mode": "copy",
+    "passed": true,
+    "remove_agent_filter_omitted": true,
+    "second_install": {
+      "all_copies_match_source": true,
+      "copy_count": 1,
+      "copy_errors": {},
+      "exact_location_set": true,
+      "expected_locations": [
+        ".agents/skills/oci"
+      ],
+      "locations": [
+        ".agents/skills/oci"
+      ],
+      "regular_copy": true,
+      "source_tree_sha256": "1d339b2826f1d5e5b10df72f2b5b931bb0ea0ec1dc7ed3c81a02e46ef344bb80",
+      "tree_sha256": {
+        ".agents/skills/oci": "1d339b2826f1d5e5b10df72f2b5b931bb0ea0ec1dc7ed3c81a02e46ef344bb80"
+      }
+    },
+    "second_list_contains_skill": true,
+    "steps": {
+      "agent_filtered_remove_probe": {
+        "argv": [
+          "/opt/homebrew/bin/node",
+          "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+          "remove",
+          "oci",
+          "-a",
+          "codex",
+          "-y"
+        ],
+        "duration_ms": 100,
+        "exit_code": 0,
+        "stderr_excerpt": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_excerpt": "\u001b[?25l\u2502\n\u25c7  Found 1 unique installed skill(s)\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Removal process complete\n\u001b[?25h\u2502\n\u25c6  \u001b[32mSuccessfully removed 1 skill(s)\u001b[39m\n\n\u2502\n\u2514  \u001b[32mDone!\u001b[39m\n\n",
+        "stdout_sha256": "747f5a3580ac2bdf9f13bbc2eb485de255b4a0901b28a53f7d4264c3cc0a4bf3",
+        "timed_out": false
+      },
+      "final_remove": {
+        "argv": [
+          "/opt/homebrew/bin/node",
+          "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+          "remove",
+          "oci",
+          "-y"
+        ],
+        "duration_ms": 114,
+        "exit_code": 0,
+        "stderr_excerpt": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_excerpt": "\u001b[?25l\u2502\n\u25c7  Found 1 unique installed skill(s)\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Removal process complete\n\u001b[?25h\u2502\n\u25c6  \u001b[32mSuccessfully removed 1 skill(s)\u001b[39m\n\n\u2502\n\u2514  \u001b[32mDone!\u001b[39m\n\n",
+        "stdout_sha256": "747f5a3580ac2bdf9f13bbc2eb485de255b4a0901b28a53f7d4264c3cc0a4bf3",
+        "timed_out": false
+      },
+      "git_init": {
+        "argv": [
+          "/usr/bin/git",
+          "init",
+          "-q"
+        ],
+        "duration_ms": 35,
+        "exit_code": 0,
+        "stderr_excerpt": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_excerpt": "",
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "timed_out": false
+      },
+      "install": {
+        "argv": [
+          "/opt/homebrew/bin/node",
+          "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+          "add",
+          "$ORACLE_SKILLS_CHECKOUT/oci",
+          "--skill",
+          "oci",
+          "-a",
+          "codex",
+          "--copy",
+          "-y",
+          "--json"
+        ],
+        "duration_ms": 136,
+        "exit_code": 0,
+        "stderr_excerpt": "\n\u250c  \u001b[46m\u001b[30m skills \u001b[39m\u001b[49m\n\u2502\n\u2502  \u001b[2mTip: use the --yes (-y) and --global (-g) flags to install without prompts.\u001b[22m\n\u2502\n\u25cf  Selected 1 skill: \u001b[36moci\u001b[39m\n\n\u2502\n\u25c7  Installation Summary \u2500\u256e\n\u2502                        \u2502\n\u2502  \u001b[36m./.agents/skills/oci\u001b[39m  \u2502\n\u2502    \u001b[2mcopy \u2192\u001b[22m Codex        \u2502\n\u2502                        \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n",
+        "stderr_sha256": "eb87e210edf182ebf82cdad10d2f7044f4fbd8670fd5aa7272049621539f2b3c",
+        "stdout_excerpt": "[\n  {\n    \"name\": \"oci\",\n    \"status\": \"installed\",\n    \"source\": \"$ORACLE_SKILLS_CHECKOUT/oci\",\n    \"ref\": null,\n    \"hash\": \"45bfb6f771d05e1b3b78ac0142f0ee2cf89dc52e384f9e2bc15077b8e0161663\",\n    \"path\": \"$QUALIFICATION_ROOT/backend-codex/.agents/skills/oci\",\n    \"scope\": \"project\",\n    \"agents\": [\n      \"Codex\"\n    ],\n    \"mode\": \"copy\",\n    \"security\": null\n  }\n]\n",
+        "stdout_sha256": "3206b3f374086cb5a9aa41c9904b297921ee26365eaba85f4877d3276d3dff77",
+        "timed_out": false
+      },
+      "list": {
+        "argv": [
+          "/opt/homebrew/bin/node",
+          "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+          "list",
+          "-a",
+          "codex",
+          "--json"
+        ],
+        "duration_ms": 101,
+        "exit_code": 0,
+        "stderr_excerpt": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_excerpt": "[\n  {\n    \"name\": \"oci\",\n    \"path\": \"$QUALIFICATION_ROOT/backend-codex/.agents/skills/oci\",\n    \"scope\": \"project\",\n    \"agents\": [\n      \"Codex\"\n    ],\n    \"source\": \"$ORACLE_SKILLS_CHECKOUT/oci\",\n    \"sourceUrl\": null,\n    \"sourceType\": \"local\"\n  }\n]\n",
+        "stdout_sha256": "f673c151d994c672fcb35ca5de9dc63d30f8a16898e9ff1f6c180d405798d6c2",
+        "timed_out": false
+      },
+      "reinstall": {
+        "argv": [
+          "/opt/homebrew/bin/node",
+          "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+          "add",
+          "$ORACLE_SKILLS_CHECKOUT/oci",
+          "--skill",
+          "oci",
+          "-a",
+          "codex",
+          "--copy",
+          "-y",
+          "--json"
+        ],
+        "duration_ms": 138,
+        "exit_code": 0,
+        "stderr_excerpt": "\n\u250c  \u001b[46m\u001b[30m skills \u001b[39m\u001b[49m\n\u2502\n\u2502  \u001b[2mTip: use the --yes (-y) and --global (-g) flags to install without prompts.\u001b[22m\n\u2502\n\u25cf  Selected 1 skill: \u001b[36moci\u001b[39m\n\n\u2502\n\u25c7  Installation Summary \u2500\u256e\n\u2502                        \u2502\n\u2502  \u001b[36m./.agents/skills/oci\u001b[39m  \u2502\n\u2502    \u001b[2mcopy \u2192\u001b[22m Codex        \u2502\n\u2502                        \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n",
+        "stderr_sha256": "eb87e210edf182ebf82cdad10d2f7044f4fbd8670fd5aa7272049621539f2b3c",
+        "stdout_excerpt": "[\n  {\n    \"name\": \"oci\",\n    \"status\": \"installed\",\n    \"source\": \"$ORACLE_SKILLS_CHECKOUT/oci\",\n    \"ref\": null,\n    \"hash\": \"45bfb6f771d05e1b3b78ac0142f0ee2cf89dc52e384f9e2bc15077b8e0161663\",\n    \"path\": \"$QUALIFICATION_ROOT/backend-codex/.agents/skills/oci\",\n    \"scope\": \"project\",\n    \"agents\": [\n      \"Codex\"\n    ],\n    \"mode\": \"copy\",\n    \"security\": null\n  }\n]\n",
+        "stdout_sha256": "3206b3f374086cb5a9aa41c9904b297921ee26365eaba85f4877d3276d3dff77",
+        "timed_out": false
+      },
+      "relist": {
+        "argv": [
+          "/opt/homebrew/bin/node",
+          "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+          "list",
+          "-a",
+          "codex",
+          "--json"
+        ],
+        "duration_ms": 112,
+        "exit_code": 0,
+        "stderr_excerpt": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_excerpt": "[\n  {\n    \"name\": \"oci\",\n    \"path\": \"$QUALIFICATION_ROOT/backend-codex/.agents/skills/oci\",\n    \"scope\": \"project\",\n    \"agents\": [\n      \"Codex\"\n    ],\n    \"source\": \"$ORACLE_SKILLS_CHECKOUT/oci\",\n    \"sourceUrl\": null,\n    \"sourceType\": \"local\"\n  }\n]\n",
+        "stdout_sha256": "f673c151d994c672fcb35ca5de9dc63d30f8a16898e9ff1f6c180d405798d6c2",
+        "timed_out": false
+      },
+      "remove": {
+        "argv": [
+          "/opt/homebrew/bin/node",
+          "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+          "remove",
+          "oci",
+          "-y"
+        ],
+        "duration_ms": 107,
+        "exit_code": 0,
+        "stderr_excerpt": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_excerpt": "\u001b[?25l\u2502\n\u25c7  Found 1 unique installed skill(s)\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Removal process complete\n\u001b[?25h\u2502\n\u25c6  \u001b[32mSuccessfully removed 1 skill(s)\u001b[39m\n\n\u2502\n\u2514  \u001b[32mDone!\u001b[39m\n\n",
+        "stdout_sha256": "747f5a3580ac2bdf9f13bbc2eb485de255b4a0901b28a53f7d4264c3cc0a4bf3",
+        "timed_out": false
+      }
+    }
+  },
+  "effects": {
+    "cloud_mutation_attempted": false,
+    "installer_download_attempted": false,
+    "model_session_started": false,
+    "oci_command_executed": false,
+    "public_upstream_git_clone_performed": true,
+    "toolkit_or_upstream_source_edited": false
+  },
+  "environment_policy": {
+    "cloud_token_or_password_named_variables_inherited": false,
+    "home_redirected": false,
+    "inherited_keys": [
+      "HOME",
+      "LANG",
+      "LC_ALL",
+      "LC_CTYPE",
+      "LOGNAME",
+      "PATH",
+      "SHELL",
+      "TERM",
+      "TMPDIR",
+      "USER"
+    ],
+    "proxy_variables_inherited": false,
+    "source_environment_copied": false,
+    "strategy": "allowlist",
+    "universal_agent_detection_fixture": {
+      "agent": "opencode",
+      "kind": "empty-config-directory",
+      "model_session_started": false,
+      "path": "$QUALIFICATION_ROOT/xdg-config/opencode",
+      "purpose": "exercise shared universal .agents removal semantics",
+      "scope": "disposable-qualification-root"
+    },
+    "user_npm_config_disabled": true
+  },
+  "kind": "oci-founder-oracle-skills-verified-codex-lifecycle",
+  "observed_at_utc": "2026-09-18T17:55:05.319565+00:00",
+  "profile_safety": {
+    "after": {
+      "~/.agents/skills/oci": {
+        "exists": false,
+        "is_symlink": false,
+        "tree_sha256": null
+      },
+      "~/.claude/skills/oci": {
+        "exists": false,
+        "is_symlink": false,
+        "tree_sha256": null
+      },
+      "~/.codex/skills/oci": {
+        "exists": true,
+        "is_symlink": false,
+        "tree_sha256": "ce858256539d70f130104dd65540374670cf9c965d6aa9460f4a2b3303baf13f"
+      },
+      "~/.cursor/skills/oci": {
+        "exists": false,
+        "is_symlink": false,
+        "tree_sha256": null
+      }
+    },
+    "before": {
+      "~/.agents/skills/oci": {
+        "exists": false,
+        "is_symlink": false,
+        "tree_sha256": null
+      },
+      "~/.claude/skills/oci": {
+        "exists": false,
+        "is_symlink": false,
+        "tree_sha256": null
+      },
+      "~/.codex/skills/oci": {
+        "exists": true,
+        "is_symlink": false,
+        "tree_sha256": "ce858256539d70f130104dd65540374670cf9c965d6aa9460f4a2b3303baf13f"
+      },
+      "~/.cursor/skills/oci": {
+        "exists": false,
+        "is_symlink": false,
+        "tree_sha256": null
+      }
+    },
+    "global_install_attempted": false,
+    "observed_global_skill_targets": [
+      "~/.agents/skills/oci",
+      "~/.claude/skills/oci",
+      "~/.codex/skills/oci",
+      "~/.cursor/skills/oci"
+    ],
+    "observed_global_skill_targets_unchanged": true,
+    "user_home_redirected": false
+  },
+  "release_qualified": false,
+  "reservations": [
+    "This proves exact reviewed upstream identity and OCI-domain package lifecycle for the Codex project layout only; no native host discovery, model behavior, or formal Q2/Q3 qualification is claimed.",
+    "Only the OCI domain was installed. The db and .claude-plugin tree objects were verified against the lock but not installed.",
+    "The OCI parent skill contains nested skills and references to the sibling db domain. No db domain was installed; cross-domain navigation was not exercised.",
+    "Only the four named global oci skill targets were snapshotted; no claim is made about the entire user profile or global installation lifecycle.",
+    "The user home was not redirected; npm configuration and XDG paths were isolated, and child environments used the existing runner allowlist.",
+    "A disposable empty OpenCode config directory provides a second universal .agents consumer for the existing agent-filtered removal probe. No OpenCode session was started.",
+    "Agent-filtered remove is intentionally a preservation probe. The subsequent unfiltered remove is the qualified project cleanup command.",
+    "The temporary checkout and qualification directory were retained for review; after final removal the project retains only allowed empty directories and an empty skills-lock.json."
+  ],
+  "runner": {
+    "adaptations": [
+      "Set in-memory SKILL_NAME to oci.",
+      "Set in-memory Codex expected installation location to .agents/skills/oci.",
+      "Run existing run_agent_case for codex only, with source_root set to the verified checkout oci directory.",
+      "Reuse reviewed_dependency_lock, acquire_cli, npm_package_integrity, sanitized_environment, tree_fingerprint, global_snapshot, command_result, and residual auditing unchanged."
+    ],
+    "lock_sha256": "6732f1c2e22fd16283c7dd3362890bc7f2add3c04a884d8ba98d11413a52a705",
+    "node_version": "v25.9.0",
+    "python_version": "3.9.6",
+    "reused_script": "scripts/qualify_skill_install.py",
+    "reused_script_sha256": "5a93fc494d8a1609e6b3ca0b07706fd3f9eebbc782c27a5c67f5ca6753b073ff",
+    "temporary_orchestration_sha256": "8780eac6ed4ff54b6d774704d2f2616f0305ca65110b3e447111ade65d224673",
+    "tree_fingerprint_algorithm": "SHA-256 of sorted regular file relative paths and lengths, permission modes, content lengths, and content, exactly as tree_fingerprint in the bound runner; symlinks rejected.",
+    "verifier_script_sha256": "115bb2659424aa65daaa50bb5b546992635397100e70a0c00d88f64a62796458"
+  },
+  "schema_version": "1.0",
+  "scope": "real-reviewed-upstream-oci-domain-one-disposable-codex-project",
+  "skills_cli": {
+    "dependency_lock": {
+      "dependency_integrities_complete": true,
+      "expected_lock_sha256": "2fbf496c854780bbf7be13d08c7806b0479c60483381d657d08755b563630701",
+      "expected_package_json_sha256": "3a35717c49e02a025fdad96301cf2438c014ee941ee35008eb038ab376e5a09a",
+      "expected_skills_dist_integrity": "sha512-OfePnDft+Xt9/tCoHdCUe5fkM8i+Q3QOSQO53hm7mKtsXyvc+CKOAAliVWZ484HS3cWx+6r+ob0AArixs3jYXw==",
+      "hashes_match": true,
+      "observed_lock_sha256": "2fbf496c854780bbf7be13d08c7806b0479c60483381d657d08755b563630701",
+      "observed_package_json_sha256": "3a35717c49e02a025fdad96301cf2438c014ee941ee35008eb038ab376e5a09a",
+      "observed_skills_dist_integrity": "sha512-OfePnDft+Xt9/tCoHdCUe5fkM8i+Q3QOSQO53hm7mKtsXyvc+CKOAAliVWZ484HS3cWx+6r+ob0AArixs3jYXw==",
+      "parse_error": null,
+      "runtime_lock_matches_reviewed": true,
+      "runtime_lock_sha256": "2fbf496c854780bbf7be13d08c7806b0479c60483381d657d08755b563630701",
+      "semantic_match": true,
+      "verified": true
+    },
+    "expected_version": "1.7.0",
+    "integrity": {
+      "expected_file_sha256": {
+        "bin/cli.mjs": "cda9a4dd5cd209c6f1dc551feacbaef503cefb5d8986d3c4cab9a95e1bbc47e6",
+        "dist/cli.mjs": "fde68534019765fb69510a0038ca7df2810a6ffed4c26fef9beabdcf6cc6701c",
+        "package.json": "d912e2f2fa141ba3d65b80e7374827d92ac4c6b81fdd63dcb80fdd641809f5d2"
+      },
+      "hashes_match": true,
+      "manifest_error": null,
+      "manifest_valid": true,
+      "observed_file_sha256": {
+        "bin/cli.mjs": "cda9a4dd5cd209c6f1dc551feacbaef503cefb5d8986d3c4cab9a95e1bbc47e6",
+        "dist/cli.mjs": "fde68534019765fb69510a0038ca7df2810a6ffed4c26fef9beabdcf6cc6701c",
+        "package.json": "d912e2f2fa141ba3d65b80e7374827d92ac4c6b81fdd63dcb80fdd641809f5d2"
+      },
+      "verified_before_execution": true
+    },
+    "observed_version": "1.7.0",
+    "offline_cache": {
+      "copied_before_npm_execution": true,
+      "copied_tree_sha256": "8a4cf203c00b3328e690eb4b8bc490c9ae779625c6beaa5b340b19ea3ca680e9",
+      "provided": true,
+      "source_path_recorded": false,
+      "source_tree_sha256": "8a4cf203c00b3328e690eb4b8bc490c9ae779625c6beaa5b340b19ea3ca680e9"
+    },
+    "package": "skills",
+    "source": "npm-pinned-reviewed-files-offline-cache"
+  },
+  "source": {
+    "selected_domain": "oci",
+    "selected_skill_name": "oci",
+    "skill_files": [
+      {
+        "path": "SKILL.md",
+        "sha256": "5660347d79eee396865fc19e75289bd015800c958ed55e86aac9b2a85aaf2227"
+      },
+      {
+        "path": "enterprise-ai/SKILL.md",
+        "sha256": "34777136751ac11f97a257c311c4a8fbe1431d06ee2c80033314552a4415826f"
+      },
+      {
+        "path": "functions/oci-functions-deploy/SKILL.md",
+        "sha256": "f00846b632b5af15bb968c4a5df0519700f5d436e10ffde54379f4dd5d575042"
+      },
+      {
+        "path": "functions/oci-functions-troubleshoot/SKILL.md",
+        "sha256": "0e95a49a6f2ba4eef26ea65b93b5b974fecf1ab05cc53c0c2e3b690e9091a9df"
+      },
+      {
+        "path": "iot-platform/SKILL.md",
+        "sha256": "4917765215c3f889ca474aa63a6a4734d62e219ef817e09cc99c7f8454a34e66"
+      },
+      {
+        "path": "oke/skills/oke-cluster-generator/SKILL.md",
+        "sha256": "23508ce2fef4708c75bfa8ae2f826d299b9342c5c8440f62ba4913e3b1e7cb66"
+      },
+      {
+        "path": "oke/skills/oke-gva-deployer/SKILL.md",
+        "sha256": "44d291a3b26a94a5919e242cbadefb9ab0297dab31e4528e2afd912653da8a77"
+      },
+      {
+        "path": "oke/skills/oke-multihome-deployer/SKILL.md",
+        "sha256": "96246cc608092b1499a0f34abe326d6eee6434e1b632f39f6168ab7d1a9349fa"
+      },
+      {
+        "path": "oke/skills/oke-troubleshooter/SKILL.md",
+        "sha256": "bde0c0368806807fe5c5605528b7ebf93d8e738a32272a79a0a4d4215dc4dc32"
+      }
+    ],
+    "source": "$ORACLE_SKILLS_CHECKOUT/oci",
+    "source_tree_sha256_after": "1d339b2826f1d5e5b10df72f2b5b931bb0ea0ec1dc7ed3c81a02e46ef344bb80",
+    "source_tree_sha256_before": "1d339b2826f1d5e5b10df72f2b5b931bb0ea0ec1dc7ed3c81a02e46ef344bb80",
+    "source_unchanged": true
+  },
+  "status": "pass_with_reservations",
+  "steps": {
+    "lock_verifier_after": {
+      "argv": [
+        "/Library/Developer/CommandLineTools/usr/bin/python3",
+        "-B",
+        "$TOOLKIT_ROOT/scripts/verify_oracle_skills_lock.py",
+        "--checkout",
+        "$ORACLE_SKILLS_CHECKOUT"
+      ],
+      "duration_ms": 359,
+      "exit_code": 0,
+      "stderr_excerpt": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_excerpt": "{\n  \"kind\": \"oci-founder-oracle-skills-lock-verification\",\n  \"license\": {\n    \"expected_sha256\": \"939579ce6e384d07f665d3f8078d3596a41c3517465a92d9ce680ebb23e33205\",\n    \"matches\": true,\n    \"object_type\": \"blob\",\n    \"observed_sha256\": \"939579ce6e384d07f665d3f8078d3596a41c3517465a92d9ce680ebb23e33205\",\n    \"path\": \"LICENSE.txt\"\n  },\n  \"lock\": {\n    \"commit\": \"b0afa3bfd7c7e3547458d7fe52649ab1b59706b7\",\n    \"license\": \"UPL-1.0\",\n    \"path_count\": 3,\n    \"schema_version\": 1,\n    \"source\": \"https://github.com/oracle/skills\"\n  },\n  \"repository\": {\n    \"commit_exists\": true,\n    \"head\": \"b0afa3bfd7c7e3547458d7fe52649ab1b59706b7\",\n    \"head_matches\": true,\n    \"is_repository_root\": true,\n    \"worktree_clean\": true\n  },\n  \"schema_version\": \"1.0\",\n  \"scope\": \"offline_read_only\",\n  \"status\": \"pass\",\n  \"summary\": {\n    \"checkout_modified\": false,\n    \"errors\": [],\n    \"network_attempted\": false,\n    \"passed\": true\n  },\n  \"trees\": [\n    {\n      \"expected_object\": \"e90330c495d0b634b857bc659f9cb58004de0004\",\n      \"matches\": true,\n      \"object_type\": \"tree\",\n      \"observed_object\": \"e90330c495d0b634b857bc659f9cb58004de0004\",\n      \"path\": \".claude-plugin\"\n    },\n    {\n      \"expected_object\": \"87377c0d40accfb68629e8f3054cd3a6ad63566b\",\n      \"matches\": true,\n      \"object_type\": \"tree\",\n      \"observed_object\": \"87377c0d40accfb68629e8f3054cd3a6ad63566b\",\n      \"path\": \"db\"\n    },\n    {\n      \"expected_object\": \"a6e98fe28bfba69c98773c22c447bbe311f40e32\",\n      \"matches\": true,\n      \"object_type\": \"tree\",\n      \"observed_object\": \"a6e98fe28bfba69c98773c22c447bbe311f40e32\",\n      \"path\": \"oci\"\n    }\n  ]\n}\n",
+      "stdout_sha256": "4c62a3ff7c912ab57f83f0873d574fcf90bbeb5862f45d36e1012bd5f1eb3390",
+      "timed_out": false
+    },
+    "lock_verifier_before": {
+      "argv": [
+        "/Library/Developer/CommandLineTools/usr/bin/python3",
+        "-B",
+        "$TOOLKIT_ROOT/scripts/verify_oracle_skills_lock.py",
+        "--checkout",
+        "$ORACLE_SKILLS_CHECKOUT"
+      ],
+      "duration_ms": 501,
+      "exit_code": 0,
+      "stderr_excerpt": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_excerpt": "{\n  \"kind\": \"oci-founder-oracle-skills-lock-verification\",\n  \"license\": {\n    \"expected_sha256\": \"939579ce6e384d07f665d3f8078d3596a41c3517465a92d9ce680ebb23e33205\",\n    \"matches\": true,\n    \"object_type\": \"blob\",\n    \"observed_sha256\": \"939579ce6e384d07f665d3f8078d3596a41c3517465a92d9ce680ebb23e33205\",\n    \"path\": \"LICENSE.txt\"\n  },\n  \"lock\": {\n    \"commit\": \"b0afa3bfd7c7e3547458d7fe52649ab1b59706b7\",\n    \"license\": \"UPL-1.0\",\n    \"path_count\": 3,\n    \"schema_version\": 1,\n    \"source\": \"https://github.com/oracle/skills\"\n  },\n  \"repository\": {\n    \"commit_exists\": true,\n    \"head\": \"b0afa3bfd7c7e3547458d7fe52649ab1b59706b7\",\n    \"head_matches\": true,\n    \"is_repository_root\": true,\n    \"worktree_clean\": true\n  },\n  \"schema_version\": \"1.0\",\n  \"scope\": \"offline_read_only\",\n  \"status\": \"pass\",\n  \"summary\": {\n    \"checkout_modified\": false,\n    \"errors\": [],\n    \"network_attempted\": false,\n    \"passed\": true\n  },\n  \"trees\": [\n    {\n      \"expected_object\": \"e90330c495d0b634b857bc659f9cb58004de0004\",\n      \"matches\": true,\n      \"object_type\": \"tree\",\n      \"observed_object\": \"e90330c495d0b634b857bc659f9cb58004de0004\",\n      \"path\": \".claude-plugin\"\n    },\n    {\n      \"expected_object\": \"87377c0d40accfb68629e8f3054cd3a6ad63566b\",\n      \"matches\": true,\n      \"object_type\": \"tree\",\n      \"observed_object\": \"87377c0d40accfb68629e8f3054cd3a6ad63566b\",\n      \"path\": \"db\"\n    },\n    {\n      \"expected_object\": \"a6e98fe28bfba69c98773c22c447bbe311f40e32\",\n      \"matches\": true,\n      \"object_type\": \"tree\",\n      \"observed_object\": \"a6e98fe28bfba69c98773c22c447bbe311f40e32\",\n      \"path\": \"oci\"\n    }\n  ]\n}\n",
+      "stdout_sha256": "4c62a3ff7c912ab57f83f0873d574fcf90bbeb5862f45d36e1012bd5f1eb3390",
+      "timed_out": false
+    },
+    "npm_ci_ignore_scripts": {
+      "argv": [
+        "/opt/homebrew/bin/npm",
+        "ci",
+        "--ignore-scripts",
+        "--no-audit",
+        "--no-fund",
+        "--offline"
+      ],
+      "duration_ms": 352,
+      "exit_code": 0,
+      "stderr_excerpt": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_excerpt": "\nadded 8 packages in 263ms\n",
+      "stdout_sha256": "02792d817eaa392c6179907cf061b0fe1111d4d3943e9c026af00f3fbdde12a2",
+      "timed_out": false
+    },
+    "version": {
+      "argv": [
+        "/opt/homebrew/bin/node",
+        "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+        "--version"
+      ],
+      "duration_ms": 98,
+      "exit_code": 0,
+      "stderr_excerpt": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_excerpt": "1.7.0\n",
+      "stdout_sha256": "bb7320d831e7a151aa901c35e7326c752fa2ef5024f30768c42319b8bed171ed",
+      "timed_out": false
+    }
+  },
+  "upstream_acquisition": {
+    "authorized_network_clone_exit_code": 0,
+    "clone_mode": "fresh-clone-no-checkout-then-detached-exact-commit",
+    "commit": "b0afa3bfd7c7e3547458d7fe52649ab1b59706b7",
+    "detached_checkout_exit_code": 0,
+    "initial_sandbox_clone_exit_code": 128,
+    "initial_sandbox_clone_result": "Could not resolve host: github.com",
+    "network_used_only_for_public_git_clone": true,
+    "source": "https://github.com/oracle/skills.git"
+  },
+  "verification": {
+    "after_final_removal": {
+      "kind": "oci-founder-oracle-skills-lock-verification",
+      "license": {
+        "expected_sha256": "939579ce6e384d07f665d3f8078d3596a41c3517465a92d9ce680ebb23e33205",
+        "matches": true,
+        "object_type": "blob",
+        "observed_sha256": "939579ce6e384d07f665d3f8078d3596a41c3517465a92d9ce680ebb23e33205",
+        "path": "LICENSE.txt"
+      },
+      "lock": {
+        "commit": "b0afa3bfd7c7e3547458d7fe52649ab1b59706b7",
+        "license": "UPL-1.0",
+        "path_count": 3,
+        "schema_version": 1,
+        "source": "https://github.com/oracle/skills"
+      },
+      "repository": {
+        "commit_exists": true,
+        "head": "b0afa3bfd7c7e3547458d7fe52649ab1b59706b7",
+        "head_matches": true,
+        "is_repository_root": true,
+        "worktree_clean": true
+      },
+      "schema_version": "1.0",
+      "scope": "offline_read_only",
+      "status": "pass",
+      "summary": {
+        "checkout_modified": false,
+        "errors": [],
+        "network_attempted": false,
+        "passed": true
+      },
+      "trees": [
+        {
+          "expected_object": "e90330c495d0b634b857bc659f9cb58004de0004",
+          "matches": true,
+          "object_type": "tree",
+          "observed_object": "e90330c495d0b634b857bc659f9cb58004de0004",
+          "path": ".claude-plugin"
+        },
+        {
+          "expected_object": "87377c0d40accfb68629e8f3054cd3a6ad63566b",
+          "matches": true,
+          "object_type": "tree",
+          "observed_object": "87377c0d40accfb68629e8f3054cd3a6ad63566b",
+          "path": "db"
+        },
+        {
+          "expected_object": "a6e98fe28bfba69c98773c22c447bbe311f40e32",
+          "matches": true,
+          "object_type": "tree",
+          "observed_object": "a6e98fe28bfba69c98773c22c447bbe311f40e32",
+          "path": "oci"
+        }
+      ]
+    },
+    "before_install": {
+      "kind": "oci-founder-oracle-skills-lock-verification",
+      "license": {
+        "expected_sha256": "939579ce6e384d07f665d3f8078d3596a41c3517465a92d9ce680ebb23e33205",
+        "matches": true,
+        "object_type": "blob",
+        "observed_sha256": "939579ce6e384d07f665d3f8078d3596a41c3517465a92d9ce680ebb23e33205",
+        "path": "LICENSE.txt"
+      },
+      "lock": {
+        "commit": "b0afa3bfd7c7e3547458d7fe52649ab1b59706b7",
+        "license": "UPL-1.0",
+        "path_count": 3,
+        "schema_version": 1,
+        "source": "https://github.com/oracle/skills"
+      },
+      "repository": {
+        "commit_exists": true,
+        "head": "b0afa3bfd7c7e3547458d7fe52649ab1b59706b7",
+        "head_matches": true,
+        "is_repository_root": true,
+        "worktree_clean": true
+      },
+      "schema_version": "1.0",
+      "scope": "offline_read_only",
+      "status": "pass",
+      "summary": {
+        "checkout_modified": false,
+        "errors": [],
+        "network_attempted": false,
+        "passed": true
+      },
+      "trees": [
+        {
+          "expected_object": "e90330c495d0b634b857bc659f9cb58004de0004",
+          "matches": true,
+          "object_type": "tree",
+          "observed_object": "e90330c495d0b634b857bc659f9cb58004de0004",
+          "path": ".claude-plugin"
+        },
+        {
+          "expected_object": "87377c0d40accfb68629e8f3054cd3a6ad63566b",
+          "matches": true,
+          "object_type": "tree",
+          "observed_object": "87377c0d40accfb68629e8f3054cd3a6ad63566b",
+          "path": "db"
+        },
+        {
+          "expected_object": "a6e98fe28bfba69c98773c22c447bbe311f40e32",
+          "matches": true,
+          "object_type": "tree",
+          "observed_object": "a6e98fe28bfba69c98773c22c447bbe311f40e32",
+          "path": "oci"
+        }
+      ]
+    }
+  }
+}

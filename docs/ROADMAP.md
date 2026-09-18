@@ -23,7 +23,7 @@ Exit gate: manifests and skill validate locally, every reference resolves, and
 an independent agent produces a safe plan from a realistic backend prompt.
 
 Status on 2026-09-18: **partially met**. Dependency-free repository validation
-passed 1,437 checks against the current public-preview source. The Agent Plugins
+passed against the released public-preview source. The Agent Plugins
 `1.0.0` schema, Skill Creator and Plugin Creator validators, static safety and
 secret checks, fail-closed standalone adapter, and relative-link/local-JSON
 checks passed. The current skill tree SHA-256 is
@@ -48,28 +48,40 @@ It is non-native evidence and does not close Q2 or Q3.
 The project is now an independent public source preview on `main` at
 [`danielgandolfi1984/oracle_founder_pack`](https://github.com/danielgandolfi1984/oracle_founder_pack),
 licensed under UPL-1.0 and maintained by Daniel Gandolfi with best-effort
-community support and no SLA. The `v0.1.0` tag and GitHub prerelease provide
-the immutable public-preview coordinate. Marketplace and registry publication
+community support and no SLA. The published
+[`v0.1.0` GitHub release](https://github.com/danielgandolfi1984/oracle_founder_pack/releases/tag/v0.1.0)
+at commit `6cf08bf30febc434cefed228f53c43a1f8802ec2` provides the immutable
+public-preview coordinate. Its exact-source
+[CI run 35375372149](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35375372149),
+public-tag Codex install/list/remove check, and redownloaded asset verification
+passed. Follow-up docs and evidence on `main` retain version `0.1.0` without
+replacing the published artifacts. Marketplace and registry publication
 remain outside this milestone and separate from the technical qualification
 gates.
 
 Formal Codex Q2/Q3 remain `BLOCKED`; Cursor Agent and Claude Code are
 unavailable; Cursor same-name deduplication, global-profile lifecycle, native
-cross-host replay, a real `oracle/skills` checkout verification, and OCI sandbox
-field evidence remain unresolved. The historical Codex receipt recorded Q2/Q3
-as `PASS`; the recorded assessment normalizes it to Q2
-`PASS_WITH_RESERVATIONS` and Q3 `PARTIAL`. A fresh hardened native renewal still
-requires a separately authorized authenticated model session. No model session
-or cloud mutation occurred in the recorded renewal attempt.
+cross-host replay, and OCI sandbox field evidence remain unresolved. The real
+locked `oracle/skills` checkout now passes verification, and its OCI domain
+passes isolated Codex project install/list/remove/reinstall with the exact
+source hash; upstream native discovery and sibling Database navigation remain
+open. The fresh post-release Codex probe passed one explicit safety/schema
+prompt against the released skill with no observed mutation, valid structured
+output, and clean removal. It records probe Q2 `PASS` and Q3 `PARTIAL`;
+independent semantic review passed with reservations. The response was safe and
+grounded in the fixture but too long for the focused request. Improving
+conciseness and loading fewer references for focused questions is a follow-up
+usability task; the released skill remains unchanged. Historical receipts and
+the current assessment are tracked separately in [`VALIDATION.md`](VALIDATION.md).
 
 The first full public CI baseline passed at `bf5ebb3` in
 [run 35355021483](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35355021483).
 After pinning the official Node.js 24 action lines by full SHA and moving to
 `ubuntu-24.04`, the founder-onboarding baseline at `deb13d8` passed in
 [run 35359228279](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35359228279).
-These historical exact-revision results close the former remote source-CI item
-for those commits only. They do not by themselves close current remote-CI,
-native-host, field, or stable-release gates.
+These historical exact-revision results are retained alongside the passing
+`v0.1.0` CI run above. Every later commit needs its own remote CI result;
+native-host, field, and stable-release gates remain separate.
 See [`VALIDATION.md`](VALIDATION.md).
 
 ## 0.2 — Container API field path (preview in progress)

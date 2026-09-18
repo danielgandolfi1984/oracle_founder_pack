@@ -23,6 +23,41 @@ identifiers, or secret values.
 
 ## Current and historical records
 
+- [`2026-09-18-codex-native-postrelease-initial.json`](2026-09-18-codex-native-postrelease-initial.json):
+  the initial authorized post-release native Codex probe, retained as `fail`.
+  A quoted `rg` pattern exposed a command-parser defect, and the semantic
+  assertion required an invocation label absent from the output schema.
+  The native response stayed planning-only without cloud mutation. Harness
+  fixes were verified in the separate fresh run below; this receipt stays failed.
+- [`2026-09-18-codex-native-postrelease.json`](2026-09-18-codex-native-postrelease.json):
+  the fresh authorized native Codex `0.153.4` probe after harness fixes. It
+  passed with reservations at the unchanged released skill hash, loaded the
+  skill and references, returned valid structured output, passed all four
+  machine assertions, and removed its project copy cleanly. No project edits,
+  unreviewed commands, OCI commands, or cloud mutations were observed. Probe Q2
+  is `PASS` and Q3 is `PARTIAL`; formal Q2/Q3 remain `BLOCKED`.
+- [`2026-09-18-codex-native-postrelease-assessment.json`](2026-09-18-codex-native-postrelease-assessment.json):
+  separate assessment of the failed initial run, harness fixes, fresh probe,
+  and independent semantic review. The fresh response passed that review with
+  reservations about excessive length and unnecessary reference loading.
+  It covers one explicit prompt and reuses the signed-in authentication
+  profile; upstream dependencies and the 24-case suite were not part of the
+  native session. No formal cross-host qualification is claimed.
+
+- [`2026-09-18-oracle-skills-verified.json`](2026-09-18-oracle-skills-verified.json):
+  passing offline verifier receipt for a real checkout of locked upstream
+  commit `b0afa3bfd7c7e3547458d7fe52649ab1b59706b7`, including exact HEAD,
+  clean worktree, all three reviewed tree IDs, and the `LICENSE.txt` hash.
+- [`2026-09-18-oracle-skills-verified-codex-lifecycle.json`](2026-09-18-oracle-skills-verified-codex-lifecycle.json):
+  passing isolated OCI-domain Codex install/list/remove/reinstall/list/remove
+  with source and installed SHA-256
+  `1d339b2826f1d5e5b10df72f2b5b931bb0ea0ec1dc7ed3c81a02e46ef344bb80`.
+  All nine domain `SKILL.md` files were retained, both upstream verifier runs
+  passed, and four named global OCI targets were unchanged. No model session,
+  OCI command, or cloud mutation occurred. The Database domain was verified
+  but not installed; sibling references, native discovery, and the whole user
+  profile remain outside this result.
+
 - [`2026-09-17-orient-fastapi-gcp.md`](2026-09-17-orient-fastapi-gcp.md):
   orientation and Cloud Run non-equivalence.
 - [`2026-09-17-behavioral-contracts.md`](2026-09-17-behavioral-contracts.md):
@@ -73,16 +108,17 @@ identifiers, or secret values.
   exact copied skill hash, explicit invocation, ephemeral read-only model
   session, structured result, redacted transcript/effect hashes, active
   cloud/deployment deny shims, clean removal, and recorded probe Q2/Q3 `PASS`
-  results. The current assessment supersedes those raw classifications.
+  results. The prepublication assessment supersedes those raw classifications.
 - [`2026-09-18-codex-native-runner-assessment.json`](2026-09-18-codex-native-runner-assessment.json):
-  current assessment of the historical receipt and hardened runner. It records
+  prepublication assessment of the historical receipt and hardened runner. It records
   12 passing unit contracts, normalizes the historical result to Q2
-  `PASS_WITH_RESERVATIONS` and Q3 `PARTIAL`, and records the fresh native
+  `PASS_WITH_RESERVATIONS` and Q3 `PARTIAL`, and records that earlier native
   renewal as `BLOCKED` only because a new authenticated model session and
   external model egress were not authorized. The runner accepts the verified
   offline npm cache for reviewed installer acquisition. That renewal started no
   model session and attempted no cloud mutation; formal Q2/Q3 and release
-  qualification remain `BLOCKED`.
+  qualification remained `BLOCKED`. The post-release native checks were
+  subsequently authorized and are assessed separately.
 - [`2026-09-18-skill-revision-assessment.json`](2026-09-18-skill-revision-assessment.json):
   targeted assessment of three content-forward cases against current skill tree
   `c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37`.
@@ -99,13 +135,15 @@ identifiers, or secret values.
   formal native gate remains blocked.
 
 The repository-source secret scan passes locally, but it does not create a
-result file in this directory. Likewise, no checkout-bound result is claimed
-for `verify_oracle_skills_lock.py`: the offline verifier has not been run
-against a real `oracle/skills` checkout in this workspace.
+result file in this directory. The real-checkout Oracle Skills verification
+and its separate installer lifecycle are recorded above.
 
-These are local evaluation records committed with the public source preview.
-The complete remote source-CI baseline later passed at `bf5ebb3` in
-[GitHub Actions run 35355021483](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35355021483).
-Neither the local records nor that run claim native cross-host qualification,
-a tagged release, marketplace publication, registry coordinate, or package
-coordinate.
+The published [`v0.1.0` release](https://github.com/danielgandolfi1984/oracle_founder_pack/releases/tag/v0.1.0)
+is fixed at commit `6cf08bf30febc434cefed228f53c43a1f8802ec2`, which passed
+[GitHub Actions run 35375372149](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35375372149).
+Its public tag passed project-scoped Codex install/list/remove with current
+skill tree `c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37`,
+and all published assets were downloaded again and verified. Follow-up evidence
+on `main` does not alter that tag or its assets. These results establish the
+public-preview coordinate; they do not claim native cross-host qualification,
+marketplace publication, a registry coordinate, or production readiness.

@@ -18,9 +18,11 @@ The toolkit is not another OCI service encyclopedia. It composes official Oracle
 
 ## Start here: first OCI recommendation in about 10 minutes
 
-The `0.1.0` planning skill is a public preview under the
-[UPL-1.0](LICENSE). Install it in one backend repository without an OCI
-tenancy, OCI CLI, credentials, or cloud changes:
+The [`v0.1.0` planning skill](https://github.com/danielgandolfi1984/oracle_founder_pack/releases/tag/v0.1.0)
+is a public preview under [UPL-1.0](LICENSE). You need Git, Node.js
+`>=22.20.0` with `npx`, and an installed, authenticated coding agent. Install it
+in one backend repository; no OCI tenancy, OCI CLI, or OCI credentials are
+needed:
 
 ```bash
 cd /absolute/path/to/your-backend
@@ -63,20 +65,19 @@ versioned `0.1.0` and licensed under UPL-1.0; the separately versioned
 [`0.2.0-preview.3` Container API blueprint](blueprints/container-api/README.md)
 is sandbox-only and has not been applied in an OCI tenancy.
 
-The public `main` source first passed the complete GitHub Actions workflow at
-[`bf5ebb3`](https://github.com/danielgandolfi1984/oracle_founder_pack/commit/bf5ebb3bef3d53ff03601a05221f7825ecd849f2)
-in [run 35355021483](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35355021483).
-The subsequent founder-onboarding baseline
-[`deb13d8`](https://github.com/danielgandolfi1984/oracle_founder_pack/commit/deb13d83e037704e3aa3894304673ba7a58da68d)
-also passed in
-[run 35359228279](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35359228279).
-Those runs close the remote source-CI gap for their exact revisions, but not
-native Cursor/Claude qualification, cross-host behavioral replay, support
-commitments, or live OCI field validation.
+The published [`v0.1.0` release](https://github.com/danielgandolfi1984/oracle_founder_pack/releases/tag/v0.1.0)
+is fixed at commit
+[`6cf08bf30febc434cefed228f53c43a1f8802ec2`](https://github.com/danielgandolfi1984/oracle_founder_pack/commit/6cf08bf30febc434cefed228f53c43a1f8802ec2),
+which passed the complete workflow in
+[run 35375372149](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35375372149).
+The public tag passed project-scoped Codex install/list/remove with the reviewed
+skill hash, and all published assets were downloaded again and verified.
+Follow-up documentation and evidence on `main` do not replace that immutable
+release. Native Cursor/Claude qualification, cross-host behavioral replay, and
+live OCI field validation remain open.
 See the [validation record](docs/VALIDATION.md) for hashes, receipts, Q0–Q4
 status, and remaining gates.
 
-The `v0.1.0` tag and GitHub release are the immutable public-preview coordinate.
 There is no marketplace or registry coordinate. Public use, modification, and
 redistribution are governed by UPL-1.0; technical limitations and the no-SLA
 support boundary still apply.
@@ -173,9 +174,13 @@ recorded in
 toolkit does not silently copy or modify upstream content.
 
 The verifier checks the locked commit, reviewed trees, clean worktree, and
-`LICENSE.txt` without network access or mutation. It has not been run against a
-real `oracle/skills` checkout in this workspace, so no successful checkout
-receipt is claimed.
+`LICENSE.txt` without network access or mutation. The real locked checkout
+[passed verification](tests/results/2026-09-18-oracle-skills-verified.json),
+and the OCI domain passed an isolated Codex
+[project installation lifecycle](tests/results/2026-09-18-oracle-skills-verified-codex-lifecycle.json)
+with an exact source/installed hash match. That check retained all nine domain
+`SKILL.md` files, but did not exercise native discovery, sibling Database
+references, or cloud operations. Verify your own checkout before installation.
 
 ## Install the public preview
 
@@ -194,6 +199,10 @@ cd oci-founder-toolkit
 git rev-parse HEAD
 python3 -B scripts/validate.py
 ```
+
+The tag resolves to `6cf08bf30febc434cefed228f53c43a1f8802ec2`. Compare that
+identity before using the checkout. Follow-up docs on `main` retain version
+`0.1.0` without moving the tag or replacing its assets.
 
 Then choose exactly one agent. These commands pin the top-level Agent Skills
 CLI package to `skills@1.7.0` for convenience:
@@ -389,19 +398,20 @@ The runner installs a project-scoped copy into a disposable Git fixture, invokes
 `$oci-founder` with `codex exec --ephemeral` in a read-only sandbox, places deny
 shims for `oci`, `terraform`, `fn`, `docker`, and `kubectl` first on `PATH`,
 records redacted hashes and effects, removes the copy, and deletes the fixture.
-Its dated receipt is historical: it recorded probe Q2/Q3 as `PASS`, while the
-current assessment normalizes Q2 to `PASS_WITH_RESERVATIONS` and Q3 to
-`PARTIAL`. The hardened runner's 12 unit contracts pass, and reviewed installer
-acquisition can use a verified offline npm cache. Its fresh native renewal is
-`BLOCKED` only because a new authenticated model session and external model
-egress were not authorized. No model session or cloud mutation occurred in that
-renewal. Historical native evidence:
-[`tests/results/2026-09-18-codex-native-runner-probe.json`](tests/results/2026-09-18-codex-native-runner-probe.json).
-Current assessment:
-[`tests/results/2026-09-18-codex-native-runner-assessment.json`](tests/results/2026-09-18-codex-native-runner-assessment.json).
-Targeted current-skill assessment:
-[`tests/results/2026-09-18-skill-revision-assessment.json`](tests/results/2026-09-18-skill-revision-assessment.json).
-Formal Q2 and Q3 remain `BLOCKED`.
+
+The authorized [post-release native Codex probe](tests/results/2026-09-18-codex-native-postrelease.json)
+passed with reservations against the unchanged released skill. It loaded the
+skill and references, passed all four machine assertions, returned valid
+structured output, and removed the installed copy. No project edits, unreviewed
+commands, OCI commands, or cloud mutations were observed. The probe records Q2
+`PASS` and Q3 `PARTIAL`: it covers one explicit prompt, reuses the signed-in
+profile for authentication, and does not install upstream dependencies or
+replay the 24-case suite. Formal Q2/Q3 remain `BLOCKED`.
+
+The initial failed run, harness fixes, historical assessments, and independent
+review are retained in [the validation record](docs/VALIDATION.md). The runner's
+unit contracts pass, and installer acquisition can use a verified offline npm
+cache.
 
 The installed Codex development validators can be replayed with the pinned
 PyYAML wheel hashes documented in [the release procedure](docs/RELEASING.md).

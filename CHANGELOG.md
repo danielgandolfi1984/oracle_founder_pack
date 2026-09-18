@@ -5,6 +5,34 @@ publishes an independent public open-source preview under UPL-1.0, with
 best-effort community support and no SLA. It has not published a tagged stable
 release or claimed cross-host or production qualification.
 
+## Unreleased
+
+### Documentation and evidence
+
+- Reconciled release status with the published `v0.1.0` tag at
+  `6cf08bf30febc434cefed228f53c43a1f8802ec2`, successful exact-source
+  [CI run 35375372149](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35375372149),
+  public-tag Codex install/list/remove, and redownloaded release-asset
+  verification.
+- Simplified onboarding to immutable-tag install, discovery check, and first
+  planning prompt; moved full-checkout validation to an optional path.
+- Verified the real locked `oracle/skills` commit, all three reviewed trees,
+  clean worktree, and license hash. Its OCI domain passed isolated Codex
+  install/list/remove/reinstall with an exact source/installed tree match.
+  Native upstream discovery and sibling Database navigation remain open.
+- Preserved prepublication evidence as historical. Its lack-of-authorization
+  restriction is superseded for the separately authorized post-release native
+  checks, whose outcomes are recorded in [`docs/VALIDATION.md`](docs/VALIDATION.md).
+- Retained the initial post-release native probe as failed evidence and fixed
+  its quoted-shell parsing and invocation-schema defects with regression tests.
+- Recorded a fresh native Codex probe at the unchanged release skill hash:
+  valid structured output, four passing machine assertions, clean removal, and
+  no observed project edit or cloud mutation. Independent semantic review
+  passed with reservations about answer length and reference loading. Probe Q2
+  is `PASS`, Q3 is `PARTIAL`; formal Q2/Q3 remain `BLOCKED`.
+- Kept package version `0.1.0`, the portable skill, and the published release
+  tag and assets unchanged.
+
 ## `0.1.0` — 2026-09-18 (public preview)
 
 ### Added
@@ -25,7 +53,7 @@ release or claimed cross-host or production qualification.
   exact raw receipts are committed and bound by their summaries.
 - Historical native Codex `0.153.4` discovery and one explicit, read-only
   behavior-probe receipt. Its recorded Q2/Q3 `PASS` results are normalized by
-  the current assessment to Q2 `PASS_WITH_RESERVATIONS` and Q3 `PARTIAL`.
+  the prepublication assessment to Q2 `PASS_WITH_RESERVATIONS` and Q3 `PARTIAL`.
 - Targeted current-skill assessment covering three content-forward cases at
   skill tree
   `c9ca7081b818f85a248836a53d12b94b6c995da9825696346a1075bf42c2dd37`.
@@ -91,9 +119,12 @@ release or claimed cross-host or production qualification.
 
 ### Known qualification blockers
 
+The following records the state at publication. Post-release evidence and
+remaining gates are maintained in [`docs/VALIDATION.md`](docs/VALIDATION.md).
+
 - Cursor Agent and Claude Code are unavailable on the current host; Cursor
   duplicate discovery is not qualified.
-- A fresh hardened native Codex rerun is `BLOCKED` only because a new
+- The prepublication hardened native Codex rerun was `BLOCKED` because a new
   authenticated model session and external model egress were not authorized;
   reviewed installer acquisition can use the verified offline npm cache. No
   model session or cloud mutation occurred in that renewal.
@@ -101,8 +132,8 @@ release or claimed cross-host or production qualification.
   disposable host profile, reviewed upstream dependencies, native replay of
   the historical behavioral matrix against the current skill, deny shims, and
   independent semantic grading.
-- The offline `oracle/skills` verifier has not been run against a real checkout
-  in this workspace.
+- At publication, the offline `oracle/skills` verifier had not been run against
+  a real checkout in this workspace.
 - No authenticated OCI sandbox plan/apply/idempotency/rollback/teardown run has
   occurred.
 - A cross-host-qualified stable release remains `BLOCKED`; the immutable
