@@ -89,6 +89,8 @@ for `verify_oracle_skills_lock.py`: the offline verifier has not been run
 against a real `oracle/skills` checkout in this workspace.
 
 These are local evaluation records committed with the public source preview.
-Their presence is not a claim of a successful remote CI run, native
-qualification, tagged release, marketplace publication, registry coordinate,
-or package coordinate.
+The complete remote source-CI baseline later passed at `bf5ebb3` in
+[GitHub Actions run 35355021483](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35355021483).
+Neither the local records nor that run claim native cross-host qualification,
+a tagged release, marketplace publication, registry coordinate, or package
+coordinate.

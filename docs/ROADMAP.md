@@ -67,13 +67,19 @@ egress were not authorized. No model session or cloud mutation occurred in that
 renewal. Formal Codex Q2/Q3 remain `BLOCKED`; Cursor Agent and Claude Code are
 unavailable. Same-name
 deduplication in Cursor, global-profile lifecycle, the remaining native cases,
-a real remote CI run, and licensing remain unresolved. A supported public
+and licensing remain unresolved. A supported public
 release remains `BLOCKED`. A public source evaluation preview exists on `main` at
 [`danielgandolfi1984/oracle_founder_pack`](https://github.com/danielgandolfi1984/oracle_founder_pack),
 under the restrictive evaluation license, without an immutable tag, GitHub
 release, marketplace entry, registry coordinate, or package coordinate. It
 does not close legal, OSS, publisher, support, naming/trademark, or Oracle
 repository-ownership gates.
+The full public CI baseline passed at `bf5ebb3` in
+[run 35355021483](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35355021483);
+this closes the former remote source-CI item but not native-host, field, or
+distribution gates. The workflow source now also pins the official Node.js 24
+action lines by full SHA and uses `ubuntu-24.04`, resolving the warnings emitted
+by that baseline run subject to the normal per-revision CI requirement.
 See [`VALIDATION.md`](VALIDATION.md).
 
 ## 0.2 — Container API field path (preview in progress)

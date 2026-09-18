@@ -1,74 +1,88 @@
 # OCI Founder Toolkit
 
+[![Validation](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/workflows/validate.yml/badge.svg?branch=main)](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/workflows/validate.yml)
+
 > Plan your backend's path to OCI with the coding agent you already use.
 
 OCI Founder Toolkit is an agent-native, backend-first path for technical founders and developers who know AWS, Google Cloud, or Azure but are new to Oracle Cloud Infrastructure (OCI).
 
 The toolkit is not another OCI service encyclopedia. It composes official Oracle knowledge into opinionated founder journeys: understand an existing repository, translate familiar cloud concepts, choose a small architecture, establish guardrails, ship, verify, operate, and eventually tear down or graduate.
 
+## Start here: first OCI recommendation in about 10 minutes
+
+The current public artifact is a source evaluation preview. If you already have
+the written evaluation authorization required by [`LICENSE`](LICENSE), you can
+install its planning skill in one backend repository without an OCI tenancy,
+OCI CLI, credentials, or cloud changes:
+
+```bash
+git clone https://github.com/danielgandolfi1984/oracle_founder_pack.git oci-founder-toolkit
+cd oci-founder-toolkit
+git rev-parse HEAD
+python3 -B scripts/validate.py
+
+cd /absolute/path/to/your-backend
+npx --yes skills@1.7.0 add /absolute/path/to/oci-founder-toolkit \
+  --skill oci-founder -a codex --copy -y
+npx --yes skills@1.7.0 list -a codex --json
+```
+
+Use `cursor` or `claude-code` instead of `codex` for exactly one selected
+agent. The selected coding agent must already be installed and authenticated;
+the installer only copies the skill. Then ask:
+
+```text
+Use the oci-founder skill. Inspect this backend read-only. I know AWS, not OCI.
+Recommend the smallest safe OCI path and one next step. Do not provision or
+change anything.
+```
+
+The skill should lead with one recommendation, distinguish repository evidence
+from assumptions, explain important cloud non-equivalences, and keep every OCI
+mutation behind a separate preview and approval. Follow the
+**[guided quickstart](docs/QUICKSTART.md)** for Cursor and Claude Code commands,
+expected output, use-case prompts, updating, removal, and troubleshooting.
+
 ## Status
 
 This repository publishes a **source evaluation preview**, not a supported
-public release. The package and portable skill remain at `0.1.0`; they are not
-tagged or promoted until the release gates are met. The repository also contains a separately
-versioned [`0.2.0-preview.3` Container API blueprint](blueprints/container-api/README.md).
-That preview is executable but sandbox-only, has not been applied in an OCI
-tenancy, and is not a supported marketplace package. See [`LICENSE`](LICENSE)
-and the [validation record](docs/VALIDATION.md) before using or redistributing it.
+public release. The portable skill remains at `0.1.0`; the separately versioned
+[`0.2.0-preview.3` Container API blueprint](blueprints/container-api/README.md)
+is sandbox-only and has not been applied in an OCI tenancy.
 
-The public source preview is available on `main` at
-[`danielgandolfi1984/oracle_founder_pack`](https://github.com/danielgandolfi1984/oracle_founder_pack).
-It is technically cloneable for an authorized evaluation, but there is no
-immutable tag, GitHub release, marketplace entry, registry coordinate, or
-package coordinate. Public source access does not grant open-source or broader
-redistribution rights under the current restrictive evaluation `LICENSE`, and
-does not close legal, OSS, publisher-identity, naming/trademark, support, or
-Oracle repository-ownership gates.
-Both archives passed project-scoped install/list/remove/reinstall lifecycle
-checks in isolated Codex, Cursor, and Claude Code layouts. The lifecycle was
-rerun from a copied, verified npm cache with `npm ci --offline`, while retaining
-the dependency-lock and package-integrity checks; the summaries bind committed
-exact raw receipts by SHA-256. The current archive identities are:
+The public `main` source passed the full GitHub Actions workflow at commit
+[`bf5ebb3`](https://github.com/danielgandolfi1984/oracle_founder_pack/commit/bf5ebb3bef3d53ff03601a05221f7825ecd849f2)
+in [run 35355021483](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35355021483).
+That closes the remote source-CI gap, but not native Cursor/Claude qualification,
+cross-host behavioral replay, licensing, support, or live OCI field validation.
+See the [validation record](docs/VALIDATION.md) for hashes, receipts, Q0–Q4
+status, and remaining gates.
 
-- skill-only: `876fe40dbac703b092110f106f6797fa7eaa753c6bb9b711e61e67f61c2fd315`;
-- full toolkit: `62501591cdc53b2e366dd7fbe39c7c87a47a838ff034ff7ad734040d1f96eaa8`,
-  with the stable internal root `oci-founder-toolkit/`.
+There is no immutable tag, GitHub release, marketplace entry, registry
+coordinate, package coordinate, or general public-use license. Public visibility
+does not authorize installation or execution. Only reviewers who already have
+written authorization from the project owner or Oracle may follow the evaluation
+commands. No public authorization-request channel has been approved yet.
 
-Both renewed package receipts match the current source and installed skill tree
-fingerprint
-`b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e`.
+## What works today
 
-The historical Codex runner receipt, bound to former skill tree
-`746cc9a3462ce96c067eedd91e848a905f04ed402b8f579836ce126c5b4d703f`,
-recorded probe Q2 and Q3 as `PASS`; the current assessment normalizes that
-evidence to Q2 `PASS_WITH_RESERVATIONS` and Q3 `PARTIAL`. A separate targeted
-assessment passed three content-forward cases against the current skill
-fingerprint; it is not host-native evidence. The
-hardened runner's 12 unit contracts pass and it can reacquire the reviewed
-installer from a verified offline npm cache. A fresh native renewal is blocked
-only because a new authenticated model session and its external egress were not
-authorized. It started no model session and attempted no cloud mutation. Formal
-Q2 and Q3 remain `BLOCKED`, Cursor Agent and Claude Code are unavailable on the
-current host, and a supported public release remains `BLOCKED`.
+| Founder need | Current capability | Dependency | Important boundary |
+|---|---|---|---|
+| Understand OCI, translate another cloud, assess a backend, or create a founder plan | Available in the portable `oci-founder` skill | One project-scoped skill copy | Native behavior is not yet qualified across all three hosts |
+| Review or generate the Container API sandbox path | Available in the full source checkout | Explicit request plus `blueprints/container-api` | No live OCI plan/apply/rollback/destroy evidence; not production-ready |
+| Plan a Function API and route an operational procedure | Planning available | Reviewed `oracle/skills` checkout and verified Functions skills for execution | The portable skill alone fails closed at planning level |
+| Plan OKE, Enterprise AI, or Oracle Database work | Orientation and routing available | Separately verified official Oracle domain skill | This toolkit does not duplicate the service procedure |
+| Claim a supported production deployment | Not available | Native host, legal/support, security, and live field gates | A green CI run or generated Terraform is not production evidence |
 
-The canonical Oracle-template presentation is maintained locally as
-`artifacts/OCI-Founder-Toolkit-Oracle-Template-v11-User-Guide.pptx`. Its
-`Confidential: Internal` footer makes it intentionally Git-ignored and outside
-the evaluation archives until a separate brand and redistribution decision.
+## Guided founder documentation
 
-Version `0.1.0` is the product and portability foundation. It includes:
-
-- one portable `oci-founder` planning and routing skill;
-- compatibility manifests for Agent Plugins v1, Codex, and Claude Code;
-- mental-model translations for AWS, Google Cloud, and Azure developers;
-- two proposed MVP golden paths: Container API and Function API;
-- cost, identity, secret, Terraform, and mutation guardrails;
-- an immutable source-review record for the upstream `oracle/skills` snapshot;
-- validation scripts and cross-agent smoke prompts.
-- an early Container API field preview with two Terraform authority layers,
-  strict plan/receipt/teardown helpers, and a dependency-free sample API.
-
-The Container API preview is present for review and sandbox field testing; a read-only OCI context plugin remains future work. See [the roadmap](docs/ROADMAP.md).
+| If you need to… | Start here |
+|---|---|
+| Install, verify discovery, make the first request, update, or remove the skill | [10-minute quickstart](docs/QUICKSTART.md) |
+| Pick a concrete founder/developer job and copy a safe prompt | [Use-case recipes](docs/USE-CASES.md) |
+| Decode tenancy, compartments, VCNs, OCIDs, identities, budgets, quotas, and other OCI terms | [OCI glossary](docs/GLOSSARY.md) |
+| Establish the minimum identity, network, cost, observability, delivery, and teardown guardrails | [Founder Baseline](docs/FOUNDER-BASELINE.md) |
+| Check exact evidence, open gates, or release status | [Validation record](docs/VALIDATION.md) and [compatibility matrix](docs/COMPATIBILITY.md) |
 
 ## Why this exists
 
@@ -120,7 +134,7 @@ npx --yes skills@1.7.0 add /absolute/path/to/oracle-skills-reviewed/oci \
 npx --yes skills@1.7.0 add /absolute/path/to/oracle-skills-reviewed/db \
   -a codex --copy -y
 
-npx --yes skills@1.7.0 list --json
+npx --yes skills@1.7.0 list -a codex --json
 ```
 
 These are project-scoped commands: execute them from the target backend and do
@@ -151,8 +165,9 @@ There is no public package coordinate or immutable release tag yet. For an
 authorized evaluation, clone the public source preview and record the exact
 commit before installing it project-scoped in the backend being evaluated:
 
-Prerequisites: Git, Python 3.9 or newer for local validation, and Node.js
-`>=22.20.0` with `npx` for the pinned Agent Skills CLI.
+Prerequisites: Git, Python 3.9 or newer for local validation, Node.js
+`>=22.20.0` with `npx` for the pinned Agent Skills CLI, and the selected coding
+agent already installed and authenticated.
 
 ```bash
 git clone https://github.com/danielgandolfi1984/oracle_founder_pack.git oci-founder-toolkit
@@ -179,8 +194,11 @@ npx --yes skills@1.7.0 add /absolute/path/to/oci-founder-toolkit \
 npx --yes skills@1.7.0 add /absolute/path/to/oci-founder-toolkit \
   --skill oci-founder -a claude-code --copy -y
 
-npx --yes skills@1.7.0 list --json
+npx --yes skills@1.7.0 list -a codex --json
 ```
+
+The final line verifies the Codex example. Replace `codex` there with the same
+agent selected by the add command.
 
 `npx` can still resolve ranged transitive dependencies differently over time.
 These end-user commands therefore are not a bit-for-bit replay of the formal
@@ -230,7 +248,17 @@ installation evidence and remaining native-host gates.
 ## First use
 
 Ask the `oci-founder` skill for a read-only assessment or a focused decision.
-Good prompts include:
+Use an explicit invocation for the first smoke test:
+
+| Host | Explicit first use |
+|---|---|
+| Codex | `Use $oci-founder. Inspect this backend read-only and recommend the smallest safe OCI path. Do not provision anything.` |
+| Cursor | `/oci-founder Inspect this backend read-only and recommend the smallest safe OCI path. Do not provision anything.` |
+| Claude Code | `/oci-founder Inspect this backend read-only and recommend the smallest safe OCI path. Do not provision anything.` |
+
+Reload the Cursor workspace after installation. Restart Claude Code if its
+session began before `.claude/skills` existed; restart Codex only if the skill
+is not discovered. Further prompts can include:
 
 ```text
 I have a FastAPI service in this repository and know AWS, not OCI. Create an OCI founder plan. Do not provision anything.
@@ -276,6 +304,10 @@ OKE is a graduation path, not the default. The official upstream OKE skills alre
 ├── .claude-plugin/plugin.json        # Claude Code manifest
 ├── skills/oci-founder/               # Portable Agent Skill
 ├── blueprints/container-api/         # Sandbox-only 0.2 field preview
+├── docs/QUICKSTART.md                 # Founder/developer guided installation and first use
+├── docs/GLOSSARY.md                   # OCI terms, cross-cloud models, and traps
+├── docs/USE-CASES.md                  # Copyable founder/developer recipes
+├── docs/FOUNDER-BASELINE.md           # Minimum governance, cost, and safety baseline
 ├── docs/                              # Product, architecture, roadmap, decisions
 ├── packaging/                         # Archive-specific evaluation readmes
 ├── schemas/                           # Reviewed Agent Plugins schema snapshot

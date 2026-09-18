@@ -7,8 +7,10 @@ capabilities that remain unverified. It is not a release certification.
 ## Environment
 
 - Date: 2026-09-18
-- Toolkit state: locally validated source evaluation prepared for public `main`;
-  this dated record predates any successful remote CI claim
+- Toolkit state: locally validated source evaluation on public `main`; the first
+  complete remote workflow baseline passed at commit
+  [`bf5ebb3`](https://github.com/danielgandolfi1984/oracle_founder_pack/commit/bf5ebb3bef3d53ff03601a05221f7825ecd849f2)
+  in [GitHub Actions run 35355021483](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35355021483)
 - Reviewed Oracle Skills commit: `b0afa3bfd7c7e3547458d7fe52649ab1b59706b7`
 - Cloud tenancy used: none
 - OCI resources created or changed: none
@@ -37,7 +39,8 @@ capabilities that remain unverified. It is not a release certification.
 | Isolated project install lifecycle | Passed with native-host reservations | A reviewed dependency lock and CLI hashes gate execution of `skills@1.7.0`. The renewed run copied a verified npm cache and used `npm ci --offline` while retaining lock and package-integrity checks. Separate Codex, Cursor, and Claude Code projects each passed install, filtered list, removal, reinstall, filtered list, and final removal with exact destination and tree-hash checks. Residual allowlists passed; observed global skill targets remained unchanged. Cursor duplicate discovery, global lifecycle, and native Cursor/Claude visibility remain open. Evidence: [`tests/results/2026-09-18-skill-install-lifecycle.json`](../tests/results/2026-09-18-skill-install-lifecycle.json) |
 | Portable skill validation | Passed | Skill Creator `quick_validate.py` returned `Skill is valid!` using explicit PyYAML `6.0.2`; reviewed macOS/Python 3.9 and Linux/Python 3.12 wheel hashes are pinned in `requirements-validation.txt` |
 | Codex plugin manifest validation | Passed with CLI limitation | Plugin Creator `validate_plugin.py` returned `Plugin validation passed` with the same explicit dependency runtime; Codex CLI `0.153.4` exposes plugin management but no native `plugin validate` |
-| Agent Plugins v1 schema | Passed locally; workflow configured | Root `plugin.json` passes the vendored published `1.0.0` schema snapshot. The snapshot hash and Apache-2.0 provenance are recorded, and the dependency-free check is in the GitHub Actions workflow. No successful remote CI run is claimed by this dated record |
+| Agent Plugins v1 schema | Passed locally and in remote CI baseline | Root `plugin.json` passes the vendored published `1.0.0` schema snapshot. The snapshot hash and Apache-2.0 provenance are recorded; the dependency-free check passed in public run 35355021483 at `bf5ebb3` |
+| Public GitHub Actions baseline | Passed; runner warnings addressed in current workflow source | [Run 35355021483](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35355021483) completed successfully for commit `bf5ebb3bef3d53ff03601a05221f7825ecd849f2`, including repository/schema/secret checks, both unit suites, deterministic package verification, source and archive install lifecycles, and Terraform format/init/validate. That run warned about forced Node.js 24 and the future `ubuntu-latest` migration; the current workflow now pins official Node.js 24 action lines by full commit SHA and pins `ubuntu-24.04` |
 | Deterministic evaluation packages | Passed | Two clean builds are byte-for-byte identical. Skill-only SHA-256: `876fe40dbac703b092110f106f6797fa7eaa753c6bb9b711e61e67f61c2fd315`. Full-toolkit SHA-256: `62501591cdc53b2e366dd7fbe39c7c87a47a838ff034ff7ad734040d1f96eaa8`, with internal root `oci-founder-toolkit/`. Both archives reject symlinks/unexpected members and include checksum plus per-file manifests; presentations, development output, secrets, state, plans, receipts, and caches are excluded |
 | Packaged archive install lifecycle | Passed with native-host reservations | Both current verified archives passed project-scoped install/list/remove/reinstall/list/remove in isolated Codex, Cursor, and Claude Code layouts, with installed skill tree `b984f25dc1462c14dc3153eb307f5953d08821970afdd036022eb3d6cbbf653e` and clean residuals. Each renewed summary hash-binds its committed exact raw receipt. Evidence: [skill-only summary](../tests/results/2026-09-18-skill-package-install-lifecycle.json), [skill-only raw](../tests/results/2026-09-18-skill-package-install-lifecycle.raw.json), [full-toolkit summary](../tests/results/2026-09-18-full-package-install-lifecycle.json), and [full-toolkit raw](../tests/results/2026-09-18-full-package-install-lifecycle.raw.json) |
 | Offline Oracle Skills lock verifier | Available; real-checkout run not completed | `python3 scripts/verify_oracle_skills_lock.py --checkout /absolute/path/to/oracle-skills-reviewed` checks the locked commit, reviewed trees, clean worktree, and `LICENSE.txt` through Git object reads without network or mutation. It has not been run against a real checkout in this workspace |
@@ -76,10 +79,10 @@ capabilities that remain unverified. It is not a release certification.
 - The offline Oracle Skills lock verifier has not been run against a real
   `oracle/skills` checkout in this workspace. Its implementation is not a
   substitute for a passing checkout-bound receipt.
-- A successful GitHub Actions run for the public source commit. Actions are
-  pinned by commit SHA and the workflow includes schema, secret,
-  package-determinism, installer-lifecycle, unit, and Terraform gates, but this
-  dated local record does not claim a completed remote run.
+- Re-review and repin the workflow action SHAs and runner image deliberately as
+  their upstream support windows change. The current workflow uses official
+  Node.js 24 action lines and `ubuntu-24.04`; every later source revision still
+  needs its own successful remote run.
 - Formal Codex Q3 and full native replay of the behavioral prompt fixtures on
   the current skill across Codex, Cursor, and Claude Code, with deny shims,
   transcript/tool-trace binding, and independent semantic grading. The older

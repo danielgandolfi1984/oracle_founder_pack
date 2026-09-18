@@ -51,19 +51,23 @@ The root Agent Plugins manifest intentionally does not declare a `skills` field.
 Invocation syntax varies by host and surface. Keep it in user documentation, not inside the shared skill:
 
 - Codex CLI/IDE supports skill selection through `/skills` and `$` mentions.
-- Claude Code exposes installed plugin skills as slash shortcuts and can also invoke them implicitly.
-- Cursor discovers Agent Skills and can select them based on the skill description or explicit user selection.
+- Claude Code discovers this project skill in `.claude/skills`; invoke it as
+  `/oci-founder` or let Claude select it implicitly.
+- Cursor discovers Agent Skills; explicitly invoke this one as `/oci-founder`
+  for the first smoke test, or allow later selection from its description.
 
 ## Evaluation installation
 
 From the target backend, install from an absolute path for the one agent you
 intend to use. This project-scoped convenience command pins the top-level Agent
-Skills CLI package to the version exercised by the lifecycle test:
+Skills CLI package to the version exercised by the lifecycle test. The selected
+host must already be installed and authenticated; this command only copies the
+skill files:
 
 ```bash
 npx --yes skills@1.7.0 add /absolute/path/to/oci-founder-toolkit \
   --skill oci-founder -a codex --copy -y
-npx --yes skills@1.7.0 list --json
+npx --yes skills@1.7.0 list -a codex --json
 ```
 
 The command is not a bit-for-bit replay of the formal qualification because
@@ -135,8 +139,10 @@ claude plugin validate . --strict
 ```
 
 The root manifest is validated locally against the reviewed Agent Plugins
-`1.0.0` schema snapshot and the same check is configured in the CI workflow; no
-remote CI run is claimed. The Codex compatibility manifest and skill
+`1.0.0` schema snapshot, and the same check passed in the complete public CI
+baseline at `bf5ebb3` in
+[run 35355021483](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35355021483).
+The Codex compatibility manifest and skill
 also pass their installed development validators when the reviewed PyYAML
 runtime is provided; the exact dependency procedure is in
 [`RELEASING.md`](RELEASING.md). The read-only preflight records the exact
@@ -170,7 +176,7 @@ native discovery or replay.
 
 ## Official references
 
-- [Codex skills](https://developers.openai.com/docs/build-skills)
+- [Codex skills](https://developers.openai.com/codex/skills/)
 - [Codex plugins](https://developers.openai.com/plugins/build/plugins)
 - [Claude Code plugins reference](https://code.claude.com/docs/en/plugins-reference)
 - [Claude Code skills](https://code.claude.com/docs/en/skills)

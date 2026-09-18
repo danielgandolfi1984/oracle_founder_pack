@@ -9,6 +9,12 @@ approved internal Oracle security channel and must not include credentials,
 private keys, tokens, customer identifiers, private OCIDs, Terraform state, or
 secret values in an issue or repository artifact.
 
+External reviewers must not disclose vulnerability details, exploit steps, or
+sensitive evidence in a public GitHub issue. GitHub private vulnerability
+reporting is not enabled for this repository and no public confidential intake
+or response owner has been approved. That is an explicit release blocker; it is
+not permission to substitute a public issue or an invented contact address.
+
 ## Evaluation safety boundary
 
 - Read-only assessment and local generation are the defaults.

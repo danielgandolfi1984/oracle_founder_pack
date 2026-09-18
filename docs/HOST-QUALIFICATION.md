@@ -30,7 +30,7 @@ Each surface needs its own version and evidence. Do not summarize all of them as
 
 | Level | Evidence | Automation status |
 |---|---|---|
-| Q0 — source | Repository checks, manifest and skill fingerprints, unit tests | Implemented locally; CI workflow configured, with no remote run claimed |
+| Q0 — source | Repository checks, manifest and skill fingerprints, unit tests | Implemented locally; the complete public CI baseline passed at commit `bf5ebb3` in [run 35355021483](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35355021483). Each later revision still requires its own passing run |
 | Q1 — native validation | Host-supported strict validator or a documented development validator | Partial; see the dated matrix below |
 | Q2 — install and discovery | Isolated install, exact installed-skill hash, visibility, clean removal | Checkout plus the current skill-only and full-toolkit archives pass project lifecycle on all three layouts; the historical Codex receipt normalizes to `PASS_WITH_RESERVATIONS`, a fresh hardened renewal is `BLOCKED` pending an authorized model session, and formal Q2 remains `BLOCKED` |
 | Q3 — behavior | All fixtures in fresh sessions, effect log, independent semantic evaluation | The historical Codex receipt normalizes to `PARTIAL`; the fresh renewal started no model session, and formal Q3 remains `BLOCKED` pending the native suite, independent grading, and Cursor/Claude Code replay |
@@ -265,14 +265,15 @@ empty `skills-lock.json`; native global-profile behavior remains open.
 Do not claim cross-host support until every named surface passes Q0 through Q4
 without skipped gates. A manual GUI result may be retained as supporting
 evidence, but it must not be presented as deterministic CLI qualification.
-The public `main` source preview is cloneable, but it is not qualified
-public-install evidence: there is no immutable tag, GitHub release, marketplace
-entry, registry coordinate, or package coordinate, and no successful remote CI
-or remote-source lifecycle run is claimed by this dated record.
+The public `main` source preview is cloneable and the remote source-CI baseline
+passed at `bf5ebb3`, but this is not qualified public-install evidence: there is
+no immutable tag, GitHub release, marketplace entry, registry coordinate, or
+package coordinate. Remote-source installation, native cross-host discovery,
+and native behavioral lifecycle remain unqualified.
 
 ## Official host references
 
-- [Build skills for ChatGPT and Codex](https://developers.openai.com/pt-BR/docs/build-skills)
+- [Codex skills](https://developers.openai.com/codex/skills/)
 - [Codex non-interactive mode](https://developers.openai.com/pt-BR/docs/non-interactive-mode)
 - [Build plugins for ChatGPT and Codex](https://learn.chatgpt.com/pt-BR/docs/build-plugins)
 - [Cursor plugins reference](https://cursor.com/docs/reference/plugins)
