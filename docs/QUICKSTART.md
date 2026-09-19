@@ -109,6 +109,27 @@ secret, or claim an unverified fixed price.
 
 Use a focused prompt when you need one decision:
 
+### Prepare your first OCI account workflow
+
+If you want to interact with your own account, continue with
+[Account and local access](ACCOUNT-SETUP.md). It shows where to find tenancy,
+user and compartment OCIDs in the Console, how to configure local CLI
+authentication, and how to test a read-only query without sharing secrets.
+Then follow [First VCN and Linux VM](FIRST-VM.md) for a user-executed Console
+lab and its cleanup checklist.
+
+```text
+Use the oci-founder skill. I am new to OCI. Explain which Console identifiers
+and local authentication method I need for a VCN and Linux VM lab. Separate
+CLI access from SSH access. Do not read credential files, authenticate, install
+dependencies, or create resources. Give me one next step.
+```
+
+These guides are maintained on `main` after `v0.1.1`; they do not add an
+automated VM/VCN procedure to that immutable release or change its planning
+boundary. A Console login and a skill installation do not authenticate the
+terminal in which your agent runs.
+
 ### Translate an existing architecture
 
 ```text
@@ -240,6 +261,8 @@ Native full-plugin marketplace installation remains unqualified.
 
 ## Continue from here
 
+- Prepare [account identifiers and local access](ACCOUNT-SETUP.md).
+- Follow the [first VCN and Linux VM lab](FIRST-VM.md), including SSH and cleanup.
 - Read the [founder and developer use cases](../skills/oci-founder/references/use-cases.md).
 - Choose a copyable [founder/developer recipe](USE-CASES.md).
 - Use the [OCI glossary](GLOSSARY.md) when a service or governance term is new.

@@ -9,6 +9,11 @@ A resource is **proposed** until an approved change is applied to the confirmed
 target. It is **verified** only after the deployed resource and its controls are
 checked and recorded in a deployment receipt.
 
+For concrete first steps, use [Account and local access](ACCOUNT-SETUP.md) and
+[First VCN and Linux VM](FIRST-VM.md). They explain Console fields, local CLI
+authentication, restricted SSH, and manual lab cleanup. They do not replace
+this baseline or qualify a production deployment.
+
 ## Baseline, not landing zone
 
 Use the Founder Baseline for a small team, one project boundary, and a limited

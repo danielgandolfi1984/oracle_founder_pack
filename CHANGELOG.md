@@ -5,6 +5,18 @@ publishes an independent public open-source preview under UPL-1.0, with
 best-effort community support and no SLA. It has not published a tagged stable
 release or claimed cross-host or production qualification.
 
+## Documentation on `main` — 2026-09-19
+
+- Added founder-facing guides for Console identifiers, local CLI session and
+  API signing authentication, safe agent context, and first read-only checks.
+- Added a human-executed VCN, subnet, Internet Gateway, restricted SSH, and
+  Linux VM lab with validation, cost cautions, and scoped cleanup.
+- Updated README navigation, quickstart, glossary, use-case recipes, baseline,
+  and product framing to include foundational learning before deployment.
+- Kept the `v0.1.1` skill, package inputs, versioned release assets, and existing
+  qualification evidence unchanged. These documentation changes do not claim
+  a live OCI test or add an automated VM/VCN procedure.
+
 ## `0.1.1` — 2026-09-18 (public preview)
 
 - Shortened focused recommendations and limited reference loading to the

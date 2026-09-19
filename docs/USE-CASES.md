@@ -11,15 +11,23 @@ Permissive License 1.0 (`UPL-1.0`); see [`LICENSE`](../LICENSE). The internal
 Oracle-template presentation remains confidential, is excluded from the public
 repository and every public distribution, and is outside this license grant.
 
-Use these recipes after installing the `oci-founder` skill in the backend
-repository you want to evaluate. They are written for founders and developers
-who already know AWS, Google Cloud, or Azure and want a concrete first step on
-OCI.
+Use these recipes after installing the `oci-founder` skill. Open your backend
+repository when you want to evaluate an existing application; the foundational
+recipes also work before you have an application. They are written for
+founders and developers who want a concrete first step on OCI, including those
+coming from AWS, Google Cloud, or Azure.
 
 The prompts below are content-portable: paste the same prompt into Codex,
 Cursor, or Claude Code after selecting the skill through that host's normal
 interface. This does not claim that every host has completed native runtime
 qualification; see [COMPATIBILITY.md](COMPATIBILITY.md) for the current evidence.
+
+The standalone `oci-founder` v0.1.1 skill can explain, plan, and review. It does
+not supply account access or a verified operational VM/VCN dependency. Without
+the full toolkit's lock, verifier, and verified service dependencies,
+operational routing stays at planning level. The new [account setup](ACCOUNT-SETUP.md)
+and [first VM](FIRST-VM.md) guides are manual user workflows, not a change to
+that execution contract.
 
 Every recipe is safe by default:
 
@@ -41,6 +49,8 @@ unverified.
 
 | Your objective | Start with | Starting mode | What finishes this step |
 |---|---|---|---|
+| Understand what the agent needs from your OCI account | [Prepare account context](#foundation-a-prepare-account-context) | Answer | A safe context checklist and a reviewed local authentication choice |
+| Learn VCNs, subnets, and VMs through a small lab | [Review a first VM lab](#foundation-b-review-a-first-vm-lab) | Answer or Assess | A reviewed manual Console plan, validation checks, and explicit cleanup scope |
 | Bring an existing FastAPI or Node.js container from Cloud Run, App Runner, or Fargate | [Assess an existing containerized API](#1-assess-an-existing-containerized-api) | Assess | One evidence-backed OCI path, its non-equivalences, and one next action |
 | Choose a runtime for a new API | [Choose a greenfield API runtime](#2-choose-a-greenfield-api-runtime) | Answer | One provisional runtime and the few assumptions that could change it |
 | Translate Lambda, Cloud Functions, or Azure Functions | [Assess a function migration](#3-assess-a-function-migration) | Assess | A compatibility map and a proof-of-concept or requirements decision |
@@ -59,6 +69,107 @@ In every response, evidence should be labeled as one of:
   target or official Oracle documentation;
 - **Assumption** — a provisional input that must not silently become a design
   fact or mutation target.
+
+## Foundation A. Prepare account context
+
+**Scenario**
+
+You can sign in to the OCI Console, but do not know which identifiers,
+credentials, and permissions a local coding agent would need.
+
+**Prerequisites and guide**
+
+Read [Account setup](ACCOUNT-SETUP.md) for Console locations and the manual CLI
+tests. You need an OCI account and an authorized project compartment for those
+tests; neither is required just to ask the planning question below. Never
+paste private keys, session tokens, auth tokens, passwords, or complete
+credential files into the conversation.
+
+**Copyable prompt**
+
+```text
+Use the oci-founder skill. Explain how I can prepare OCI account context for
+local agent-assisted development. I use [operating system and coding host].
+My intended region and project compartment are [known values or unknown].
+
+Explain where the Console shows the tenancy, user, and compartment OCIDs,
+and how to choose a region. Compare a temporary CLI session with an API
+signing-key profile. Distinguish both from SSH keys and an OCIR auth token.
+Explain which non-secret context the agent needs and which values stay local.
+Review any redacted test result I supply; do not infer permissions from login
+alone. Identify the minimum next check and its authorization level.
+
+Stay in planning and interpretation. Do not install tools, read credential
+files, start a login, run OCI commands, change IAM, or create resources.
+```
+
+**Expected output and completion**
+
+You understand the profile/authentication method, target tenancy, region,
+compartment, and intended operation as separate inputs. Unknown IDs remain
+unknown rather than being invented. A valid CLI session establishes
+authentication, not permission to create a VM. A successful scoped list test
+only demonstrates that particular read, not all required deployment access.
+See [CLI sessions](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/clitoken.htm)
+and [Keys, OCIDs, and required permissions](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/apisigningkey.htm).
+
+**Authorization level:** **Answer / Read-only interpretation.** The user
+performs any login and the guide's explicitly chosen CLI tests separately.
+
+## Foundation B. Review a first VM lab
+
+**Scenario**
+
+You want to understand a small Linux VM and its network before asking an agent
+to automate an application deployment. This is a learning lab, not a
+production architecture or a reviewed VM deployment skill.
+
+**Prerequisites and guide**
+
+Use [First VM lab](FIRST-VM.md) for the manual Console sequence. Before creating
+anything, confirm the exact project compartment, region, permissions, allowed
+public exposure, image/shape compatibility, and costs. If your account requires
+private networking, stop and review that access design instead of bypassing it.
+
+**Copyable prompt**
+
+```text
+Use the oci-founder skill. Review my plan for a first OCI Linux VM lab that I
+will create manually in the Console. My non-secret choices are: [region,
+project compartment, candidate image/shape, network ranges, and SSH source].
+
+Explain the role of the VCN, subnet, VNIC, Internet Gateway, route table,
+security list, NSG, public IP, SSH key, and boot volume. Check CIDR overlap,
+image/shape architecture, and the full SSH path. Do not assume a narrow NSG
+rule cancels a broader security-list allowance. Keep SSH limited to my
+approved source; do not add public application ports without a requirement.
+
+Return the review gaps, manual validation and monitoring checks, a rollback
+plan, and an exact-resource cleanup checklist that calls out retained disks
+and backups. Verify consequential behavior using official Oracle sources.
+Do not promise free capacity or zero cost after Stop. Stay in planning and
+review: do not access credentials, run commands, create files, or change OCI.
+```
+
+**Expected output and completion**
+
+- A reviewable network/VM plan, with assumptions and cost drivers labeled.
+- A validation checklist for the exact VM: lifecycle state, expected address,
+  narrowly scoped SSH access, and basic instance metrics. An SSH login does
+  not qualify application health or production readiness.
+- A manual lab inventory of exact OCIDs and dependencies, plus rollback and
+  explicit data-retention decisions before termination. Do not substitute
+  this manual inventory for Terraform state or invoke a broad compartment
+  teardown. Stopping the VM is not proof that all billing has stopped.
+
+Sources: [Creating an instance](https://docs.oracle.com/en-us/iaas/Content/Compute/Tasks/launchinginstance.htm),
+[Security rules](https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/securityrules.htm),
+[Linux SSH access](https://docs.oracle.com/en-us/iaas/Content/Compute/Tasks/connect-to-linux-instance.htm),
+and [Billing for stopped instances](https://docs.oracle.com/en-us/iaas/Content/Compute/Tasks/resource-billing-stopped-instances.htm).
+
+**Authorization level:** **Answer or Assess / Read-only interpretation.** This
+step finishes when the plan is reviewable, not when a VM is claimed to exist.
+Any manual creation or termination is a separate user decision in the Console.
 
 ## 1. Assess an existing containerized API
 

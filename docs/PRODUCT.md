@@ -20,11 +20,14 @@ existing coding agent.
 
 **Tagline:** Plan your backend's path to OCI with the coding agent you already use.
 
-**MVP promise:** A backend developer new to OCI can move from a repository to a verified OCI endpoint in under 60 minutes using Codex, Cursor, or Claude Code, without relying on the Console for the main workflow.
+**MVP target:** A backend developer new to OCI can move from a repository to a
+verified OCI endpoint in under 60 minutes using a coding agent, after account
+access and prerequisites are ready. Console guidance is part of onboarding;
+repeatable deployment should use reviewed CLI, SDK, or IaC procedures.
 
 This is a target to validate with users, not a current performance claim.
 
-Version `0.1.0` is the planning and portability foundation. The repository also
+Version `0.1.1` is the current planning and portability preview. The repository also
 contains a separately versioned, unsupported `0.2.0-preview.3` Container API
 candidate for sandbox evaluation. Neither may be marketed as a production
 deployment product or as having shipped a workload in OCI.
@@ -69,11 +72,19 @@ The toolkit should route these users to appropriate Oracle guidance rather than 
 ## Jobs to be done
 
 1. **Orient:** Explain OCI through the user's existing cloud vocabulary and repository evidence.
-2. **Bootstrap:** Establish a small compartment, identity, cost, tag, secret, and Terraform baseline.
+2. **Bootstrap:** Locate account identifiers, prepare local authentication, and
+   understand compartments, VCNs, subnets, VM access, cost, and cleanup before
+   proposing a repeatable deployment baseline.
 3. **Ship:** Select and execute a founder-friendly golden path with explicit approval gates.
 4. **Verify:** Demonstrate endpoint health, logs, metrics, alarms, cost attribution, and access boundaries.
 5. **Operate:** Diagnose failures from read-only evidence and route to service-specific official skills.
 6. **Teardown or graduate:** Remove the exact environment safely or evolve into stronger platform patterns.
+
+These jobs describe the product direction, not six implemented automation
+features. Current foundational documentation consists of
+[account and local access](ACCOUNT-SETUP.md) and a
+[human-executed VCN/VM lab](FIRST-VM.md). It complements the planning skill and
+does not establish live field validation or a standalone operational VM skill.
 
 ## Product boundaries
 
@@ -140,7 +151,8 @@ Percentage of target users who reach a verified OCI endpoint in under 60 minutes
 
 - first-deployment success rate;
 - time to the first valid Terraform plan;
-- completion rate without Console dependency;
+- account-access setup success and completion of the foundational lab;
+- repeatable deployment completion after onboarding;
 - successful rollback and teardown rate;
 - percentage of service-level knowledge sourced upstream;
 - cross-agent behavioral pass rate;

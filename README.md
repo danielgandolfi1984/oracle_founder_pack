@@ -8,7 +8,9 @@ Founder Toolkit for OCI helps technical founders and backend developers who
 know AWS, Google Cloud, or Azure plan their first steps on Oracle Cloud
 Infrastructure (OCI). Use the `oci-founder` skill to assess an existing backend,
 understand important differences between clouds, and choose a small OCI
-architecture with one practical next step.
+architecture with one practical next step. When you are ready to explore your
+account, follow the guided Console and CLI examples to prepare local access,
+configure a VCN, and create your first Linux VM.
 
 This is an independent personal project created and maintained by
 [Daniel Gandolfi](https://github.com/danielgandolfi1984), who works at Oracle
@@ -18,8 +20,10 @@ sponsored, endorsed, maintained, or supported by Oracle.
 
 Start by installing the skill in one backend repository for Codex, Cursor, or
 Claude Code using the quickstart below. Your first request is a read-only
-backend assessment; no OCI tenancy or credentials are needed. Native behavior
-across all three agents remains under validation.
+backend assessment; no OCI tenancy or credentials are needed. The foundational
+lab is a separate, user-executed learning path that requires your own OCI
+account and permissions. Native behavior across all three agents remains under
+validation.
 
 ## Start here: first OCI recommendation in about 10 minutes
 
@@ -53,6 +57,26 @@ from assumptions, explain important cloud non-equivalences, and keep every OCI
 mutation behind a separate preview and approval. Follow the
 **[guided quickstart](docs/QUICKSTART.md)** for Cursor and Claude Code commands,
 expected output, use-case prompts, updating, removal, and troubleshooting.
+
+## New to OCI? From your account to a first VM
+
+Choose the starting point that matches what you need:
+
+| Your next job | Guide | What you do |
+|---|---|---|
+| Understand where this backend could run | [Skill quickstart](docs/QUICKSTART.md) | Install the skill and ask for a planning-only recommendation, without OCI credentials |
+| Prepare your account for local tools | [Account and local access](docs/ACCOUNT-SETUP.md) | Find Console identifiers, configure a CLI session or API signing profile, and test a read-only query |
+| Learn networking and Compute by doing | [First VCN and Linux VM](docs/FIRST-VM.md) | Create a small Console lab, restrict SSH, connect, verify, and clean up the exact resources |
+
+Installing a skill does not authenticate a terminal or grant IAM permissions.
+The guides distinguish instructions, the command executor, credentials, and
+authorization. Keep private keys and tokens out of chat, Git, and support
+attachments.
+
+These are learning guides, not an automated VM deployment feature or evidence
+of a live OCI test. The standalone `v0.1.1` skill remains at planning level
+without its verified operational dependencies. The latest guides live on
+`main`; the published tag and release archives remain unchanged.
 
 ## Help and security status
 
@@ -101,6 +125,7 @@ support boundary still apply.
 | Founder need | Current capability | Dependency | Important boundary |
 |---|---|---|---|
 | Understand OCI, translate another cloud, assess a backend, or create a founder plan | Available in the portable `oci-founder` skill | One project-scoped skill copy | Native behavior is not yet qualified across all three hosts |
+| Set up local OCI access and learn VCN/VM basics | Guided Console and CLI documentation | Your OCI account, appropriate IAM access, and commands you choose to run | Human-executed lab, not a new operational skill or live-validated deployment path |
 | Review or generate the Container API sandbox path | Available in the full source checkout | Explicit request plus `blueprints/container-api` | No live OCI plan/apply/rollback/destroy evidence; not production-ready |
 | Plan a Function API and route an operational procedure | Planning available | Reviewed `oracle/skills` checkout and verified Functions skills for execution | The portable skill alone fails closed at planning level |
 | Plan OKE, Enterprise AI, or Oracle Database work | Orientation and routing available | Separately verified official Oracle domain skill | This toolkit does not duplicate the service procedure |
@@ -111,6 +136,8 @@ support boundary still apply.
 | If you need to… | Start here |
 |---|---|
 | Install, verify discovery, make the first request, update, or remove the skill | [10-minute quickstart](docs/QUICKSTART.md) |
+| Find account IDs in the Console and configure local authentication | [Account and local access](docs/ACCOUNT-SETUP.md) |
+| Create a VCN, subnet, restricted SSH access, and a Linux VM | [First VCN and Linux VM](docs/FIRST-VM.md) |
 | Pick a concrete founder/developer job and copy a safe prompt | [Use-case recipes](docs/USE-CASES.md) |
 | Decode tenancy, compartments, VCNs, OCIDs, identities, budgets, quotas, and other OCI terms | [OCI glossary](docs/GLOSSARY.md) |
 | Establish the minimum identity, network, cost, observability, delivery, and teardown guardrails | [Founder Baseline](docs/FOUNDER-BASELINE.md) |
@@ -123,7 +150,8 @@ Cloud-experienced founders usually do not lack backend skills. They lack an OCI 
 
 Founder Toolkit for OCI closes that gap with three layers:
 
-1. **Founder journey** — a short path from repository to verified endpoint.
+1. **Founder journey** — understand the account, plan from repository evidence,
+   and work toward a verified endpoint through explicit execution gates.
 2. **Translation** — explicit mappings and important non-equivalences between clouds.
 3. **Oracle source layer** — official documentation and existing [`oracle/skills`](https://github.com/oracle/skills), rather than duplicated service instructions.
 
@@ -334,7 +362,8 @@ OKE is a graduation path, not the default. The official upstream OKE skills alre
 ## Design principles
 
 - Journey-first, not service-catalog-first.
-- CLI, SDK, and Terraform friendly; the Console is not the primary workflow.
+- CLI, SDK, and Terraform friendly, with Console walkthroughs for account setup
+  and foundational learning.
 - Read-only discovery before recommendations.
 - No OCI write, IAM change, `terraform apply`, or destroy without an explicit preview and approval.
 - No fixed price, Free Tier, quota, region, or service-limit claim without current verification.
@@ -351,6 +380,8 @@ OKE is a graduation path, not the default. The official upstream OKE skills alre
 ├── skills/oci-founder/               # Portable Agent Skill
 ├── blueprints/container-api/         # Sandbox-only 0.2 field preview
 ├── docs/QUICKSTART.md                 # Founder/developer guided installation and first use
+├── docs/ACCOUNT-SETUP.md              # Console IDs, local authentication, and agent context
+├── docs/FIRST-VM.md                   # Human-run VCN, subnet, Linux VM, SSH, and cleanup lab
 ├── docs/GLOSSARY.md                   # OCI terms, cross-cloud models, and traps
 ├── docs/USE-CASES.md                  # Copyable founder/developer recipes
 ├── docs/FOUNDER-BASELINE.md           # Minimum governance, cost, and safety baseline
@@ -444,7 +475,9 @@ qualification are in [host qualification](docs/HOST-QUALIFICATION.md).
 
 The executable MVP target is measurable: a backend developer new to OCI should
 be able to reach a verified OCI endpoint in under 60 minutes using Codex,
-Cursor, or Claude Code, without relying on the Console for the main workflow.
+Cursor, or Claude Code, after account access and prerequisites are ready.
+Console guidance supports onboarding; repeatable deployment should use
+reviewed CLI, SDK, or IaC procedures.
 Neither preview `0.1.0`, preview `0.1.1`, nor the `0.2.0-preview.3`
 blueprint has demonstrated this target in a live sandbox tenancy.
 
