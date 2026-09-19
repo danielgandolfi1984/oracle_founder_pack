@@ -28,7 +28,10 @@ Want to exercise application rules without a cloud account? Run the separate
 [local backend lab](examples/local-backend/README.md): synthetic workspaces,
 projects, tasks, access checks, retries, persistence and recovery. It is an
 in-process teaching slice, not a web server or a real login implementation,
-and is not included in the released skill archives.
+and is not included in the released skill archives. An optional
+[loopback HTTP lab](examples/local-backend/HTTP-LAB.md) lets you make `curl`
+requests with short-lived, locally signed test tokens; it is still not a
+real login service or an OCI deployment.
 
 This is an independent personal project created and maintained by
 [Daniel Gandolfi](https://github.com/danielgandolfi1984), who works at Oracle
@@ -146,6 +149,7 @@ support boundary still apply.
 | Set up local OCI access and learn VCN/VM basics | Guided Console and CLI documentation | Your OCI account, appropriate IAM access, and commands you choose to run | Human-executed lab, not a new operational skill or live-validated deployment path |
 | Plan a customer-facing backend and its full costs | Reference design, acceptance tests and illustrative cost worksheets | Product requirements and a separately reviewed implementation | Authentication, database and uploads are not implemented in the Container API preview; the local lab below is separate; no observed bills or customer-capacity claims |
 | Exercise backend rules before cloud deployment | Separate local Python/SQLite learning slice | Source checkout and Python with SQLite; no credentials or network | Synthetic identities, no HTTP listener, real authentication, uploads or OCI integration; not part of the released archives |
+| Try the contract with `curl` and signed tokens | Optional short-lived loopback HTTP lab | Source checkout, CPython 3.12 and hash-pinned optional dependencies | Only `127.0.0.1`, synthetic users and ephemeral keys; no external identity provider, TLS, public hosting or OCI integration |
 | Review or generate the Container API sandbox path | Available in the full source checkout | Explicit request plus `blueprints/container-api` | No live OCI plan/apply/rollback/destroy evidence; not production-ready |
 | Plan a Function API and route an operational procedure | Planning available | Reviewed `oracle/skills` checkout and verified Functions skills for execution | The portable skill alone fails closed at planning level |
 | Plan OKE, Enterprise AI, or Oracle Database work | Orientation and routing available | Separately verified official Oracle domain skill | This toolkit does not duplicate the service procedure |
@@ -165,6 +169,7 @@ support boundary still apply.
 | Establish the minimum identity, network, cost, observability, delivery, and teardown guardrails | [Founder Baseline](docs/FOUNDER-BASELINE.md) |
 | Understand the components and tests of a small authenticated SaaS backend | [Reference backend design](docs/REFERENCE-BACKEND.md) |
 | Run synthetic workspace, task, permission, retry and recovery exercises locally | [Local backend lab](examples/local-backend/README.md) |
+| Send local HTTP requests and see signed tokens accepted or rejected | [Optional HTTP and signed-token lab](examples/local-backend/HTTP-LAB.md) |
 | Estimate prototype, first-customer and growth costs without assuming a fixed bill | [Cost scenarios and worksheet](docs/COST-SCENARIOS.md) |
 | Distinguish documented guidance, local tests and real deployment proof | [Evidence summary and field-test plan](docs/EVIDENCE.md) |
 | Check exact evidence, open gates, or release status | [Validation record](docs/VALIDATION.md) and [compatibility matrix](docs/COMPATIBILITY.md) |

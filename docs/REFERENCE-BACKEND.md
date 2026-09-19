@@ -57,12 +57,17 @@ The [local backend lab](../examples/local-backend/README.md) on `main` now
 implements a narrow application layer: projects and work items in SQLite,
 current workspace/role checks, idempotent creation, persistence after reopening,
 and recovery into a new file. It runs through direct Python calls with synthetic
-identities, **not a listening HTTP server or real sign-in**. Without an injected
-verifier, its business interface rejects access. Real identity-provider token
-verification is still missing; the demo's subject map must never become a
-production authentication adapter.
+identities, **not real sign-in**. Without an injected verifier, its in-process
+business interface rejects access. The optional [HTTP lab](../examples/local-backend/HTTP-LAB.md)
+adds a loopback-only listener and fixed-key RS256 verification of locally
+issued test tokens. Real identity-provider integration is still missing;
+neither the demo's subject map nor its local signing harness is a production
+identity provider.
 
 Its [tests](../tests/test_local_backend.py) cover the local contract only.
+The optional HTTP tests additionally exercise signature/issuer/audience/time
+validation, strict local request framing and signed requests through the API.
+They do not qualify a production transport or actual user login.
 The existing Container API app, Terraform resource graph and released packages
 are unchanged. SQLite is a self-contained lesson, not a recommendation to
 replace an existing database or deploy this sample unchanged.
@@ -126,8 +131,9 @@ retention/alerting pipeline. [Oracle container log retrieval](https://docs.oracl
 
 These are acceptance tests for the complete target, **not passing end-to-end
 results**. The separate local lab exercises only a subset with synthetic
-identities and SQLite. It does not test real token verification, HTTP transport,
-uploads, managed databases or OCI. Run the complete tests against two isolated
+identities and SQLite. The optional HTTP lab adds signed test-token and loopback
+transport checks, not an external provider or production HTTP stack. Neither
+lab covers uploads, managed databases or OCI. Run the complete tests against two isolated
 test workspaces with synthetic data, then record the exact version and evidence
 as described in [Evidence](EVIDENCE.md).
 

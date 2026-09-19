@@ -13,7 +13,7 @@ These are documentation deliverables, not a new operational release.
 
 | Priority | Available now | Next evidence required |
 |---|---|---|
-| A useful backend, beyond a health endpoint | Target SaaS design plus a separate synthetic Python/SQLite lab for projects/tasks, roles, tenant isolation, retries and local recovery | Real identity-provider verification, HTTP transport, chosen production database and optional uploads; integration tests, then approved sandbox recovery and cleanup |
+| A useful backend, beyond a health endpoint | Target SaaS design plus a synthetic Python/SQLite lab, with optional loopback HTTP and locally signed RS256 tokens | Actual identity-provider integration, production HTTP/TLS stack, chosen production database and optional uploads; integration tests, then approved sandbox recovery and cleanup |
 | Transparent cost to start and grow | Illustrative workload units and an unpriced TCO worksheet | Dated target-specific rates, a reviewed estimate and observed usage/billing variance |
 | Reproducible proof | Exact existing release/CI receipts and a proposed field-test protocol | Authorized sandbox run, failures and cleanup recorded, followed by independent reproduction |
 | Regional onboarding and actual user feedback | Short Portuguese/Spanish entry guides and account/region decision checks | Reviewed full translations when maintained, usability tests and real founder stories published with consent |

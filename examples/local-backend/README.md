@@ -4,11 +4,16 @@ Practice the application rules behind a small B2B SaaS before choosing cloud
 resources: who can see a workspace, which operations require an owner, how a
 retry avoids creating duplicate records, and whether data survives reopening.
 
-**This is a synthetic, in-process teaching example, not a deployable service.**
-It opens no listening port, sends no network requests, uses no OCI credentials,
-and has no real identity-provider integration. It is available on `main` only;
+**The default lesson is synthetic and in-process, not a deployable service.**
+`demo.py` opens no listening port, sends no network requests, uses no OCI
+credentials, and has no real identity-provider integration. It is available on `main` only;
 the released `v0.1.1` skill archives and the Container API `0.2.0-preview.3`
 remain unchanged. Installing the released skill does not install this example.
+
+After this lesson, the optional [HTTP and signed-token lab](HTTP-LAB.md) adds
+`curl` requests to a temporary `127.0.0.1` listener and RS256 verification of
+locally issued synthetic tokens. It requires separate pinned dependencies;
+the default commands below remain dependency-free and do not start a server.
 
 ## Run it locally
 
@@ -52,17 +57,19 @@ demo or unit test -> direct API.handle(...) call -> authorization -> SQLite
                          +-> injected synthetic verifier (tests/demo only)
 ```
 
-The public interface is `API(store, verify_token=None)`, with
+The in-process interface is `API(store, verify_token=None)`, with
 `handle(method, path, headers=None, body=None)` returning `(status, payload)`.
 Paths and numeric statuses describe an application contract; they are **not**
 an HTTP server, HTTP parser, browser endpoint, or transport security layer.
-Do not use `curl` against this example or expose it on a public interface.
+Do not use `curl` against `demo.py`. Use only the separate, explicitly started
+[loopback HTTP adapter](HTTP-LAB.md) for HTTP requests; never expose it publicly.
 
 Without an explicitly supplied verifier, business requests are denied with
 `401`. Only the demo and tests inject a map of synthetic bearer values to
 synthetic subjects. That map is a fixture, **not authentication suitable for
-real users**. A real verifier that checks issuer, audience, signature, expiry,
-and allowed algorithms is not implemented and remains a release blocker.
+real users**. The optional HTTP lab has a fixed-key RS256 verifier checking
+issuer, audience, signature and token times, but only with synthetic local
+issuance. Integration with a real identity provider remains a release blocker.
 
 The intended integration boundary is:
 
@@ -129,10 +136,12 @@ removing anything; never clean up a broad home, repository, or account scope.
 
 ## What passing this example does not prove
 
-- Real sign-in/token verification, password management, MFA, invitations, or
-  account recovery. Synthetic subject lookup is not a real identity provider.
-- HTTP protocol handling, TLS, domain ownership, input/body limits at the
-  transport boundary, rate limiting, or internet-facing security.
+- Real sign-in, provider integration, password management, MFA, invitations,
+  or account recovery. Neither synthetic lookup nor locally issued signed
+  tokens establish the identity of a real user.
+- TLS, domain ownership, rate limiting, or internet-facing security. The
+  default lesson has no HTTP transport; the optional lab tests only its
+  deliberately restricted loopback adapter and input/body limits.
 - Production database migrations, multi-process/concurrent behavior,
   availability, capacity, encrypted backup operations, or measured recovery.
 - Uploads/Object Storage, app secrets, centralized logs/alerts, billing,

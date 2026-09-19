@@ -5,6 +5,20 @@ publishes an independent public open-source preview under UPL-1.0, with
 best-effort community support and no SLA. It has not published a tagged stable
 release or claimed cross-host or production qualification.
 
+## Optional loopback HTTP lab on `main` — 2026-09-19
+
+- Added a short-lived `127.0.0.1` HTTP adapter and a `curl` guide using
+  synthetic users, ephemeral RSA signing keys, and private temporary curl
+  configurations. The default in-process demo remains dependency-free.
+- Added fixed-key RS256 verification with strict issuer, audience, signature,
+  required claims and token-time checks; no identity-provider discovery,
+  remote key fetching, real login or production authentication claim.
+- Added strict local request framing/body checks, separate health/readiness,
+  signed-request integration checks, session lifecycle tests and a
+  dedicated CI job with hash-pinned binary dependencies for CPython 3.12.
+- Preserved released skill/archive inputs and existing OCI blueprints. No
+  cloud resource, external account or public-facing service was created.
+
 ## Local learning slice on `main` — 2026-09-19
 
 - Added a standalone, dependency-free Python/SQLite lab with projects, work

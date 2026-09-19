@@ -10,6 +10,26 @@ permissions:
   contents: read
 
 jobs:
+  validate-local-http:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+      - name: Install isolated HTTP lab dependencies with reviewed hashes
+        run: >-
+          python3 -m pip install --require-hashes --only-binary=:all:
+          -r examples/local-backend/requirements-http.txt
+      - run: python3 -m pip check
+      - name: Validate tokens, local HTTP framing and temporary sessions
+        run: python3 -B -m unittest discover -s examples/local-backend/http-tests -v
+      - name: Exercise signed requests on loopback only (no OCI)
+        run: python3 -B examples/local-backend/http_smoke.py
+
   validate:
     runs-on: ubuntu-24.04
     timeout-minutes: 45

@@ -18,6 +18,7 @@ evidence remains in [VALIDATION.md](VALIDATION.md).
 | Has the VM lab been executed in an OCI account by this project? | Not recorded | [FIRST-VM.md](FIRST-VM.md) is a source-reviewed, human-executed guide, not field-test evidence |
 | Has the Container API preview been applied, rolled back and removed in OCI? | Not recorded | Its [README](../blueprints/container-api/README.md) describes local checks and open field gates. Generated Terraform is not proof of deployed resources |
 | Can I exercise business rules locally? | A separate synthetic, in-process slice exists | [Local lab](../examples/local-backend/README.md) and [tests](../tests/test_local_backend.py) exercise membership, roles, projects/tasks, retries, SQLite persistence and new-file recovery. No HTTP listener, real token verification or OCI integration |
+| Can I send HTTP requests and validate signed tokens locally? | An optional loopback lab exists | [HTTP lab](../examples/local-backend/HTTP-LAB.md), [optional tests](../examples/local-backend/http-tests/) and [signed-request smoke](../examples/local-backend/http_smoke.py) exercise `127.0.0.1` requests and RS256 tokens with ephemeral local keys. No real identity provider, TLS, public hosting or OCI integration |
 | Is the full authenticated backend implemented? | No | [REFERENCE-BACKEND.md](REFERENCE-BACKEND.md) is the complete target. The unchanged Container API preview has only anonymous test endpoints; the separate local lab is not a deployable authenticated service |
 | Are there measured monthly costs, customer capacity or a time-to-production benchmark? | No | [COST-SCENARIOS.md](COST-SCENARIOS.md) contains illustrative workload assumptions, not observed bills or capacity results |
 | Are there verified founder/customer success stories in this toolkit? | Not yet | Do not turn the reference scenario into a testimonial or invent a customer, quotation or deployment result |
@@ -42,6 +43,23 @@ after reopening, and reading an independent backup copy. The workflow runs
 both the tests and the demo again for each new source commit. A passing result
 does not verify real identity-provider tokens, a listening HTTP service, cloud
 database recovery, OCI deployment or any production security boundary.
+
+### Optional signed HTTP checks
+
+Follow the [HTTP lab setup](../examples/local-backend/HTTP-LAB.md) to install
+the hash-pinned optional dependencies into an isolated CPython 3.12 environment.
+The separate tests exercise fixed-key RS256 verification, raw HTTP framing,
+strict loopback/Host restrictions, private session files and cleanup. The
+signed-request smoke additionally checks accepted and tampered tokens, project
+creation/retry, cross-workspace denial and immediate membership revocation
+through a real `127.0.0.1` listener. These checks were exercised locally on
+2026-09-19; their dedicated CI job reruns against each new source revision.
+
+This is local cryptographic and transport evidence with synthetic users. It
+does not establish a real person's identity or qualify external issuer/JWKS
+integration, public HTTP hosting, TLS, key rotation, production availability,
+managed-database recovery or OCI operation. The default in-process lesson and
+the released skill packages remain independent of the optional dependencies.
 
 ## Labels to use in guides and demonstrations
 
@@ -105,7 +123,8 @@ This is a proposed sequence, **not a record of completed execution**:
    redacted results with failures and open items, not just the successful run.
 
 The local lab tests application authorization and persistence using synthetic
-identities and SQLite. The full backend's real authentication, HTTP boundary,
+identities and SQLite; the optional mode adds locally signed tokens and
+loopback HTTP checks. The full backend's real login and production HTTP boundary,
 upload, managed-database and sandbox restore tests must wait for those
 integrations to exist. See its [acceptance plan](REFERENCE-BACKEND.md). Neither
 the local lab nor a `200 OK` from the Container API preview's health endpoint
