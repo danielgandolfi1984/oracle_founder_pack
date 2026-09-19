@@ -9,6 +9,12 @@ The original [in-process lesson](README.md) still works without third-party
 packages or a listening port. This additional source example is on `main` only;
 it does not change the released skill archives or Container API blueprint.
 
+For the next learning step, use the separate
+[offline identity integration guide](IDENTITY-INTEGRATION.md). It rehearses
+trusted public-key snapshots and user bindings in-process. This HTTP lab still
+uses only its own synthetic issuer and keys; do not send real provider tokens
+to it. Its `/readyz` checks the database, not provider configuration freshness.
+
 ## 1. Install the optional dependencies
 
 Prerequisites: a source checkout, **CPython 3.12**, `curl`, a POSIX shell, and

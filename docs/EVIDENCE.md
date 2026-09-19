@@ -19,6 +19,7 @@ evidence remains in [VALIDATION.md](VALIDATION.md).
 | Has the Container API preview been applied, rolled back and removed in OCI? | Not recorded | Its [README](../blueprints/container-api/README.md) describes local checks and open field gates. Generated Terraform is not proof of deployed resources |
 | Can I exercise business rules locally? | A separate synthetic, in-process slice exists | [Local lab](../examples/local-backend/README.md) and [tests](../tests/test_local_backend.py) exercise membership, roles, projects/tasks, retries, SQLite persistence and new-file recovery. No HTTP listener, real token verification or OCI integration |
 | Can I send HTTP requests and validate signed tokens locally? | An optional loopback lab exists | [HTTP lab](../examples/local-backend/HTTP-LAB.md), [optional tests](../examples/local-backend/http-tests/) and [signed-request smoke](../examples/local-backend/http_smoke.py) exercise `127.0.0.1` requests and RS256 tokens with ephemeral local keys. No real identity provider, TLS, public hosting or OCI integration |
+| Can I prepare a provider trust configuration and rehearse key rotation? | An offline preflight and synthetic rehearsal exist | [Identity guide](../examples/local-backend/IDENTITY-INTEGRATION.md), [verifier tests](../examples/local-backend/http-tests/test_provider_auth.py) and [preflight tests](../examples/local-backend/http-tests/test_provider_preflight.py) cover the explicit supported token contract. No provider connection, real access token, automatic refresh or provider-compatibility evidence |
 | Is the full authenticated backend implemented? | No | [REFERENCE-BACKEND.md](REFERENCE-BACKEND.md) is the complete target. The unchanged Container API preview has only anonymous test endpoints; the separate local lab is not a deployable authenticated service |
 | Are there measured monthly costs, customer capacity or a time-to-production benchmark? | No | [COST-SCENARIOS.md](COST-SCENARIOS.md) contains illustrative workload assumptions, not observed bills or capacity results |
 | Are there verified founder/customer success stories in this toolkit? | Not yet | Do not turn the reference scenario into a testimonial or invent a customer, quotation or deployment result |
@@ -60,6 +61,31 @@ does not establish a real person's identity or qualify external issuer/JWKS
 integration, public HTTP hosting, TLS, key rotation, production availability,
 managed-database recovery or OCI operation. The default in-process lesson and
 the released skill packages remain independent of the optional dependencies.
+
+### Offline provider-configuration and rotation checks
+
+Using the same optional environment, run:
+
+```sh
+"$LAB_ENV_DIR/venv/bin/python" -B -m unittest discover \
+  -s examples/local-backend/http-tests -p 'test_provider*.py' -v
+"$LAB_ENV_DIR/venv/bin/python" -B examples/local-backend/provider_demo.py
+```
+
+On 2026-09-19, 47 focused tests and the synthetic in-process journey passed
+under CPython 3.12.14. They exercise strict access-token admission, explicit
+subject bindings, unconfigured-key rejection, key overlap/removal, snapshot
+expiry and clock rollback, invalid-reload denial, recovery with valid
+configuration, private input-file handling and current workspace permissions.
+The preflight validates existing files only; it does not prove where public
+keys came from, verify a token or connect to a provider. The CI job also runs
+these tests and the synthetic journey for new source revisions.
+
+This evidence extends the offline learning contract, not the HTTP lab's
+fixed-key verifier. `ProviderVerifier.ready()` checks snapshot freshness
+separately; the existing `/readyz` still checks only SQLite. Real-provider token
+compatibility, trusted metadata retrieval, automated key refresh, OAuth/login,
+TLS and deployment remain unverified. No existing release receipt is replaced.
 
 ## Labels to use in guides and demonstrations
 

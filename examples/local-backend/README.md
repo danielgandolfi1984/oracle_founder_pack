@@ -15,6 +15,11 @@ After this lesson, the optional [HTTP and signed-token lab](HTTP-LAB.md) adds
 locally issued synthetic tokens. It requires separate pinned dependencies;
 the default commands below remain dependency-free and do not start a server.
 
+The separate [identity integration guide](IDENTITY-INTEGRATION.md) then shows
+how trusted issuer/audience settings, public keys and explicit user bindings
+fit together. Its preflight and synthetic rotation demo are offline; they do
+not connect an identity provider or change the HTTP lab's local-only contract.
+
 ## Run it locally
 
 Prerequisites: a checkout of this repository, Python **3.10 or later** with its

@@ -29,6 +29,8 @@ jobs:
         run: python3 -B -m unittest discover -s examples/local-backend/http-tests -v
       - name: Exercise signed requests on loopback only (no OCI)
         run: python3 -B examples/local-backend/http_smoke.py
+      - name: Rehearse offline identity bindings and public-key rotation (no provider calls)
+        run: python3 -B examples/local-backend/provider_demo.py
 
   validate:
     runs-on: ubuntu-24.04

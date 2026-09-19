@@ -64,6 +64,14 @@ issued test tokens. Real identity-provider integration is still missing;
 neither the demo's subject map nor its local signing harness is a production
 identity provider.
 
+An additional [offline identity contract](../examples/local-backend/IDENTITY-INTEGRATION.md)
+checks explicit issuer/audience/client/scope settings, bounded public-key
+snapshots and external-subject bindings. A synthetic in-process demo exercises
+key rotation and current membership checks. This prepares an integration
+boundary; it does not add real login, provider discovery, automatic key refresh,
+TLS or verified compatibility with any provider. Snapshot freshness is a
+separate signal from the lab's database-only `/readyz`.
+
 Its [tests](../tests/test_local_backend.py) cover the local contract only.
 The optional HTTP tests additionally exercise signature/issuer/audience/time
 validation, strict local request framing and signed requests through the API.

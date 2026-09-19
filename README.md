@@ -33,6 +33,12 @@ and is not included in the released skill archives. An optional
 requests with short-lived, locally signed test tokens; it is still not a
 real login service or an OCI deployment.
 
+Preparing to connect an identity provider? The separate
+[offline identity integration guide](examples/local-backend/IDENTITY-INTEGRATION.md)
+explains which configuration to collect, checks trusted public-key snapshots,
+and rehearses key rotation and explicit user bindings with synthetic tokens.
+It does not contact a provider or prove compatibility with OCI Identity Domains.
+
 This is an independent personal project created and maintained by
 [Daniel Gandolfi](https://github.com/danielgandolfi1984), who works at Oracle
 and publishes here in his personal capacity. The views expressed here are his
@@ -150,6 +156,7 @@ support boundary still apply.
 | Plan a customer-facing backend and its full costs | Reference design, acceptance tests and illustrative cost worksheets | Product requirements and a separately reviewed implementation | Authentication, database and uploads are not implemented in the Container API preview; the local lab below is separate; no observed bills or customer-capacity claims |
 | Exercise backend rules before cloud deployment | Separate local Python/SQLite learning slice | Source checkout and Python with SQLite; no credentials or network | Synthetic identities, no HTTP listener, real authentication, uploads or OCI integration; not part of the released archives |
 | Try the contract with `curl` and signed tokens | Optional short-lived loopback HTTP lab | Source checkout, CPython 3.12 and hash-pinned optional dependencies | Only `127.0.0.1`, synthetic users and ephemeral keys; no external identity provider, TLS, public hosting or OCI integration |
+| Prepare an identity-provider integration | Offline configuration preflight and synthetic access-token/key-rotation rehearsal | Same optional Python environment, explicit trusted public keys and subject bindings | Strict supported token profile only; no provider connection, login, automatic key refresh or compatibility claim |
 | Review or generate the Container API sandbox path | Available in the full source checkout | Explicit request plus `blueprints/container-api` | No live OCI plan/apply/rollback/destroy evidence; not production-ready |
 | Plan a Function API and route an operational procedure | Planning available | Reviewed `oracle/skills` checkout and verified Functions skills for execution | The portable skill alone fails closed at planning level |
 | Plan OKE, Enterprise AI, or Oracle Database work | Orientation and routing available | Separately verified official Oracle domain skill | This toolkit does not duplicate the service procedure |
@@ -170,6 +177,7 @@ support boundary still apply.
 | Understand the components and tests of a small authenticated SaaS backend | [Reference backend design](docs/REFERENCE-BACKEND.md) |
 | Run synthetic workspace, task, permission, retry and recovery exercises locally | [Local backend lab](examples/local-backend/README.md) |
 | Send local HTTP requests and see signed tokens accepted or rejected | [Optional HTTP and signed-token lab](examples/local-backend/HTTP-LAB.md) |
+| Understand app-user tokens, collect provider settings and rehearse key rotation offline | [Identity integration guide](examples/local-backend/IDENTITY-INTEGRATION.md) |
 | Estimate prototype, first-customer and growth costs without assuming a fixed bill | [Cost scenarios and worksheet](docs/COST-SCENARIOS.md) |
 | Distinguish documented guidance, local tests and real deployment proof | [Evidence summary and field-test plan](docs/EVIDENCE.md) |
 | Check exact evidence, open gates, or release status | [Validation record](docs/VALIDATION.md) and [compatibility matrix](docs/COMPATIBILITY.md) |

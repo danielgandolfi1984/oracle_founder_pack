@@ -14,6 +14,12 @@ and layout. You need an existing OCI account, permission to use it, and a local
 terminal. New account signup and billing enrollment are outside this guide.
 For skill installation, use the [quickstart](QUICKSTART.md).
 
+These credentials let your tools call OCI cloud APIs; they are not your
+application's end-user login. For app-user access tokens, provider settings
+and a read-only Identity Domains discovery checklist, see the separate
+[offline identity integration guide](../examples/local-backend/IDENTITY-INTEGRATION.md).
+Never substitute an OCI API signing key or CLI session token for an app token.
+
 ## 1. Know what connects the agent to OCI
 
 | Part | Purpose | Does not provide |

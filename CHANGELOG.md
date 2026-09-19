@@ -5,6 +5,22 @@ publishes an independent public open-source preview under UPL-1.0, with
 best-effort community support and no SLA. It has not published a tagged stable
 release or claimed cross-host or production qualification.
 
+## Offline identity integration rehearsal on `main` — 2026-09-19
+
+- Added an explicit issuer/audience/client/scope access-token contract, bounded
+  public JWKS snapshots, external-subject bindings and atomic manual key
+  rotation. Invalid or expired configuration denies access; token claims do
+  not create users or grant workspace roles.
+- Added a read-only configuration preflight, an in-process synthetic demo,
+  adversarial tests and a CI rehearsal using the existing optional dependency
+  lock. No network discovery, real tokens, external login or cloud calls.
+- Added a founder-facing guide and read-only OCI Identity Domains discovery
+  checklist, distinguishing app-user authentication from OCI CLI credentials.
+  Real-provider compatibility, TLS and operational integration remain open.
+- Kept the released skill, archive inputs, existing HTTP lab contract and
+  Container API blueprint unchanged. This is source-only learning material,
+  not a new release or production authentication qualification.
+
 ## Optional loopback HTTP lab on `main` — 2026-09-19
 
 - Added a short-lived `127.0.0.1` HTTP adapter and a `curl` guide using
