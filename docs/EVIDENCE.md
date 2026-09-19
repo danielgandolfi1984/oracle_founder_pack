@@ -17,13 +17,31 @@ evidence remains in [VALIDATION.md](VALIDATION.md).
 | Do repository and package checks run in CI? | Yes, for the exact commits linked | The foundation-docs baseline `8bf14ac` passed [run 35446784381](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35446784381). Check the [workflow](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/workflows/validate.yml) for later revisions; CI is not an OCI deployment |
 | Has the VM lab been executed in an OCI account by this project? | Not recorded | [FIRST-VM.md](FIRST-VM.md) is a source-reviewed, human-executed guide, not field-test evidence |
 | Has the Container API preview been applied, rolled back and removed in OCI? | Not recorded | Its [README](../blueprints/container-api/README.md) describes local checks and open field gates. Generated Terraform is not proof of deployed resources |
-| Is the full authenticated backend implemented? | No | [REFERENCE-BACKEND.md](REFERENCE-BACKEND.md) is a target design and acceptance plan; the existing sample has only anonymous test endpoints |
+| Can I exercise business rules locally? | A separate synthetic, in-process slice exists | [Local lab](../examples/local-backend/README.md) and [tests](../tests/test_local_backend.py) exercise membership, roles, projects/tasks, retries, SQLite persistence and new-file recovery. No HTTP listener, real token verification or OCI integration |
+| Is the full authenticated backend implemented? | No | [REFERENCE-BACKEND.md](REFERENCE-BACKEND.md) is the complete target. The unchanged Container API preview has only anonymous test endpoints; the separate local lab is not a deployable authenticated service |
 | Are there measured monthly costs, customer capacity or a time-to-production benchmark? | No | [COST-SCENARIOS.md](COST-SCENARIOS.md) contains illustrative workload assumptions, not observed bills or capacity results |
 | Are there verified founder/customer success stories in this toolkit? | Not yet | Do not turn the reference scenario into a testimonial or invent a customer, quotation or deployment result |
 
 The immutable release tag and archives are unchanged by documentation on
 `main`. Installation evidence for that release does not automatically validate
 new code, a new host version or a new operational path.
+
+## Reproduce the local application checks
+
+From a source checkout of `main` (not the released skill archive), run:
+
+```sh
+python3 -B -m unittest discover -s tests -p test_local_backend.py -v
+python3 -B examples/local-backend/demo.py
+```
+
+The local journey was exercised on 2026-09-19 with Python 3.12.14 and temporary
+synthetic data. It verified creation/retry, cross-workspace denial, owner/member
+permissions, immediate revocation under the same fixture identity, persistence
+after reopening, and reading an independent backup copy. The workflow runs
+both the tests and the demo again for each new source commit. A passing result
+does not verify real identity-provider tokens, a listening HTTP service, cloud
+database recovery, OCI deployment or any production security boundary.
 
 ## Labels to use in guides and demonstrations
 
@@ -86,10 +104,12 @@ This is a proposed sequence, **not a record of completed execution**:
 7. Have a second operator reproduce the scoped test independently. Publish
    redacted results with failures and open items, not just the successful run.
 
-The full backend's authorization, tenant-isolation, upload, database and restore
-tests must wait for those features to exist. See its
-[acceptance plan](REFERENCE-BACKEND.md). None is covered by a `200 OK` from the
-current sample's health endpoint.
+The local lab tests application authorization and persistence using synthetic
+identities and SQLite. The full backend's real authentication, HTTP boundary,
+upload, managed-database and sandbox restore tests must wait for those
+integrations to exist. See its [acceptance plan](REFERENCE-BACKEND.md). Neither
+the local lab nor a `200 OK` from the Container API preview's health endpoint
+closes those gates.
 
 ## Customer stories without invented proof
 

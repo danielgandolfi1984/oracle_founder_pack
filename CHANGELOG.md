@@ -5,6 +5,19 @@ publishes an independent public open-source preview under UPL-1.0, with
 best-effort community support and no SLA. It has not published a tagged stable
 release or claimed cross-host or production qualification.
 
+## Local learning slice on `main` — 2026-09-19
+
+- Added a standalone, dependency-free Python/SQLite lab with projects, work
+  items, workspace/role authorization, durable creation retries and local
+  recovery into a new file. It uses synthetic fixtures and direct function
+  calls, not an HTTP server or real identity-provider authentication.
+- Added adversarial unit tests and an executable local journey to CI. Default
+  authentication denies business requests; the synthetic verifier exists only
+  in the demo and tests. No network or OCI access is needed for this lab.
+- Kept the released skill, package inputs, Container API app and Terraform
+  contracts unchanged. This example is available in the source checkout only,
+  not a new release or evidence of an OCI deployment.
+
 ## Documentation on `main` — 2026-09-19
 
 - Added an OCI adoption decision guide, a complete backend target design with

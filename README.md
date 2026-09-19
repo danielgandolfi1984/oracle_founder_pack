@@ -24,6 +24,12 @@ Before committing to an architecture, review
 [evidence summary](docs/EVIDENCE.md) to see what is implemented, tested, or
 still proposed.
 
+Want to exercise application rules without a cloud account? Run the separate
+[local backend lab](examples/local-backend/README.md): synthetic workspaces,
+projects, tasks, access checks, retries, persistence and recovery. It is an
+in-process teaching slice, not a web server or a real login implementation,
+and is not included in the released skill archives.
+
 This is an independent personal project created and maintained by
 [Daniel Gandolfi](https://github.com/danielgandolfi1984), who works at Oracle
 and publishes here in his personal capacity. The views expressed here are his
@@ -138,7 +144,8 @@ support boundary still apply.
 |---|---|---|---|
 | Understand OCI, translate another cloud, assess a backend, or create a founder plan | Available in the portable `oci-founder` skill | One project-scoped skill copy | Native behavior is not yet qualified across all three hosts |
 | Set up local OCI access and learn VCN/VM basics | Guided Console and CLI documentation | Your OCI account, appropriate IAM access, and commands you choose to run | Human-executed lab, not a new operational skill or live-validated deployment path |
-| Plan a customer-facing backend and its full costs | Reference design, acceptance tests and illustrative cost worksheets | Product requirements and a separately reviewed implementation | Authentication, database and uploads are not implemented in the current sample; no observed bills or customer-capacity claims |
+| Plan a customer-facing backend and its full costs | Reference design, acceptance tests and illustrative cost worksheets | Product requirements and a separately reviewed implementation | Authentication, database and uploads are not implemented in the Container API preview; the local lab below is separate; no observed bills or customer-capacity claims |
+| Exercise backend rules before cloud deployment | Separate local Python/SQLite learning slice | Source checkout and Python with SQLite; no credentials or network | Synthetic identities, no HTTP listener, real authentication, uploads or OCI integration; not part of the released archives |
 | Review or generate the Container API sandbox path | Available in the full source checkout | Explicit request plus `blueprints/container-api` | No live OCI plan/apply/rollback/destroy evidence; not production-ready |
 | Plan a Function API and route an operational procedure | Planning available | Reviewed `oracle/skills` checkout and verified Functions skills for execution | The portable skill alone fails closed at planning level |
 | Plan OKE, Enterprise AI, or Oracle Database work | Orientation and routing available | Separately verified official Oracle domain skill | This toolkit does not duplicate the service procedure |
@@ -157,6 +164,7 @@ support boundary still apply.
 | Decode tenancy, compartments, VCNs, OCIDs, identities, budgets, quotas, and other OCI terms | [OCI glossary](docs/GLOSSARY.md) |
 | Establish the minimum identity, network, cost, observability, delivery, and teardown guardrails | [Founder Baseline](docs/FOUNDER-BASELINE.md) |
 | Understand the components and tests of a small authenticated SaaS backend | [Reference backend design](docs/REFERENCE-BACKEND.md) |
+| Run synthetic workspace, task, permission, retry and recovery exercises locally | [Local backend lab](examples/local-backend/README.md) |
 | Estimate prototype, first-customer and growth costs without assuming a fixed bill | [Cost scenarios and worksheet](docs/COST-SCENARIOS.md) |
 | Distinguish documented guidance, local tests and real deployment proof | [Evidence summary and field-test plan](docs/EVIDENCE.md) |
 | Check exact evidence, open gates, or release status | [Validation record](docs/VALIDATION.md) and [compatibility matrix](docs/COMPATIBILITY.md) |

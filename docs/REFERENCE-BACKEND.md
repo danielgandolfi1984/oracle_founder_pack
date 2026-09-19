@@ -1,6 +1,7 @@
 # Reference backend: a small B2B SaaS
 
-**Status: target design, not an implemented application or a validated OCI deployment.**
+**Status: target design with a separate local learning slice; no complete
+authenticated application or validated OCI deployment.**
 This guide connects infrastructure learning to a founder outcome: a customer
 signs in, creates a project, tracks work, and optionally attaches a file.
 Use it to scope your next implementation, not as a promise that installing the
@@ -33,7 +34,7 @@ Inspect the [Container API preview](../blueprints/container-api/README.md),
 [runtime Terraform](../blueprints/container-api/terraform/runtime/).
 “Present” below means source exists, not that it has passed a live OCI test.
 
-| Component | Present in this repository | Required for this reference product |
+| Component | Present in the Container API preview | Required for this reference product |
 |---|---|---|
 | HTTP application | Anonymous `GET /`, `/healthz`, `/readyz`; static readiness response | Business API, validation, persistence, dependency-aware readiness, application tests |
 | Authentication and tenant authorization | Neither is implemented | Identity-provider integration, token verification, membership/role checks on every operation |
@@ -49,6 +50,22 @@ The preview is `0.2.0-preview.3`, sandbox-only, with no live OCI plan/apply
 evidence. Its validators intentionally accept a narrow resource graph. This
 design is **not** permission to add components to that graph or bypass its
 checks: an implementation needs separately reviewed code, contracts, and tests.
+
+### Separate local learning slice
+
+The [local backend lab](../examples/local-backend/README.md) on `main` now
+implements a narrow application layer: projects and work items in SQLite,
+current workspace/role checks, idempotent creation, persistence after reopening,
+and recovery into a new file. It runs through direct Python calls with synthetic
+identities, **not a listening HTTP server or real sign-in**. Without an injected
+verifier, its business interface rejects access. Real identity-provider token
+verification is still missing; the demo's subject map must never become a
+production authentication adapter.
+
+Its [tests](../tests/test_local_backend.py) cover the local contract only.
+The existing Container API app, Terraform resource graph and released packages
+are unchanged. SQLite is a self-contained lesson, not a recommendation to
+replace an existing database or deploy this sample unchanged.
 
 ## 3. Target architecture and decisions
 
@@ -107,7 +124,10 @@ retention/alerting pipeline. [Oracle container log retrieval](https://docs.oracl
 
 ## 4. Acceptance contract to implement and test
 
-These are proposed tests, **not passing results**. Run them against two isolated
+These are acceptance tests for the complete target, **not passing end-to-end
+results**. The separate local lab exercises only a subset with synthetic
+identities and SQLite. It does not test real token verification, HTTP transport,
+uploads, managed databases or OCI. Run the complete tests against two isolated
 test workspaces with synthetic data, then record the exact version and evidence
 as described in [Evidence](EVIDENCE.md).
 
