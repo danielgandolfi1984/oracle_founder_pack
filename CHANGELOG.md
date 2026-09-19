@@ -7,6 +7,14 @@ release or claimed cross-host or production qualification.
 
 ## Documentation on `main` — 2026-09-19
 
+- Added an OCI adoption decision guide, a complete backend target design with
+  an existing/missing capability matrix, proposed acceptance tests, illustrative
+  cost scenarios, and a founder-readable evidence summary/field-test protocol.
+- Added stage-specific onboarding, region and signup decisions, help routes,
+  and dated Portuguese/Spanish entry guides. Full translations remain future
+  work; no customer testimonial or deployment result is implied.
+- Separated cost hypotheses from observed billing, implementation proposals
+  from deployed capability, and current evidence from open validation gates.
 - Added founder-facing guides for Console identifiers, local CLI session and
   API signing authentication, safe agent context, and first read-only checks.
 - Added a human-executed VCN, subnet, Internet Gateway, restricted SSH, and

@@ -2,6 +2,26 @@
 
 The roadmap is organized by validated capability, not by the number of OCI services covered.
 
+## Founder adoption priorities — 2026-09-19
+
+The [adoption decision](WHY-OCI.md), [reference backend](REFERENCE-BACKEND.md),
+[cost scenarios](COST-SCENARIOS.md), and [evidence guide](EVIDENCE.md) make the
+next implementation and validation steps explicit. The
+[onboarding guide](GETTING-STARTED.md) and maintained PT-BR/ES entry points
+cover different team stages, signup, region choice and help channels.
+These are documentation deliverables, not a new operational release.
+
+| Priority | Available now | Next evidence required |
+|---|---|---|
+| A useful backend, beyond a health endpoint | Target SaaS design and acceptance contract | Implemented authentication, tenant isolation, persistence and optional uploads with local tests, then approved sandbox recovery and cleanup |
+| Transparent cost to start and grow | Illustrative workload units and an unpriced TCO worksheet | Dated target-specific rates, a reviewed estimate and observed usage/billing variance |
+| Reproducible proof | Exact existing release/CI receipts and a proposed field-test protocol | Authorized sandbox run, failures and cleanup recorded, followed by independent reproduction |
+| Regional onboarding and actual user feedback | Short Portuguese/Spanish entry guides and account/region decision checks | Reviewed full translations when maintained, usability tests and real founder stories published with consent |
+
+No customer case, end-to-end OCI deployment result or measured cost is invented
+to close these gates. Documentation does not authorize account signup, paid
+upgrades, deployment, data migration or production cutover.
+
 ## 0.1 — Foundation
 
 Current public-preview scope:
@@ -178,7 +198,9 @@ Release criteria:
 - Container API and Function API are stable by the quality gate in `PRODUCT.md`;
 - installation and invocation are tested in current Codex, Cursor, and Claude Code;
 - at least 80% of representative target users complete a path without maintainer intervention;
-- median time to a verified endpoint is below 60 minutes in the usability cohort;
+- median time to a verified endpoint is below 60 minutes in the usability cohort
+  after account access/prerequisites, with onboarding and total elapsed time
+  reported separately;
 - zero credential leaks and zero unapproved mutations in the release test suite;
 - the UPL-1.0, independent-project, support, security, and internal-material
   boundaries remain published and internally consistent;

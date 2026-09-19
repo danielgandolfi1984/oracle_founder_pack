@@ -133,6 +133,10 @@ deployment.
 
 ### Cost worksheet without fixed prices
 
+Use [Cost scenarios](COST-SCENARIOS.md) for worked usage-unit examples and a
+complete pricing/TCO worksheet. The sample quantities are hypotheses, not
+capacity benchmarks or observed bills.
+
 Fill this worksheet with current regional rates only when preparing an actual
 estimate. Use low, expected, and high usage assumptions rather than a single
 false-precision number.

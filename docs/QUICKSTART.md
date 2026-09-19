@@ -12,6 +12,11 @@ Oracle product, and has no Oracle Support coverage or SLA. Use the immutable
 [`v0.1.1` release](https://github.com/danielgandolfi1984/oracle_founder_pack/releases/tag/v0.1.1)
 and keep the installation project-scoped.
 
+If you have not chosen a starting point, use [Getting started](GETTING-STARTED.md).
+Short entry guides are available in [Português](i18n/pt-BR/START-HERE.md) and
+[Español](i18n/es/START-HERE.md); this document remains the canonical command
+reference for installation.
+
 ## 1. Check the prerequisites
 
 You need:
@@ -163,6 +168,18 @@ recommended architecture and the inputs needed for a current estimate. Do not
 use fixed prices or imply that a budget alert caps spending.
 ```
 
+Use the [cost scenarios and worksheet](COST-SCENARIOS.md) to capture quantities
+and missing rates. These examples are unpriced workload assumptions, not
+observed bills or validated customer capacity.
+
+### Prepare for a first customer
+
+The [reference backend](REFERENCE-BACKEND.md) connects API, identity, database,
+optional uploads, HTTPS, logs and recovery to proposed acceptance tests. Use it
+to scope implementation, then check the [evidence summary](EVIDENCE.md). The
+complete application is not implemented in this toolkit, and the current
+sandbox blueprint must not be presented as a customer-ready product.
+
 For a full repository assessment, ask for a `founder-plan.md`. A focused
 question should stay focused and should not force that artifact.
 
@@ -261,6 +278,7 @@ Native full-plugin marketplace installation remains unqualified.
 
 ## Continue from here
 
+- Evaluate [whether OCI fits the backend](WHY-OCI.md).
 - Prepare [account identifiers and local access](ACCOUNT-SETUP.md).
 - Follow the [first VCN and Linux VM lab](FIRST-VM.md), including SSH and cleanup.
 - Read the [founder and developer use cases](../skills/oci-founder/references/use-cases.md).

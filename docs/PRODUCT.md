@@ -86,6 +86,25 @@ features. Current foundational documentation consists of
 [human-executed VCN/VM lab](FIRST-VM.md). It complements the planning skill and
 does not establish live field validation or a standalone operational VM skill.
 
+## Founder-facing adoption materials
+
+The documentation now connects those foundations to a product decision:
+
+- [Why OCI for this backend?](WHY-OCI.md) defines evidence and reversal
+  conditions instead of claiming a universal price or performance advantage.
+- [Reference backend](REFERENCE-BACKEND.md) defines a small B2B product journey,
+  identifies missing implementation, and specifies authorization, persistence,
+  upload and recovery tests. It is a design, not an executable full-stack sample.
+- [Cost scenarios](COST-SCENARIOS.md) expose workload units, full TCO and missing
+  rates. No observed bill or validated customer-capacity claim is available yet.
+- [Evidence](EVIDENCE.md) separates current records from future field tests and
+  provides a consent-aware structure for real founder stories.
+- [Getting started](GETTING-STARTED.md) provides routes for different team stages,
+  account and region decisions, help channels, and maintained PT-BR/ES entry guides.
+
+An optional AI product feature appears as an evaluation requirement in the
+reference design, not an implemented integration or a default architecture.
+
 ## Product boundaries
 
 The toolkit owns:
@@ -145,7 +164,10 @@ The first smoke deployment should be stateless unless data is the workload's pur
 
 ### North Star
 
-Percentage of target users who reach a verified OCI endpoint in under 60 minutes.
+Percentage of target users who reach a verified OCI endpoint in under 60 minutes
+after account access and prerequisites are ready. Record onboarding and total
+elapsed time separately, including failed attempts. This remains an unvalidated
+target, not a published completion-rate or speed claim.
 
 ### Supporting measures
 
@@ -154,6 +176,8 @@ Percentage of target users who reach a verified OCI endpoint in under 60 minutes
 - account-access setup success and completion of the foundational lab;
 - repeatable deployment completion after onboarding;
 - successful rollback and teardown rate;
+- forecast-versus-observed cost, including credits and retained resources;
+- successful tenant-isolation and data-restore tests for implemented product paths;
 - percentage of service-level knowledge sourced upstream;
 - cross-agent behavioral pass rate;
 - secret exposure and excessive-permission incidents: zero;

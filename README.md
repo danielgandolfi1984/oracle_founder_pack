@@ -2,6 +2,10 @@
 
 [![Validation](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/workflows/validate.yml/badge.svg?branch=main)](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/workflows/validate.yml)
 
+[English](docs/GETTING-STARTED.md) ·
+[Português (Brasil)](docs/i18n/pt-BR/START-HERE.md) ·
+[Español](docs/i18n/es/START-HERE.md)
+
 > Plan your backend's path to OCI with the coding agent you already use.
 
 Founder Toolkit for OCI helps technical founders and backend developers who
@@ -11,6 +15,14 @@ understand important differences between clouds, and choose a small OCI
 architecture with one practical next step. When you are ready to explore your
 account, follow the guided Console and CLI examples to prepare local access,
 configure a VCN, and create your first Linux VM.
+
+Not sure where to begin? [Choose your founder journey](docs/GETTING-STARTED.md).
+Before committing to an architecture, review
+[whether OCI fits your backend](docs/WHY-OCI.md), the
+[complete backend target design](docs/REFERENCE-BACKEND.md), and
+[cost scenarios](docs/COST-SCENARIOS.md). Check the
+[evidence summary](docs/EVIDENCE.md) to see what is implemented, tested, or
+still proposed.
 
 This is an independent personal project created and maintained by
 [Daniel Gandolfi](https://github.com/danielgandolfi1984), who works at Oracle
@@ -25,7 +37,7 @@ lab is a separate, user-executed learning path that requires your own OCI
 account and permissions. Native behavior across all three agents remains under
 validation.
 
-## Start here: first OCI recommendation in about 10 minutes
+## Install and get your first OCI recommendation
 
 The [`v0.1.1` planning skill](https://github.com/danielgandolfi1984/oracle_founder_pack/releases/tag/v0.1.1)
 is a public preview under [UPL-1.0](LICENSE). You need Git, Node.js
@@ -126,6 +138,7 @@ support boundary still apply.
 |---|---|---|---|
 | Understand OCI, translate another cloud, assess a backend, or create a founder plan | Available in the portable `oci-founder` skill | One project-scoped skill copy | Native behavior is not yet qualified across all three hosts |
 | Set up local OCI access and learn VCN/VM basics | Guided Console and CLI documentation | Your OCI account, appropriate IAM access, and commands you choose to run | Human-executed lab, not a new operational skill or live-validated deployment path |
+| Plan a customer-facing backend and its full costs | Reference design, acceptance tests and illustrative cost worksheets | Product requirements and a separately reviewed implementation | Authentication, database and uploads are not implemented in the current sample; no observed bills or customer-capacity claims |
 | Review or generate the Container API sandbox path | Available in the full source checkout | Explicit request plus `blueprints/container-api` | No live OCI plan/apply/rollback/destroy evidence; not production-ready |
 | Plan a Function API and route an operational procedure | Planning available | Reviewed `oracle/skills` checkout and verified Functions skills for execution | The portable skill alone fails closed at planning level |
 | Plan OKE, Enterprise AI, or Oracle Database work | Orientation and routing available | Separately verified official Oracle domain skill | This toolkit does not duplicate the service procedure |
@@ -135,12 +148,17 @@ support boundary still apply.
 
 | If you need to… | Start here |
 |---|---|
-| Install, verify discovery, make the first request, update, or remove the skill | [10-minute quickstart](docs/QUICKSTART.md) |
+| Choose a route as a solo founder, small team, migrating developer or first-customer team | [Getting started](docs/GETTING-STARTED.md), [Português](docs/i18n/pt-BR/START-HERE.md), or [Español](docs/i18n/es/START-HERE.md) |
+| Decide whether OCI fits the product before committing to it | [OCI decision guide](docs/WHY-OCI.md) |
+| Install, verify discovery, make the first request, update, or remove the skill | [Skill quickstart](docs/QUICKSTART.md) |
 | Find account IDs in the Console and configure local authentication | [Account and local access](docs/ACCOUNT-SETUP.md) |
 | Create a VCN, subnet, restricted SSH access, and a Linux VM | [First VCN and Linux VM](docs/FIRST-VM.md) |
 | Pick a concrete founder/developer job and copy a safe prompt | [Use-case recipes](docs/USE-CASES.md) |
 | Decode tenancy, compartments, VCNs, OCIDs, identities, budgets, quotas, and other OCI terms | [OCI glossary](docs/GLOSSARY.md) |
 | Establish the minimum identity, network, cost, observability, delivery, and teardown guardrails | [Founder Baseline](docs/FOUNDER-BASELINE.md) |
+| Understand the components and tests of a small authenticated SaaS backend | [Reference backend design](docs/REFERENCE-BACKEND.md) |
+| Estimate prototype, first-customer and growth costs without assuming a fixed bill | [Cost scenarios and worksheet](docs/COST-SCENARIOS.md) |
+| Distinguish documented guidance, local tests and real deployment proof | [Evidence summary and field-test plan](docs/EVIDENCE.md) |
 | Check exact evidence, open gates, or release status | [Validation record](docs/VALIDATION.md) and [compatibility matrix](docs/COMPATIBILITY.md) |
 | Review the personal publisher, license, support, and brand decision | [Accepted license and publisher ADR](docs/decisions/0003-public-license-and-publisher.md) |
 
@@ -379,9 +397,15 @@ OKE is a graduation path, not the default. The official upstream OKE skills alre
 ├── .claude-plugin/plugin.json        # Claude Code manifest
 ├── skills/oci-founder/               # Portable Agent Skill
 ├── blueprints/container-api/         # Sandbox-only 0.2 field preview
+├── docs/GETTING-STARTED.md            # Routes, signup, region choice, and help
+├── docs/WHY-OCI.md                   # Workload-specific adoption decision
 ├── docs/QUICKSTART.md                 # Founder/developer guided installation and first use
 ├── docs/ACCOUNT-SETUP.md              # Console IDs, local authentication, and agent context
 ├── docs/FIRST-VM.md                   # Human-run VCN, subnet, Linux VM, SSH, and cleanup lab
+├── docs/REFERENCE-BACKEND.md          # Proposed authenticated SaaS and acceptance tests
+├── docs/COST-SCENARIOS.md             # Illustrative usage, pricing inputs, and TCO
+├── docs/EVIDENCE.md                  # What is proved and how to validate the next path
+├── docs/i18n/                       # Maintained Portuguese and Spanish entry guides
 ├── docs/GLOSSARY.md                   # OCI terms, cross-cloud models, and traps
 ├── docs/USE-CASES.md                  # Copyable founder/developer recipes
 ├── docs/FOUNDER-BASELINE.md           # Minimum governance, cost, and safety baseline

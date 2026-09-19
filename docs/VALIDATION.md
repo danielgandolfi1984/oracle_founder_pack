@@ -5,6 +5,10 @@ previews, and the separately versioned `0.2.0-preview.3` Container API candidate
 capabilities that remain unverified. It is not a stable-release certification,
 an Oracle review, or an Oracle support statement.
 
+For a founder-readable summary of these records and the proposed next field
+tests, start with [Evidence](EVIDENCE.md). The reference backend and cost
+worksheets are documentation, not additional execution receipts.
+
 ## Environment
 
 - Date: 2026-09-18
