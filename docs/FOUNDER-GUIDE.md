@@ -110,6 +110,12 @@ the selected name with the list command. `main` moves: a reviewed local commit,
 not the branch label, identifies the evaluated source. Source installation
 does not authorize dependency installation, account access or deployment.
 
+The [public-source check](../tests/results/2026-09-21-public-source-assessment.json)
+confirmed all three skills at commit `2baedb0` and their joint installation in
+one Codex project layout. Removing one preserved the other two. This verifies
+files and installer behavior, not native agent answers or OCI access. Choose
+the skill relevant to your task; installing the whole set is not required.
+
 ## 4. Choose: a new product or an existing workload
 
 **Starting:** describe the first customer action, data, users, expected traffic,

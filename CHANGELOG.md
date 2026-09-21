@@ -5,6 +5,16 @@ publishes an independent public open-source preview under UPL-1.0, with
 best-effort community support and no SLA. It has not published a tagged stable
 release or claimed cross-host or production qualification.
 
+## Public-source evidence consolidation — 2026-09-21
+
+- Published the sanitized public-clone and joint Codex-layout installation
+  receipts, preserving both the initial acquisition blocker and the successful
+  offline-acquisition follow-up without assigning an unproved root cause.
+- Linked the evidence from both founder guides and the results index. Recorded
+  selective removal, scoped cleanup and exact source/CI revisions; no new
+  installation, native-host or cloud result is implied by this documentation.
+- Kept skills, release archives, blueprints and local-only presentations unchanged.
+
 ## Bilingual founder toolkit on `main` — 2026-09-21
 
 - Added two standalone planning companions, `oci-founder-start` and

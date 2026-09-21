@@ -1,0 +1,454 @@
+{
+  "captured_output_excerpts_omitted": true,
+  "effects": {
+    "cloud_mutation_attempted": false,
+    "global_install_attempted": false,
+    "native_session_started": false,
+    "npm_acquisition_performed": true,
+    "npm_network_download_allowed": false,
+    "oci_account_accessed": false,
+    "offline_cache_used": true,
+    "public_https_clone_performed": true
+  },
+  "environment_policy": {
+    "cloud_token_or_password_named_variables_inherited": false,
+    "home_redirected": false,
+    "inherited_keys": [
+      "HOME",
+      "LANG",
+      "LC_ALL",
+      "LC_CTYPE",
+      "LOGNAME",
+      "PATH",
+      "SHELL",
+      "TERM",
+      "TMPDIR",
+      "USER"
+    ],
+    "proxy_variables_inherited": false,
+    "public_git_authentication": {
+      "chat_credentials_used": false,
+      "credential_helper_disabled": true,
+      "http_extra_headers_cleared": true,
+      "interactive_prompts_disabled": true,
+      "system_and_global_git_config_disabled": true
+    },
+    "source_environment_copied": false,
+    "strategy": "allowlist",
+    "universal_agent_detection_fixture": {
+      "agent": "opencode",
+      "kind": "empty-config-directory",
+      "model_session_started": false,
+      "path": "$QUALIFICATION_ROOT/xdg-config/opencode",
+      "purpose": "exercise shared universal .agents removal semantics",
+      "scope": "disposable-qualification-root"
+    },
+    "user_npm_config_disabled": true
+  },
+  "global_target_names": [
+    "~/.agents/skills/oci-founder",
+    "~/.agents/skills/oci-founder-migrate",
+    "~/.agents/skills/oci-founder-start",
+    "~/.claude/skills/oci-founder",
+    "~/.claude/skills/oci-founder-migrate",
+    "~/.claude/skills/oci-founder-start",
+    "~/.codex/skills/oci-founder",
+    "~/.codex/skills/oci-founder-migrate",
+    "~/.codex/skills/oci-founder-start",
+    "~/.cursor/skills/oci-founder",
+    "~/.cursor/skills/oci-founder-migrate",
+    "~/.cursor/skills/oci-founder-start"
+  ],
+  "global_targets_unchanged": true,
+  "harness_sha256": "097533a6d600a76584ddd0d0fda66cd119eceb15710e5b689596bfe53ff8c8c2",
+  "kind": "oci-founder-public-clone-shared-codex-layout",
+  "limitations": [
+    "The public HTTPS clone was checked at the exact recorded commit; main can move.",
+    "Installation used the verified clone as its local source, not the CLI remote URL route.",
+    "Same-project coexistence and selective removal were tested only in the Codex project layout.",
+    "No native Codex, Cursor or Claude Code model session, discovery or behavioral qualification.",
+    "Only the twelve named global skill targets were snapshotted, not the entire user profile.",
+    "The disposable OpenCode configuration is a shared-directory detection fixture, not a native session."
+  ],
+  "observed_at_utc": "2026-09-21T12:27:10.774161+00:00",
+  "protected_files_sha256": {
+    "scripts/qualify_skill_install.py": "5a93fc494d8a1609e6b3ca0b07706fd3f9eebbc782c27a5c67f5ca6753b073ff",
+    "scripts/skills-cli-runtime/package-lock.json": "2fbf496c854780bbf7be13d08c7806b0479c60483381d657d08755b563630701",
+    "scripts/skills-cli-runtime/package.json": "3a35717c49e02a025fdad96301cf2438c014ee941ee35008eb038ab376e5a09a"
+  },
+  "public_source_url": "https://github.com/danielgandolfi1984/oracle_founder_pack.git",
+  "qualification": "public-source-and-installation-layout-only",
+  "release_qualified": false,
+  "skills_cli": {
+    "dependency_lock": {
+      "dependency_integrities_complete": true,
+      "expected_lock_sha256": "2fbf496c854780bbf7be13d08c7806b0479c60483381d657d08755b563630701",
+      "expected_package_json_sha256": "3a35717c49e02a025fdad96301cf2438c014ee941ee35008eb038ab376e5a09a",
+      "expected_skills_dist_integrity": "sha512-OfePnDft+Xt9/tCoHdCUe5fkM8i+Q3QOSQO53hm7mKtsXyvc+CKOAAliVWZ484HS3cWx+6r+ob0AArixs3jYXw==",
+      "hashes_match": true,
+      "observed_lock_sha256": "2fbf496c854780bbf7be13d08c7806b0479c60483381d657d08755b563630701",
+      "observed_package_json_sha256": "3a35717c49e02a025fdad96301cf2438c014ee941ee35008eb038ab376e5a09a",
+      "observed_skills_dist_integrity": "sha512-OfePnDft+Xt9/tCoHdCUe5fkM8i+Q3QOSQO53hm7mKtsXyvc+CKOAAliVWZ484HS3cWx+6r+ob0AArixs3jYXw==",
+      "parse_error": null,
+      "runtime_lock_matches_reviewed": true,
+      "runtime_lock_sha256": "2fbf496c854780bbf7be13d08c7806b0479c60483381d657d08755b563630701",
+      "semantic_match": true,
+      "verified": true
+    },
+    "expected_version": "1.7.0",
+    "integrity": {
+      "expected_file_sha256": {
+        "bin/cli.mjs": "cda9a4dd5cd209c6f1dc551feacbaef503cefb5d8986d3c4cab9a95e1bbc47e6",
+        "dist/cli.mjs": "fde68534019765fb69510a0038ca7df2810a6ffed4c26fef9beabdcf6cc6701c",
+        "package.json": "d912e2f2fa141ba3d65b80e7374827d92ac4c6b81fdd63dcb80fdd641809f5d2"
+      },
+      "hashes_match": true,
+      "manifest_error": null,
+      "manifest_valid": true,
+      "observed_file_sha256": {
+        "bin/cli.mjs": "cda9a4dd5cd209c6f1dc551feacbaef503cefb5d8986d3c4cab9a95e1bbc47e6",
+        "dist/cli.mjs": "fde68534019765fb69510a0038ca7df2810a6ffed4c26fef9beabdcf6cc6701c",
+        "package.json": "d912e2f2fa141ba3d65b80e7374827d92ac4c6b81fdd63dcb80fdd641809f5d2"
+      },
+      "verified_before_execution": true
+    },
+    "observed_version": "1.7.0",
+    "offline_cache": {
+      "copied_before_npm_execution": true,
+      "copied_tree_sha256": "0a659aad743b856877e774a58d965077a9d41d6c9979229ba6099b2be10b405e",
+      "provided": true,
+      "source_path_recorded": false,
+      "source_tree_sha256": "0a659aad743b856877e774a58d965077a9d41d6c9979229ba6099b2be10b405e"
+    },
+    "package": "skills",
+    "source": "npm-pinned-reviewed-files-offline-cache",
+    "version_exact_match": true
+  },
+  "source_and_runner_inputs_unchanged": true,
+  "source_commit": "2baedb08012111e91b1f5b22e77211bbcc344de1",
+  "status": "pass_with_reservations",
+  "steps": {
+    "cli_version": {
+      "argv": [
+        "$NODE_EXECUTABLE",
+        "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+        "--version"
+      ],
+      "duration_ms": 105,
+      "exit_code": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "bb7320d831e7a151aa901c35e7326c752fa2ef5024f30768c42319b8bed171ed",
+      "timed_out": false
+    },
+    "git_init": {
+      "argv": [
+        "/usr/bin/git",
+        "init",
+        "-q"
+      ],
+      "duration_ms": 39,
+      "exit_code": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timed_out": false
+    },
+    "install_oci-founder": {
+      "argv": [
+        "$NODE_EXECUTABLE",
+        "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+        "add",
+        "$QUALIFICATION_ROOT/public-clone",
+        "--skill",
+        "oci-founder",
+        "-a",
+        "codex",
+        "--copy",
+        "-y",
+        "--json"
+      ],
+      "duration_ms": 133,
+      "exit_code": 0,
+      "stderr_sha256": "2d08c78d3ea967a2bd82e96db39efea8d0f8ed9d0ec1837e97dda08905a76c3b",
+      "stdout_sha256": "e5a27e47a2121b46cf5a665438c50fcae8df4846069d1f11ef783e0b168b7160",
+      "timed_out": false
+    },
+    "install_oci-founder-migrate": {
+      "argv": [
+        "$NODE_EXECUTABLE",
+        "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+        "add",
+        "$QUALIFICATION_ROOT/public-clone",
+        "--skill",
+        "oci-founder-migrate",
+        "-a",
+        "codex",
+        "--copy",
+        "-y",
+        "--json"
+      ],
+      "duration_ms": 132,
+      "exit_code": 0,
+      "stderr_sha256": "d48c843ae37147bd6105f998cdafdb386a8ed6d685b8940dc741f696d998809e",
+      "stdout_sha256": "805cd857ec1e4fcc29366d6c90f5515de0ce56e22a8c6b8ccf53432ac86cdd8b",
+      "timed_out": false
+    },
+    "install_oci-founder-start": {
+      "argv": [
+        "$NODE_EXECUTABLE",
+        "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+        "add",
+        "$QUALIFICATION_ROOT/public-clone",
+        "--skill",
+        "oci-founder-start",
+        "-a",
+        "codex",
+        "--copy",
+        "-y",
+        "--json"
+      ],
+      "duration_ms": 128,
+      "exit_code": 0,
+      "stderr_sha256": "6e3d3319ef6ba47146e7da49d89e886c51b394598aefc60056afdfd6b52fa517",
+      "stdout_sha256": "f2b031ae4204d30444713bf8cc2fd999e8f5e7c51e26ecc8ef8de677a58b06b4",
+      "timed_out": false
+    },
+    "list_after_start_removal": {
+      "argv": [
+        "$NODE_EXECUTABLE",
+        "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+        "list",
+        "-a",
+        "codex",
+        "--json"
+      ],
+      "duration_ms": 124,
+      "exit_code": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "961061c3c357d2f3c7ac1da2bef3d28a569f667929034658b460b5e34cd02827",
+      "timed_out": false
+    },
+    "list_all_three": {
+      "argv": [
+        "$NODE_EXECUTABLE",
+        "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+        "list",
+        "-a",
+        "codex",
+        "--json"
+      ],
+      "duration_ms": 121,
+      "exit_code": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "63e8598af5f7d54ac2d5e71b907f71e9edac42ac05348fd91108da8ef0cb7acf",
+      "timed_out": false
+    },
+    "list_empty": {
+      "argv": [
+        "$NODE_EXECUTABLE",
+        "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+        "list",
+        "-a",
+        "codex",
+        "--json"
+      ],
+      "duration_ms": 111,
+      "exit_code": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "timed_out": false
+    },
+    "local_head": {
+      "argv": [
+        "/usr/bin/git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "duration_ms": 31,
+      "exit_code": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "89907681b30ed6422cc9aeb433427a355f92bda656cc850864c6e4f4942daa71",
+      "timed_out": false
+    },
+    "npm_ci_ignore_scripts": {
+      "argv": [
+        "$NPM_EXECUTABLE",
+        "ci",
+        "--ignore-scripts",
+        "--no-audit",
+        "--no-fund",
+        "--offline"
+      ],
+      "duration_ms": 434,
+      "exit_code": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "a6e75900e8b3d600628a89b1c18438b89660bdd7b230af2dc167d2116fd9538c",
+      "timed_out": false
+    },
+    "public_clone": {
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "credential.helper=",
+        "-c",
+        "core.askPass=",
+        "-c",
+        "http.extraHeader=",
+        "-c",
+        "protocol.allow=never",
+        "-c",
+        "protocol.https.allow=always",
+        "clone",
+        "--depth",
+        "1",
+        "--single-branch",
+        "--branch",
+        "main",
+        "--no-tags",
+        "https://github.com/danielgandolfi1984/oracle_founder_pack.git",
+        "$QUALIFICATION_ROOT/public-clone"
+      ],
+      "duration_ms": 1001,
+      "exit_code": 0,
+      "stderr_sha256": "95fed6dd57684750f35a66d535443def9ad1fa94bf7f0350372b63e8b343c6fc",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timed_out": false
+    },
+    "public_head": {
+      "argv": [
+        "/usr/bin/git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "duration_ms": 27,
+      "exit_code": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "89907681b30ed6422cc9aeb433427a355f92bda656cc850864c6e4f4942daa71",
+      "timed_out": false
+    },
+    "remove_founder": {
+      "argv": [
+        "$NODE_EXECUTABLE",
+        "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+        "remove",
+        "oci-founder",
+        "-y"
+      ],
+      "duration_ms": 124,
+      "exit_code": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "3a04ceb86b4fcff4f03d81787bc188f5d224507af12ac7d145bd5fbdae00beef",
+      "timed_out": false
+    },
+    "remove_migrate": {
+      "argv": [
+        "$NODE_EXECUTABLE",
+        "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+        "remove",
+        "oci-founder-migrate",
+        "-y"
+      ],
+      "duration_ms": 125,
+      "exit_code": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "747f5a3580ac2bdf9f13bbc2eb485de255b4a0901b28a53f7d4264c3cc0a4bf3",
+      "timed_out": false
+    },
+    "remove_start_only": {
+      "argv": [
+        "$NODE_EXECUTABLE",
+        "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+        "remove",
+        "oci-founder-start",
+        "-y"
+      ],
+      "duration_ms": 129,
+      "exit_code": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "02918578f3dd2dd70abded446f8986d8422898d5f8779e4d0b742ffd94309d39",
+      "timed_out": false
+    }
+  },
+  "validations": {
+    "after_removing_start": {
+      "all_copies_match_public_source": true,
+      "exact_location_set": true,
+      "expected_skills": [
+        "oci-founder",
+        "oci-founder-migrate"
+      ],
+      "listed_names": [
+        "oci-founder",
+        "oci-founder-migrate"
+      ],
+      "locations": [
+        ".agents/skills/oci-founder",
+        ".agents/skills/oci-founder-migrate"
+      ],
+      "other_two_preserved": true,
+      "remaining_lock_names": [
+        "oci-founder",
+        "oci-founder-migrate"
+      ]
+    },
+    "all_three_installed": {
+      "all_copies_match_public_source": true,
+      "exact_location_set": true,
+      "expected_skills": [
+        "oci-founder",
+        "oci-founder-migrate",
+        "oci-founder-start"
+      ],
+      "listed_names": [
+        "oci-founder",
+        "oci-founder-migrate",
+        "oci-founder-start"
+      ],
+      "locations": [
+        ".agents/skills/oci-founder",
+        ".agents/skills/oci-founder-migrate",
+        ".agents/skills/oci-founder-start"
+      ]
+    },
+    "commit_and_public_source": {
+      "all_three_public_skills_match_local": true,
+      "expected_commit": "2baedb08012111e91b1f5b22e77211bbcc344de1",
+      "local_head": "2baedb08012111e91b1f5b22e77211bbcc344de1",
+      "local_skill_tree_sha256": {
+        "oci-founder": "dba58d1984513e44aa77a5729a20b16e23186dac00e0de17ef1db01ddd0bda49",
+        "oci-founder-migrate": "454d15368b922c00e36754484d6602e723e2f9a7785ef9b5ac923cfdfcc7cd53",
+        "oci-founder-start": "77a5f9611cb811b91356ce5fc1a4132efd2f1c869d631b577e548a4088e746d8"
+      },
+      "public_head": "2baedb08012111e91b1f5b22e77211bbcc344de1",
+      "public_skill_tree_sha256": {
+        "oci-founder": "dba58d1984513e44aa77a5729a20b16e23186dac00e0de17ef1db01ddd0bda49",
+        "oci-founder-migrate": "454d15368b922c00e36754484d6602e723e2f9a7785ef9b5ac923cfdfcc7cd53",
+        "oci-founder-start": "77a5f9611cb811b91356ce5fc1a4132efd2f1c869d631b577e548a4088e746d8"
+      }
+    },
+    "final_removal": {
+      "list_empty": true,
+      "residuals": {
+        "allowed_residual_directories": [
+          ".agents",
+          ".agents/skills"
+        ],
+        "allowed_residual_files": [
+          "skills-lock.json"
+        ],
+        "clean": true,
+        "empty_directories": [
+          ".agents/skills"
+        ],
+        "remaining_skill_copies": [],
+        "skills_lock": {
+          "skills": {},
+          "version": 1
+        },
+        "skills_lock_empty_or_absent": true,
+        "symlinks": [],
+        "unexpected_directories": [],
+        "unexpected_files": []
+      }
+    }
+  }
+}

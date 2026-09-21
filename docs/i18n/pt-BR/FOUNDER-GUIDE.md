@@ -110,6 +110,12 @@ o nome escolhido com o comando de listagem. `main` muda: é o commit local
 revisado, não o nome da branch, que identifica o código avaliado. Instalar do
 código-fonte não autoriza instalar dependências, acessar a conta ou fazer deploy.
 
+O [teste do código público](../../../tests/results/2026-09-21-public-source-assessment.json)
+confirmou as três skills no commit `2baedb0` e a instalação conjunta no layout
+de um projeto Codex. Remover uma preservou as outras duas. Isso verifica
+arquivos e comportamento do instalador, não respostas nativas do agente nem
+acesso OCI. Escolha a skill da sua tarefa; não é obrigatório instalar o conjunto.
+
 ## 4. Escolha: produto novo ou workload existente
 
 **Começando:** descreva a primeira ação do cliente, dados, usuários, tráfego

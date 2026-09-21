@@ -14,9 +14,10 @@ evidence remains in [VALIDATION.md](VALIDATION.md).
 |---|---|---|
 | Is there a published skill I can install? | Yes, `v0.1.1` public preview | [Publication receipt](../tests/results/2026-09-18-v0.1.1-publication.json) records the tag, Codex project install/reinstall and downloaded asset verification. It does not qualify every host runtime |
 | Are there focused skills for starting and migrating? | Yes, two source-only `0.1.0` companions on `main` | [Companion lifecycle receipt](../tests/results/2026-09-21-companion-install.json) records six local-source cases: two skills × three installer layouts, including removal and reinstall. It does not prove native host behavior or live OCI use |
+| Do the three skills exist in the public source and install together? | Yes, at the recorded revision in one Codex project layout | [Public-source assessment](../tests/results/2026-09-21-public-source-assessment.json) binds the public clone, exact skill trees, joint installation, selective removal and scoped cleanup. It does not qualify native sessions or joint use on other hosts |
 | Can I follow the user journey in English or Portuguese? | Yes, equivalent complete founder guides | [English](FOUNDER-GUIDE.md) and [Português](i18n/pt-BR/FOUNDER-GUIDE.md) cover installation, prompts, account access, VCN/VM, migration, costs and glossary. Not every engineering reference or historical receipt is translated |
 | Has the skill answered a real agent prompt? | One recorded native Codex comparison passed with reservations | [Native probe](../tests/results/2026-09-18-v0.1.1-codex-native.json) and [assessment](../tests/results/2026-09-18-v0.1.1-assessment.json). This is not a full cross-host replay or a usability benchmark |
-| Do repository and package checks run in CI? | Yes, for the exact commits linked | The foundation-docs baseline `8bf14ac` passed [run 35446784381](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35446784381). Check the [workflow](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/workflows/validate.yml) for later revisions; CI is not an OCI deployment |
+| Do repository and package checks run in CI? | Yes, for the exact commits linked | The bilingual three-skill source at `2baedb0` passed both jobs in [run 35598862683](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35598862683). Check the [workflow](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/workflows/validate.yml) for later revisions; CI is not an OCI deployment |
 | Has the VM lab been executed in an OCI account by this project? | Not recorded | [FIRST-VM.md](FIRST-VM.md) is a source-reviewed, human-executed guide, not field-test evidence |
 | Has the Container API preview been applied, rolled back and removed in OCI? | Not recorded | Its [README](../blueprints/container-api/README.md) describes local checks and open field gates. Generated Terraform is not proof of deployed resources |
 | Can I exercise business rules locally? | A separate synthetic, in-process slice exists | [Local lab](../examples/local-backend/README.md) and [tests](../tests/test_local_backend.py) exercise membership, roles, projects/tasks, retries, SQLite persistence and new-file recovery. No HTTP listener, real token verification or OCI integration |
@@ -37,6 +38,29 @@ checks exercised a new FastAPI/PostgreSQL project and a Node.js workload arrivin
 from AWS; they kept secrets out of the conversation, preserved stack choices,
 and required migration evidence and rollback planning. These narrow manual
 checks are not native cross-host qualification or a deployment benchmark.
+
+### Public-source installation follow-up
+
+At commit `2baedb08012111e91b1f5b22e77211bbcc344de1`, an unauthenticated HTTPS
+clone matched the three reviewed skill trees. The
+[initial attempt](../tests/results/2026-09-21-public-source-initial.json) stopped
+at installer acquisition before installing any skill. Its underlying npm or
+integrity diagnostic was not retained; the cause remains undetermined.
+
+A [separate follow-up](../tests/results/2026-09-21-public-source-codex.raw.json)
+used the existing reviewed cache with `npm ci --offline --ignore-scripts` and
+the original dependency-lock and CLI-file hash checks. It installed the three
+skills from the verified clone into one Codex project layout. Removing only
+`oci-founder-start` preserved `oci-founder` and `oci-founder-migrate` plus their
+lock entries. Final removal left no installed skills or unexpected residuals;
+empty shared directories and an empty skill lock were allowed. Twelve named
+global skill targets were unchanged.
+
+Only npm acquisition was offline, not the HTTPS clone. These receipts do not
+test installation directly through the CLI's remote-URL route, native agent
+discovery or behavior, other hosts' joint layouts, or any OCI deployment. The
+[assessment](../tests/results/2026-09-21-public-source-assessment.json) preserves
+both results and binds the original sanitized receipts by SHA-256.
 
 ## Reproduce the local application checks
 

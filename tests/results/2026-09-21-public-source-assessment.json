@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "kind": "oci-founder-public-source-assessment",
+  "status": "pass_with_reservations",
+  "source_commit": "2baedb08012111e91b1f5b22e77211bbcc344de1",
+  "observed_at_utc": "2026-09-21T12:27:10.774161+00:00",
+  "qualification": "public-source-and-installation-layout-only",
+  "release_qualified": false,
+  "evidence": {
+    "initial": {
+      "path": "tests/results/2026-09-21-public-source-initial.json",
+      "sha256": "37d2326afd4c05f91ae69ad128e9181748a2f8973acc57139e3067a477b4b811",
+      "status": "blocked",
+      "stage": "canonical-locked-cli-acquisition",
+      "installation_reached": false,
+      "underlying_cause": "undetermined",
+      "underlying_diagnostics_retained": false
+    },
+    "offline_acquisition_followup": {
+      "path": "tests/results/2026-09-21-public-source-codex.raw.json",
+      "sha256": "1a519c9bdfb74f75a28e19007182dcded90db85a5bd6b6578b8638e179403b8f",
+      "status": "pass_with_reservations",
+      "npm_dependency_acquisition": "offline-reviewed-cache",
+      "public_clone_transport": "https",
+      "original_integrity_checks_preserved": true
+    }
+  },
+  "skill_tree_sha256": {
+    "oci-founder": "dba58d1984513e44aa77a5729a20b16e23186dac00e0de17ef1db01ddd0bda49",
+    "oci-founder-start": "77a5f9611cb811b91356ce5fc1a4132efd2f1c869d631b577e548a4088e746d8",
+    "oci-founder-migrate": "454d15368b922c00e36754484d6602e723e2f9a7785ef9b5ac923cfdfcc7cd53"
+  },
+  "proved": {
+    "public_https_clone_without_credentials": true,
+    "expected_public_commit_matched": true,
+    "three_public_skill_trees_matched_reviewed_source": true,
+    "three_skills_coexisted_in_one_codex_project_layout": true,
+    "removing_start_preserved_other_two_skills_and_lock_entries": true,
+    "final_skill_list_empty": true,
+    "final_unexpected_residuals_absent": true,
+    "observed_global_targets_unchanged": 12
+  },
+  "allowed_final_residuals": [
+    "empty .agents and .agents/skills directories",
+    "skills-lock.json with an empty skills map"
+  ],
+  "source_ci": {
+    "head_sha": "2baedb08012111e91b1f5b22e77211bbcc344de1",
+    "run_id": 35598862683,
+    "url": "https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35598862683",
+    "conclusion": "success",
+    "jobs": ["validate", "validate-local-http"]
+  },
+  "limitations": [
+    "This assessment summarizes retained sanitized receipts; it is not a new test run.",
+    "The public branch can move. Evidence binds the recorded commit and skill trees, not every later revision.",
+    "Installation used the verified local clone; the CLI remote-URL route was not tested for this skill set.",
+    "Same-project coexistence and selective removal were tested only in the Codex installation layout.",
+    "No native agent discovery, model behavior, OCI access or production deployment was qualified.",
+    "Twelve named global skill targets were observed, not the entire user profile.",
+    "Only npm dependency acquisition was offline; the public clone required HTTPS access.",
+    "The initial acquisition failure remains unexplained; no network or integrity root cause is asserted."
+  ]
+}

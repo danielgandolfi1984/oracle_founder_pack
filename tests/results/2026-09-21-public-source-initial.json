@@ -1,0 +1,52 @@
+{
+  "kind": "oci-founder-public-clone-shared-codex-layout",
+  "status": "blocked",
+  "qualification": "public-source-only-installation-not-reached",
+  "source_commit": "2baedb08012111e91b1f5b22e77211bbcc344de1",
+  "public_source_url": "https://github.com/danielgandolfi1984/oracle_founder_pack.git",
+  "public_source_checks": {
+    "https_clone_completed": true,
+    "chat_credentials_used": false,
+    "system_and_global_git_config_disabled": true,
+    "credential_helper_disabled": true,
+    "interactive_authentication_disabled": true,
+    "public_head_matches_expected_commit": true,
+    "local_head_matches_expected_commit": true,
+    "all_three_skill_trees_match_local": true,
+    "skills_compared": [
+      "oci-founder",
+      "oci-founder-start",
+      "oci-founder-migrate"
+    ]
+  },
+  "blocker": {
+    "phase": "canonical-locked-cli-acquisition",
+    "error_label": "locked_cli_acquisition_failed",
+    "cli_prefix_returned": false,
+    "underlying_npm_or_integrity_details_preserved": false,
+    "cause": "undetermined",
+    "download_retry_attempted": false
+  },
+  "installation_checks": {
+    "same_project_installation_attempted": false,
+    "coexistence_qualified": false,
+    "selective_removal_qualified": false,
+    "final_project_cleanup_qualified": false
+  },
+  "effects": {
+    "global_install_attempted": false,
+    "native_session_started": false,
+    "oci_account_accessed": false,
+    "cloud_mutation_attempted": false,
+    "tracked_repository_files_changed": false,
+    "commit_created": false,
+    "disposable_directory_cleaned_on_exit": true
+  },
+  "limitations": [
+    "The public source checks passed at the recorded commit; main can move.",
+    "The CLI acquisition returned no executable and the harness stopped before installation.",
+    "The internal npm result was not retained; no specific network or integrity root cause is asserted.",
+    "Earlier independent per-skill installation results do not qualify same-project coexistence."
+  ],
+  "release_qualified": false
+}

@@ -21,6 +21,28 @@ Each result must record the prompt ID, environment, mutations attempted, outcome
 reservations, and reviewer. Never include credentials, private OCIDs, customer
 identifiers, or secret values.
 
+## Three-skill public source — 2026-09-21
+
+- [Public-source assessment](2026-09-21-public-source-assessment.json): exact
+  public commit and skill hashes, successful CI, and the boundaries of the
+  three-skill joint installation in a Codex project layout.
+- [Initial attempt](2026-09-21-public-source-initial.json): public clone checks
+  passed, but installer acquisition was blocked before installation. The cause
+  is undetermined because the underlying diagnostic was not preserved.
+- [Offline-acquisition follow-up](2026-09-21-public-source-codex.raw.json): exact
+  sanitized receipt for a new HTTPS clone, integrity-checked offline npm
+  acquisition, joint install, selective removal and scoped cleanup. Offline
+  describes npm acquisition only; no native agent session or OCI call occurred.
+- [Companion lifecycle](2026-09-21-companion-install.json): six independent
+  local-source cases across Codex, Cursor and Claude Code installer layouts.
+- [Renewed host preflight](2026-09-21-host-preflight.json): read-only inventory
+  and development validators after adding independently versioned companions;
+  no native cross-host qualification.
+
+Both attempt receipts are retained byte-for-byte and their SHA-256
+values are bound by the assessment. These source records do not change the
+immutable `v0.1.1` core skill or its archives.
+
 ## `0.1.1` publication records
 
 - [`2026-09-18-v0.1.1-publication.json`](2026-09-18-v0.1.1-publication.json):
@@ -54,7 +76,7 @@ and version-bound receipts are unchanged.
   an explicitly requested ten-section plan (1,890 words), with no file,
   network, or cloud effects.
 - [`2026-09-18-host-preflight.json`](2026-09-18-host-preflight.json):
-  renewable current source/validator fingerprint and read-only host inventory.
+  historical source/validator fingerprint and read-only host inventory.
   It records the source identity and skill hash assessed; it is not native
   cross-host qualification.
 - [`2026-09-18-v0.1.1-skill-install-lifecycle.json`](2026-09-18-v0.1.1-skill-install-lifecycle.json):
