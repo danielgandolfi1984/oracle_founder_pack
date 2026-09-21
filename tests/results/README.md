@@ -23,10 +23,14 @@ identifiers, or secret values.
 
 ## Security correction — 2026-09-21
 
-- [Full-bundle assessment](2026-09-21-security-full-package-assessment.json)
-  and [raw installation receipt](2026-09-21-security-full-package-install.raw.json):
+- [Final full-bundle assessment](2026-09-21-security-final-full-package-assessment.json)
+  and [raw installation receipt](2026-09-21-security-final-full-package-install.raw.json):
   fresh fixed-bundle install/remove/reinstall in three project layouts; no
   native model session or OCI deployment is implied.
+- [Initial candidate assessment](2026-09-21-security-full-package-assessment.json)
+  and [initial receipt](2026-09-21-security-full-package-install.raw.json) remain
+  historical: they precede the CodeQL-driven hardening and do not bind the
+  final bundle.
 - [Read-only host preflight](2026-09-21-security-host-preflight.json): renewed
   validator-source bindings; prior host records remain historical.
 - [Historical fixture lineage](2026-09-21-fixture-lineage.json): hashes derived

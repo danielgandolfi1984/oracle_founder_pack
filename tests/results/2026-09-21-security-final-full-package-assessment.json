@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "kind": "oci-founder-security-full-package-assessment",
+  "observed_at_utc": "2026-09-21T14:41:20.944878+00:00",
+  "status": "pass_with_reservations",
+  "component_version": "0.2.0-preview.4",
+  "planning_skill_version": "0.1.1",
+  "baseline_commit": "8f90ce5ac619a13dc614ccc304d2309eace4ae01",
+  "supersedes_candidate_assessment": "tests/results/2026-09-21-security-full-package-assessment.json",
+  "scope": "Final prepublication bundle after CodeQL-driven header and placeholder-domain hardening; exact bytes bound below.",
+  "archive": {
+    "file": "oci-founder-toolkit-0.1.1-container-api-0.2.0-preview.4.tar.gz",
+    "format": "tar+gzip",
+    "normalized_mtime": 0,
+    "normalized_owner": "0:0",
+    "sha256": "e00f8bb387df73245a227e3675e98d2fbcb18846d11c67db96b0a604ac1ebba4",
+    "size": 86369
+  },
+  "manifest_sha256": "508cce79b93818e7f7422e9b7eaca33445742d5022b258a8e682d13ff8a3b257",
+  "content_sha256": "d58a4e38a2d29e6350a8f63e6f0a0dd4d17dee722b02f24c73dc8700f02af15f",
+  "file_count": 48,
+  "raw_receipt": {
+    "path": "tests/results/2026-09-21-security-final-full-package-install.raw.json",
+    "sha256": "f6909393b5270ffb8b7320eb80bc4170e63d8b2410c603a36cc3a21ab88de2a0"
+  },
+  "cases": [
+    {
+      "agent": "codex",
+      "passed": true,
+      "first_install_exact_and_matching": true,
+      "reinstall_exact_and_matching": true,
+      "final_remove_clean": true
+    },
+    {
+      "agent": "cursor",
+      "passed": true,
+      "first_install_exact_and_matching": true,
+      "reinstall_exact_and_matching": true,
+      "final_remove_clean": true
+    },
+    {
+      "agent": "claude-code",
+      "passed": true,
+      "first_install_exact_and_matching": true,
+      "reinstall_exact_and_matching": true,
+      "final_remove_clean": true
+    }
+  ],
+  "skills_cli": {
+    "version": "1.7.0",
+    "source": "npm-pinned-reviewed-files-offline-cache",
+    "integrity_verified": true,
+    "dependency_lock_verified": true
+  },
+  "skill_tree_sha256": "dba58d1984513e44aa77a5729a20b16e23186dac00e0de17ef1db01ddd0bda49",
+  "limits": [
+    "Local extracted-archive installation layouts only; no native agent session, OCI deployment or production qualification.",
+    "Old release assets and historical receipts remain unchanged.",
+    "CLI acquisition used the reviewed cache offline with original integrity checks.",
+    "Empty shared directories and an empty skills lock are permitted cleanup residuals."
+  ],
+  "release_qualified": false
+}

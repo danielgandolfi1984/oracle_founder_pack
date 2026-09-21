@@ -99,7 +99,7 @@ class PackageEvidenceTests(unittest.TestCase):
                 self.assertEqual(skill_hash, evidence["verification"]["skill_tree_sha256"])
 
     def test_security_bundle_has_fresh_exact_installation_evidence(self) -> None:
-        assessment = json.loads((ROOT / "tests/results/2026-09-21-security-full-package-assessment.json").read_text())
+        assessment = json.loads((ROOT / "tests/results/2026-09-21-security-final-full-package-assessment.json").read_text())
         with tempfile.TemporaryDirectory() as temporary:
             manifests = build_release.build_all(Path(temporary))
         manifest = next(item for item in manifests if item["package_kind"] == "full-toolkit")

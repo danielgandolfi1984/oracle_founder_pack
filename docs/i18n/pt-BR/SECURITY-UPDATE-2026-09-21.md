@@ -41,6 +41,15 @@ e [capabilities do container](https://docs.oracle.com/en-us/iaas/Content/contain
 
 ## Verificações contínuas e limites da evidência
 
+A primeira execução do CodeQL também apontou response splitting HTTP e uma
+checagem de substring de URL. A revisão confirmou que os IDs de requisição já
+tinham uma lista restrita de caracteres ASCII e que a substring rejeitava
+exemplos não preenchidos, sem autorizar destinos de rede; nenhuma exploração
+foi reproduzida. O pacote final adiciona remoção explícita de CR/LF na escrita
+do cabeçalho e identifica placeholders por hostname/domínio de e-mail. Os
+testes preservam as restrições reais de HTTPS/repositório e os IDs aceitos.
+São proteções adicionais, não duas novas explorações confirmadas.
+
 O workflow de segurança consulta a OSV para os manifests ativos e executa
 CodeQL para Python. O Dependabot propõe atualizações, sem merge automático.
 Compatibilidade, versões e hashes continuam exigindo revisão. Uma falha de
@@ -53,9 +62,12 @@ continuam obrigatórios. Nenhum scan prova ausência de todas as vulnerabilidade
 A fixture agora fixa FastAPI `0.141.1` e Starlette `1.6.0` em um conjunto de
 15 pacotes. Passaram a instalação com hashes no macOS arm64, a resolução/download
 de wheels Linux x86_64/arm64 e cinco verificações ASGI em processo; nenhum
-container Linux foi executado. O [registro do novo pacote completo](../../../tests/results/2026-09-21-security-full-package-assessment.json)
+container Linux foi executado. O [registro do pacote completo final](../../../tests/results/2026-09-21-security-final-full-package-assessment.json)
 vincula o hash do arquivo aos novos testes de instalação/remoção/reinstalação
 nos layouts Codex, Cursor e Claude Code, não ao comportamento nativo dos modelos.
+O [registro do primeiro candidato](../../../tests/results/2026-09-21-security-full-package-assessment.json)
+permanece como evidência histórica, anterior às proteções motivadas pelo CodeQL;
+seu hash não corresponde ao pacote final publicado.
 
 O [recibo OSV após a correção](../../../tests/results/2026-09-21-security-dependencies.json)
 registra 28 versões de pacotes consultadas com sucesso, sem avisos conhecidos

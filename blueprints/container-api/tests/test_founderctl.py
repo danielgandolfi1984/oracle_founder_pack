@@ -1170,6 +1170,59 @@ class ConfigContractTests(unittest.TestCase):
         with self.assertRaises(FOUNDERCTL.ContractError):
             FOUNDERCTL.validate_runtime_config(config)
 
+    def test_placeholder_markers_and_actual_example_domains_are_rejected(self) -> None:
+        cases = (
+            ("tenancy_ocid", "ocid1.tenancy.oc1..REPLACE_ME"),
+            ("region", "replace-with-region"),
+            ("ocir_registry_endpoint", "example.com"),
+            ("ocir_registry_endpoint", "OCIR.EXAMPLE.COM."),
+            ("approved_repository_path", "example.com/namespace/api"),
+            ("container_image_url", "registry.example.com/ns/api@sha256:" + "a" * 64),
+            ("endpoint", "https://example.com/api/healthz"),
+            ("notification_email", "founder@EXAMPLE.COM."),
+            ("budget_recipients", "other@valid.invalid,founder@example.com"),
+            ("budget_recipients", "Founder <founder@example.com>"),
+            ("budget_recipients", "founder@example.com (Founder)"),
+        )
+        for field, raw in cases:
+            with self.subTest(field=field, raw=raw):
+                with self.assertRaisesRegex(FOUNDERCTL.ContractError, "example placeholder"):
+                    FOUNDERCTL.reject_placeholders({field: raw}, (field,))
+
+    def test_incidental_domain_text_is_not_a_placeholder_hostname(self) -> None:
+        cases = (
+            ("ocir_registry_endpoint", "notexample.com"),
+            ("ocir_registry_endpoint", "example.com.valid.invalid"),
+            ("approved_repository_path", "registry.valid.invalid/ns/example.com"),
+            ("endpoint", "https://valid.invalid/example.com"),
+            ("endpoint", "https://valid.invalid/?next=example.com"),
+            ("endpoint", "https://example.com@valid.invalid/api"),
+            ("notification_email", "example.com@valid.invalid"),
+            ("notification_email", "founder@notexample.com"),
+            ("budget_recipients", '"example.com" <founder@valid.invalid>'),
+        )
+        for field, raw in cases:
+            with self.subTest(field=field, raw=raw):
+                self.assertIsNone(FOUNDERCTL.reject_placeholders({field: raw}, (field,)))
+
+    def test_placeholder_guard_does_not_replace_actual_url_validation(self) -> None:
+        for raw in (
+            "http://valid.invalid/api/healthz",
+            "https://example.com@valid.invalid/api/healthz",
+            "https://valid.invalid/api/healthz?next=example.com",
+            "https://valid.invalid/api/healthz#example.com",
+        ):
+            with self.subTest(raw=raw):
+                FOUNDERCTL.reject_placeholders({"endpoint": raw}, ("endpoint",))
+                with self.assertRaises(FOUNDERCTL.ContractError):
+                    FOUNDERCTL.validate_https_output_url(raw, health=True)
+        for raw in ("https://valid.invalid/", "user@valid.invalid/ns/repo"):
+            with self.subTest(repository=raw):
+                config = self.runtime_config()
+                config["approved_repository_path"] = raw
+                with self.assertRaises(FOUNDERCTL.ContractError):
+                    FOUNDERCTL.validate_runtime_config(config)
+
     def test_base_image_requires_a_non_placeholder_digest(self) -> None:
         valid = argparse.Namespace(image="python:3.12-slim@sha256:" + "b" * 64)
         with contextlib.redirect_stdout(io.StringIO()):

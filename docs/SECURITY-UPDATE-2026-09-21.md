@@ -40,6 +40,14 @@ and [container capabilities](https://docs.oracle.com/en-us/iaas/Content/containe
 
 ## Continuous checks and evidence boundaries
 
+The first CodeQL run also flagged HTTP response splitting and a URL substring
+check. Review found that request IDs already used a strict ASCII allowlist and
+the substring check rejected unfilled examples, rather than authorizing network
+destinations; no exploit was reproduced. The final bundle adds explicit CR/LF
+removal at the response-header boundary and parses placeholder hostnames/email
+domains. Tests preserve actual HTTPS/repository restrictions and accepted IDs.
+These are defensive clarifications, not two additional confirmed exploits.
+
 The security workflow audits active dependency manifests through OSV and runs
 CodeQL for Python. Dependabot proposes updates; changes are not automatically
 merged. Exact versions, compatibility and hashes still require review. Query
@@ -52,9 +60,12 @@ unit tests remain required. No scan proves absence of every vulnerability.
 The fixture now pins FastAPI `0.141.1` and Starlette `1.6.0` in a 15-package
 closure. Hash-verified macOS arm64 installation, Linux x86_64/arm64 wheel
 resolution/download and five in-process ASGI checks passed; no Linux container
-was executed. The [new full-bundle assessment](../tests/results/2026-09-21-security-full-package-assessment.json)
+was executed. The [final full-bundle assessment](../tests/results/2026-09-21-security-final-full-package-assessment.json)
 binds the archive hash and fresh install/remove/reinstall receipts for Codex,
 Cursor and Claude Code installation layouts, not native model behavior.
+The [initial candidate assessment](../tests/results/2026-09-21-security-full-package-assessment.json)
+is retained as historical evidence, before the CodeQL-driven hardening; its
+archive hash is not the final published bundle's hash.
 
 The [post-fix OSV receipt](../tests/results/2026-09-21-security-dependencies.json)
 records 28 successfully checked package/version coordinates and no known

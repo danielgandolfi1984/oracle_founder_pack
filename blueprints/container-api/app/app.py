@@ -60,7 +60,9 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header("content-length", str(len(body)))
         self.send_header("cache-control", "no-store")
         self.send_header("x-content-type-options", "nosniff")
-        self.send_header("x-request-id", request_id)
+        # Defense in depth at the header boundary; the strict allowlist above
+        # already rejects CR/LF without changing valid caller request IDs.
+        self.send_header("x-request-id", request_id.replace("\r", "").replace("\n", ""))
         self.end_headers()
         self.wfile.write(body)
 

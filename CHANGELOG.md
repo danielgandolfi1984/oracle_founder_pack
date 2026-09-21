@@ -16,6 +16,10 @@ release or claimed cross-host or production qualification.
   fixture, not rewritten to claim a new run.
 - Add ongoing dependency auditing, CodeQL and Dependabot configuration. These
   checks supplement review and do not qualify an OCI deployment.
+- Make response-header CR/LF removal and placeholder-domain parsing explicit
+  after reviewing two CodeQL alerts; preserve actual URL validation and valid
+  request IDs, with parser/serializer regressions. No exploit was reproduced
+  for these additional alerts.
 - Keep the three planning skills unchanged. Give the full bundle a distinct
   Container API coordinate; preserve old release tags/assets and warn against
   using their blueprint helpers for infrastructure validation.

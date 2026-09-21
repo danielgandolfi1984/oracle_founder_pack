@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import email.utils
 import hashlib
 import ipaddress
 import json
@@ -631,10 +632,39 @@ def parse_expiry(raw: Any) -> dt.datetime:
 
 
 def reject_placeholders(value: Mapping[str, Any], fields: Sequence[str]) -> None:
+    """Reject unfilled examples, not validate or authorize network destinations.
+
+    Domain examples are identified in a parsed hostname/email domain, never in
+    an unrelated path, query, display name, or similarly named real domain.
+    Field-specific URL, repository, and email validation remains separate.
+    """
     for field in fields:
         raw = value.get(field)
-        if isinstance(raw, str) and ("replace" in raw.lower() or "example.com" in raw.lower()):
+        if not isinstance(raw, str):
+            continue
+        if "replace" in raw.lower():
             raise ContractError(f"{field} still contains an example placeholder")
+        domains: Iterable[Optional[str]]
+        if field in {"budget_recipients", "notification_email"}:
+            # Parsing only locates the example domain; it does not certify an
+            # address/list as valid or authorize a notification recipient.
+            try:
+                domains = [address.rpartition("@")[2] for _name, address in email.utils.getaddresses([raw])]
+            except (ValueError, IndexError):
+                domains = []
+        else:
+            try:
+                parsed = urlsplit(raw if "://" in raw else "//" + raw)
+                domains = [parsed.hostname]
+            except ValueError:
+                # Let the relevant field validator reject malformed input.
+                domains = []
+        for domain in domains:
+            if domain is None:
+                continue
+            normalized = domain.lower().rstrip(".")
+            if normalized == "example.com" or normalized.endswith(".example.com"):
+                raise ContractError(f"{field} still contains an example placeholder")
 
 
 def validate_nonsecret_tags(raw: Any) -> None:
