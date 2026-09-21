@@ -13,6 +13,8 @@ evidence remains in [VALIDATION.md](VALIDATION.md).
 | Question | Current result | Evidence and limit |
 |---|---|---|
 | Is there a published skill I can install? | Yes, `v0.1.1` public preview | [Publication receipt](../tests/results/2026-09-18-v0.1.1-publication.json) records the tag, Codex project install/reinstall and downloaded asset verification. It does not qualify every host runtime |
+| Are there focused skills for starting and migrating? | Yes, two source-only `0.1.0` companions on `main` | [Companion lifecycle receipt](../tests/results/2026-09-21-companion-install.json) records six local-source cases: two skills × three installer layouts, including removal and reinstall. It does not prove native host behavior or live OCI use |
+| Can I follow the user journey in English or Portuguese? | Yes, equivalent complete founder guides | [English](FOUNDER-GUIDE.md) and [Português](i18n/pt-BR/FOUNDER-GUIDE.md) cover installation, prompts, account access, VCN/VM, migration, costs and glossary. Not every engineering reference or historical receipt is translated |
 | Has the skill answered a real agent prompt? | One recorded native Codex comparison passed with reservations | [Native probe](../tests/results/2026-09-18-v0.1.1-codex-native.json) and [assessment](../tests/results/2026-09-18-v0.1.1-assessment.json). This is not a full cross-host replay or a usability benchmark |
 | Do repository and package checks run in CI? | Yes, for the exact commits linked | The foundation-docs baseline `8bf14ac` passed [run 35446784381](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/runs/35446784381). Check the [workflow](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/workflows/validate.yml) for later revisions; CI is not an OCI deployment |
 | Has the VM lab been executed in an OCI account by this project? | Not recorded | [FIRST-VM.md](FIRST-VM.md) is a source-reviewed, human-executed guide, not field-test evidence |
@@ -27,6 +29,14 @@ evidence remains in [VALIDATION.md](VALIDATION.md).
 The immutable release tag and archives are unchanged by documentation on
 `main`. Installation evidence for that release does not automatically validate
 new code, a new host version or a new operational path.
+
+The source-only companions are standalone founder planning instructions, not
+new implementations of upstream Oracle service procedures. Their local-source
+installer receipt binds exact skill fingerprints. Separate manual, content-forward
+checks exercised a new FastAPI/PostgreSQL project and a Node.js workload arriving
+from AWS; they kept secrets out of the conversation, preserved stack choices,
+and required migration evidence and rollback planning. These narrow manual
+checks are not native cross-host qualification or a deployment benchmark.
 
 ## Reproduce the local application checks
 

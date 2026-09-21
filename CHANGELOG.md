@@ -5,6 +5,23 @@ publishes an independent public open-source preview under UPL-1.0, with
 best-effort community support and no SLA. It has not published a tagged stable
 release or claimed cross-host or production qualification.
 
+## Bilingual founder toolkit on `main` — 2026-09-21
+
+- Added two standalone planning companions, `oci-founder-start` and
+  `oci-founder-migrate`, each versioned `0.1.0` preview. They cover greenfield
+  decisions and evidence-based migration without duplicating upstream service
+  procedures or granting execution authority.
+- Added equivalent English and Brazilian Portuguese founder guides covering
+  installation, prompts, Console identifiers, local access, VCN/VM learning,
+  migration, costs, security, glossary, updates and support. Added a Portuguese
+  repository entry page. Technical maintainer references remain canonical EN.
+- Strengthened source privacy checks for fine-grained GitHub credentials,
+  structured JWT material, full OCI resource IDs and internal Oracle URLs.
+  Findings report locations and categories, never matching values.
+- Preserved the released `v0.1.1` core skill and archives, blueprint version,
+  personal-project status and separate local-only Oracle presentation boundary.
+  No new production, native cross-host or live OCI qualification is claimed.
+
 ## Guided identity diagnostics on `main` — 2026-09-21
 
 - Added opt-in `--diagnostics` to the offline preflight: fixed input labels and

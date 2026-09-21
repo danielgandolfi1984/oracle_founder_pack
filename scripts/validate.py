@@ -151,7 +151,7 @@ required_files = [
     "tests/fixtures/docker-fastapi/Dockerfile",
     "tests/fixtures/docker-fastapi/app.py",
     "tests/fixtures/docker-fastapi/requirements.txt",
-    "tests/results/2026-09-18-host-preflight.json",
+    "tests/results/2026-09-21-host-preflight.json",
     "tests/results/2026-09-18-skill-install-lifecycle.json",
     "tests/results/2026-09-17-skill-completion.json",
     "tests/results/2026-09-17-orient-fastapi-gcp.md",
@@ -365,9 +365,14 @@ for skill_path in skill_files:
     check(bool(version_match), f"{relative}: metadata.version is required")
     if version_match:
         check(
-            version_match.group(1) == portable.get("version"),
-            f"{relative}: metadata.version must match plugin manifests",
+            bool(re.fullmatch(r"\d+\.\d+\.\d+", version_match.group(1))),
+            f"{relative}: metadata.version must be strict semver",
         )
+        if name == "oci-founder":
+            check(
+                version_match.group(1) == portable.get("version"),
+                f"{relative}: released core skill version must match plugin manifests",
+            )
 
     skill_root = skill_path.parent.resolve()
     for markdown in skill_path.parent.rglob("*.md"):
@@ -1106,7 +1111,7 @@ check(
     "Oracle Skills postrelease lifecycle: installation, cleanup, or native qualification boundary failed",
 )
 
-host_preflight = load_json("tests/results/2026-09-18-host-preflight.json")
+host_preflight = load_json("tests/results/2026-09-21-host-preflight.json")
 if not ARGS.skip_host_preflight_evidence:
     check(
         host_preflight.get("kind") == "oci-founder-host-preflight"

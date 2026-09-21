@@ -1,0 +1,1781 @@
+{
+  "counts": {
+    "agent_layouts": 3,
+    "complete_removals": 12,
+    "install_or_reinstall_operations": 12,
+    "list_checks": 12,
+    "passing_cases": 6,
+    "shared_directory_filtered_remove_probes": 4,
+    "skills": 2
+  },
+  "effects": {
+    "cloud_mutation_attempted": false,
+    "global_install_attempted": false,
+    "native_host_session_started": false,
+    "npm_dependency_acquisition_performed": true,
+    "oci_account_accessed": false
+  },
+  "harness": {
+    "captured_output_excerpts_omitted": true,
+    "imported_runner_overrides": [
+      "SKILL_NAME",
+      "EXPECTED_INSTALL_LOCATIONS"
+    ],
+    "private_paths_redacted": true,
+    "protected_files_sha256_after": {
+      "scripts/qualify_skill_install.py": "5a93fc494d8a1609e6b3ca0b07706fd3f9eebbc782c27a5c67f5ca6753b073ff",
+      "scripts/skills-cli-runtime/package-lock.json": "2fbf496c854780bbf7be13d08c7806b0479c60483381d657d08755b563630701",
+      "scripts/skills-cli-runtime/package.json": "3a35717c49e02a025fdad96301cf2438c014ee941ee35008eb038ab376e5a09a"
+    },
+    "protected_files_sha256_before": {
+      "scripts/qualify_skill_install.py": "5a93fc494d8a1609e6b3ca0b07706fd3f9eebbc782c27a5c67f5ca6753b073ff",
+      "scripts/skills-cli-runtime/package-lock.json": "2fbf496c854780bbf7be13d08c7806b0479c60483381d657d08755b563630701",
+      "scripts/skills-cli-runtime/package.json": "3a35717c49e02a025fdad96301cf2438c014ee941ee35008eb038ab376e5a09a"
+    },
+    "protected_files_unchanged": true,
+    "sha256": "ac6fd47a19fe83c82f6cf6fef5f52a0b9b993dc06a3879259fbb547628a50ef7"
+  },
+  "kind": "oci-founder-companion-install-lifecycle",
+  "limitations": [
+    "Local source checkout only; public GitHub installation was not tested.",
+    "No native Codex, Cursor, or Claude Code session, discovery, or model behavior was qualified.",
+    "Only the four named global targets for each companion were snapshotted; the entire user profile was not audited.",
+    "skills@1.7.0 was acquired through the canonical integrity-checked lock with lifecycle scripts disabled; no global dependencies were installed.",
+    "The tested update path is remove plus reinstall, not skills update.",
+    "The independent per-skill runs do not qualify same-project coexistence or duplicate-name behavior."
+  ],
+  "observed_at_utc": "2026-09-21T11:43:27.935981+00:00",
+  "qualification": "installation-layout-only",
+  "release_qualified": false,
+  "results": [
+    {
+      "evidence": {
+        "cases": [
+          {
+            "agent": "codex",
+            "agent_filtered_remove_probe": {
+              "active_lock_entry_remained": true,
+              "command_reported_success": true,
+              "confirmed": true,
+              "performed": true,
+              "remaining_install": {
+                "all_copies_match_source": true,
+                "copy_count": 1,
+                "copy_errors": {},
+                "exact_location_set": true,
+                "expected_locations": [
+                  ".agents/skills/oci-founder-start"
+                ],
+                "locations": [
+                  ".agents/skills/oci-founder-start"
+                ],
+                "regular_copy": true,
+                "source_tree_sha256": "77a5f9611cb811b91356ce5fc1a4132efd2f1c869d631b577e548a4088e746d8",
+                "tree_sha256": {
+                  ".agents/skills/oci-founder-start": "77a5f9611cb811b91356ce5fc1a4132efd2f1c869d631b577e548a4088e746d8"
+                }
+              },
+              "required": true
+            },
+            "final_remove_residuals": {
+              "allowed_residual_directories": [
+                ".agents",
+                ".agents/skills"
+              ],
+              "allowed_residual_files": [
+                "skills-lock.json"
+              ],
+              "clean": true,
+              "empty_directories": [
+                ".agents/skills"
+              ],
+              "remaining_skill_copies": [],
+              "skills_lock": {
+                "skills": {},
+                "version": 1
+              },
+              "skills_lock_empty_or_absent": true,
+              "symlinks": [],
+              "unexpected_directories": [],
+              "unexpected_files": []
+            },
+            "first_install": {
+              "all_copies_match_source": true,
+              "copy_count": 1,
+              "copy_errors": {},
+              "exact_location_set": true,
+              "expected_locations": [
+                ".agents/skills/oci-founder-start"
+              ],
+              "locations": [
+                ".agents/skills/oci-founder-start"
+              ],
+              "regular_copy": true,
+              "source_tree_sha256": "77a5f9611cb811b91356ce5fc1a4132efd2f1c869d631b577e548a4088e746d8",
+              "tree_sha256": {
+                ".agents/skills/oci-founder-start": "77a5f9611cb811b91356ce5fc1a4132efd2f1c869d631b577e548a4088e746d8"
+              }
+            },
+            "first_list_contains_skill": true,
+            "first_remove_residuals": {
+              "allowed_residual_directories": [
+                ".agents",
+                ".agents/skills"
+              ],
+              "allowed_residual_files": [
+                "skills-lock.json"
+              ],
+              "clean": true,
+              "empty_directories": [
+                ".agents/skills"
+              ],
+              "remaining_skill_copies": [],
+              "skills_lock": {
+                "skills": {},
+                "version": 1
+              },
+              "skills_lock_empty_or_absent": true,
+              "symlinks": [],
+              "unexpected_directories": [],
+              "unexpected_files": []
+            },
+            "mode": "copy",
+            "passed": true,
+            "remove_agent_filter_omitted": true,
+            "second_install": {
+              "all_copies_match_source": true,
+              "copy_count": 1,
+              "copy_errors": {},
+              "exact_location_set": true,
+              "expected_locations": [
+                ".agents/skills/oci-founder-start"
+              ],
+              "locations": [
+                ".agents/skills/oci-founder-start"
+              ],
+              "regular_copy": true,
+              "source_tree_sha256": "77a5f9611cb811b91356ce5fc1a4132efd2f1c869d631b577e548a4088e746d8",
+              "tree_sha256": {
+                ".agents/skills/oci-founder-start": "77a5f9611cb811b91356ce5fc1a4132efd2f1c869d631b577e548a4088e746d8"
+              }
+            },
+            "second_list_contains_skill": true,
+            "steps": {
+              "agent_filtered_remove_probe": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "remove",
+                  "oci-founder-start",
+                  "-a",
+                  "codex",
+                  "-y"
+                ],
+                "duration_ms": 105,
+                "exit_code": 0,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "747f5a3580ac2bdf9f13bbc2eb485de255b4a0901b28a53f7d4264c3cc0a4bf3",
+                "timed_out": false
+              },
+              "final_remove": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "remove",
+                  "oci-founder-start",
+                  "-y"
+                ],
+                "duration_ms": 110,
+                "exit_code": 0,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "747f5a3580ac2bdf9f13bbc2eb485de255b4a0901b28a53f7d4264c3cc0a4bf3",
+                "timed_out": false
+              },
+              "git_init": {
+                "argv": [
+                  "/usr/bin/git",
+                  "init",
+                  "-q"
+                ],
+                "duration_ms": 33,
+                "exit_code": 0,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "timed_out": false
+              },
+              "install": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "add",
+                  "$TOOLKIT_ROOT",
+                  "--skill",
+                  "oci-founder-start",
+                  "-a",
+                  "codex",
+                  "--copy",
+                  "-y",
+                  "--json"
+                ],
+                "duration_ms": 114,
+                "exit_code": 0,
+                "stderr_sha256": "6e3d3319ef6ba47146e7da49d89e886c51b394598aefc60056afdfd6b52fa517",
+                "stdout_sha256": "d105e009abdc3dbcef6c771de504025e9e813ccd5cc0b1e6d09b2c37dbf6aba0",
+                "timed_out": false
+              },
+              "list": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "list",
+                  "-a",
+                  "codex",
+                  "--json"
+                ],
+                "duration_ms": 104,
+                "exit_code": 0,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "2dab22295fc2d95414cc9afc395096c045d2a228e9838a347104b10334f600eb",
+                "timed_out": false
+              },
+              "reinstall": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "add",
+                  "$TOOLKIT_ROOT",
+                  "--skill",
+                  "oci-founder-start",
+                  "-a",
+                  "codex",
+                  "--copy",
+                  "-y",
+                  "--json"
+                ],
+                "duration_ms": 119,
+                "exit_code": 0,
+                "stderr_sha256": "6e3d3319ef6ba47146e7da49d89e886c51b394598aefc60056afdfd6b52fa517",
+                "stdout_sha256": "d105e009abdc3dbcef6c771de504025e9e813ccd5cc0b1e6d09b2c37dbf6aba0",
+                "timed_out": false
+              },
+              "relist": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "list",
+                  "-a",
+                  "codex",
+                  "--json"
+                ],
+                "duration_ms": 105,
+                "exit_code": 0,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "2dab22295fc2d95414cc9afc395096c045d2a228e9838a347104b10334f600eb",
+                "timed_out": false
+              },
+              "remove": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "remove",
+                  "oci-founder-start",
+                  "-y"
+                ],
+                "duration_ms": 112,
+                "exit_code": 0,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "747f5a3580ac2bdf9f13bbc2eb485de255b4a0901b28a53f7d4264c3cc0a4bf3",
+                "timed_out": false
+              }
+            }
+          },
+          {
+            "agent": "cursor",
+            "agent_filtered_remove_probe": {
+              "active_lock_entry_remained": true,
+              "command_reported_success": true,
+              "confirmed": true,
+              "performed": true,
+              "remaining_install": {
+                "all_copies_match_source": true,
+                "copy_count": 1,
+                "copy_errors": {},
+                "exact_location_set": true,
+                "expected_locations": [
+                  ".agents/skills/oci-founder-start"
+                ],
+                "locations": [
+                  ".agents/skills/oci-founder-start"
+                ],
+                "regular_copy": true,
+                "source_tree_sha256": "77a5f9611cb811b91356ce5fc1a4132efd2f1c869d631b577e548a4088e746d8",
+                "tree_sha256": {
+                  ".agents/skills/oci-founder-start": "77a5f9611cb811b91356ce5fc1a4132efd2f1c869d631b577e548a4088e746d8"
+                }
+              },
+              "required": true
+            },
+            "final_remove_residuals": {
+              "allowed_residual_directories": [
+                ".agents",
+                ".agents/skills"
+              ],
+              "allowed_residual_files": [
+                "skills-lock.json"
+              ],
+              "clean": true,
+              "empty_directories": [
+                ".agents/skills"
+              ],
+              "remaining_skill_copies": [],
+              "skills_lock": {
+                "skills": {},
+                "version": 1
+              },
+              "skills_lock_empty_or_absent": true,
+              "symlinks": [],
+              "unexpected_directories": [],
+              "unexpected_files": []
+            },
+            "first_install": {
+              "all_copies_match_source": true,
+              "copy_count": 1,
+              "copy_errors": {},
+              "exact_location_set": true,
+              "expected_locations": [
+                ".agents/skills/oci-founder-start"
+              ],
+              "locations": [
+                ".agents/skills/oci-founder-start"
+              ],
+              "regular_copy": true,
+              "source_tree_sha256": "77a5f9611cb811b91356ce5fc1a4132efd2f1c869d631b577e548a4088e746d8",
+              "tree_sha256": {
+                ".agents/skills/oci-founder-start": "77a5f9611cb811b91356ce5fc1a4132efd2f1c869d631b577e548a4088e746d8"
+              }
+            },
+            "first_list_contains_skill": true,
+            "first_remove_residuals": {
+              "allowed_residual_directories": [
+                ".agents",
+                ".agents/skills"
+              ],
+              "allowed_residual_files": [
+                "skills-lock.json"
+              ],
+              "clean": true,
+              "empty_directories": [
+                ".agents/skills"
+              ],
+              "remaining_skill_copies": [],
+              "skills_lock": {
+                "skills": {},
+                "version": 1
+              },
+              "skills_lock_empty_or_absent": true,
+              "symlinks": [],
+              "unexpected_directories": [],
+              "unexpected_files": []
+            },
+            "mode": "copy",
+            "passed": true,
+            "remove_agent_filter_omitted": true,
+            "second_install": {
+              "all_copies_match_source": true,
+              "copy_count": 1,
+              "copy_errors": {},
+              "exact_location_set": true,
+              "expected_locations": [
+                ".agents/skills/oci-founder-start"
+              ],
+              "locations": [
+                ".agents/skills/oci-founder-start"
+              ],
+              "regular_copy": true,
+              "source_tree_sha256": "77a5f9611cb811b91356ce5fc1a4132efd2f1c869d631b577e548a4088e746d8",
+              "tree_sha256": {
+                ".agents/skills/oci-founder-start": "77a5f9611cb811b91356ce5fc1a4132efd2f1c869d631b577e548a4088e746d8"
+              }
+            },
+            "second_list_contains_skill": true,
+            "steps": {
+              "agent_filtered_remove_probe": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "remove",
+                  "oci-founder-start",
+                  "-a",
+                  "cursor",
+                  "-y"
+                ],
+                "duration_ms": 102,
+                "exit_code": 0,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "747f5a3580ac2bdf9f13bbc2eb485de255b4a0901b28a53f7d4264c3cc0a4bf3",
+                "timed_out": false
+              },
+              "final_remove": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "remove",
+                  "oci-founder-start",
+                  "-y"
+                ],
+                "duration_ms": 107,
+                "exit_code": 0,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "747f5a3580ac2bdf9f13bbc2eb485de255b4a0901b28a53f7d4264c3cc0a4bf3",
+                "timed_out": false
+              },
+              "git_init": {
+                "argv": [
+                  "/usr/bin/git",
+                  "init",
+                  "-q"
+                ],
+                "duration_ms": 26,
+                "exit_code": 0,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "timed_out": false
+              },
+              "install": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "add",
+                  "$TOOLKIT_ROOT",
+                  "--skill",
+                  "oci-founder-start",
+                  "-a",
+                  "cursor",
+                  "--copy",
+                  "-y",
+                  "--json"
+                ],
+                "duration_ms": 114,
+                "exit_code": 0,
+                "stderr_sha256": "2c01171f2554160ca4572a9f79b5a251087ca263a0b703170ee746841abc2761",
+                "stdout_sha256": "99fb513e4a3137c25171fee3bccbe5a128bc80ba6fb16b00da1106eb5e270a74",
+                "timed_out": false
+              },
+              "list": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "list",
+                  "-a",
+                  "cursor",
+                  "--json"
+                ],
+                "duration_ms": 99,
+                "exit_code": 0,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "911d420371032e3a4b7565d3b8df0ef63a8ef1f056c0c63a8672fc2f08378786",
+                "timed_out": false
+              },
+              "reinstall": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "add",
+                  "$TOOLKIT_ROOT",
+                  "--skill",
+                  "oci-founder-start",
+                  "-a",
+                  "cursor",
+                  "--copy",
+                  "-y",
+                  "--json"
+                ],
+                "duration_ms": 118,
+                "exit_code": 0,
+                "stderr_sha256": "2c01171f2554160ca4572a9f79b5a251087ca263a0b703170ee746841abc2761",
+                "stdout_sha256": "99fb513e4a3137c25171fee3bccbe5a128bc80ba6fb16b00da1106eb5e270a74",
+                "timed_out": false
+              },
+              "relist": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "list",
+                  "-a",
+                  "cursor",
+                  "--json"
+                ],
+                "duration_ms": 103,
+                "exit_code": 0,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "911d420371032e3a4b7565d3b8df0ef63a8ef1f056c0c63a8672fc2f08378786",
+                "timed_out": false
+              },
+              "remove": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "remove",
+                  "oci-founder-start",
+                  "-y"
+                ],
+                "duration_ms": 104,
+                "exit_code": 0,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "747f5a3580ac2bdf9f13bbc2eb485de255b4a0901b28a53f7d4264c3cc0a4bf3",
+                "timed_out": false
+              }
+            }
+          },
+          {
+            "agent": "claude-code",
+            "agent_filtered_remove_probe": {
+              "confirmed": null,
+              "performed": false,
+              "reason": "Claude Code uses its dedicated .claude destination.",
+              "required": false
+            },
+            "final_remove_residuals": {
+              "allowed_residual_directories": [
+                ".claude",
+                ".claude/skills"
+              ],
+              "allowed_residual_files": [
+                "skills-lock.json"
+              ],
+              "clean": true,
+              "empty_directories": [
+                ".claude/skills"
+              ],
+              "remaining_skill_copies": [],
+              "skills_lock": {
+                "skills": {},
+                "version": 1
+              },
+              "skills_lock_empty_or_absent": true,
+              "symlinks": [],
+              "unexpected_directories": [],
+              "unexpected_files": []
+            },
+            "first_install": {
+              "all_copies_match_source": true,
+              "copy_count": 1,
+              "copy_errors": {},
+              "exact_location_set": true,
+              "expected_locations": [
+                ".claude/skills/oci-founder-start"
+              ],
+              "locations": [
+                ".claude/skills/oci-founder-start"
+              ],
+              "regular_copy": true,
+              "source_tree_sha256": "77a5f9611cb811b91356ce5fc1a4132efd2f1c869d631b577e548a4088e746d8",
+              "tree_sha256": {
+                ".claude/skills/oci-founder-start": "77a5f9611cb811b91356ce5fc1a4132efd2f1c869d631b577e548a4088e746d8"
+              }
+            },
+            "first_list_contains_skill": true,
+            "first_remove_residuals": {
+              "allowed_residual_directories": [
+                ".claude",
+                ".claude/skills"
+              ],
+              "allowed_residual_files": [
+                "skills-lock.json"
+              ],
+              "clean": true,
+              "empty_directories": [
+                ".claude/skills"
+              ],
+              "remaining_skill_copies": [],
+              "skills_lock": {
+                "skills": {},
+                "version": 1
+              },
+              "skills_lock_empty_or_absent": true,
+              "symlinks": [],
+              "unexpected_directories": [],
+              "unexpected_files": []
+            },
+            "mode": "copy",
+            "passed": true,
+            "remove_agent_filter_omitted": true,
+            "second_install": {
+              "all_copies_match_source": true,
+              "copy_count": 1,
+              "copy_errors": {},
+              "exact_location_set": true,
+              "expected_locations": [
+                ".claude/skills/oci-founder-start"
+              ],
+              "locations": [
+                ".claude/skills/oci-founder-start"
+              ],
+              "regular_copy": true,
+              "source_tree_sha256": "77a5f9611cb811b91356ce5fc1a4132efd2f1c869d631b577e548a4088e746d8",
+              "tree_sha256": {
+                ".claude/skills/oci-founder-start": "77a5f9611cb811b91356ce5fc1a4132efd2f1c869d631b577e548a4088e746d8"
+              }
+            },
+            "second_list_contains_skill": true,
+            "steps": {
+              "final_remove": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "remove",
+                  "oci-founder-start",
+                  "-y"
+                ],
+                "duration_ms": 106,
+                "exit_code": 0,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "747f5a3580ac2bdf9f13bbc2eb485de255b4a0901b28a53f7d4264c3cc0a4bf3",
+                "timed_out": false
+              },
+              "git_init": {
+                "argv": [
+                  "/usr/bin/git",
+                  "init",
+                  "-q"
+                ],
+                "duration_ms": 27,
+                "exit_code": 0,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "timed_out": false
+              },
+              "install": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "add",
+                  "$TOOLKIT_ROOT",
+                  "--skill",
+                  "oci-founder-start",
+                  "-a",
+                  "claude-code",
+                  "--copy",
+                  "-y",
+                  "--json"
+                ],
+                "duration_ms": 117,
+                "exit_code": 0,
+                "stderr_sha256": "f5dc6ccbe5bd4f40ea42fa8b813ce46239e24226c85967e835aff95d18a3efd6",
+                "stdout_sha256": "2fbb9fcc24b5821e4a2b62370a13765564e9ed8e730d0dfbb48a31d6c388c432",
+                "timed_out": false
+              },
+              "list": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "list",
+                  "-a",
+                  "claude-code",
+                  "--json"
+                ],
+                "duration_ms": 102,
+                "exit_code": 0,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "8de3ac8d4d7478d38310772fbcfed6c08017fcc1ddd336aff8a27f5c8f2559ce",
+                "timed_out": false
+              },
+              "reinstall": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "add",
+                  "$TOOLKIT_ROOT",
+                  "--skill",
+                  "oci-founder-start",
+                  "-a",
+                  "claude-code",
+                  "--copy",
+                  "-y",
+                  "--json"
+                ],
+                "duration_ms": 116,
+                "exit_code": 0,
+                "stderr_sha256": "f5dc6ccbe5bd4f40ea42fa8b813ce46239e24226c85967e835aff95d18a3efd6",
+                "stdout_sha256": "2fbb9fcc24b5821e4a2b62370a13765564e9ed8e730d0dfbb48a31d6c388c432",
+                "timed_out": false
+              },
+              "relist": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "list",
+                  "-a",
+                  "claude-code",
+                  "--json"
+                ],
+                "duration_ms": 104,
+                "exit_code": 0,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "8de3ac8d4d7478d38310772fbcfed6c08017fcc1ddd336aff8a27f5c8f2559ce",
+                "timed_out": false
+              },
+              "remove": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "remove",
+                  "oci-founder-start",
+                  "-y"
+                ],
+                "duration_ms": 106,
+                "exit_code": 0,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "747f5a3580ac2bdf9f13bbc2eb485de255b4a0901b28a53f7d4264c3cc0a4bf3",
+                "timed_out": false
+              }
+            }
+          }
+        ],
+        "effects": {
+          "cloud_mutation_attempted": false,
+          "model_session_started": false,
+          "oci_command_executed": false,
+          "toolkit_skill_source_changed": false
+        },
+        "environment_policy": {
+          "cloud_token_or_password_named_variables_inherited": false,
+          "home_redirected": false,
+          "inherited_keys": [
+            "HOME",
+            "LANG",
+            "LC_ALL",
+            "LC_CTYPE",
+            "LOGNAME",
+            "PATH",
+            "SHELL",
+            "TERM",
+            "TMPDIR",
+            "USER"
+          ],
+          "proxy_variables_inherited": false,
+          "source_environment_copied": false,
+          "strategy": "allowlist",
+          "universal_agent_detection_fixture": {
+            "agent": "opencode",
+            "kind": "empty-config-directory",
+            "model_session_started": false,
+            "path": "$QUALIFICATION_ROOT/xdg-config/opencode",
+            "purpose": "exercise shared universal .agents removal semantics",
+            "scope": "disposable-qualification-root"
+          },
+          "user_npm_config_disabled": true
+        },
+        "kind": "oci-founder-skill-install-lifecycle",
+        "observed_at_utc": "2026-09-21T11:43:24.910421+00:00",
+        "policy": {
+          "agents": [
+            "codex",
+            "cursor",
+            "claude-code"
+          ],
+          "allowed_residual_directories": {
+            "claude-code": [
+              ".claude",
+              ".claude/skills"
+            ],
+            "codex": [
+              ".agents",
+              ".agents/skills"
+            ],
+            "cursor": [
+              ".agents",
+              ".agents/skills"
+            ]
+          },
+          "allowed_residual_files": [
+            "skills-lock.json"
+          ],
+          "expected_install_locations": {
+            "claude-code": [
+              ".claude/skills/oci-founder-start"
+            ],
+            "codex": [
+              ".agents/skills/oci-founder-start"
+            ],
+            "cursor": [
+              ".agents/skills/oci-founder-start"
+            ]
+          }
+        },
+        "profile_safety": {
+          "global_install_attempted": false,
+          "observed_global_skill_targets": [
+            "~/.agents/skills/oci-founder-start",
+            "~/.claude/skills/oci-founder-start",
+            "~/.codex/skills/oci-founder-start",
+            "~/.cursor/skills/oci-founder-start"
+          ],
+          "observed_global_skill_targets_acceptable": true,
+          "observed_global_skill_targets_contain_symlink": false,
+          "observed_global_skill_targets_unchanged": true,
+          "user_home_redirected": false
+        },
+        "release_qualified": false,
+        "reservations": [
+          "Only the four named global skill targets were snapshotted; no claim is made about the entire user profile.",
+          "A symlink at any observed global skill target blocks qualification rather than following an arbitrary target.",
+          "Global installation syntax was not executed against the user profile.",
+          "Cursor can discover universal, Cursor, Claude, and Codex skill directories; duplicate-name runtime behavior remains a native Cursor gate.",
+          "A disposable OpenCode config-directory fixture under the isolated XDG_CONFIG_HOME provides a second universal .agents consumer, so skills@1.7.0 agent-filtered removal must preserve the intact source-matched shared copy and active lock entry; no OpenCode session is started.",
+          "The local-checkout update path is remove plus reinstall; skills update is not qualified for this source type.",
+          "This test proves package lifecycle only, not host-native discovery or agent behavior."
+        ],
+        "runner": {
+          "output_mode": "direct-json",
+          "python_version": "3.9.6",
+          "script_sha256": "5a93fc494d8a1609e6b3ca0b07706fd3f9eebbc782c27a5c67f5ca6753b073ff"
+        },
+        "schema_version": "2.0",
+        "scope": "three-isolated-projects",
+        "skills_cli": {
+          "dependency_lock": {
+            "dependency_integrities_complete": true,
+            "expected_lock_sha256": "2fbf496c854780bbf7be13d08c7806b0479c60483381d657d08755b563630701",
+            "expected_package_json_sha256": "3a35717c49e02a025fdad96301cf2438c014ee941ee35008eb038ab376e5a09a",
+            "expected_skills_dist_integrity": "sha512-OfePnDft+Xt9/tCoHdCUe5fkM8i+Q3QOSQO53hm7mKtsXyvc+CKOAAliVWZ484HS3cWx+6r+ob0AArixs3jYXw==",
+            "hashes_match": true,
+            "observed_lock_sha256": "2fbf496c854780bbf7be13d08c7806b0479c60483381d657d08755b563630701",
+            "observed_package_json_sha256": "3a35717c49e02a025fdad96301cf2438c014ee941ee35008eb038ab376e5a09a",
+            "observed_skills_dist_integrity": "sha512-OfePnDft+Xt9/tCoHdCUe5fkM8i+Q3QOSQO53hm7mKtsXyvc+CKOAAliVWZ484HS3cWx+6r+ob0AArixs3jYXw==",
+            "parse_error": null,
+            "runtime_lock_matches_reviewed": true,
+            "runtime_lock_sha256": "2fbf496c854780bbf7be13d08c7806b0479c60483381d657d08755b563630701",
+            "semantic_match": true,
+            "verified": true
+          },
+          "expected_version": "1.7.0",
+          "integrity": {
+            "expected_file_sha256": {
+              "bin/cli.mjs": "cda9a4dd5cd209c6f1dc551feacbaef503cefb5d8986d3c4cab9a95e1bbc47e6",
+              "dist/cli.mjs": "fde68534019765fb69510a0038ca7df2810a6ffed4c26fef9beabdcf6cc6701c",
+              "package.json": "d912e2f2fa141ba3d65b80e7374827d92ac4c6b81fdd63dcb80fdd641809f5d2"
+            },
+            "hashes_match": true,
+            "manifest_error": null,
+            "manifest_valid": true,
+            "observed_file_sha256": {
+              "bin/cli.mjs": "cda9a4dd5cd209c6f1dc551feacbaef503cefb5d8986d3c4cab9a95e1bbc47e6",
+              "dist/cli.mjs": "fde68534019765fb69510a0038ca7df2810a6ffed4c26fef9beabdcf6cc6701c",
+              "package.json": "d912e2f2fa141ba3d65b80e7374827d92ac4c6b81fdd63dcb80fdd641809f5d2"
+            },
+            "verified_before_execution": true
+          },
+          "observed_version": "1.7.0",
+          "package": "skills",
+          "source": "npm-pinned-reviewed-files",
+          "version_exact_match": true,
+          "version_parse_mode": "strict-semver-fullmatch"
+        },
+        "status": "pass_with_reservations",
+        "steps": {
+          "npm_ci_ignore_scripts": {
+            "argv": [
+              "$NPM_EXECUTABLE",
+              "ci",
+              "--ignore-scripts",
+              "--no-audit",
+              "--no-fund"
+            ],
+            "duration_ms": 953,
+            "exit_code": 0,
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stdout_sha256": "5aef737d471b345404127e732d4309ba52afddb7001ed7799732b7ad12affd1d",
+            "timed_out": false
+          },
+          "version": {
+            "argv": [
+              "$NODE_EXECUTABLE",
+              "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+              "--version"
+            ],
+            "duration_ms": 92,
+            "exit_code": 0,
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stdout_sha256": "bb7320d831e7a151aa901c35e7326c752fa2ef5024f30768c42319b8bed171ed",
+            "timed_out": false
+          }
+        },
+        "toolkit": {
+          "skill_source_unchanged": true,
+          "skill_tree_sha256_after": "77a5f9611cb811b91356ce5fc1a4132efd2f1c869d631b577e548a4088e746d8",
+          "skill_tree_sha256_before": "77a5f9611cb811b91356ce5fc1a4132efd2f1c869d631b577e548a4088e746d8",
+          "source": "$TOOLKIT_ROOT"
+        }
+      },
+      "runner_exit_code": 0,
+      "skill": "oci-founder-start"
+    },
+    {
+      "evidence": {
+        "cases": [
+          {
+            "agent": "codex",
+            "agent_filtered_remove_probe": {
+              "active_lock_entry_remained": true,
+              "command_reported_success": true,
+              "confirmed": true,
+              "performed": true,
+              "remaining_install": {
+                "all_copies_match_source": true,
+                "copy_count": 1,
+                "copy_errors": {},
+                "exact_location_set": true,
+                "expected_locations": [
+                  ".agents/skills/oci-founder-migrate"
+                ],
+                "locations": [
+                  ".agents/skills/oci-founder-migrate"
+                ],
+                "regular_copy": true,
+                "source_tree_sha256": "454d15368b922c00e36754484d6602e723e2f9a7785ef9b5ac923cfdfcc7cd53",
+                "tree_sha256": {
+                  ".agents/skills/oci-founder-migrate": "454d15368b922c00e36754484d6602e723e2f9a7785ef9b5ac923cfdfcc7cd53"
+                }
+              },
+              "required": true
+            },
+            "final_remove_residuals": {
+              "allowed_residual_directories": [
+                ".agents",
+                ".agents/skills"
+              ],
+              "allowed_residual_files": [
+                "skills-lock.json"
+              ],
+              "clean": true,
+              "empty_directories": [
+                ".agents/skills"
+              ],
+              "remaining_skill_copies": [],
+              "skills_lock": {
+                "skills": {},
+                "version": 1
+              },
+              "skills_lock_empty_or_absent": true,
+              "symlinks": [],
+              "unexpected_directories": [],
+              "unexpected_files": []
+            },
+            "first_install": {
+              "all_copies_match_source": true,
+              "copy_count": 1,
+              "copy_errors": {},
+              "exact_location_set": true,
+              "expected_locations": [
+                ".agents/skills/oci-founder-migrate"
+              ],
+              "locations": [
+                ".agents/skills/oci-founder-migrate"
+              ],
+              "regular_copy": true,
+              "source_tree_sha256": "454d15368b922c00e36754484d6602e723e2f9a7785ef9b5ac923cfdfcc7cd53",
+              "tree_sha256": {
+                ".agents/skills/oci-founder-migrate": "454d15368b922c00e36754484d6602e723e2f9a7785ef9b5ac923cfdfcc7cd53"
+              }
+            },
+            "first_list_contains_skill": true,
+            "first_remove_residuals": {
+              "allowed_residual_directories": [
+                ".agents",
+                ".agents/skills"
+              ],
+              "allowed_residual_files": [
+                "skills-lock.json"
+              ],
+              "clean": true,
+              "empty_directories": [
+                ".agents/skills"
+              ],
+              "remaining_skill_copies": [],
+              "skills_lock": {
+                "skills": {},
+                "version": 1
+              },
+              "skills_lock_empty_or_absent": true,
+              "symlinks": [],
+              "unexpected_directories": [],
+              "unexpected_files": []
+            },
+            "mode": "copy",
+            "passed": true,
+            "remove_agent_filter_omitted": true,
+            "second_install": {
+              "all_copies_match_source": true,
+              "copy_count": 1,
+              "copy_errors": {},
+              "exact_location_set": true,
+              "expected_locations": [
+                ".agents/skills/oci-founder-migrate"
+              ],
+              "locations": [
+                ".agents/skills/oci-founder-migrate"
+              ],
+              "regular_copy": true,
+              "source_tree_sha256": "454d15368b922c00e36754484d6602e723e2f9a7785ef9b5ac923cfdfcc7cd53",
+              "tree_sha256": {
+                ".agents/skills/oci-founder-migrate": "454d15368b922c00e36754484d6602e723e2f9a7785ef9b5ac923cfdfcc7cd53"
+              }
+            },
+            "second_list_contains_skill": true,
+            "steps": {
+              "agent_filtered_remove_probe": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "remove",
+                  "oci-founder-migrate",
+                  "-a",
+                  "codex",
+                  "-y"
+                ],
+                "duration_ms": 113,
+                "exit_code": 0,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "747f5a3580ac2bdf9f13bbc2eb485de255b4a0901b28a53f7d4264c3cc0a4bf3",
+                "timed_out": false
+              },
+              "final_remove": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "remove",
+                  "oci-founder-migrate",
+                  "-y"
+                ],
+                "duration_ms": 111,
+                "exit_code": 0,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "747f5a3580ac2bdf9f13bbc2eb485de255b4a0901b28a53f7d4264c3cc0a4bf3",
+                "timed_out": false
+              },
+              "git_init": {
+                "argv": [
+                  "/usr/bin/git",
+                  "init",
+                  "-q"
+                ],
+                "duration_ms": 26,
+                "exit_code": 0,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "timed_out": false
+              },
+              "install": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "add",
+                  "$TOOLKIT_ROOT",
+                  "--skill",
+                  "oci-founder-migrate",
+                  "-a",
+                  "codex",
+                  "--copy",
+                  "-y",
+                  "--json"
+                ],
+                "duration_ms": 116,
+                "exit_code": 0,
+                "stderr_sha256": "d48c843ae37147bd6105f998cdafdb386a8ed6d685b8940dc741f696d998809e",
+                "stdout_sha256": "fc288939126e1d230b969f331678d7e0d97c3df71b4c03d0e19dc1353bea5fe2",
+                "timed_out": false
+              },
+              "list": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "list",
+                  "-a",
+                  "codex",
+                  "--json"
+                ],
+                "duration_ms": 103,
+                "exit_code": 0,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "ddc8e3199ed49945c2657bb3a118009bacb42ff1fbe6d2ba38a528ce83483f13",
+                "timed_out": false
+              },
+              "reinstall": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "add",
+                  "$TOOLKIT_ROOT",
+                  "--skill",
+                  "oci-founder-migrate",
+                  "-a",
+                  "codex",
+                  "--copy",
+                  "-y",
+                  "--json"
+                ],
+                "duration_ms": 120,
+                "exit_code": 0,
+                "stderr_sha256": "d48c843ae37147bd6105f998cdafdb386a8ed6d685b8940dc741f696d998809e",
+                "stdout_sha256": "fc288939126e1d230b969f331678d7e0d97c3df71b4c03d0e19dc1353bea5fe2",
+                "timed_out": false
+              },
+              "relist": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "list",
+                  "-a",
+                  "codex",
+                  "--json"
+                ],
+                "duration_ms": 106,
+                "exit_code": 0,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "ddc8e3199ed49945c2657bb3a118009bacb42ff1fbe6d2ba38a528ce83483f13",
+                "timed_out": false
+              },
+              "remove": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "remove",
+                  "oci-founder-migrate",
+                  "-y"
+                ],
+                "duration_ms": 110,
+                "exit_code": 0,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "747f5a3580ac2bdf9f13bbc2eb485de255b4a0901b28a53f7d4264c3cc0a4bf3",
+                "timed_out": false
+              }
+            }
+          },
+          {
+            "agent": "cursor",
+            "agent_filtered_remove_probe": {
+              "active_lock_entry_remained": true,
+              "command_reported_success": true,
+              "confirmed": true,
+              "performed": true,
+              "remaining_install": {
+                "all_copies_match_source": true,
+                "copy_count": 1,
+                "copy_errors": {},
+                "exact_location_set": true,
+                "expected_locations": [
+                  ".agents/skills/oci-founder-migrate"
+                ],
+                "locations": [
+                  ".agents/skills/oci-founder-migrate"
+                ],
+                "regular_copy": true,
+                "source_tree_sha256": "454d15368b922c00e36754484d6602e723e2f9a7785ef9b5ac923cfdfcc7cd53",
+                "tree_sha256": {
+                  ".agents/skills/oci-founder-migrate": "454d15368b922c00e36754484d6602e723e2f9a7785ef9b5ac923cfdfcc7cd53"
+                }
+              },
+              "required": true
+            },
+            "final_remove_residuals": {
+              "allowed_residual_directories": [
+                ".agents",
+                ".agents/skills"
+              ],
+              "allowed_residual_files": [
+                "skills-lock.json"
+              ],
+              "clean": true,
+              "empty_directories": [
+                ".agents/skills"
+              ],
+              "remaining_skill_copies": [],
+              "skills_lock": {
+                "skills": {},
+                "version": 1
+              },
+              "skills_lock_empty_or_absent": true,
+              "symlinks": [],
+              "unexpected_directories": [],
+              "unexpected_files": []
+            },
+            "first_install": {
+              "all_copies_match_source": true,
+              "copy_count": 1,
+              "copy_errors": {},
+              "exact_location_set": true,
+              "expected_locations": [
+                ".agents/skills/oci-founder-migrate"
+              ],
+              "locations": [
+                ".agents/skills/oci-founder-migrate"
+              ],
+              "regular_copy": true,
+              "source_tree_sha256": "454d15368b922c00e36754484d6602e723e2f9a7785ef9b5ac923cfdfcc7cd53",
+              "tree_sha256": {
+                ".agents/skills/oci-founder-migrate": "454d15368b922c00e36754484d6602e723e2f9a7785ef9b5ac923cfdfcc7cd53"
+              }
+            },
+            "first_list_contains_skill": true,
+            "first_remove_residuals": {
+              "allowed_residual_directories": [
+                ".agents",
+                ".agents/skills"
+              ],
+              "allowed_residual_files": [
+                "skills-lock.json"
+              ],
+              "clean": true,
+              "empty_directories": [
+                ".agents/skills"
+              ],
+              "remaining_skill_copies": [],
+              "skills_lock": {
+                "skills": {},
+                "version": 1
+              },
+              "skills_lock_empty_or_absent": true,
+              "symlinks": [],
+              "unexpected_directories": [],
+              "unexpected_files": []
+            },
+            "mode": "copy",
+            "passed": true,
+            "remove_agent_filter_omitted": true,
+            "second_install": {
+              "all_copies_match_source": true,
+              "copy_count": 1,
+              "copy_errors": {},
+              "exact_location_set": true,
+              "expected_locations": [
+                ".agents/skills/oci-founder-migrate"
+              ],
+              "locations": [
+                ".agents/skills/oci-founder-migrate"
+              ],
+              "regular_copy": true,
+              "source_tree_sha256": "454d15368b922c00e36754484d6602e723e2f9a7785ef9b5ac923cfdfcc7cd53",
+              "tree_sha256": {
+                ".agents/skills/oci-founder-migrate": "454d15368b922c00e36754484d6602e723e2f9a7785ef9b5ac923cfdfcc7cd53"
+              }
+            },
+            "second_list_contains_skill": true,
+            "steps": {
+              "agent_filtered_remove_probe": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "remove",
+                  "oci-founder-migrate",
+                  "-a",
+                  "cursor",
+                  "-y"
+                ],
+                "duration_ms": 108,
+                "exit_code": 0,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "747f5a3580ac2bdf9f13bbc2eb485de255b4a0901b28a53f7d4264c3cc0a4bf3",
+                "timed_out": false
+              },
+              "final_remove": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "remove",
+                  "oci-founder-migrate",
+                  "-y"
+                ],
+                "duration_ms": 112,
+                "exit_code": 0,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "747f5a3580ac2bdf9f13bbc2eb485de255b4a0901b28a53f7d4264c3cc0a4bf3",
+                "timed_out": false
+              },
+              "git_init": {
+                "argv": [
+                  "/usr/bin/git",
+                  "init",
+                  "-q"
+                ],
+                "duration_ms": 32,
+                "exit_code": 0,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "timed_out": false
+              },
+              "install": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "add",
+                  "$TOOLKIT_ROOT",
+                  "--skill",
+                  "oci-founder-migrate",
+                  "-a",
+                  "cursor",
+                  "--copy",
+                  "-y",
+                  "--json"
+                ],
+                "duration_ms": 116,
+                "exit_code": 0,
+                "stderr_sha256": "4f8040182c0f7eb0c0d19c1185b718853feed3cf4b71d7b010ab2d305704a361",
+                "stdout_sha256": "eb9fd2a42507e8b337c77e070761300b08e1c74ee3da776cca3b71f94338c8c1",
+                "timed_out": false
+              },
+              "list": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "list",
+                  "-a",
+                  "cursor",
+                  "--json"
+                ],
+                "duration_ms": 105,
+                "exit_code": 0,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "436f2ac02de6449384ba4da99540fb1a19c01131f6eb3ce4d9d0e16c3d2528bd",
+                "timed_out": false
+              },
+              "reinstall": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "add",
+                  "$TOOLKIT_ROOT",
+                  "--skill",
+                  "oci-founder-migrate",
+                  "-a",
+                  "cursor",
+                  "--copy",
+                  "-y",
+                  "--json"
+                ],
+                "duration_ms": 120,
+                "exit_code": 0,
+                "stderr_sha256": "4f8040182c0f7eb0c0d19c1185b718853feed3cf4b71d7b010ab2d305704a361",
+                "stdout_sha256": "eb9fd2a42507e8b337c77e070761300b08e1c74ee3da776cca3b71f94338c8c1",
+                "timed_out": false
+              },
+              "relist": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "list",
+                  "-a",
+                  "cursor",
+                  "--json"
+                ],
+                "duration_ms": 103,
+                "exit_code": 0,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "436f2ac02de6449384ba4da99540fb1a19c01131f6eb3ce4d9d0e16c3d2528bd",
+                "timed_out": false
+              },
+              "remove": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "remove",
+                  "oci-founder-migrate",
+                  "-y"
+                ],
+                "duration_ms": 109,
+                "exit_code": 0,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "747f5a3580ac2bdf9f13bbc2eb485de255b4a0901b28a53f7d4264c3cc0a4bf3",
+                "timed_out": false
+              }
+            }
+          },
+          {
+            "agent": "claude-code",
+            "agent_filtered_remove_probe": {
+              "confirmed": null,
+              "performed": false,
+              "reason": "Claude Code uses its dedicated .claude destination.",
+              "required": false
+            },
+            "final_remove_residuals": {
+              "allowed_residual_directories": [
+                ".claude",
+                ".claude/skills"
+              ],
+              "allowed_residual_files": [
+                "skills-lock.json"
+              ],
+              "clean": true,
+              "empty_directories": [
+                ".claude/skills"
+              ],
+              "remaining_skill_copies": [],
+              "skills_lock": {
+                "skills": {},
+                "version": 1
+              },
+              "skills_lock_empty_or_absent": true,
+              "symlinks": [],
+              "unexpected_directories": [],
+              "unexpected_files": []
+            },
+            "first_install": {
+              "all_copies_match_source": true,
+              "copy_count": 1,
+              "copy_errors": {},
+              "exact_location_set": true,
+              "expected_locations": [
+                ".claude/skills/oci-founder-migrate"
+              ],
+              "locations": [
+                ".claude/skills/oci-founder-migrate"
+              ],
+              "regular_copy": true,
+              "source_tree_sha256": "454d15368b922c00e36754484d6602e723e2f9a7785ef9b5ac923cfdfcc7cd53",
+              "tree_sha256": {
+                ".claude/skills/oci-founder-migrate": "454d15368b922c00e36754484d6602e723e2f9a7785ef9b5ac923cfdfcc7cd53"
+              }
+            },
+            "first_list_contains_skill": true,
+            "first_remove_residuals": {
+              "allowed_residual_directories": [
+                ".claude",
+                ".claude/skills"
+              ],
+              "allowed_residual_files": [
+                "skills-lock.json"
+              ],
+              "clean": true,
+              "empty_directories": [
+                ".claude/skills"
+              ],
+              "remaining_skill_copies": [],
+              "skills_lock": {
+                "skills": {},
+                "version": 1
+              },
+              "skills_lock_empty_or_absent": true,
+              "symlinks": [],
+              "unexpected_directories": [],
+              "unexpected_files": []
+            },
+            "mode": "copy",
+            "passed": true,
+            "remove_agent_filter_omitted": true,
+            "second_install": {
+              "all_copies_match_source": true,
+              "copy_count": 1,
+              "copy_errors": {},
+              "exact_location_set": true,
+              "expected_locations": [
+                ".claude/skills/oci-founder-migrate"
+              ],
+              "locations": [
+                ".claude/skills/oci-founder-migrate"
+              ],
+              "regular_copy": true,
+              "source_tree_sha256": "454d15368b922c00e36754484d6602e723e2f9a7785ef9b5ac923cfdfcc7cd53",
+              "tree_sha256": {
+                ".claude/skills/oci-founder-migrate": "454d15368b922c00e36754484d6602e723e2f9a7785ef9b5ac923cfdfcc7cd53"
+              }
+            },
+            "second_list_contains_skill": true,
+            "steps": {
+              "final_remove": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "remove",
+                  "oci-founder-migrate",
+                  "-y"
+                ],
+                "duration_ms": 110,
+                "exit_code": 0,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "747f5a3580ac2bdf9f13bbc2eb485de255b4a0901b28a53f7d4264c3cc0a4bf3",
+                "timed_out": false
+              },
+              "git_init": {
+                "argv": [
+                  "/usr/bin/git",
+                  "init",
+                  "-q"
+                ],
+                "duration_ms": 36,
+                "exit_code": 0,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "timed_out": false
+              },
+              "install": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "add",
+                  "$TOOLKIT_ROOT",
+                  "--skill",
+                  "oci-founder-migrate",
+                  "-a",
+                  "claude-code",
+                  "--copy",
+                  "-y",
+                  "--json"
+                ],
+                "duration_ms": 117,
+                "exit_code": 0,
+                "stderr_sha256": "bcdaf3549b48d7945c290ef2aed3d7bd9ed8ade6a384594b3ead94d9f9231db7",
+                "stdout_sha256": "9d70eb9f7690d3beebe959871d667ae615eb27e165aff920781281de6ded45b4",
+                "timed_out": false
+              },
+              "list": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "list",
+                  "-a",
+                  "claude-code",
+                  "--json"
+                ],
+                "duration_ms": 104,
+                "exit_code": 0,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "09ebb2f6d5a668d34b1cdf14063b0b0a0f34ffa13fc5971e0342cf3a118d5a43",
+                "timed_out": false
+              },
+              "reinstall": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "add",
+                  "$TOOLKIT_ROOT",
+                  "--skill",
+                  "oci-founder-migrate",
+                  "-a",
+                  "claude-code",
+                  "--copy",
+                  "-y",
+                  "--json"
+                ],
+                "duration_ms": 120,
+                "exit_code": 0,
+                "stderr_sha256": "bcdaf3549b48d7945c290ef2aed3d7bd9ed8ade6a384594b3ead94d9f9231db7",
+                "stdout_sha256": "9d70eb9f7690d3beebe959871d667ae615eb27e165aff920781281de6ded45b4",
+                "timed_out": false
+              },
+              "relist": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "list",
+                  "-a",
+                  "claude-code",
+                  "--json"
+                ],
+                "duration_ms": 106,
+                "exit_code": 0,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "09ebb2f6d5a668d34b1cdf14063b0b0a0f34ffa13fc5971e0342cf3a118d5a43",
+                "timed_out": false
+              },
+              "remove": {
+                "argv": [
+                  "$NODE_EXECUTABLE",
+                  "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+                  "remove",
+                  "oci-founder-migrate",
+                  "-y"
+                ],
+                "duration_ms": 108,
+                "exit_code": 0,
+                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "stdout_sha256": "747f5a3580ac2bdf9f13bbc2eb485de255b4a0901b28a53f7d4264c3cc0a4bf3",
+                "timed_out": false
+              }
+            }
+          }
+        ],
+        "effects": {
+          "cloud_mutation_attempted": false,
+          "model_session_started": false,
+          "oci_command_executed": false,
+          "toolkit_skill_source_changed": false
+        },
+        "environment_policy": {
+          "cloud_token_or_password_named_variables_inherited": false,
+          "home_redirected": false,
+          "inherited_keys": [
+            "HOME",
+            "LANG",
+            "LC_ALL",
+            "LC_CTYPE",
+            "LOGNAME",
+            "PATH",
+            "SHELL",
+            "TERM",
+            "TMPDIR",
+            "USER"
+          ],
+          "proxy_variables_inherited": false,
+          "source_environment_copied": false,
+          "strategy": "allowlist",
+          "universal_agent_detection_fixture": {
+            "agent": "opencode",
+            "kind": "empty-config-directory",
+            "model_session_started": false,
+            "path": "$QUALIFICATION_ROOT/xdg-config/opencode",
+            "purpose": "exercise shared universal .agents removal semantics",
+            "scope": "disposable-qualification-root"
+          },
+          "user_npm_config_disabled": true
+        },
+        "kind": "oci-founder-skill-install-lifecycle",
+        "observed_at_utc": "2026-09-21T11:43:27.866231+00:00",
+        "policy": {
+          "agents": [
+            "codex",
+            "cursor",
+            "claude-code"
+          ],
+          "allowed_residual_directories": {
+            "claude-code": [
+              ".claude",
+              ".claude/skills"
+            ],
+            "codex": [
+              ".agents",
+              ".agents/skills"
+            ],
+            "cursor": [
+              ".agents",
+              ".agents/skills"
+            ]
+          },
+          "allowed_residual_files": [
+            "skills-lock.json"
+          ],
+          "expected_install_locations": {
+            "claude-code": [
+              ".claude/skills/oci-founder-migrate"
+            ],
+            "codex": [
+              ".agents/skills/oci-founder-migrate"
+            ],
+            "cursor": [
+              ".agents/skills/oci-founder-migrate"
+            ]
+          }
+        },
+        "profile_safety": {
+          "global_install_attempted": false,
+          "observed_global_skill_targets": [
+            "~/.agents/skills/oci-founder-migrate",
+            "~/.claude/skills/oci-founder-migrate",
+            "~/.codex/skills/oci-founder-migrate",
+            "~/.cursor/skills/oci-founder-migrate"
+          ],
+          "observed_global_skill_targets_acceptable": true,
+          "observed_global_skill_targets_contain_symlink": false,
+          "observed_global_skill_targets_unchanged": true,
+          "user_home_redirected": false
+        },
+        "release_qualified": false,
+        "reservations": [
+          "Only the four named global skill targets were snapshotted; no claim is made about the entire user profile.",
+          "A symlink at any observed global skill target blocks qualification rather than following an arbitrary target.",
+          "Global installation syntax was not executed against the user profile.",
+          "Cursor can discover universal, Cursor, Claude, and Codex skill directories; duplicate-name runtime behavior remains a native Cursor gate.",
+          "A disposable OpenCode config-directory fixture under the isolated XDG_CONFIG_HOME provides a second universal .agents consumer, so skills@1.7.0 agent-filtered removal must preserve the intact source-matched shared copy and active lock entry; no OpenCode session is started.",
+          "The local-checkout update path is remove plus reinstall; skills update is not qualified for this source type.",
+          "This test proves package lifecycle only, not host-native discovery or agent behavior."
+        ],
+        "runner": {
+          "output_mode": "direct-json",
+          "python_version": "3.9.6",
+          "script_sha256": "5a93fc494d8a1609e6b3ca0b07706fd3f9eebbc782c27a5c67f5ca6753b073ff"
+        },
+        "schema_version": "2.0",
+        "scope": "three-isolated-projects",
+        "skills_cli": {
+          "dependency_lock": {
+            "dependency_integrities_complete": true,
+            "expected_lock_sha256": "2fbf496c854780bbf7be13d08c7806b0479c60483381d657d08755b563630701",
+            "expected_package_json_sha256": "3a35717c49e02a025fdad96301cf2438c014ee941ee35008eb038ab376e5a09a",
+            "expected_skills_dist_integrity": "sha512-OfePnDft+Xt9/tCoHdCUe5fkM8i+Q3QOSQO53hm7mKtsXyvc+CKOAAliVWZ484HS3cWx+6r+ob0AArixs3jYXw==",
+            "hashes_match": true,
+            "observed_lock_sha256": "2fbf496c854780bbf7be13d08c7806b0479c60483381d657d08755b563630701",
+            "observed_package_json_sha256": "3a35717c49e02a025fdad96301cf2438c014ee941ee35008eb038ab376e5a09a",
+            "observed_skills_dist_integrity": "sha512-OfePnDft+Xt9/tCoHdCUe5fkM8i+Q3QOSQO53hm7mKtsXyvc+CKOAAliVWZ484HS3cWx+6r+ob0AArixs3jYXw==",
+            "parse_error": null,
+            "runtime_lock_matches_reviewed": true,
+            "runtime_lock_sha256": "2fbf496c854780bbf7be13d08c7806b0479c60483381d657d08755b563630701",
+            "semantic_match": true,
+            "verified": true
+          },
+          "expected_version": "1.7.0",
+          "integrity": {
+            "expected_file_sha256": {
+              "bin/cli.mjs": "cda9a4dd5cd209c6f1dc551feacbaef503cefb5d8986d3c4cab9a95e1bbc47e6",
+              "dist/cli.mjs": "fde68534019765fb69510a0038ca7df2810a6ffed4c26fef9beabdcf6cc6701c",
+              "package.json": "d912e2f2fa141ba3d65b80e7374827d92ac4c6b81fdd63dcb80fdd641809f5d2"
+            },
+            "hashes_match": true,
+            "manifest_error": null,
+            "manifest_valid": true,
+            "observed_file_sha256": {
+              "bin/cli.mjs": "cda9a4dd5cd209c6f1dc551feacbaef503cefb5d8986d3c4cab9a95e1bbc47e6",
+              "dist/cli.mjs": "fde68534019765fb69510a0038ca7df2810a6ffed4c26fef9beabdcf6cc6701c",
+              "package.json": "d912e2f2fa141ba3d65b80e7374827d92ac4c6b81fdd63dcb80fdd641809f5d2"
+            },
+            "verified_before_execution": true
+          },
+          "observed_version": "1.7.0",
+          "package": "skills",
+          "source": "npm-pinned-reviewed-files",
+          "version_exact_match": true,
+          "version_parse_mode": "strict-semver-fullmatch"
+        },
+        "status": "pass_with_reservations",
+        "steps": {
+          "npm_ci_ignore_scripts": {
+            "argv": [
+              "$NPM_EXECUTABLE",
+              "ci",
+              "--ignore-scripts",
+              "--no-audit",
+              "--no-fund"
+            ],
+            "duration_ms": 390,
+            "exit_code": 0,
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stdout_sha256": "009c237b46096990ce642a3e6d40b82031f2375b9b061ffa31bfc1bc1b6611a9",
+            "timed_out": false
+          },
+          "version": {
+            "argv": [
+              "$NODE_EXECUTABLE",
+              "$QUALIFICATION_ROOT/cli-runtime/node_modules/skills/bin/cli.mjs",
+              "--version"
+            ],
+            "duration_ms": 94,
+            "exit_code": 0,
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stdout_sha256": "bb7320d831e7a151aa901c35e7326c752fa2ef5024f30768c42319b8bed171ed",
+            "timed_out": false
+          }
+        },
+        "toolkit": {
+          "skill_source_unchanged": true,
+          "skill_tree_sha256_after": "454d15368b922c00e36754484d6602e723e2f9a7785ef9b5ac923cfdfcc7cd53",
+          "skill_tree_sha256_before": "454d15368b922c00e36754484d6602e723e2f9a7785ef9b5ac923cfdfcc7cd53",
+          "source": "$TOOLKIT_ROOT"
+        }
+      },
+      "runner_exit_code": 0,
+      "skill": "oci-founder-migrate"
+    }
+  ],
+  "schema_version": "1.0",
+  "scope": "local-checkout-in-six-disposable-projects",
+  "status": "pass_with_reservations"
+}

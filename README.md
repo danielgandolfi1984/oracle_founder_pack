@@ -2,15 +2,15 @@
 
 [![Validation](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/workflows/validate.yml/badge.svg?branch=main)](https://github.com/danielgandolfi1984/oracle_founder_pack/actions/workflows/validate.yml)
 
-[English](docs/GETTING-STARTED.md) ·
-[Português (Brasil)](docs/i18n/pt-BR/START-HERE.md) ·
+[English — complete founder guide](docs/FOUNDER-GUIDE.md) ·
+[Português (Brasil)](README.pt-BR.md) ·
 [Español](docs/i18n/es/START-HERE.md)
 
 > Plan your backend's path to OCI with the coding agent you already use.
 
 Founder Toolkit for OCI helps technical founders and backend developers who
 know AWS, Google Cloud, or Azure plan their first steps on Oracle Cloud
-Infrastructure (OCI). Use the `oci-founder` skill to assess an existing backend,
+Infrastructure (OCI). Use the toolkit's three focused skills to assess an existing backend,
 understand important differences between clouds, and choose a small OCI
 architecture with one practical next step. When you are ready to explore your
 account, follow the guided Console and CLI examples to prepare local access,
@@ -54,6 +54,25 @@ backend assessment; no OCI tenancy or credentials are needed. The foundational
 lab is a separate, user-executed learning path that requires your own OCI
 account and permissions. Native behavior across all three agents remains under
 validation.
+
+## Choose your skill
+
+| Your goal | Skill | What you get |
+|---|---|---|
+| Understand OCI and assess a backend | [`oci-founder`](skills/oci-founder/SKILL.md) | Cloud concept translation, repository assessment and a small recommended path |
+| Start a new project | [`oci-founder-start`](skills/oci-founder-start/SKILL.md) | A minimal architecture, account/access checklist, VCN/VM learning sequence and a first validation |
+| Migrate an existing backend | [`oci-founder-migrate`](skills/oci-founder-migrate/SKILL.md) | A preserve/adapt/unknown matrix, data rehearsal, cost drivers, cutover and rollback criteria |
+
+All three are planning-first: installing instructions does not grant OCI
+access or authorize provisioning. Keep your existing language, framework and
+database unless a reviewed requirement justifies a change.
+
+The core skill is available at the fixed `v0.1.1` tag. The two companion skills
+are `0.1.0` previews available from reviewed source on `main`, **not** in the
+older release archives. The complete guides explain how to install each one,
+invoke it, prepare local OCI access and work through a VCN/VM example:
+**[English](docs/FOUNDER-GUIDE.md)** ·
+**[Português](docs/i18n/pt-BR/FOUNDER-GUIDE.md)**.
 
 ## Install and get your first OCI recommendation
 
@@ -154,6 +173,7 @@ support boundary still apply.
 
 | Founder need | Current capability | Dependency | Important boundary |
 |---|---|---|---|
+| Start a project or plan a migration with a focused workflow | `oci-founder-start` and `oci-founder-migrate` companion skills | Reviewed source checkout of `main`; install only the skill you need | Source-only previews; not an operational deployer, release-archive addition or cross-host native qualification |
 | Understand OCI, translate another cloud, assess a backend, or create a founder plan | Available in the portable `oci-founder` skill | One project-scoped skill copy | Native behavior is not yet qualified across all three hosts |
 | Set up local OCI access and learn VCN/VM basics | Guided Console and CLI documentation | Your OCI account, appropriate IAM access, and commands you choose to run | Human-executed lab, not a new operational skill or live-validated deployment path |
 | Plan a customer-facing backend and its full costs | Reference design, acceptance tests and illustrative cost worksheets | Product requirements and a separately reviewed implementation | Authentication, database and uploads are not implemented in the Container API preview; the local lab below is separate; no observed bills or customer-capacity claims |
@@ -169,6 +189,7 @@ support boundary still apply.
 
 | If you need to… | Start here |
 |---|---|
+| Follow the complete founder journey in English or Portuguese | [Complete English guide](docs/FOUNDER-GUIDE.md) or [Guia completo em português](docs/i18n/pt-BR/FOUNDER-GUIDE.md) |
 | Choose a route as a solo founder, small team, migrating developer or first-customer team | [Getting started](docs/GETTING-STARTED.md), [Português](docs/i18n/pt-BR/START-HERE.md), or [Español](docs/i18n/es/START-HERE.md) |
 | Decide whether OCI fits the product before committing to it | [OCI decision guide](docs/WHY-OCI.md) |
 | Install, verify discovery, make the first request, update, or remove the skill | [Skill quickstart](docs/QUICKSTART.md) |

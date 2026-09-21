@@ -3,6 +3,11 @@
 .env.*
 !.env.example
 .oci-founder/
+.oci/
+*.pem
+*.key
+*.p12
+*.pfx
 
 .terraform/
 *.tfstate

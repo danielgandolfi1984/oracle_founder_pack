@@ -1,10 +1,11 @@
 # Comece aqui: seu primeiro caminho em OCI
 
-Guia curto em português do Brasil, revisão **2026-09-19**, alinhado ao
-[guia canônico em inglês](../../GETTING-STARTED.md) desta mesma revisão.
-É uma porta de entrada mantida, não uma tradução integral da documentação.
-Comandos, limites de execução e procedimentos permanecem nos guias canônicos;
-revise este resumo sempre que eles mudarem.
+Guia curto em português do Brasil, revisão **2026-09-21**. Para instalação,
+primeiro prompt, acesso à conta, VCN/VM, custos e glossário na mesma jornada,
+use o [guia completo do founder em português](FOUNDER-GUIDE.md), mantido em
+paridade com sua [versão em inglês](../../FOUNDER-GUIDE.md). Este resumo continua
+alinhado ao [guia de entrada canônico](../../GETTING-STARTED.md); registros de
+engenharia e todos os aprofundamentos não estão integralmente traduzidos.
 
 O Founder Toolkit for OCI é um projeto pessoal independente de Daniel Gandolfi,
 que trabalha na Oracle e publica em caráter pessoal. Não é um produto Oracle,
@@ -14,7 +15,7 @@ não representa a empresa e não oferece suporte Oracle ou SLA.
 
 | Sua situação | Comece por | Resultado esperado |
 |---|---|---|
-| Estou sozinho e quero entender OCI | [Quickstart](../../QUICKSTART.md) | Uma recomendação para seu backend, premissas, custos a investigar e próximo passo |
+| Estou sozinho e quero entender OCI | [Guia completo em português](FOUNDER-GUIDE.md) | Instalação, uma recomendação para seu backend, premissas, custos a investigar e próximo passo |
 | Temos uma equipe pequena | [Baseline](../../FOUNDER-BASELINE.md) | Plano com responsáveis por deploy, acesso, custos e incidentes |
 | Já uso AWS, GCP ou Azure | [Casos de uso](../../USE-CASES.md) | Mapeamento de serviços e diferenças que precisam de teste antes da migração |
 | Preciso atender o primeiro cliente | [Backend de referência](../../REFERENCE-BACKEND.md) | Checklist de segurança, operação, custo e evidências para decidir se pode avançar |
@@ -22,7 +23,7 @@ não representa a empresa e não oferece suporte Oracle ou SLA.
 ## Faça na ordem que corresponde à sua necessidade
 
 1. **Instale em um repositório e para um agente.** Siga os comandos do
-   [quickstart](../../QUICKSTART.md); não precisa de conta OCI para a primeira
+   [guia em português](FOUNDER-GUIDE.md); não precisa de conta OCI para a primeira
    análise. Não copie credenciais para o chat.
 2. **Prepare sua conta quando precisar usá-la.** O guia de
    [acesso local](../../ACCOUNT-SETUP.md) mostra onde encontrar OCIDs, como

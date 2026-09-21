@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
-"""Run high-confidence secret checks over release and repository sources."""
+"""Run high-confidence secret/privacy checks over release and repository sources."""
 
 from __future__ import annotations
 
+import base64
+import binascii
+import json
 import os
 import re
 import sys
@@ -25,9 +28,39 @@ DETECTORS = {
     "pem-private-key": re.compile(rb"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"),
     "aws-access-key-id": re.compile(rb"\b(?:AKIA|ASIA)[0-9A-Z]{16}\b"),
     "github-token": re.compile(rb"\bgh[pousr]_[A-Za-z0-9]{36,}\b"),
+    "github-fine-grained-token": re.compile(rb"\bgithub_pat_[A-Za-z0-9_]{60,255}\b"),
     "openai-style-secret": re.compile(rb"\bsk-[A-Za-z0-9_-]{32,}\b"),
     "slack-token": re.compile(rb"\bxox[baprs]-[A-Za-z0-9-]{20,}\b"),
+    # OCIDs are account/resource metadata, not credentials. Require a long
+    # unique component so documented replace_me/fake/foreign fixtures stay safe.
+    "oci-resource-identifier": re.compile(
+        rb"\bocid1\.[a-z][a-z0-9-]{0,63}\.oc[0-9]{1,3}\."
+        rb"[a-z0-9-]{0,63}\.(?:[a-z0-9-]{0,63}\.)?[a-z0-9]{32,128}\b"
+    ),
+    # Only named corporate domains: public Oracle docs and lookalike domains
+    # must not be confused with internal Confluence/SharePoint locations.
+    "internal-oracle-url": re.compile(
+        rb"\bhttps?://(?:[^/?#\s\"<>@]+@)?(?:"
+        rb"(?:[a-z0-9-]+\.)*oraclecorp\.com|"
+        rb"oracle(?:-my)?\.sharepoint\.com|"
+        rb"confluence\.(?:[a-z0-9-]+\.)*oracle\.com"
+        rb")\.?(?=[:/?#\s\"'<>\\)]|$)",
+        re.IGNORECASE,
+    ),
 }
+
+# A dotted string alone is not evidence of a JWT. Parse bounded base64url JSON
+# objects and require a recognized signing algorithm plus signature-shaped
+# bytes. This detects token material, not signature validity or account access;
+# it performs no cryptography, provider lookup or network call.
+JWT_CANDIDATE = re.compile(
+    rb"(?<![A-Za-z0-9_-])([A-Za-z0-9_-]{8,2048})\."
+    rb"([A-Za-z0-9_-]{8,16384})\.([A-Za-z0-9_-]{22,4096})(?![A-Za-z0-9_-])"
+)
+JWT_SIGNING_ALGORITHMS = frozenset(
+    {"HS256", "HS384", "HS512", "RS256", "RS384", "RS512",
+     "ES256", "ES384", "ES512", "PS256", "PS384", "PS512", "EdDSA"}
+)
 
 # These directories contain local metadata or generated outputs and are not
 # intended for version control. Keep this list explicit: adding an exclusion is
@@ -58,6 +91,20 @@ def line_number(payload: bytes, offset: int) -> int:
     return payload.count(b"\n", 0, offset) + 1
 
 
+def is_jwt_material(segments: tuple[bytes, bytes, bytes]) -> bool:
+    try:
+        decoded = [
+            base64.b64decode(segment + b"=" * (-len(segment) % 4), altchars=b"-_", validate=True)
+            for segment in segments
+        ]
+        header, claims = (json.loads(part.decode("utf-8")) for part in decoded[:2])
+        return (isinstance(header, dict) and isinstance(header.get("alg"), str)
+                and header["alg"] in JWT_SIGNING_ALGORITHMS
+                and isinstance(claims, dict) and bool(claims) and len(decoded[2]) >= 16)
+    except (ValueError, UnicodeError, binascii.Error, RecursionError):
+        return False
+
+
 def scan_payload(package_kind: str, path: str, payload: bytes) -> list[Finding]:
     findings: list[Finding] = []
     for name, pattern in DETECTORS.items():
@@ -70,6 +117,9 @@ def scan_payload(package_kind: str, path: str, payload: bytes) -> list[Finding]:
                     line=line_number(payload, match.start()),
                 )
             )
+    for match in JWT_CANDIDATE.finditer(payload):
+        if is_jwt_material(match.groups()):
+            findings.append(Finding(package_kind, path, "jwt-token", line_number(payload, match.start())))
     return findings
 
 
