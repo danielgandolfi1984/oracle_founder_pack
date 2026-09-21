@@ -1,6 +1,13 @@
 # Container API field preview
 
-Version `0.2.0-preview.3` is a generate-and-review path for a stateless HTTP API on OCI Container Instances. It is deliberately limited to a sandbox and a single container instance. It is **not production-qualified**, highly available, zero-downtime, or field-tested in an OCI tenancy yet.
+Version `0.2.0-preview.4` is a generate-and-review path for a stateless HTTP API on OCI Container Instances. It is deliberately limited to a sandbox and a single container instance. It is **not production-qualified**, highly available, zero-downtime, or field-tested in an OCI tenancy yet.
+
+Security update: use this revision's helper and tests together. Earlier helpers
+could accept unexpected API routes and re-added container capabilities in their
+offline security gates. Do not use the full-toolkit archives from `v0.1.0` or
+`v0.1.1` to validate infrastructure. Those immutable artifacts remain historical;
+the standalone planning skills are unchanged. See the
+[security update](https://github.com/danielgandolfi1984/oracle_founder_pack/blob/container-api-v0.2.0-preview.4/docs/SECURITY-UPDATE-2026-09-21.md).
 
 The Terraform has been formatted and validated locally with Terraform `1.16.3` and Oracle OCI provider `9.2.0`. No `terraform plan` has been run against a real target, no image has been built on this host, and no OCI resource has been created. This exact Terraform pin is not compatible with OCI Resource Manager's currently documented `1.5.x` operational line; the preview is local-Terraform only.
 

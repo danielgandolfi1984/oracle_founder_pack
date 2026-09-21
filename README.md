@@ -129,6 +129,10 @@ without its verified operational dependencies. The latest guides live on
 
 ## Help and security status
 
+- **[Security update — 2026-09-21](docs/SECURITY-UPDATE-2026-09-21.md):**
+  use Container API `0.2.0-preview.4` for its corrected offline gates. The old
+  full-toolkit `v0.1.0`/`v0.1.1` archives are not recommended for infrastructure
+  validation. The three planning skills and their installation commands are unchanged.
 - **[Get help](SUPPORT.md):** use GitHub Issues for best-effort community help.
   There is no SLA or Oracle Support coverage.
 - **[Report a vulnerability](SECURITY.md):** use GitHub private vulnerability
@@ -147,7 +151,7 @@ Public-tag Codex installation, removal, and reinstall passed, and all six
 release assets were downloaded again and verified. See the
 [publication record](tests/results/2026-09-18-v0.1.1-publication.json).
 The separately versioned
-[`0.2.0-preview.3` Container API blueprint](blueprints/container-api/README.md)
+[`0.2.0-preview.4` Container API blueprint](blueprints/container-api/README.md)
 is sandbox-only and has not been applied in an OCI tenancy.
 
 The preceding [`v0.1.0` release](https://github.com/danielgandolfi1984/oracle_founder_pack/releases/tag/v0.1.0)
@@ -548,7 +552,7 @@ be able to reach a verified OCI endpoint in under 60 minutes using Codex,
 Cursor, or Claude Code, after account access and prerequisites are ready.
 Console guidance supports onboarding; repeatable deployment should use
 reviewed CLI, SDK, or IaC procedures.
-Neither preview `0.1.0`, preview `0.1.1`, nor the `0.2.0-preview.3`
+Neither preview `0.1.0`, preview `0.1.1`, nor the `0.2.0-preview.4`
 blueprint has demonstrated this target in a live sandbox tenancy.
 
 Read the full [product brief](docs/PRODUCT.md) and [architecture](docs/ARCHITECTURE.md).

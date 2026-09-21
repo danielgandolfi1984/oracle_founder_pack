@@ -1,0 +1,163 @@
+{
+  "development_validator_runtime": {
+    "path": "/private/tmp/oci-founder-validator-deps",
+    "pyyaml_version": "6.0.2",
+    "requirements_sha256": "99a6069bcb9b36183c65b6101fea149ecbc8532a8fa20f311231e677770510b4",
+    "status": "passed",
+    "tree_sha256": "425b18dc4053235e479a191015f1dfb0952c676ece5618dcd6c533282e2d2b01"
+  },
+  "environment": {
+    "machine": "arm64",
+    "python": "3.9.6",
+    "python_executable": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/bin/python3.9",
+    "release": "25.6.0",
+    "subprocess_policy": {
+      "cloud_token_or_password_named_variables_inherited": false,
+      "inherited_names": [
+        "LANG",
+        "LC_ALL",
+        "LC_CTYPE",
+        "PATH",
+        "TERM",
+        "TMPDIR"
+      ],
+      "raw_environment_recorded": false,
+      "strategy": "allowlist"
+    },
+    "system": "Darwin"
+  },
+  "hosts": {
+    "codex": {
+      "app": {
+        "build": "8576",
+        "bundle_id": "com.openai.codex",
+        "installed": true,
+        "metadata_status": "read",
+        "path": "/Applications/ChatGPT.app",
+        "version": "26.903.71938"
+      },
+      "available": true,
+      "development_validators": {
+        "codex_plugin_creator": {
+          "available": true,
+          "probe": {
+            "argv": [
+              "/Library/Developer/CommandLineTools/usr/bin/python3",
+              "$HOME/.codex/skills/.system/plugin-creator/scripts/validate_plugin.py",
+              "$TOOLKIT_ROOT"
+            ],
+            "duration_ms": 141,
+            "exit_code": 0,
+            "stderr_excerpt": "",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stdout_excerpt": "Plugin validation passed: $TOOLKIT_ROOT\n",
+            "stdout_sha256": "b79e7d5af33a7f44a55747434db0fdf7094b415eb2ef0b8488103ba0fc71bf18",
+            "timed_out": false
+          },
+          "status": "passed",
+          "validator": "$HOME/.codex/skills/.system/plugin-creator/scripts/validate_plugin.py"
+        },
+        "portable_skill": {
+          "available": true,
+          "probe": {
+            "argv": [
+              "/Library/Developer/CommandLineTools/usr/bin/python3",
+              "$HOME/.codex/skills/.system/skill-creator/scripts/quick_validate.py",
+              "$TOOLKIT_ROOT/skills/oci-founder"
+            ],
+            "duration_ms": 107,
+            "exit_code": 0,
+            "stderr_excerpt": "",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stdout_excerpt": "Skill is valid!\n",
+            "stdout_sha256": "db349825903d66adffea3ecf1bd8e1803043e8a71cf1a051235dabc5371f5bb0",
+            "timed_out": false
+          },
+          "status": "passed",
+          "validator": "$HOME/.codex/skills/.system/skill-creator/scripts/quick_validate.py"
+        }
+      },
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/codex",
+      "native_manifest_validator": "not_exposed_by_cli",
+      "plugin_cli": "available",
+      "plugin_help_probe": {
+        "argv": [
+          "/Applications/ChatGPT.app/Contents/Resources/codex",
+          "plugin",
+          "--help"
+        ],
+        "duration_ms": 10,
+        "exit_code": 0,
+        "stderr_excerpt": "WARNING: proceeding, even though we could not create PATH aliases: Operation not permitted (os error 1)\n",
+        "stderr_sha256": "3087f13b0d34323fbc05177ef68ae53dc523d9acaf6c0c63852825479db5af2a",
+        "stdout_excerpt": "Manage Codex plugins\n\nUsage: codex plugin [OPTIONS] <COMMAND>\n\nCommands:\n  add          Install a plugin from a configured or remote marketplace\n  list         List plugins available from configured and remote marketplaces\n  marketplace  Add, list, upgrade, or remove configured plugin marketplaces\n  remove       Uninstall a plugin and remove its local cache\n  help         Print this message or the help of the given subcommand(s)\n\nOptions:\n  -c, --config <key=value>\n          Override a configuration value that would otherwise be loaded from `~/.codex/config.toml`.\n          Use a dotted path (`foo.bar.baz`) to override nested values. The `value` portion is parsed\n          as TOML. If it fails to parse as TOML, the raw string is used as a literal.\n          \n          Examples: - `-c model=\"o3\"` - `-c 'sandbox_permissions=[\"disk-full-read-access\"]'` - `-c\n          shell_environment_policy.inherit=all`\n\n      --enable <FEATURE>\n          Enable a feature (repeatable). Equivalent to `-c features.<name>=true`\n\n      --disable <FEATURE>\n          Disable a feature (repeatable). Equivalent to `-c features.<name>=false`\n\n  -h, --help\n          Print help (see a summary with '-h')\n",
+        "stdout_sha256": "a517a3a2d1801d812751d98c8bc4d27de6bb5367aafc67495e0cde3a99680124",
+        "timed_out": false
+      },
+      "surface": "codex-cli",
+      "version": "codex-cli 0.153.4",
+      "version_probe": {
+        "argv": [
+          "/Applications/ChatGPT.app/Contents/Resources/codex",
+          "--version"
+        ],
+        "duration_ms": 18,
+        "exit_code": 0,
+        "stderr_excerpt": "WARNING: proceeding, even though we could not create PATH aliases: Operation not permitted (os error 1)\n",
+        "stderr_sha256": "3087f13b0d34323fbc05177ef68ae53dc523d9acaf6c0c63852825479db5af2a",
+        "stdout_excerpt": "codex-cli 0.153.4\n",
+        "stdout_sha256": "616dba4e87de2b1f07e61fe30ff4a5b3b075986c986c466ac5d244597eac0f36",
+        "timed_out": false
+      }
+    }
+  },
+  "kind": "oci-founder-host-preflight",
+  "observed_at_utc": "2026-09-21T14:24:40.219852+00:00",
+  "repo_validation": {
+    "mode": "source-without-host-preflight-evidence",
+    "probe": {
+      "argv": [
+        "/Library/Developer/CommandLineTools/usr/bin/python3",
+        "$TOOLKIT_ROOT/scripts/validate.py",
+        "--skip-host-preflight-evidence"
+      ],
+      "duration_ms": 423,
+      "exit_code": 0,
+      "stderr_excerpt": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_excerpt": "Founder Toolkit for OCI validation passed (2039 checks).\n",
+      "stdout_sha256": "16b22342cbfd69eb68b8d8a87bf6f10a8bedf5613fd88c6d9fb043e7b86ef48f",
+      "timed_out": false
+    },
+    "status": "passed"
+  },
+  "run_validators_requested": true,
+  "schema_version": "1.0",
+  "scope": "read_only",
+  "summary": {
+    "blockers": [
+      "Codex CLI exposes plugin management but no native manifest validator."
+    ],
+    "cloud_mutation_attempted": false,
+    "host_configuration_changed": false,
+    "installation_attempted": false,
+    "model_session_started": false,
+    "oci_command_executed": false,
+    "release_qualified": false
+  },
+  "toolkit": {
+    "container_api_blueprint_sha256": "235548e8485d1d9fad2ab0e41e78b3b3f22f477a6cde9e00fbc14b318cb1b066",
+    "manifest_sha256": {
+      ".claude-plugin/plugin.json": "18657b403605e79b9414a7469d07cdb43e11d0d7c335b683832eed526135b8ce",
+      ".codex-plugin/plugin.json": "a6351ab383bb17e4faa0b619ff2a114fe925fb9169e8bd95d0476dbd625085fb",
+      "plugin.json": "d8e3f2b4bf41dd715d2ba0e76fda69b1181cb1ce13ad2623fb800d7ed5b52ef9"
+    },
+    "root": "$TOOLKIT_ROOT",
+    "skill_tree_sha256": "dba58d1984513e44aa77a5729a20b16e23186dac00e0de17ef1db01ddd0bda49",
+    "source_fingerprint": "f0d20b7eeb9873bdf6c8a4a58069c482a0e4bfca44d1934e40b0e9a6dc8a5712",
+    "validation_tool_sha256": {
+      "scripts/qualify_hosts.py": "afdfc2e940c3f929dac945701406bee63513d5774775356d9a9b614c7fb64e8c",
+      "scripts/validate.py": "ff77e6e1149ed5b2abd40654395c96496e832226be6433b52ed5bbbd4b08468e"
+    }
+  }
+}

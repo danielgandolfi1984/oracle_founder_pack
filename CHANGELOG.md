@@ -5,6 +5,21 @@ publishes an independent public open-source preview under UPL-1.0, with
 best-effort community support and no SLA. It has not published a tagged stable
 release or claimed cross-host or production qualification.
 
+## Container API security revision `0.2.0-preview.4` — 2026-09-21
+
+- Reject additional, duplicate, malformed or unknown API routes instead of
+  silently dropping them from the offline security comparison.
+- Reject re-added container capabilities and unknown security fields; retain
+  valid provider representations for an empty add-capabilities list.
+- Add plan/state regressions and update the FastAPI assessment fixture's
+  dependency closure. Historical native receipts remain bound to their original
+  fixture, not rewritten to claim a new run.
+- Add ongoing dependency auditing, CodeQL and Dependabot configuration. These
+  checks supplement review and do not qualify an OCI deployment.
+- Keep the three planning skills unchanged. Give the full bundle a distinct
+  Container API coordinate; preserve old release tags/assets and warn against
+  using their blueprint helpers for infrastructure validation.
+
 ## Public-source evidence consolidation — 2026-09-21
 
 - Published the sanitized public-clone and joint Codex-layout installation

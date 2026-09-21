@@ -133,6 +133,13 @@ def load_version() -> str:
     return version
 
 
+def load_blueprint_version() -> str:
+    version = (ROOT / "blueprints/container-api/VERSION").read_text(encoding="utf-8").strip()
+    if re.fullmatch(r"\d+\.\d+\.\d+-preview\.\d+", version) is None:
+        raise ValueError("Container API must have a safe, explicit preview version")
+    return version
+
+
 def package_specs(version: str) -> tuple[PackageSpec, ...]:
     common = (
         ROOT / "LICENSE",
@@ -153,7 +160,7 @@ def package_specs(version: str) -> tuple[PackageSpec, ...]:
         ),
         PackageSpec(
             kind="full-toolkit",
-            archive_file=f"oci-founder-toolkit-{version}-preview.tar.gz",
+            archive_file=f"oci-founder-toolkit-{version}-container-api-{load_blueprint_version()}.tar.gz",
             archive_root=PACKAGE_NAME,
             readme_source=ROOT / "packaging/README.full.md",
             exact_sources=(

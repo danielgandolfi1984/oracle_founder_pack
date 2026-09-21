@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "kind": "oci-founder-historical-fixture-lineage",
+  "recorded_on": "2026-09-21",
+  "source_commit": "8765266e3ef77110b30827d5c89da7cf1b15ee08",
+  "source_path": "tests/fixtures/docker-fastapi",
+  "method": "Hashes recomputed from the immutable published Git commit; no dependency installation or model execution.",
+  "manifest_sha256": "3713910880ff8d3062406b421591ee0cf16f1c81e8729c4549714fb17b10584b",
+  "files": {
+    ".env.example": "6734cb59727d28fdb9147084a2e6d9d480247ebd054dc2b25ce56273dd5bd91e",
+    "Dockerfile": "6d0d4d281454fbc9d6e8b4e16873c82362cf7efb2cda216123627883ee631b82",
+    "app.py": "31de1768a1b31ea890d546cb85c1329766e1cb13852b388f085eeedc3bd7f615",
+    "requirements.txt": "e4dc04c025e75b9e7a926bc55b07a4a4affcb844b6100a062d3f7acf7a335736"
+  },
+  "boundary": "Native receipts from 2026-09-18 retain this historical fixture fingerprint. They do not qualify the security-updated dependency fixture or a new native run. Historical receipts were not rewritten."
+}

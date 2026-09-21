@@ -1,0 +1,107 @@
+name: Security checks
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  schedule:
+    - cron: "17 7 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: security-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  dependencies:
+    name: Audit active dependency pins
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+      - name: Test audit parsing and fail-closed behavior without network
+        run: python3 -B -m unittest discover -s tests -p test_dependency_audit.py -v
+      - name: Query OSV for current public Python and npm pins (no installs)
+        run: python3 -B scripts/audit_dependencies.py
+
+  # Pull-request analysis deliberately has no repository write permission.
+  # Never use pull_request_target or execute/build untrusted Python here.
+  codeql-pr:
+    name: CodeQL Python (read-only PR)
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      # Official immutable v4.38.1 release, verified 2026-09-21:
+      # https://github.com/github/codeql-action/releases/tag/v4.38.1
+      - uses: github/codeql-action/init@1c5b675653bb5c22dbe9b12b556ec555138e09fd # v4.38.1
+        with:
+          languages: python
+          build-mode: none
+          queries: security-extended
+      - uses: github/codeql-action/analyze@1c5b675653bb5c22dbe9b12b556ec555138e09fd # v4.38.1
+        with:
+          category: /language:python
+          output: ${{ runner.temp }}/codeql-results
+          upload: never
+          upload-database: false
+      - name: Fail read-only PR check when local security findings exist
+        env:
+          SARIF_DIRECTORY: ${{ runner.temp }}/codeql-results
+        shell: python
+        run: |
+          import json
+          import os
+          from pathlib import Path
+
+          files = list(Path(os.environ["SARIF_DIRECTORY"]).glob("*.sarif"))
+          if not files:
+              raise SystemExit("CodeQL produced no SARIF; analysis incomplete")
+          count = 0
+          for path in files:
+              document = json.loads(path.read_text(encoding="utf-8"))
+              runs = document.get("runs")
+              if document.get("version") != "2.1.0" or not isinstance(runs, list) or not runs:
+                  raise SystemExit("CodeQL SARIF is invalid; analysis incomplete")
+              for run in runs:
+                  results = run.get("results")
+                  if not isinstance(results, list):
+                      raise SystemExit("CodeQL results are missing; analysis incomplete")
+                  count += len(results)
+          print(f"CodeQL security findings: {count}; no PR upload or write permission")
+          raise SystemExit(1 if count else 0)
+
+  codeql-main:
+    name: CodeQL Python (trusted upload)
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - uses: github/codeql-action/init@1c5b675653bb5c22dbe9b12b556ec555138e09fd # v4.38.1
+        with:
+          languages: python
+          build-mode: none
+          queries: security-extended
+      - uses: github/codeql-action/analyze@1c5b675653bb5c22dbe9b12b556ec555138e09fd # v4.38.1
+        with:
+          category: /language:python
+          upload: always
+          upload-database: false

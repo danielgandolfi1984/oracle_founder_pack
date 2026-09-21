@@ -46,7 +46,7 @@ Inspect the [Container API preview](../blueprints/container-api/README.md),
 | Secrets | No app secret injection; app resource principal disabled | Reviewed secret retrieval and narrowly scoped workload identity, plus rotation tests |
 | Delivery and recovery | Image-digest, plan-review, receipt, rollback/teardown tooling | Real sandbox evidence, restore drill, safe schema migration, production operating procedures |
 
-The preview is `0.2.0-preview.3`, sandbox-only, with no live OCI plan/apply
+The preview is `0.2.0-preview.4`, sandbox-only, with no live OCI plan/apply
 evidence. Its validators intentionally accept a narrow resource graph. This
 design is **not** permission to add components to that graph or bypass its
 checks: an implementation needs separately reviewed code, contracts, and tests.

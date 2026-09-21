@@ -1111,7 +1111,10 @@ check(
     "Oracle Skills postrelease lifecycle: installation, cleanup, or native qualification boundary failed",
 )
 
-host_preflight = load_json("tests/results/2026-09-21-host-preflight.json")
+host_preflight = (
+    {} if ARGS.skip_host_preflight_evidence
+    else load_json("tests/results/2026-09-21-security-host-preflight.json")
+)
 if not ARGS.skip_host_preflight_evidence:
     check(
         host_preflight.get("kind") == "oci-founder-host-preflight"
@@ -1182,8 +1185,8 @@ if not ARGS.skip_host_preflight_evidence:
 
 blueprint_version = (ROOT / "blueprints/container-api/VERSION").read_text(encoding="utf-8").strip()
 check(
-    blueprint_version == "0.2.0-preview.3",
-    "Container API blueprint must remain at the reviewed 0.2.0-preview.3 contract",
+    blueprint_version == "0.2.0-preview.4",
+    "Container API blueprint must use the security-fixed 0.2.0-preview.4 contract",
 )
 check(
     (ROOT / ".terraform-version").read_text(encoding="utf-8").strip() == "1.16.3",

@@ -49,23 +49,22 @@ jobs:
         with:
           terraform_version: "1.16.3"
           terraform_wrapper: false
-      - name: Resolve package names from plugin version
+      - name: Resolve package names from reviewed package builder
         id: packages
         shell: python
         run: |
-          import json
           import os
-          import re
-          from pathlib import Path
+          import sys
 
-          version = json.loads(Path("plugin.json").read_text(encoding="utf-8")).get("version")
-          if not isinstance(version, str) or re.fullmatch(r"\d+\.\d+\.\d+", version) is None:
-              raise SystemExit("plugin.json version must be strict semver")
+          sys.path.insert(0, "scripts")
+          import build_release
+
+          specs = {item.kind: item for item in build_release.package_specs(build_release.load_version())}
           values = {
-              "skill_root": f"oci-founder-skill-{version}-preview",
-              "skill_archive": f"oci-founder-skill-{version}-preview.tar.gz",
-              "toolkit_root": "oci-founder-toolkit",
-              "toolkit_archive": f"oci-founder-toolkit-{version}-preview.tar.gz",
+              "skill_root": specs["skill-only"].archive_root,
+              "skill_archive": specs["skill-only"].archive_file,
+              "toolkit_root": specs["full-toolkit"].archive_root,
+              "toolkit_archive": specs["full-toolkit"].archive_file,
           }
           with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
               for key, value in values.items():

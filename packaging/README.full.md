@@ -15,13 +15,20 @@ has no SLA or Oracle Support coverage. Source and releases:
 - root Agent Plugins v1 manifest;
 - Codex and Claude Code compatibility manifests;
 - portable `skills/oci-founder` planning and routing skill;
-- `blueprints/container-api` version `0.2.0-preview.3`;
+- `blueprints/container-api` version `0.2.0-preview.4`;
 - immutable `oracle/skills` source-review record and offline, read-only verifier;
 - license and third-party notices.
 
 The archive excludes presentations, editor build files, tests, development
 tools, credentials, Terraform state and plans, generated receipts, caches, and
 local environment files.
+
+This security-fixed bundle uses a filename containing the Container API version
+and the release coordinate `container-api-v0.2.0-preview.4`. The skill/plugin
+version remains `0.1.1`; no new skill behavior is claimed. Do not substitute the
+old full-toolkit `v0.1.0` or `v0.1.1` archives: their helpers did not reject all
+unexpected gateway routes or re-added container capabilities. Earlier assets
+and receipts are retained unchanged, not evidence for this bundle.
 
 ## Install the skill from this extracted package
 

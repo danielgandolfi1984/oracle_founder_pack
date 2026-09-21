@@ -31,6 +31,12 @@ The earlier `v0.1.0` tag remains at `6cf08bf30febc434cefed228f53c43a1f8802ec2`;
 neither its tag nor its assets were replaced. Later source changes require
 their own CI and, for packaged changes, a new release coordinate.
 
+The security-fixed Container API `0.2.0-preview.4` is packaged separately under
+`container-api-v0.2.0-preview.4`. The planning skill/plugin stays `0.1.1`.
+Do not use the earlier full bundles to validate infrastructure; see the
+[security update](SECURITY-UPDATE-2026-09-21.md). Old tags, assets and receipts
+remain immutable. Release-note warnings may be added without replacing assets.
+
 The
 [license and publisher decision](decisions/0003-public-license-and-publisher.md)
 records the independent-project classification, Daniel Gandolfi as publisher,
@@ -147,8 +153,10 @@ session, and no 24-case replay. The response was safe but longer than needed;
 conciseness and progressive disclosure prompted the separate `0.1.1`
 [prepublication assessment](../tests/results/2026-09-18-v0.1.1-assessment.json).
 The current runner binds version assertions to source `metadata.version` and
-records the expected version, while the prompt, output schema, and fixture
-remain the same for comparison. The
+records the expected version, while the prompt, output schema, and historical
+fixture were the same for that comparison. The dependency fixture was updated
+by the 2026-09-21 security correction; original native receipts do not qualify
+the updated fixture. The
 [`0.1.1` native receipt](../tests/results/2026-09-18-v0.1.1-codex-native.json)
 passed with reservations: 185 words versus 1,489 for the same prompt, two
 reference reads instead of four, all recorded effects false, and clean removal.
@@ -194,7 +202,7 @@ source path, mode, size, and SHA-256 digest.
 
 The current public-preview package names are
 `oci-founder-skill-0.1.1-preview.tar.gz` and
-`oci-founder-toolkit-0.1.1-preview.tar.gz`. Local qualification precedes
+`oci-founder-toolkit-0.1.1-container-api-0.2.0-preview.4.tar.gz`. Local qualification precedes
 published-asset verification.
 The full toolkit extracts into the
 stable `oci-founder-toolkit/` root that matches the plugin manifest name.
@@ -203,14 +211,14 @@ cannot remain in that stable root.
 
 The current skill-only archive SHA-256 is
 `6167f1ca7da9a06204e8e0d028622c490b727581532c15ec1d5d78629b2aa8ff`.
-The current full-toolkit archive SHA-256 is
+The historical `v0.1.1` full-toolkit archive SHA-256 is
 `7296477c39da42f830edd4e5dee6713288cdef695da0957145f79057cd17218b`.
 The renewed
 [skill-only summary](../tests/results/2026-09-18-v0.1.1-skill-package-install-lifecycle.json),
 [skill-only raw receipt](../tests/results/2026-09-18-v0.1.1-skill-package-install-lifecycle.raw.json),
 [full-toolkit summary](../tests/results/2026-09-18-v0.1.1-full-package-install-lifecycle.json)
 and [full-toolkit raw receipt](../tests/results/2026-09-18-v0.1.1-full-package-install-lifecycle.raw.json)
-bind these `-preview` archives, their manifests and inventories, and current
+bind the historical `v0.1.1` archives, not the security-fixed full bundle, and the unchanged
 skill fingerprint
 `dba58d1984513e44aa77a5729a20b16e23186dac00e0de17ef1db01ddd0bda49`.
 

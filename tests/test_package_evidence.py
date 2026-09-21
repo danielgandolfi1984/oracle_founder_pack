@@ -58,7 +58,7 @@ class PackageEvidenceTests(unittest.TestCase):
                 self.assertEqual("pass_with_reservations", evidence["status"])
                 self.assertFalse(evidence["release_qualified"])
 
-    def test_evidence_is_bound_to_both_fresh_deterministic_packages(self) -> None:
+    def test_skill_stays_identical_and_security_bundle_has_a_new_coordinate(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             manifests = build_release.build_all(Path(temporary))
         manifest_by_kind = {item["package_kind"]: item for item in manifests}
@@ -69,6 +69,17 @@ class PackageEvidenceTests(unittest.TestCase):
                 package = evidence["package"]
                 self.assertEqual("0.1.1", manifest["version"])
                 self.assertIn("0.1.1-preview.tar.gz", package["archive_file"])
+                if kind == "full-toolkit":
+                    # The old receipt remains evidence for the immutable old bundle,
+                    # not for the security-fixed blueprint now built from source.
+                    self.assertEqual(
+                        "7296477c39da42f830edd4e5dee6713288cdef695da0957145f79057cd17218b",
+                        package["archive_sha256"],
+                    )
+                    self.assertNotEqual(manifest["archive"]["file"], package["archive_file"])
+                    self.assertIn("container-api-0.2.0-preview.4", manifest["archive"]["file"])
+                    self.assertNotEqual(manifest["archive"]["sha256"], package["archive_sha256"])
+                    continue
                 self.assertEqual(manifest["archive"]["sha256"], package["archive_sha256"])
                 self.assertEqual(manifest["archive"]["size"], package["archive_size"])
                 self.assertEqual(manifest["content_sha256"], package["content_sha256"])
@@ -86,6 +97,33 @@ class PackageEvidenceTests(unittest.TestCase):
             with self.subTest(kind=kind):
                 self.assertEqual(runner_hash, evidence["lifecycle"]["runner_sha256"])
                 self.assertEqual(skill_hash, evidence["verification"]["skill_tree_sha256"])
+
+    def test_security_bundle_has_fresh_exact_installation_evidence(self) -> None:
+        assessment = json.loads((ROOT / "tests/results/2026-09-21-security-full-package-assessment.json").read_text())
+        with tempfile.TemporaryDirectory() as temporary:
+            manifests = build_release.build_all(Path(temporary))
+        manifest = next(item for item in manifests if item["package_kind"] == "full-toolkit")
+        self.assertEqual(manifest["archive"], assessment["archive"])
+        self.assertEqual(manifest["content_sha256"], assessment["content_sha256"])
+        self.assertEqual(len(manifest["files"]), assessment["file_count"])
+        self.assertEqual(hashlib.sha256(build_release.canonical_json(manifest)).hexdigest(),
+                         assessment["manifest_sha256"])
+        self.assertEqual(build_release.load_blueprint_version(), assessment["component_version"])
+        raw_path = ROOT / assessment["raw_receipt"]["path"]
+        self.assertEqual(hashlib.sha256(raw_path.read_bytes()).hexdigest(), assessment["raw_receipt"]["sha256"])
+        raw = json.loads(raw_path.read_text())
+        self.assertEqual("pass_with_reservations", raw["status"])
+        self.assertEqual({"codex", "cursor", "claude-code"}, {case["agent"] for case in raw["cases"]})
+        self.assertTrue(raw["skills_cli"]["integrity"]["verified_before_execution"])
+        self.assertTrue(raw["skills_cli"]["dependency_lock"]["verified"])
+        self.assertEqual(qualify_skill_install.tree_fingerprint(ROOT / "skills/oci-founder"),
+                         raw["toolkit"]["skill_tree_sha256_before"])
+        for case in raw["cases"]:
+            self.assertTrue(case["passed"])
+            self.assertTrue(case["first_install"]["all_copies_match_source"])
+            self.assertTrue(case["second_install"]["all_copies_match_source"])
+            self.assertTrue(case["final_remove_residuals"]["clean"])
+        self.assertFalse(assessment["release_qualified"])
 
     def test_every_agent_package_lifecycle_passed_and_cleanup_was_clean(self) -> None:
         evidence_sets = (

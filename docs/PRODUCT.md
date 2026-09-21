@@ -28,7 +28,7 @@ repeatable deployment should use reviewed CLI, SDK, or IaC procedures.
 This is a target to validate with users, not a current performance claim.
 
 Version `0.1.1` is the current planning and portability preview. The repository also
-contains a separately versioned, unsupported `0.2.0-preview.3` Container API
+contains a separately versioned, unsupported `0.2.0-preview.4` Container API
 candidate for sandbox evaluation. Neither may be marketed as a production
 deployment product or as having shipped a workload in OCI.
 

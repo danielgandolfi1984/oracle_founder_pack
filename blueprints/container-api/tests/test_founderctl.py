@@ -1451,6 +1451,186 @@ class PlanSummaryTests(unittest.TestCase):
         self.assertIsNone(summary["approval_phrase"])
 
 
+class SecurityGateRegressionTests(unittest.TestCase):
+    DEPLOYMENT = "oci_apigateway_deployment.api"
+    CONTAINER = "oci_container_instances_container_instance.api"
+
+    def test_receipts_use_the_version_of_the_current_blueprint(self) -> None:
+        self.assertEqual((ROOT / "VERSION").read_text().strip(), FOUNDERCTL.BLUEPRINT_VERSION)
+        self.assertEqual("0.2.0-preview.4", FOUNDERCTL.BLUEPRINT_VERSION)
+
+    def assert_contract(self, address: str, mutate, blocker: object = None) -> None:
+        """Exercise the same provider-shaped mutation through plan and state gates."""
+        plan = build_runtime_plan()
+        mutate(planned_resource(plan, address)["change"]["after"])
+        summary = PlanSummaryTests().summary(plan)
+        if blocker is None:
+            self.assertFalse(summary["blocked"], summary["block_reasons"])
+            self.assertIsNotNone(summary["approval_phrase"])
+        else:
+            self.assertTrue(summary["blocked"])
+            self.assertIn(blocker, summary["block_reasons"])
+            self.assertIsNone(summary["approval_phrase"])
+
+        # State verification must reject drift against an unchanged reviewed plan.
+        state = build_runtime_state_show()
+        values = next(
+            resource["values"]
+            for resource in state["values"]["root_module"]["resources"]
+            if resource["address"] == address
+        )
+        mutate(values)
+        arguments = (state, build_runtime_plan(), "runtime", TENANCY, REGION, COMPARTMENT, None)
+        if blocker is None:
+            self.assertIsNone(FOUNDERCTL.validate_state_security_contract(*arguments))
+        else:
+            with self.assertRaises(FOUNDERCTL.ContractError):
+                FOUNDERCTL.validate_state_security_contract(*arguments)
+
+    def assert_route_mutation_rejected(self, mutate) -> None:
+        self.assert_contract(
+            self.DEPLOYMENT,
+            lambda values: mutate(values["specification"][0]["routes"]),
+            "api_deployment_route_contract_mismatch",
+        )
+
+    def test_extra_routes_are_rejected_in_plan_and_state(self) -> None:
+        extras = [
+            {"path": "/unexpected", "methods": ["POST"], "backend": []},
+            {"path": "/unexpected", "methods": ["GET", "POST"], "backend": []},
+            {
+                "path": "/unexpected",
+                "methods": ["GET"],
+                "backend": [{"type": "STOCK_RESPONSE_BACKEND", "status": 200, "body": "unexpected"}],
+            },
+            None,
+        ]
+        for extra in extras:
+            with self.subTest(extra=extra):
+                self.assert_route_mutation_rejected(lambda routes: routes.append(copy.deepcopy(extra)))
+
+    def test_duplicate_and_missing_routes_are_rejected_in_plan_and_state(self) -> None:
+        for mutation in (
+            lambda routes: routes.append(copy.deepcopy(routes[0])),
+            lambda routes: routes.__setitem__(1, copy.deepcopy(routes[0])),
+            lambda routes: routes.pop(),
+        ):
+            with self.subTest(mutation=mutation):
+                self.assert_route_mutation_rejected(mutation)
+
+    def test_malformed_routes_are_rejected_in_plan_and_state(self) -> None:
+        for route in (None, [], "GET /", {}, {"methods": ["GET"], "backend": []}):
+            with self.subTest(route=route):
+                self.assert_route_mutation_rejected(
+                    lambda routes: routes.__setitem__(0, copy.deepcopy(route))
+                )
+        for field, value in (
+            ("path", None), ("path", []), ("path", "/unexpected"),
+            ("methods", None), ("methods", "GET"), ("methods", []),
+            ("methods", ["POST"]), ("methods", ["GET", "POST"]),
+            ("methods", ["GET", "GET"]),
+            ("backend", None), ("backend", {}), ("backend", []),
+            ("backend", [None]), ("backend", [{}, {}]),
+        ):
+            with self.subTest(field=field, value=value):
+                self.assert_route_mutation_rejected(
+                    lambda routes: routes[0].__setitem__(field, copy.deepcopy(value))
+                )
+
+    def test_unreviewed_backends_are_rejected_in_plan_and_state(self) -> None:
+        for field, value in (
+            ("type", "STOCK_RESPONSE_BACKEND"), ("type", None),
+            ("url", "http://203.0.113.10:8080/admin"), ("url", None),
+            ("connect_timeout_in_seconds", None), ("connect_timeout_in_seconds", 6),
+            ("read_timeout_in_seconds", None), ("read_timeout_in_seconds", 16),
+            ("send_timeout_in_seconds", None), ("send_timeout_in_seconds", 16),
+        ):
+            with self.subTest(field=field, value=value):
+                self.assert_route_mutation_rejected(
+                    lambda routes: routes[0]["backend"][0].__setitem__(field, value)
+                )
+
+    def test_valid_provider_defaults_and_route_reordering_are_accepted(self) -> None:
+        def add_provider_defaults(values: dict) -> None:
+            specification = values["specification"][0]
+            specification["logging_policies"] = []
+            specification["request_policies"][0]["authentication"] = []
+            for route in specification["routes"]:
+                route.update({"logging_policies": [], "request_policies": [], "response_policies": []})
+                route["backend"][0].update({
+                    "body": None, "status": None, "function_id": None,
+                    "headers": [], "is_ssl_verify_disabled": False,
+                })
+            specification["routes"].reverse()
+
+        self.assert_contract(self.DEPLOYMENT, add_provider_defaults)
+
+    def test_unknown_deployment_contract_is_blocked_before_approval(self) -> None:
+        unknowns = [
+            {"path_prefix": True},
+            {"specification": True},
+            {"specification": [{"routes": True}]},
+            {"specification": [{"routes": [{"path": True}]}]},
+            {"specification": [{"routes": [{"methods": [True]}]}]},
+            {"specification": [{"routes": [{"backend": True}]}]},
+            {"specification": [{"routes": [{"backend": [{"url": True}]}]}]},
+            {"specification": [{"routes": [{"backend": [{"type": True}]}]}]},
+            {"specification": [{"routes": [{"backend": [{"read_timeout_in_seconds": True}]}]}]},
+            {"specification": [{"request_policies": True}]},
+            {"specification": [{"request_policies": [{"rate_limiting": True}]}]},
+        ]
+        for unknown in unknowns:
+            with self.subTest(unknown=unknown):
+                plan = build_runtime_plan()
+                planned_resource(plan, self.DEPLOYMENT)["change"]["after_unknown"] = unknown
+                summary = PlanSummaryTests().summary(plan)
+                self.assertTrue(summary["blocked"])
+                self.assertIn("unknown_api_deployment_security_field", summary["block_reasons"])
+                self.assertIsNone(summary["approval_phrase"])
+
+    def test_false_unknown_markers_do_not_block_valid_deployment(self) -> None:
+        plan = build_runtime_plan()
+        planned_resource(plan, self.DEPLOYMENT)["change"]["after_unknown"] = {
+            "path_prefix": False,
+            "specification": [{"routes": [{"methods": [False], "backend": [{"url": False}]}]}],
+        }
+        self.assertFalse(PlanSummaryTests().summary(plan)["blocked"])
+
+    def test_added_capabilities_are_rejected_in_plan_and_state(self) -> None:
+        for added in (["ALL"], ["CAP_NET_RAW"], ["UNKNOWN_ENUM_VALUE"], [None], "ALL", {}, False):
+            with self.subTest(added=added):
+                self.assert_contract(
+                    self.CONTAINER,
+                    lambda values: values["containers"][0]["security_context"][0]["capabilities"][0].__setitem__(
+                        "add_capabilities", copy.deepcopy(added)
+                    ),
+                    "container_capabilities_not_dropped",
+                )
+
+    def test_omitted_null_and_empty_capability_additions_are_accepted(self) -> None:
+        self.assert_contract(self.CONTAINER, lambda values: None)
+        for added in (None, []):
+            with self.subTest(added=added):
+                self.assert_contract(
+                    self.CONTAINER,
+                    lambda values: values["containers"][0]["security_context"][0]["capabilities"][0].__setitem__(
+                        "add_capabilities", copy.deepcopy(added)
+                    ),
+                )
+
+    def test_unknown_capability_additions_are_blocked_before_approval(self) -> None:
+        for added in (True, [True]):
+            with self.subTest(added=added):
+                plan = build_runtime_plan()
+                planned_resource(plan, self.CONTAINER)["change"]["after_unknown"] = {
+                    "containers": [{"security_context": [{"capabilities": [{"add_capabilities": added}]}]}]
+                }
+                summary = PlanSummaryTests().summary(plan)
+                self.assertTrue(summary["blocked"])
+                self.assertIn("unknown_container_security_field", summary["block_reasons"])
+                self.assertIsNone(summary["approval_phrase"])
+
+
 class BootstrapPlanTests(unittest.TestCase):
     def summary(self, plan: dict) -> dict:
         return FOUNDERCTL.build_plan_summary(

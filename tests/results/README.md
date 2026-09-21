@@ -21,6 +21,23 @@ Each result must record the prompt ID, environment, mutations attempted, outcome
 reservations, and reviewer. Never include credentials, private OCIDs, customer
 identifiers, or secret values.
 
+## Security correction — 2026-09-21
+
+- [Full-bundle assessment](2026-09-21-security-full-package-assessment.json)
+  and [raw installation receipt](2026-09-21-security-full-package-install.raw.json):
+  fresh fixed-bundle install/remove/reinstall in three project layouts; no
+  native model session or OCI deployment is implied.
+- [Read-only host preflight](2026-09-21-security-host-preflight.json): renewed
+  validator-source bindings; prior host records remain historical.
+- [Historical fixture lineage](2026-09-21-fixture-lineage.json): hashes derived
+  from the original published commit, preserving the old native comparison
+  after the active fixture dependencies were updated.
+- [Active dependency audit](2026-09-21-security-dependencies.json): 28 public
+  package/version coordinates queried successfully with no known OSV advisories
+  returned at capture time; not an OS/image or all-platform certification.
+- [Security update](../../docs/SECURITY-UPDATE-2026-09-21.md): impact, corrected
+  revision, old-package warning and explicit evidence limits.
+
 ## Three-skill public source — 2026-09-21
 
 - [Public-source assessment](2026-09-21-public-source-assessment.json): exact

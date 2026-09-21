@@ -8,6 +8,11 @@ Snapshot: **2026-09-21**. This summary links to existing records; it does not
 replace their versions, limitations or failure history. Detailed maintainer
 evidence remains in [VALIDATION.md](VALIDATION.md).
 
+**Security correction:** the [2026-09-21 update](SECURITY-UPDATE-2026-09-21.md)
+fixes two offline gate false negatives in Container API `0.2.0-preview.4`.
+Earlier full-toolkit package receipts and the native fixture comparison remain
+historical; they are not proof of the patched helper or updated dependencies.
+
 ## Current evidence you can inspect
 
 | Question | Current result | Evidence and limit |

@@ -1,9 +1,15 @@
 # Validation record
 
 This document distinguishes evidence for the published `0.1.0` and `0.1.1`
-previews, and the separately versioned `0.2.0-preview.3` Container API candidate from
+previews, and the separately versioned `0.2.0-preview.4` Container API candidate from
 capabilities that remain unverified. It is not a stable-release certification,
 an Oracle review, or an Oracle support statement.
+
+The [2026-09-21 security update](SECURITY-UPDATE-2026-09-21.md) supersedes the
+older blueprint security-gate implementation. The native receipts and the full
+package hashes below remain historical. The updated FastAPI fixture has not
+undergone a new native-model replay; its dependencies and app contract are
+tested separately. Never relabel old receipts as a run of the patched bundle.
 
 For a founder-readable summary of these records and the proposed next field
 tests, start with [Evidence](EVIDENCE.md). The reference backend and cost

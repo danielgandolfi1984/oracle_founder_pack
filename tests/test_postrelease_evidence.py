@@ -86,7 +86,7 @@ class PostreleaseEvidenceTests(unittest.TestCase):
         self.assertTrue(receipt["selection_evidence"]["installed_skill_read"])
         self.assertTrue(receipt["selection_evidence"]["installed_reference_read"])
 
-    def test_v0_1_1_native_rerun_binds_current_code_skill_and_focused_contract(self) -> None:
+    def test_v0_1_1_native_rerun_binds_current_skill_and_historical_fixture(self) -> None:
         receipt = read(CANDIDATE_NATIVE_NAME)
         assessment = read(CANDIDATE_ASSESSMENT_NAME)
         self.assertEqual(
@@ -104,7 +104,11 @@ class PostreleaseEvidenceTests(unittest.TestCase):
             hashlib.sha256(schema_bytes).hexdigest(),
             receipt["codex"]["response_schema_sha256"],
         )
-        manifest = probe.fixture_manifest(ROOT / "tests/fixtures/docker-fastapi")
+        lineage = read("2026-09-21-fixture-lineage.json")
+        self.assertEqual("8765266e3ef77110b30827d5c89da7cf1b15ee08", lineage["source_commit"])
+        manifest = lineage["files"]
+        self.assertEqual(probe.manifest_fingerprint(manifest), lineage["manifest_sha256"])
+        self.assertEqual(set(manifest), set(receipt["fixture"]["files"]))
         self.assertEqual(
             probe.manifest_fingerprint(manifest),
             receipt["fixture"]["manifest_sha256"],

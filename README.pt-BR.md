@@ -66,6 +66,11 @@ a jornada do usuário sem exigir leitura desses documentos para começar.
 
 ## Limites e segurança
 
+[Atualização de segurança — 21/09/2026](docs/i18n/pt-BR/SECURITY-UPDATE-2026-09-21.md):
+use o Container API `0.2.0-preview.4`, com os validadores corrigidos. Não use os
+pacotes completos antigos `v0.1.0`/`v0.1.1` para validar infraestrutura. As três
+skills de planejamento e os comandos de instalação continuam inalterados.
+
 Preview público independente, não qualificado para produção. A evidência de
 instalação não prova comportamento nativo em todos os agentes. Os laboratórios
 locais usam dados sintéticos; não comprovam deploy, login real ou custos em OCI.

@@ -59,7 +59,10 @@ class BuildReleaseTests(unittest.TestCase):
 
     def test_full_toolkit_uses_versioned_filename_and_manifest_root(self) -> None:
         version = build_release.load_version()
-        expected_archive = f"oci-founder-toolkit-{version}-preview.tar.gz"
+        expected_archive = (
+            f"oci-founder-toolkit-{version}-container-api-"
+            f"{build_release.load_blueprint_version()}.tar.gz"
+        )
         with tempfile.TemporaryDirectory() as temporary:
             output = Path(temporary)
             manifests = build_release.build_all(output)

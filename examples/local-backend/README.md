@@ -7,8 +7,9 @@ retry avoids creating duplicate records, and whether data survives reopening.
 **The default lesson is synthetic and in-process, not a deployable service.**
 `demo.py` opens no listening port, sends no network requests, uses no OCI
 credentials, and has no real identity-provider integration. It is available on `main` only;
-the released `v0.1.1` skill archives and the Container API `0.2.0-preview.3`
-remain unchanged. Installing the released skill does not install this example.
+the released `v0.1.1` skill archives remain unchanged. The separately maintained
+Container API is now `0.2.0-preview.4`; see its [security update](../../docs/SECURITY-UPDATE-2026-09-21.md).
+Installing the released skill does not install this example.
 
 After this lesson, the optional [HTTP and signed-token lab](HTTP-LAB.md) adds
 `curl` requests to a temporary `127.0.0.1` listener and RS256 verification of

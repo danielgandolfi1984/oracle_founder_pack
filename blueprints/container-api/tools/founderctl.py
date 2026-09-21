@@ -32,7 +32,7 @@ from urllib.parse import urlsplit
 
 
 SCHEMA_VERSION = "1.2"
-BLUEPRINT_VERSION = "0.2.0-preview.3"
+BLUEPRINT_VERSION = "0.2.0-preview.4"
 TERRAFORM_VERSION = "1.16.3"
 MAX_JSON_BYTES = 50 * 1024 * 1024
 MAX_HTTP_BODY_BYTES = 8192
@@ -1481,6 +1481,9 @@ def plan_resource_risks(
                 or len(capabilities) != 1
                 or not isinstance(capabilities[0], dict)
                 or capabilities[0].get("drop_capabilities") != ["ALL"]
+                # OCI applies additions after drops; Add=ALL also overrides
+                # Drop=ALL. An omitted, null, or empty addition list is safe.
+                or capabilities[0].get("add_capabilities") not in (None, [])
             ):
                 blockers.append("container_capabilities_not_dropped")
         vnics = values.get("vnics", [])
@@ -1536,6 +1539,7 @@ def plan_resource_risks(
             "/readyz": f"http://{expected_ip}:{expected_port}/readyz",
         }
         observed_routes: Dict[str, str] = {}
+        routes_valid = False
         rate_limit_valid = False
         if isinstance(specifications, list) and len(specifications) == 1 and isinstance(specifications[0], dict):
             routes = specifications[0].get("routes")
@@ -1554,29 +1558,40 @@ def plan_resource_risks(
                     == variables.get("rate_limit_requests_per_second", 10)
                     and rate_limits[0].get("rate_key") == "CLIENT_IP"
                 )
-            if isinstance(routes, list):
+            if isinstance(routes, list) and len(routes) == len(expected_routes):
+                routes_valid = True
                 for route in routes:
                     if not isinstance(route, dict) or route.get("methods") != ["GET"]:
-                        continue
+                        routes_valid = False
+                        break
+                    path = route.get("path")
+                    if not isinstance(path, str) or path not in expected_routes or path in observed_routes:
+                        routes_valid = False
+                        break
                     backends = route.get("backend")
                     if not isinstance(backends, list) or len(backends) != 1 or not isinstance(backends[0], dict):
-                        continue
+                        routes_valid = False
+                        break
                     backend = backends[0]
                     if (
                         backend.get("type") != "HTTP_BACKEND"
+                        or backend.get("url") != expected_routes[path]
                         or backend.get("connect_timeout_in_seconds") != 5
                         or backend.get("read_timeout_in_seconds") != 15
                         or backend.get("send_timeout_in_seconds") != 15
                     ):
-                        continue
-                    if isinstance(route.get("path"), str) and isinstance(backend.get("url"), str):
-                        observed_routes[route["path"]] = backend["url"]
+                        routes_valid = False
+                        break
+                    observed_routes[path] = backend["url"]
         if (
             values.get("path_prefix") != expected_prefix
+            or not routes_valid
             or observed_routes != expected_routes
             or not rate_limit_valid
         ):
             blockers.append("api_deployment_route_contract_mismatch")
+        if nested_unknown(after_unknown, {"path_prefix", "specification"}):
+            blockers.append("unknown_api_deployment_security_field")
     if resource_type == "oci_logging_log":
         configurations = values.get("configuration")
         source = None
