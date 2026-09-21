@@ -31,6 +31,19 @@ _JWK_FIELDS = {"kty", "kid", "n", "e", "alg", "use", "key_ops"}
 _SCOPE_TOKEN = re.compile(r"[\x21\x23-\x5b\x5d-\x7e]{1,128}")
 _COMPACT_TOKEN = re.compile(r"[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+")
 _REQUIRED_CLAIMS = ["iss", "aud", "sub", "iat", "exp", "client_id", "jti", "scope"]
+_CONFIGURATION_CODES = frozenset({
+    "invalid_config_fields", "invalid_issuer", "invalid_audience",
+    "invalid_client_allowlist", "invalid_required_scope", "invalid_time_policy",
+    "invalid_public_jwks", "invalid_subject_bindings", "invalid_clock", "invalid_snapshot",
+})
+
+
+class ProviderConfigurationError(ValueError):
+    """Safe snapshot classification; the message never includes input values."""
+
+    def __init__(self, code: str = "invalid_snapshot"):
+        self.code = code if type(code) is str and code in _CONFIGURATION_CODES else "invalid_snapshot"
+        super().__init__("invalid trusted provider snapshot")
 
 
 def _ascii(value, limit):
@@ -64,55 +77,64 @@ class ProviderVerifier:
     def __init__(self, config: dict, jwks: dict, bindings: dict):
         self._lock = RLock()
         self._snapshot = None
-        self._effective_time = time.time()
-        self._monotonic_time = time.monotonic()
+        try:
+            self._effective_time = time.time()
+            self._monotonic_time = time.monotonic()
+        except Exception:
+            raise ProviderConfigurationError("invalid_clock") from None
         self.reload(config, jwks, bindings)
 
     def _clock(self):
-        wall, monotonic = time.time(), time.monotonic()
-        if (not math.isfinite(wall) or not math.isfinite(monotonic)
-                or monotonic < self._monotonic_time):
-            raise ValueError("invalid clock")
-        # Keep this high-water clock across reloads, including failed reloads.
-        # Reusing an absolute expiry cannot restart an elapsed snapshot TTL.
-        self._effective_time = max(wall, self._effective_time + monotonic - self._monotonic_time)
-        self._monotonic_time = monotonic
-        return wall, monotonic, self._effective_time
+        try:
+            wall, monotonic = time.time(), time.monotonic()
+            if (not math.isfinite(wall) or not math.isfinite(monotonic)
+                    or monotonic < self._monotonic_time):
+                raise ProviderConfigurationError("invalid_clock")
+            # Keep this high-water clock across reloads, including failed reloads.
+            # Reusing an absolute expiry cannot restart an elapsed snapshot TTL.
+            self._effective_time = max(wall, self._effective_time + monotonic - self._monotonic_time)
+            self._monotonic_time = monotonic
+            return wall, monotonic, self._effective_time
+        except Exception:
+            raise ProviderConfigurationError("invalid_clock") from None
 
     @staticmethod
     def _config(config, wall, effective):
         if not isinstance(config, dict) or set(config) != _CONFIG_FIELDS:
-            raise ValueError
+            raise ProviderConfigurationError("invalid_config_fields")
         issuer = config["issuer"]
         if not _ascii(issuer, 2048) or any(character in issuer for character in "\\?#"):
-            raise ValueError
-        parsed = urlsplit(issuer)
-        if (parsed.scheme != "https" or not parsed.hostname or parsed.username is not None
-                or parsed.password is not None or "%" in parsed.netloc
-                or (parsed.port is not None and not 1 <= parsed.port <= 65535)):
-            raise ValueError
+            raise ProviderConfigurationError("invalid_issuer")
+        try:
+            parsed = urlsplit(issuer)
+            if (parsed.scheme != "https" or not parsed.hostname or parsed.username is not None
+                    or parsed.password is not None or "%" in parsed.netloc
+                    or (parsed.port is not None and not 1 <= parsed.port <= 65535)):
+                raise ProviderConfigurationError("invalid_issuer")
+        except Exception:
+            raise ProviderConfigurationError("invalid_issuer") from None
         if not _ascii(config["audience"], 512):
-            raise ValueError
+            raise ProviderConfigurationError("invalid_audience")
         clients = config["allowed_client_ids"]
         if (not isinstance(clients, list) or not 1 <= len(clients) <= 16
                 or not all(_ascii(client, 256) for client in clients)
                 or len(set(clients)) != len(clients)):
-            raise ValueError
+            raise ProviderConfigurationError("invalid_client_allowlist")
         scope = config["required_scope"]
         if not isinstance(scope, str) or _SCOPE_TOKEN.fullmatch(scope) is None:
-            raise ValueError
+            raise ProviderConfigurationError("invalid_required_scope")
         lifetime, fetched, expires = (config[name] for name in (
             "max_token_lifetime_seconds", "jwks_fetched_at", "jwks_expires_at"))
         if (any(type(value) is not int for value in (lifetime, fetched, expires))
                 or not 1 <= lifetime <= 3600 or not 0 < expires - fetched <= 3600
                 or not fetched <= wall < expires or effective >= expires):
-            raise ValueError
+            raise ProviderConfigurationError("invalid_time_policy")
 
     @staticmethod
     def _keys(jwks):
         if (not isinstance(jwks, dict) or set(jwks) != {"keys"}
                 or not isinstance(jwks["keys"], list) or not 1 <= len(jwks["keys"]) <= 8):
-            raise ValueError
+            raise ProviderConfigurationError("invalid_public_jwks")
         result = {}
         for key in jwks["keys"]:
             if (not isinstance(key, dict) or not {"kty", "kid", "n", "e"} <= set(key)
@@ -121,29 +143,32 @@ class ProviderVerifier:
                     or ("alg" in key and key["alg"] != "RS256")
                     or ("use" in key and key["use"] != "sig")
                     or ("key_ops" in key and key["key_ops"] != ["verify"])):
-                raise ValueError
+                raise ProviderConfigurationError("invalid_public_jwks")
             for name, limit in (("n", 1366), ("e", 8)):
                 value = key[name]
                 if (not isinstance(value, str) or not 1 <= len(value) <= limit
                         or re.fullmatch(r"[A-Za-z0-9_-]+", value) is None):
-                    raise ValueError
-            public = jwt.PyJWK.from_dict(key, algorithm="RS256").key
-            if (not isinstance(public, RSAPublicKey) or not 2048 <= public.key_size <= 8192
-                    or public.public_numbers().e != 65537):
-                raise ValueError
+                    raise ProviderConfigurationError("invalid_public_jwks")
+            try:
+                public = jwt.PyJWK.from_dict(key, algorithm="RS256").key
+                if (not isinstance(public, RSAPublicKey) or not 2048 <= public.key_size <= 8192
+                        or public.public_numbers().e != 65537):
+                    raise ProviderConfigurationError("invalid_public_jwks")
+            except Exception:
+                raise ProviderConfigurationError("invalid_public_jwks") from None
             result[key["kid"]] = public
         return result
 
     @staticmethod
     def _bindings(bindings):
         if not isinstance(bindings, dict) or len(bindings) > 1000:
-            raise ValueError
+            raise ProviderConfigurationError("invalid_subject_bindings")
         for external, local in bindings.items():
             if (not _opaque(external) or not isinstance(local, str)
                     or re.fullmatch(SEGMENT, local) is None):
-                raise ValueError
+                raise ProviderConfigurationError("invalid_subject_bindings")
         if len(set(bindings.values())) != len(bindings):
-            raise ValueError
+            raise ProviderConfigurationError("invalid_subject_bindings")
 
     def reload(self, config: dict, jwks: dict, bindings: dict) -> None:
         """Atomically replace trusted inputs; invalid input disables all calls."""
@@ -157,8 +182,10 @@ class ProviderVerifier:
                 self._bindings(bindings)
                 self._snapshot = _Snapshot(config, keys, bindings,
                                            monotonic + config["jwks_expires_at"] - effective)
+            except ProviderConfigurationError as error:
+                raise ProviderConfigurationError(error.code) from None
             except Exception:
-                raise ValueError("invalid trusted provider snapshot") from None
+                raise ProviderConfigurationError("invalid_snapshot") from None
 
     @staticmethod
     def _fresh(snapshot, wall, monotonic, effective):

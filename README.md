@@ -38,6 +38,9 @@ Preparing to connect an identity provider? The separate
 explains which configuration to collect, checks trusted public-key snapshots,
 and rehearses key rotation and explicit user bindings with synthetic tokens.
 It does not contact a provider or prove compatibility with OCI Identity Domains.
+If a configuration check fails, use the
+[safe diagnostics and compatibility checklist](examples/local-backend/IDENTITY-TROUBLESHOOTING.md)
+to identify what to review without printing your configuration values.
 
 This is an independent personal project created and maintained by
 [Daniel Gandolfi](https://github.com/danielgandolfi1984), who works at Oracle
@@ -178,6 +181,7 @@ support boundary still apply.
 | Run synthetic workspace, task, permission, retry and recovery exercises locally | [Local backend lab](examples/local-backend/README.md) |
 | Send local HTTP requests and see signed tokens accepted or rejected | [Optional HTTP and signed-token lab](examples/local-backend/HTTP-LAB.md) |
 | Understand app-user tokens, collect provider settings and rehearse key rotation offline | [Identity integration guide](examples/local-backend/IDENTITY-INTEGRATION.md) |
+| Fix an offline identity configuration or check provider-profile differences | [Safe identity diagnostics](examples/local-backend/IDENTITY-TROUBLESHOOTING.md) |
 | Estimate prototype, first-customer and growth costs without assuming a fixed bill | [Cost scenarios and worksheet](docs/COST-SCENARIOS.md) |
 | Distinguish documented guidance, local tests and real deployment proof | [Evidence summary and field-test plan](docs/EVIDENCE.md) |
 | Check exact evidence, open gates, or release status | [Validation record](docs/VALIDATION.md) and [compatibility matrix](docs/COMPATIBILITY.md) |

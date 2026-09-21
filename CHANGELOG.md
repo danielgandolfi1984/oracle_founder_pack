@@ -5,6 +5,19 @@ publishes an independent public open-source preview under UPL-1.0, with
 best-effort community support and no SLA. It has not published a tagged stable
 release or claimed cross-host or production qualification.
 
+## Guided identity diagnostics on `main` — 2026-09-21
+
+- Added opt-in `--diagnostics` to the offline preflight: fixed input labels and
+  actionable error codes without input values, paths or library error text.
+  The default JSON shape and all token-acceptance rules remain unchanged.
+- Added regression tests for diagnostic classification, non-disclosure,
+  backward compatibility and invalid-reload denial/recovery.
+- Added troubleshooting steps and an official-source comparison of token
+  type, audience shape, public-key metadata and client/subject identity.
+  Documented incompatibilities are not automatically bypassed or normalized.
+- No real provider connection, account registration, token acquisition, OCI
+  mutation or new skill release. Published package contents are unchanged.
+
 ## Offline identity integration rehearsal on `main` — 2026-09-19
 
 - Added an explicit issuer/audience/client/scope access-token contract, bounded

@@ -36,6 +36,10 @@ key snapshot, and a known subject binding. Provider defaults can differ in
 token type, claims, audience shape, scope names, key format, or algorithm.
 If they differ, record the incompatibility; do not disable validation or relabel
 an ID token to make this lesson pass. No provider is trusted by default.
+The [compatibility checklist](IDENTITY-TROUBLESHOOTING.md#check-provider-compatibility-before-attempting-login)
+shows concrete Oracle documentation differences, including audience arrays and
+certificate metadata. A generic `JWT` header alone does not prove a token is
+an ID token; it is simply outside this adapter's strict access-token profile.
 
 ## 2. Collect configuration, not credentials
 
@@ -157,6 +161,12 @@ Success returns `status: configuration_valid` together with
 false/zero evidence fields, and exit code 2. Neither response echoes your
 values. This CLI accepts no bearer-token input and does not validate a live
 token, fetch keys, or prove that a mapped member exists in your application.
+
+If a check fails, add `--diagnostics` to receive a safe input label and error
+code. It does not echo configuration values or paths. Follow the
+[diagnostic guide](IDENTITY-TROUBLESHOOTING.md) to correct the first reported
+problem and rerun. Without this optional flag, the existing JSON shape is
+unchanged. Authentication rejection responses remain generic.
 
 ## 5. Rehearse rotation and revocation honestly
 

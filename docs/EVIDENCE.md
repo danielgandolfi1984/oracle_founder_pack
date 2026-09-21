@@ -4,7 +4,7 @@ Use this page before relying on a demo, an estimate, or a deployment claim.
 A document, a generated file, a passing CI run and a running customer workload
 are different kinds of evidence. None should be presented as another.
 
-Snapshot: **2026-09-19**. This summary links to existing records; it does not
+Snapshot: **2026-09-21**. This summary links to existing records; it does not
 replace their versions, limitations or failure history. Detailed maintainer
 evidence remains in [VALIDATION.md](VALIDATION.md).
 
@@ -86,6 +86,16 @@ fixed-key verifier. `ProviderVerifier.ready()` checks snapshot freshness
 separately; the existing `/readyz` still checks only SQLite. Real-provider token
 compatibility, trusted metadata retrieval, automated key refresh, OAuth/login,
 TLS and deployment remain unverified. No existing release receipt is replaced.
+
+The 2026-09-21 follow-up adds optional `--diagnostics` with fixed input labels
+and error codes, retaining the previous default JSON. Its
+[diagnostic tests](../examples/local-backend/http-tests/test_provider_diagnostics.py)
+check classification, output redaction, no file changes/network calls, and
+fail-closed reload/recovery. All 22 added diagnostic tests and the combined
+69-test offline provider suite passed locally under CPython 3.12.14. The
+[troubleshooting guide](../examples/local-backend/IDENTITY-TROUBLESHOOTING.md)
+separates local configuration failures from documented provider-profile
+differences. This is still offline evidence, not a connected-provider result.
 
 ## Labels to use in guides and demonstrations
 
